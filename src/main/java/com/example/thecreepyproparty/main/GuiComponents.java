@@ -4,8 +4,12 @@ import com.example.thecreepyproparty.entity.Player;
 
 
 public class GuiComponents {
-    public Player player = new Player();
 
+    public static Player player = new Player();
+
+    public GuiComponents(){
+
+    }
 
     public static void components(){
 
