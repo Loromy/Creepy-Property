@@ -12,6 +12,7 @@ public class GUI extends Application {
 
     private Pane root = new Pane();
     private Player player = new Player();
+    private GameLoop gameLoop = new GameLoop();
 
     public void start(Stage primaryStage) {
         // Create the scene with the specified width and height values
@@ -32,6 +33,8 @@ public class GUI extends Application {
         primaryStage.setOnCloseRequest(e -> System.exit(0));
 
         primaryStage.show();
+
+        //gameLoop.startGameLoop();
     }
 
     public static void startGui(){
