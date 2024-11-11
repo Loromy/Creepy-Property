@@ -8,14 +8,17 @@ import javafx.scene.paint.Color;
 
 public class KeyHandler {
     private Player player;
+    private GUI gui;
     private boolean wPressed = false;
     private boolean aPressed = false;
     private boolean sPressed = false;
     private boolean dPressed = false;
+    private boolean strgPressed = false;
     private boolean shiftPressed = false;
 
-    public KeyHandler(Player player) {
+    public KeyHandler(Player player, GUI gui) {
         this.player = player;
+        this.gui = gui;
     }
 
     public void addKeyListener(Scene scene) {
@@ -27,6 +30,7 @@ public class KeyHandler {
                 case S -> sPressed = true;
                 case A -> aPressed = true;
                 case D -> dPressed = true;
+                case CONTROL -> strgPressed = true;
                 case SHIFT -> shiftPressed = true;
             }
         });
@@ -39,6 +43,7 @@ public class KeyHandler {
                 case S -> sPressed = false;
                 case A -> aPressed = false;
                 case D -> dPressed = false;
+                case CONTROL -> strgPressed = false;
                 case SHIFT -> shiftPressed = false;
             }
         });
@@ -58,21 +63,35 @@ public class KeyHandler {
         double dx = 0;
         double dy = 0;
 
-        if (wPressed) dy -= 1;
-        if (sPressed) dy += 1;
-        if (aPressed) dx -= 1;
-        if (dPressed) dx += 1;
+        if (wPressed) {
+            dy -= 1;
+        }
+        if (sPressed) {
+            dy += 1;
+        }
+        if (aPressed) {
+            dx -= 1;
+        }
+        if (dPressed) {
+            dx += 1;
+        }
+
+        if (strgPressed) {
+            this.player.setStrgSpeed(2);
+            this.player.getPlayer().setFill(Color.YELLOW);
+            this.gui.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed());
+        } else if (shiftPressed) {
+            this.player.setShiftSpeed();
+            this.player.getPlayer().setFill(Color.LIGHTBLUE);
+            this.gui.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed());
+        } else {
+            this.player.setStrgSpeed(0);
+            this.player.getPlayer().setFill(Color.DARKRED);
+            this.gui.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed());
+        }
 
         if (dx != 0 || dy != 0) {
             move(dx, dy);
-        }
-
-        if (shiftPressed) {
-            this.player.setSchifSpeed(2);
-            this.player.getPlayer().setFill(Color.YELLOW);
-        } else {
-            this.player.setSchifSpeed(0);
-            this.player.getPlayer().setFill(Color.DARKRED);
         }
 
     }

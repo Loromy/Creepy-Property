@@ -10,9 +10,9 @@ public class GUI extends Application {
     private final int width = 1000;
     private final int height = 600;
 
-    private Pane root = new Pane();
-    private Player player = new Player();
-    private GameLoop gameLoop = new GameLoop();
+    private final Pane root = new Pane();
+    private final Player player = new Player();
+    private final GuiComponents guiComponents = new GuiComponents(this.player);
 
     public void start(Stage primaryStage) {
         // Create the scene with the specified width and height values
@@ -20,9 +20,10 @@ public class GUI extends Application {
 
         // Additional GUI components could be added here
         root.getChildren().add(player.getPlayer());
+        root.getChildren().add(guiComponents.getL_speed());
 
         // Add the KeyHandler for keyboard input
-        KeyHandler keyHandler = new KeyHandler(player);
+        KeyHandler keyHandler = new KeyHandler(player,this);
         keyHandler.addKeyListener(scene);
 
         // Set the settings for the stage
@@ -53,4 +54,6 @@ public class GUI extends Application {
     public Player getPlayer() {
         return player;
     }
+
+    public GuiComponents getGuiComponents() {return guiComponents;}
 }

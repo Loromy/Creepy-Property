@@ -9,8 +9,8 @@ import javafx.scene.paint.Color;
 
 public class Player {
     private Rectangle r_player;
-    private double schifSpeed = 0; // speed if strg pressed
-    private double speed = 3; // speed
+    private double strgSpeed = 0; // speed if strg pressed
+    private double speed = 3; // speed (standard 3)
     private double x = 50; // position x
     private double y = 50; // position y
 
@@ -35,8 +35,12 @@ public class Player {
         r_player.setY(y); // update player
     }
 
-    public void setSchifSpeed(double speed) {
-        this.schifSpeed = speed;
+    public void setStrgSpeed(double speed) {
+        this.strgSpeed = speed;
+    }
+
+    public void setShiftSpeed() {
+        this.strgSpeed = (this.speed - 2) * (-1);
     }
 
     // get methode
@@ -52,11 +56,7 @@ public class Player {
         return y;
     }
 
-    public double getSchifSpeed(){
-        return schifSpeed;
-    }
-
     public double getSpeed(){
-        return speed + getSchifSpeed();
+        return this.speed + this.strgSpeed;
     }
 }
