@@ -10,7 +10,7 @@ import javafx.scene.paint.Color;
 public class Player {
     private Rectangle r_player;
     private double speed = 5; // speed
-    public double jumpHeight = 10; //Jump height
+    public double jumpHeight = 5; //Jump height
     private double x = 50; // position x
     private double y = 50; // position y
 
