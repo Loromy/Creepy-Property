@@ -9,8 +9,8 @@ import javafx.scene.paint.Color;
 
 public class Player {
     private Rectangle r_player;
-    private double speed = 5; // speed
-    public double jumpHeight = 5; //Jump height
+    private double strgSpeed = 0; // speed if strg pressed
+    private double speed = 3; // speed
     private double x = 50; // position x
     private double y = 50; // position y
 
@@ -24,10 +24,7 @@ public class Player {
         System.out.println("[System]: Player created!");
     }
 
-    public Rectangle getPlayer(){
-        return r_player;
-    }
-
+    // set methode
     public void setX(double x){
         this.x = x;
         r_player.setX(x); // update player
@@ -38,6 +35,15 @@ public class Player {
         r_player.setY(y); // update player
     }
 
+    public void setStrgSpeed(double speed) {
+        this.strgSpeed = speed;
+    }
+
+    // get methode
+    public Rectangle getPlayer(){
+        return r_player;
+    }
+
     public double getX(){
         return x;
     }
@@ -46,11 +52,11 @@ public class Player {
         return y;
     }
 
-    public double getSpeed(){
-        return speed;
+    public double getStrgSpeed(){
+        return strgSpeed;
     }
 
-    public double getJumpHeight(){
-        return jumpHeight;
+    public double getSpeed(){
+        return speed + getStrgSpeed();
     }
 }
