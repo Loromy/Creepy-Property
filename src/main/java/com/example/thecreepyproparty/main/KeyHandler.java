@@ -1,7 +1,6 @@
 package com.example.thecreepyproparty.main;
 
 import com.example.thecreepyproparty.entity.Player;
-import com.sun.scenario.effect.impl.sw.java.JSWBlend_BLUEPeer;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
@@ -13,7 +12,7 @@ public class KeyHandler {
     private boolean aPressed = false;
     private boolean sPressed = false;
     private boolean dPressed = false;
-    private boolean strgPressed = false;
+    private boolean shiftPressed = false;
 
     public KeyHandler(Player player) {
         this.player = player;
@@ -28,7 +27,7 @@ public class KeyHandler {
                 case S -> sPressed = true;
                 case A -> aPressed = true;
                 case D -> dPressed = true;
-                case CONTROL -> strgPressed = true;
+                case SHIFT -> shiftPressed = true;
             }
         });
 
@@ -40,7 +39,7 @@ public class KeyHandler {
                 case S -> sPressed = false;
                 case A -> aPressed = false;
                 case D -> dPressed = false;
-                case CONTROL -> strgPressed = false;
+                case SHIFT -> shiftPressed = false;
             }
         });
 
@@ -68,11 +67,11 @@ public class KeyHandler {
             move(dx, dy);
         }
 
-        if (strgPressed) {
-            this.player.setStrgSpeed(2);
-            this.player.getPlayer().setFill(Color.LIGHTBLUE);
+        if (shiftPressed) {
+            this.player.setSchifSpeed(2);
+            this.player.getPlayer().setFill(Color.YELLOW);
         } else {
-            this.player.setStrgSpeed(0);
+            this.player.setSchifSpeed(0);
             this.player.getPlayer().setFill(Color.DARKRED);
         }
 
