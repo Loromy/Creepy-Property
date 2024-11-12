@@ -78,15 +78,15 @@ public class KeyHandler {
 
         if (strgPressed) {
             this.player.setStrgSpeed(2);
-            this.player.getPlayer().setFill(Color.YELLOW);
+            //this.player.getPlayer().setFill(Color.YELLOW);
             this.gui.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed());
         } else if (shiftPressed) {
             this.player.setShiftSpeed();
-            this.player.getPlayer().setFill(Color.LIGHTBLUE);
+            //this.player.getPlayer().setFill(Color.LIGHTBLUE);
             this.gui.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed());
         } else {
             this.player.setStrgSpeed(0);
-            this.player.getPlayer().setFill(Color.DARKRED);
+            //this.player.getPlayer().setFill(Color.DARKRED);
             this.gui.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed());
         }
 
@@ -104,7 +104,9 @@ public class KeyHandler {
             dy /= length;
         }
 
-        this.player.setX(player.getX() + dx * player.getSpeed());
-        this.player.setY(player.getY() + dy * player.getSpeed());
+//        this.player.setX(player.getX() + dx * player.getSpeed());
+//        this.player.setY(player.getY() + dy * player.getSpeed());
+
+        this.player.updateViewport(player.getX() + dx * player.getSpeed(), player.getY() + dy * player.getSpeed());
     }
 }
