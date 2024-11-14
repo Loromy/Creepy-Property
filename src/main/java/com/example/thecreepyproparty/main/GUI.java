@@ -12,7 +12,9 @@ public class GUI extends Application {
 
     private final Pane root = new Pane();
     private final Player player = new Player();
-    private final GuiComponents guiComponents = new GuiComponents(this.player);
+    private final Menu menu = new Menu(this); // Create an instance of the GameOverlayMenu
+    private final GuiComponents guiComponents = new GuiComponents(this.player, this.menu);
+
 
     public void start(Stage primaryStage) {
         // Create the scene with the specified width and height values
@@ -21,9 +23,12 @@ public class GUI extends Application {
         // Additional GUI components could be added here
         root.getChildren().add(player.getPlayer());
         root.getChildren().add(guiComponents.getL_speed());
+        root.getChildren().add(guiComponents.getB_menu());
+        root.getChildren().addAll(menu.getMenu());
+
 
         // Add the KeyHandler for keyboard input
-        KeyHandler keyHandler = new KeyHandler(player,this);
+        KeyHandler keyHandler = new KeyHandler(player,this, menu);
         keyHandler.addKeyListener(scene);
 
         // Set the settings for the stage

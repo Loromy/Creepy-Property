@@ -9,31 +9,37 @@ import javafx.scene.paint.Color;
 public class KeyHandler {
     private Player player;
     private GUI gui;
+    private Menu menu;
     private boolean wPressed = false;
     private boolean aPressed = false;
     private boolean sPressed = false;
     private boolean dPressed = false;
     private boolean strgPressed = false;
     private boolean shiftPressed = false;
+    private boolean escPresst = false;
 
-    public KeyHandler(Player player, GUI gui) {
+    public KeyHandler(Player player, GUI gui, Menu menu) {
         this.player = player;
         this.gui = gui;
+        this.menu = menu;
     }
 
     public void addKeyListener(Scene scene) {
         // KeyPressed: Setze Tastenstatus auf "gedrückt"
-        scene.setOnKeyPressed(event -> {
-            KeyCode keyCode = event.getCode();
-            switch (keyCode) {
-                case W -> wPressed = true;
-                case S -> sPressed = true;
-                case A -> aPressed = true;
-                case D -> dPressed = true;
-                case CONTROL -> strgPressed = true;
-                case SHIFT -> shiftPressed = true;
-            }
-        });
+        if (!this.menu.getMenu_on()) {
+            scene.setOnKeyPressed(event -> {
+                KeyCode keyCode = event.getCode();
+                switch (keyCode) {
+                    case W -> wPressed = true;
+                    case S -> sPressed = true;
+                    case A -> aPressed = true;
+                    case D -> dPressed = true;
+                    case CONTROL -> strgPressed = true;
+                    case SHIFT -> shiftPressed = true;
+                    case ESCAPE -> escPresst = true;
+                }
+            });
+        }
 
         // KeyReleased: Setze Tastenstatus auf "nicht gedrückt"
         scene.setOnKeyReleased(event -> {
@@ -45,6 +51,7 @@ public class KeyHandler {
                 case D -> dPressed = false;
                 case CONTROL -> strgPressed = false;
                 case SHIFT -> shiftPressed = false;
+                case ESCAPE -> escPresst = false;
             }
         });
 
@@ -88,6 +95,12 @@ public class KeyHandler {
             this.player.setStrgSpeed(0);
             this.player.getPlayer().setFill(Color.DARKRED);
             this.gui.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed());
+        }
+
+        if (escPresst) {
+            this.menu.getMenu().setVisible(false);
+
+
         }
 
         if (dx != 0 || dy != 0) {
