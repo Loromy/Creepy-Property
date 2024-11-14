@@ -3,7 +3,6 @@ package com.example.thecreepyproparty.main;
 import com.example.thecreepyproparty.entity.Player;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -12,18 +11,15 @@ public class GUI extends Application {
     private final int height = 600;
 
     private final Pane root = new Pane();
-    private final Player player = new Player() ;
-
+    private final Player player = new Player();
     private final GuiComponents guiComponents = new GuiComponents(this.player);
 
     public void start(Stage primaryStage) {
-
         // Create the scene with the specified width and height values
         Scene scene = new Scene(root, width, height);
 
         // Additional GUI components could be added here
-        root.getChildren().add(player.getImageView());
-        //root.getChildren().add(player.getPlayer());
+        root.getChildren().add(player.getPlayer());
         root.getChildren().add(guiComponents.getL_speed());
 
         // Add the KeyHandler for keyboard input
