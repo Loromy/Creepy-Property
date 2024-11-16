@@ -1,13 +1,17 @@
 package com.example.thecreepyproparty.main;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.effect.GaussianBlur;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 
 public class Menu extends VBox {
     private GUI gui;
-
-    private VBox menu = new VBox();
-
+    private final Pane backgroundMenu = new Pane();
+    private final Pane pMenu = new Pane();
+    private final VBox vBoxMenu = new VBox();
     private boolean menu_on = false;
 
     public Menu(GUI gui) {
@@ -16,9 +20,14 @@ public class Menu extends VBox {
         //super(10); // 10px spacing between menu items
 
         // Styling for the overlay
-        this.menu.setStyle("-fx-background-color: rgba(0, 0, 0, 0.5);");
-        this.menu.setOpacity(1); // Set 50% transparency
-        this.menu.setVisible(false);
+        this.backgroundMenu.setStyle("-fx-background-color: rgba(0, 0, 0, 0.5);");
+        //this.backgroundMenu.setOpacity(1); // Set 50% transparency
+        this.backgroundMenu.setOpacity(0.8); // 80% Deckkraft
+        this.backgroundMenu.setEffect(new GaussianBlur(15)); // Unschärfe-Effekt hinzufügen
+        this.backgroundMenu.setVisible(false);
+        this.pMenu.setVisible(false);
+
+        //this.vBoxMenu.setStyle("-fx-background-color: rgba(0, 2, 0, 0.5);");
 
 
         // Add menu items
@@ -26,11 +35,25 @@ public class Menu extends VBox {
         Button settingsButton = new Button("Settings");
         Button quitButton = new Button("Quit");
 
+        resumeButton.setPrefSize(500, 50);  // Breite: 500px, Höhe: 50px
+        settingsButton.setPrefSize(500, 50);
+        quitButton.setPrefSize(500, 50);
+
+        resumeButton.setFont(new Font("Arial", 20)); // Schriftgröße auf 20 setzen
+        settingsButton.setFont(new Font("Arial", 20));
+        quitButton.setFont(new Font("Arial", 20));
+
+
         // Add buttons to the VBox
-        this.menu.getChildren().addAll(resumeButton, settingsButton, quitButton);
+        this.vBoxMenu.getChildren().addAll(resumeButton, settingsButton, quitButton);
+        this.pMenu.getChildren().add(vBoxMenu);
+
 
         // Set size and position
-        this.menu.setPrefSize(gui.getWidth(), gui.getHeight()); // Set width and height for the overlay menu
+        this.pMenu.setPrefSize(gui.getWidth(), gui.getHeight()); // Set width and height for the overlay menu
+        this.backgroundMenu.setPrefSize(gui.getWidth(), gui.getHeight());
+        this.setMenuPosition(300, 500, 10);
+
 
         // Button actions
         resumeButton.setOnAction(e -> onResume());
@@ -38,11 +61,19 @@ public class Menu extends VBox {
         quitButton.setOnAction(e -> onQuit());
     }
 
-    // Example methods for button actions
+    private void setMenuPosition(double sizeX, double sizeY, int spacing) {
+        this.vBoxMenu.setPrefSize(sizeX,sizeY);
+        this.vBoxMenu.setLayoutX((gui.getWidth() - sizeX) / 2);
+        this.vBoxMenu.setLayoutY((gui.getHeight() - sizeY) / 2);
+        this.vBoxMenu.setSpacing(spacing);
+        this.vBoxMenu.setAlignment(Pos.CENTER);
+    }
+
     private void onResume() {
-        System.out.println("Game resumed!");
+        System.out.println("Back to Game");
         // Call a method from the GUI class to resume the game
-        //gui.resumeGame();  // Example, assuming GUI has a method to resume
+        this.pMenu.setVisible(false);
+        this.menu_on = false;
     }
 
     private void onSettings() {
@@ -54,7 +85,7 @@ public class Menu extends VBox {
     private void onQuit() {
         System.out.println("Quit game!");
         // Call a method from the GUI class to quit the game
-        //gui.quitGame();  // Example, assuming GUI has a method to quit the game
+        System.exit(0);
     }
 
     public void setMenu_on(boolean menu) {
@@ -65,7 +96,11 @@ public class Menu extends VBox {
         return this.menu_on;
     }
 
-    public VBox getMenu() {
-        return menu;
+    public Pane getpMenu() {
+        return pMenu;
+    }
+
+    public Pane getBackgroundMenu() {
+        return backgroundMenu;
     }
 }

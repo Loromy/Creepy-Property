@@ -26,20 +26,18 @@ public class KeyHandler {
 
     public void addKeyListener(Scene scene) {
         // KeyPressed: Setze Tastenstatus auf "gedrückt"
-        if (!this.menu.getMenu_on()) {
-            scene.setOnKeyPressed(event -> {
-                KeyCode keyCode = event.getCode();
-                switch (keyCode) {
-                    case W -> wPressed = true;
-                    case S -> sPressed = true;
-                    case A -> aPressed = true;
-                    case D -> dPressed = true;
-                    case CONTROL -> strgPressed = true;
-                    case SHIFT -> shiftPressed = true;
-                    case ESCAPE -> escPresst = true;
-                }
-            });
-        }
+        scene.setOnKeyPressed(event -> {
+            KeyCode keyCode = event.getCode();
+            switch (keyCode) {
+                case W -> wPressed = true;
+                case S -> sPressed = true;
+                case A -> aPressed = true;
+                case D -> dPressed = true;
+                case CONTROL -> strgPressed = true;
+                case SHIFT -> shiftPressed = true;
+                case ESCAPE -> escPresst = true;
+            }
+        });
 
         // KeyReleased: Setze Tastenstatus auf "nicht gedrückt"
         scene.setOnKeyReleased(event -> {
@@ -67,44 +65,46 @@ public class KeyHandler {
 
     // Funktion für die Bewegungssteuerung basierend auf den gedrückten Tasten
     private void handleMovement() {
-        double dx = 0;
-        double dy = 0;
+        if (this.menu.getMenu_on() == false) {
+            double dx = 0;
+            double dy = 0;
 
-        if (wPressed) {
-            dy -= 1;
-        }
-        if (sPressed) {
-            dy += 1;
-        }
-        if (aPressed) {
-            dx -= 1;
-        }
-        if (dPressed) {
-            dx += 1;
-        }
+            if (wPressed) {
+                dy -= 1;
+            }
+            if (sPressed) {
+                dy += 1;
+            }
+            if (aPressed) {
+                dx -= 1;
+            }
+            if (dPressed) {
+                dx += 1;
+            }
 
-        if (strgPressed) {
-            this.player.setStrgSpeed(2);
-            this.player.getPlayer().setFill(Color.YELLOW);
-            this.gui.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed());
-        } else if (shiftPressed) {
-            this.player.setShiftSpeed();
-            this.player.getPlayer().setFill(Color.LIGHTBLUE);
-            this.gui.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed());
-        } else {
-            this.player.setStrgSpeed(0);
-            this.player.getPlayer().setFill(Color.DARKRED);
-            this.gui.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed());
+            if (strgPressed) {
+                this.player.setStrgSpeed(2);
+                this.player.getPlayer().setFill(Color.YELLOW);
+                this.gui.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed());
+            } else if (shiftPressed) {
+                this.player.setShiftSpeed();
+                this.player.getPlayer().setFill(Color.LIGHTBLUE);
+                this.gui.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed());
+            } else {
+                this.player.setStrgSpeed(0);
+                this.player.getPlayer().setFill(Color.DARKRED);
+                this.gui.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed());
+            }
+
+            if (dx != 0 || dy != 0) {
+                move(dx, dy);
+            }
         }
 
         if (escPresst) {
-            this.menu.getMenu().setVisible(false);
-
-
-        }
-
-        if (dx != 0 || dy != 0) {
-            move(dx, dy);
+            this.menu.getpMenu().setVisible(true);
+            this.menu.getBackgroundMenu().setVisible(true);
+            this.menu.setMenu_on(true);
         }
 
     }
