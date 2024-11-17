@@ -1,5 +1,7 @@
 package main;
 
+import com.sun.scenario.effect.impl.prism.PrImage;
+import com.sun.scenario.effect.impl.prism.PrRenderInfo;
 import entity.Player;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -34,6 +36,7 @@ public class GUI extends Application {
 
         // Set the settings for the stage
         primaryStage.setTitle("The Creepy Proparty");
+        primaryStage.setResizable(false);
         primaryStage.setScene(scene);
 
         // Close the application when the window is closed
