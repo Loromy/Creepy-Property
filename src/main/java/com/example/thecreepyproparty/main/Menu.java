@@ -17,8 +17,6 @@ public class Menu extends VBox {
     public Menu(GUI gui) {
         this.gui = gui;
 
-        //super(10); // 10px spacing between menu items
-
         // Styling for the overlay
         this.backgroundMenu.setStyle("-fx-background-color: rgba(0, 0, 0, 0.5);");
         //this.backgroundMenu.setOpacity(1); // Set 50% transparency
@@ -31,9 +29,9 @@ public class Menu extends VBox {
 
 
         // Add menu items
-        Button resumeButton = new Button("Resume");
+        Button resumeButton = new Button("Back to Game");
         Button settingsButton = new Button("Settings");
-        Button quitButton = new Button("Quit");
+        Button quitButton = new Button("Quit Game");
 
         resumeButton.setPrefSize(500, 50);  // Breite: 500px, Höhe: 50px
         settingsButton.setPrefSize(500, 50);
@@ -61,6 +59,18 @@ public class Menu extends VBox {
         quitButton.setOnAction(e -> onQuit());
     }
 
+    public void triggerMenu(){
+        if (!menu_on) {
+            this.backgroundMenu.setVisible(true);
+            this.pMenu.setVisible(true);
+            this.menu_on = true;
+        } else {
+            this.backgroundMenu.setVisible(false);
+            this.pMenu.setVisible(false);
+            this.menu_on = false;
+        }
+    }
+
     private void setMenuPosition(double sizeX, double sizeY, int spacing) {
         this.vBoxMenu.setPrefSize(sizeX,sizeY);
         this.vBoxMenu.setLayoutX((gui.getWidth() - sizeX) / 2);
@@ -70,21 +80,17 @@ public class Menu extends VBox {
     }
 
     private void onResume() {
-        System.out.println("Back to Game");
+        System.out.println("[Menu]: Back to Game");
         // Call a method from the GUI class to resume the game
-        this.pMenu.setVisible(false);
-        this.menu_on = false;
+        this.triggerMenu();
     }
 
     private void onSettings() {
-        System.out.println("Open settings menu!");
-        // Call a method from the GUI class to open settings
-        //gui.openSettings();  // Example, assuming GUI has a method for settings
+        System.out.println("[Menu]: Open settings menu!");
     }
 
     private void onQuit() {
-        System.out.println("Quit game!");
-        // Call a method from the GUI class to quit the game
+        System.out.println("[Menu]: Quit game!");
         System.exit(0);
     }
 

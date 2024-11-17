@@ -65,7 +65,7 @@ public class KeyHandler {
 
     // Funktion für die Bewegungssteuerung basierend auf den gedrückten Tasten
     private void handleMovement() {
-        if (this.menu.getMenu_on() == false) {
+        if (!this.menu.getMenu_on()) {
             double dx = 0;
             double dy = 0;
 
@@ -102,9 +102,8 @@ public class KeyHandler {
         }
 
         if (escPresst) {
-            this.menu.getpMenu().setVisible(true);
-            this.menu.getBackgroundMenu().setVisible(true);
-            this.menu.setMenu_on(true);
+            this.escPresst = false;
+            this.menu.triggerMenu();
         }
 
     }
