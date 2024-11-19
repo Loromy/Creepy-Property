@@ -1,5 +1,6 @@
 package theCreepyProperty.entity;
 
+import javafx.scene.image.Image;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
 
@@ -46,27 +47,27 @@ public class Player extends Entity{
     }
 
     // get methode
-//    public void getPlayerImage(){
-//        up1 = new Image("src/resources/player/up_1.png"); // updated pfad
-//        up2 = new Image("src/resources/player/up_2.png");
-//        up3 = new Image("src/resources/player/up_3.png");
-//        up4 = new Image("src/resources/player/up_4.png");
-//
-//        down1 = new Image("file:resources/player/down_1.png");
-//        down2 = new Image("file:resources/player/down_2.png");
-//        down3 = new Image("file:resources/player/down_3.png");
-//        down4 = new Image("file:resources/player/down_4.png");
-//
-//        left1 = new Image("file:resources/player/left_1.png");
-//        left2 = new Image("file:resources/player/left_2.png");
-//        left3 = new Image("file:resources/player/left_3.png");
-//        left4 = new Image("file:resources/player/left_4.png");
-//
-//        right1 = new Image("file:resources/player/right_1.png");
-//        right2 = new Image("file:resources/player/right_2.png");
-//        right3 = new Image("file:resources/player/right_3.png");
-//        right4 = new Image("file:resources/player/right_4.png");
-//    }
+    public void getPlayerImage(){
+        up1 = new Image("src/resources/player/up_1.png"); // updated pfad
+        up2 = new Image("src/resources/player/up_2.png");
+        up3 = new Image("src/resources/player/up_3.png");
+        up4 = new Image("src/resources/player/up_4.png");
+
+        down1 = new Image("src/resources/player/down_1.png");
+        down2 = new Image("src/resources/player/down_2.png");
+        down3 = new Image("src/resources/player/down_3.png");
+        down4 = new Image("src/resources/player/down_4.png");
+
+        left1 = new Image("src/resources/player/left_1.png");
+        left2 = new Image("src/resources/player/left_2.png");
+        left3 = new Image("src/resources/player/left_3.png");
+        left4 = new Image("src/resources/player/left_4.png");
+
+        right1 = new Image("src/resources/player/right_1.png");
+        right2 = new Image("src/resources/player/right_2.png");
+        right3 = new Image("src/resources/player/right_3.png");
+        right4 = new Image("src/resources/player/right_4.png");
+    }
 
     public Rectangle getPlayer(){
         return r_player;
