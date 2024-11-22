@@ -2,6 +2,7 @@ package theCreepyProperty.main;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import theCreepyProperty.entity.Player;
@@ -11,7 +12,7 @@ public class GUI extends Application {
     private final int height = 600;
 
     private final Pane root = new Pane();
-    private final Player player = new Player();
+    private final Player player = new Player(this);
     private final Menu menu = new Menu(this);
     private final GuiComponents guiComponents = new GuiComponents(this.player, this.menu);
 
@@ -21,12 +22,11 @@ public class GUI extends Application {
         Scene scene = new Scene(root, width, height);
 
         // Additional GUI components could be added here
-        root.getChildren().add(player.getPlayer());
-        root.getChildren().add(guiComponents.getL_speed());
+//        root.getChildren().add(this.player.getPlayer());
+        root.getChildren().add(this.player.draw());
+        root.getChildren().add(this.guiComponents.getL_speed());
         root.getChildren().add(this.menu.getBackgroundMenu());
         root.getChildren().add(this.menu.getpMenu());
-
-
 
         // Add the KeyHandler for keyboard input
         KeyHandler keyHandler = new KeyHandler(player,this, this.menu);
