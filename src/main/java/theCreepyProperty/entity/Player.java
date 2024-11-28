@@ -58,11 +58,17 @@ public class Player extends Entity{
         this.strgSpeed = (this.speed - 2) * (-1);
     }
 
+    public void setDirection(String direction) {
+        this.direction = direction;
+        this.draw();
+    }
+
     public void setDefaultValues() {
         player_world_X = 50;
         player_world_Y = 50;
-        speed = 3;
+        speed = 3; // 3
         direction = "down";
+        System.out.println("[System]: Player defaultValues set!");
     }
 
     public void createPlayerImage(){
@@ -89,6 +95,8 @@ public class Player extends Entity{
         right2 = new Image("file:src/resources/player/right_2.png");
         right3 = new Image("file:src/resources/player/right_3.png");
         right4 = new Image("file:src/resources/player/right_4.png");
+
+        System.out.println("[System]: Player image created");
 
     }
 
@@ -147,7 +155,7 @@ public class Player extends Entity{
         }
 
         this.i_player.setImage(playerImage);
-        System.out.println("x: " + this.i_player.getX() + " y: " + this.i_player.getY());
+        System.out.println("Position: x= " + this.i_player.getX() + " | y=" + this.i_player.getY());
         return i_player;
 
 //        // Draw the playerImage on the canvas

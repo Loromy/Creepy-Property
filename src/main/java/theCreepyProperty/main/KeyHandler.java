@@ -6,16 +6,16 @@ import javafx.scene.input.KeyCode;
 import theCreepyProperty.entity.Player;
 
 public class KeyHandler {
-    private Player player;
-    private GUI gui;
-    private Menu menu;
+    private final Player player;
+    private final GUI gui;
+    private final Menu menu;
     private boolean wPressed = false;
     private boolean aPressed = false;
     private boolean sPressed = false;
     private boolean dPressed = false;
-    private boolean strgPressed = false;
+    private boolean ctrlPressed = false;
     private boolean shiftPressed = false;
-    private boolean escPresst = false;
+    private boolean escPressed = false;
 
     public KeyHandler(Player player, GUI gui, Menu menu) {
         this.player = player;
@@ -32,9 +32,9 @@ public class KeyHandler {
                 case S -> sPressed = true;
                 case A -> aPressed = true;
                 case D -> dPressed = true;
-                case CONTROL -> strgPressed = true;
+                case CONTROL -> ctrlPressed = true;
                 case SHIFT -> shiftPressed = true;
-                case ESCAPE -> escPresst = true;
+                case ESCAPE -> escPressed = true;
             }
         });
 
@@ -46,9 +46,9 @@ public class KeyHandler {
                 case S -> sPressed = false;
                 case A -> aPressed = false;
                 case D -> dPressed = false;
-                case CONTROL -> strgPressed = false;
+                case CONTROL -> ctrlPressed = false;
                 case SHIFT -> shiftPressed = false;
-                case ESCAPE -> escPresst = false;
+                case ESCAPE -> escPressed = false;
             }
         });
 
@@ -70,18 +70,22 @@ public class KeyHandler {
 
             if (wPressed) {
                 dy -= 1;
+                this.player.setDirection("up");
             }
             if (sPressed) {
                 dy += 1;
+                this.player.setDirection("down");
             }
             if (aPressed) {
                 dx -= 1;
+                this.player.setDirection("left");
             }
             if (dPressed) {
                 dx += 1;
+                this.player.setDirection("right");
             }
 
-            if (strgPressed) {
+            if (ctrlPressed) {
                 this.player.setStrgSpeed(2);
                 //this.player.getPlayer().setFill(Color.YELLOW);
                 this.gui.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed());
@@ -100,8 +104,8 @@ public class KeyHandler {
             }
         }
 
-        if (escPresst) {
-            this.escPresst = false;
+        if (escPressed) {
+            this.escPressed = false;
             this.menu.triggerMenu();
         }
 
