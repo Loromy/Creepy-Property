@@ -19,8 +19,8 @@ public class Player extends Entity{
         this.i_player.setX(entity_world_X);
         this.i_player.setY(entity_world_Y);
 
-        this.i_player.setFitHeight(48);
-        this.i_player.setFitWidth(48);
+        this.i_player.setFitHeight(entity_size_Y);
+        this.i_player.setFitWidth(entity_size_X);
 
         createPlayerImage();
     }
@@ -51,8 +51,10 @@ public class Player extends Entity{
     }
 
     public void setDefaultValues() {
-        entity_world_X = 500;
-        entity_world_Y = 50;
+        entity_size_X = 48;
+        entity_size_Y = 48;
+        entity_world_X = (gui.getWidth() / 2) - (entity_size_X / 2);
+        entity_world_Y = (gui.getHeight() / 2) - (entity_size_Y);
         speed = 3; // 3
         direction = "down";
         System.out.println("[System]: Player defaultValues set ✔"); //✖
