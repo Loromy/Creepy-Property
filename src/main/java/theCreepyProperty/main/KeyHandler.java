@@ -1,9 +1,9 @@
 package theCreepyProperty.main;
+import theCreepyProperty.entity.Player;
 
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
-import theCreepyProperty.entity.Player;
 
 public class KeyHandler {
     private final Player player;
@@ -86,7 +86,7 @@ public class KeyHandler {
             }
 
             if (ctrlPressed) {
-                this.player.setStrgSpeed(2);
+                this.player.setControlSpeed(2);
                 //this.player.getPlayer().setFill(Color.YELLOW);
                 this.gui.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed());
             } else if (shiftPressed) {
@@ -94,7 +94,7 @@ public class KeyHandler {
                 //this.player.getPlayer().setFill(Color.LIGHTBLUE);
                 this.gui.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed());
             } else {
-                this.player.setStrgSpeed(0);
+                this.player.setControlSpeed(0);
                 //this.player.getPlayer().setFill(Color.DARKRED);
                 this.gui.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed());
             }

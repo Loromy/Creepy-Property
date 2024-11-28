@@ -2,7 +2,6 @@ package theCreepyProperty.main;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import theCreepyProperty.entity.Player;
@@ -38,7 +37,7 @@ public class GUI extends Application {
         primaryStage.setScene(scene);
 
         // Close the application when the window is closed
-        primaryStage.setOnCloseRequest(e -> System.exit(0));
+        primaryStage.setOnCloseRequest(_ -> System.exit(0));
 
         primaryStage.show();
 
@@ -56,10 +55,6 @@ public class GUI extends Application {
 
     public int getHeight() {
         return height;
-    }
-
-    public Player getPlayer() {
-        return player;
     }
 
     public GuiComponents getGuiComponents() {return guiComponents;}
