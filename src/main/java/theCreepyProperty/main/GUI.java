@@ -37,7 +37,7 @@ public class GUI extends Application {
         primaryStage.setScene(scene);
 
         // Close the application when the window is closed
-        primaryStage.setOnCloseRequest(_ -> System.exit(0));
+        primaryStage.setOnCloseRequest(e -> System.exit(0));
 
         primaryStage.show();
 
