@@ -7,8 +7,8 @@ import theCreepyProperty.main.GUI;
 public class Player extends Entity{
     private final GUI gui;
     private double controlSpeed = 0; // speed if strg pressed
-    public final int player_screen_X;
-    public final int player_screen_Y;
+//    public final int player_screen_X;
+//    public final int player_screen_Y;
     public Image playerImage;
     public ImageView i_player = new ImageView();
 
@@ -19,8 +19,8 @@ public class Player extends Entity{
         this.i_player.setX(entity_world_X);
         this.i_player.setY(entity_world_Y);
 
-        player_screen_X = gui.getWidth() / 2;
-        player_screen_Y = gui.getHeight()/ 2;
+        this.i_player.setFitHeight(48);
+        this.i_player.setFitWidth(48);
 
         createPlayerImage();
     }
@@ -51,7 +51,7 @@ public class Player extends Entity{
     }
 
     public void setDefaultValues() {
-        entity_world_X = 50;
+        entity_world_X = 500;
         entity_world_Y = 50;
         speed = 3; // 3
         direction = "down";
@@ -142,7 +142,6 @@ public class Player extends Entity{
         }
 
         this.i_player.setImage(playerImage);
-        System.out.println("[System]: Player image set ✔"); // ✖
         return i_player;
 
     }
