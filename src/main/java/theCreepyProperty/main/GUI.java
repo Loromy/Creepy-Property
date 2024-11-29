@@ -6,15 +6,15 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import theCreepyProperty.entity.Player;
 
-public class GUI extends Application {
+public class GUI {
     private final int width = 1000;
     private final int height = 600;
 
     private final Pane root = new Pane();
-    private final Player player = new Player(this);
+    private KeyHandler keyHandler;
+    private final Player player = new Player(this, this.keyHandler);
     private final Menu menu = new Menu(this);
     private final GuiComponents guiComponents = new GuiComponents(this.player, this.menu);
-
 
     public void start(Stage primaryStage) {
         // Create the scene with the specified width and height values
@@ -28,7 +28,7 @@ public class GUI extends Application {
         root.getChildren().add(this.menu.getpMenu());
 
         // Add the KeyHandler for keyboard input
-        KeyHandler keyHandler = new KeyHandler(player,this, this.menu);
+        keyHandler = new KeyHandler(player,this, this.menu);
         keyHandler.addKeyListener(scene);
 
         // Set the settings for the stage
@@ -44,9 +44,6 @@ public class GUI extends Application {
         //gameLoop.startGameLoop();
     }
 
-    public static void startGui(){
-        launch();
-    }
 
     // Getter methods
     public int getWidth() {

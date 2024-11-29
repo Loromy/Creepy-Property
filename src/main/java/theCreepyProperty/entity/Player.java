@@ -1,20 +1,23 @@
 package theCreepyProperty.entity;
 
+import theCreepyProperty.main.GUI;
+import theCreepyProperty.main.KeyHandler;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import theCreepyProperty.main.GUI;
+import java.util.Objects;
 
 public class Player extends Entity{
     private final GUI gui;
+    private final KeyHandler keyHandler;
     private double controlSpeed = 0; // speed if strg pressed
-//    public final int player_screen_X;
-//    public final int player_screen_Y;
     public Image playerImage;
     public ImageView i_player = new ImageView();
 
 
-    public Player(GUI gui)  {
+    public Player(GUI gui, KeyHandler keyHandler)  {
         this.gui = gui;
+        this.keyHandler = keyHandler;
         setDefaultValues();
         this.i_player.setX(entity_world_X);
         this.i_player.setY(entity_world_Y);

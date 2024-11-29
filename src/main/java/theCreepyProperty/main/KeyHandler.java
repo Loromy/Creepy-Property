@@ -5,14 +5,16 @@ import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 
+import java.util.Objects;
+
 public class KeyHandler {
     private final Player player;
     private final GUI gui;
     private final Menu menu;
-    private boolean wPressed = false;
-    private boolean aPressed = false;
-    private boolean sPressed = false;
-    private boolean dPressed = false;
+    public boolean wPressed = false;
+    public boolean aPressed = false;
+    public boolean sPressed = false;
+    public boolean dPressed = false;
     private boolean ctrlPressed = false;
     private boolean shiftPressed = false;
     private boolean escPressed = false;
@@ -101,7 +103,10 @@ public class KeyHandler {
 
             if (dx != 0 || dy != 0) {
                 move(dx, dy);
+
             }
+
+            animation();
         }
 
         if (escPressed) {
@@ -121,5 +126,29 @@ public class KeyHandler {
 
         this.player.setPlayer_world_X(player.getPlayer_world_X() + dx * player.getSpeed());
         this.player.setPlayer_world_Y(player.getPlayer_world_Y() + dy * player.getSpeed());
+    }
+
+    private void animation(){
+        if (this.wPressed || this.sPressed || this.aPressed || this.dPressed) {
+
+            player.sprite_counter++;
+            if (player.sprite_counter > 13) {
+
+                if (player.sprite_num == 1) {
+                    player.sprite_num = 2;
+                }
+                else if (player.sprite_num == 2) {
+                    player.sprite_num = 3;
+                }
+                else if (player.sprite_num == 3) {
+                    player.sprite_num = 4;
+                }
+                else if (player.sprite_num == 4) {
+                    player.sprite_num = 1;
+                }
+
+                player.sprite_counter = 0;
+            }
+        }
     }
 }
