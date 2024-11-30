@@ -82,19 +82,19 @@ public class Menu extends VBox {
         }
     }
 
-    private void setMenuPosition(double sizeX, double sizeY, int spacing) {
-        this.vBoxMenu.setPrefSize(sizeX,sizeY);
-        this.vBoxMenu.setLayoutX((gui.getWidth() - sizeX) / 2);
-        this.vBoxMenu.setLayoutY((gui.getHeight() - sizeY) / 2);
+    private void setMenuPosition(double width, double height, int spacing) {
+        this.vBoxMenu.setPrefSize(width,height);
+        this.vBoxMenu.setLayoutX((gui.getWidth() - width) / 2);
+        this.vBoxMenu.setLayoutY((gui.getHeight() - height) / 2);
         this.vBoxMenu.setSpacing(spacing);
         this.vBoxMenu.setAlignment(Pos.CENTER);
     }
 
-    private void setMenuLayout(double sizeX, double sizeY) {
-        name.setPrefSize(sizeX * 2 - 200, sizeY);
-        resumeButton.setPrefSize(sizeX, sizeY);  // Breite: 500px, Höhe: 50px
-        settingsButton.setPrefSize(sizeX, sizeY);
-        quitButton.setPrefSize(sizeX, sizeY);
+    private void setMenuLayout(double width, double heigth) {
+        name.setPrefSize(width * 2 - 200, heigth);
+        resumeButton.setPrefSize(width, heigth);
+        settingsButton.setPrefSize(width, heigth);
+        quitButton.setPrefSize(width, heigth);
     }
 
     private void onResume() {
