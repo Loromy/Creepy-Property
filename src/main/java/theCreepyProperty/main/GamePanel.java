@@ -6,11 +6,8 @@ import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.paint.Color;
-import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import theCreepyProperty.menu.Menu;
 
 public class GamePanel extends Application {
 
@@ -51,10 +48,9 @@ public class GamePanel extends Application {
 
     public GamePanel(){
         gui = new GUI();
-        menu = new Menu(this.gui);
-        keyHandler = new KeyHandler(this.player, this.gui, this.menu);
-        player = new Player(this.gui, this.keyHandler); // add Player
-        System.out.println("[TEST]: 2"); //TODO löschen
+        menu = gui.getMenu();
+        keyHandler = gui.getKeyHandler();
+        player = gui.getPlayer(); // add Player
     }
 
     public void start(Stage primaryStage) {
@@ -64,7 +60,7 @@ public class GamePanel extends Application {
 
 
 
-        public void startGameLoop() {
+    public void startGameLoop() {
         AnimationTimer gameLoop = new AnimationTimer() {
             @Override
             public void handle(long now) {
@@ -95,5 +91,9 @@ public class GamePanel extends Application {
 
     public static void startGamePanel(){
         launch();
+    }
+
+    public GUI getGui() {
+        return this.gui;
     }
 }

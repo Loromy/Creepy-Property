@@ -1,6 +1,7 @@
 package theCreepyProperty.entity;
 
 import theCreepyProperty.main.GUI;
+import theCreepyProperty.main.GamePanel;
 import theCreepyProperty.main.KeyHandler;
 
 import javafx.scene.image.Image;

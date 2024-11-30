@@ -2,6 +2,7 @@ package theCreepyProperty.main;
 
 import javafx.scene.control.Label;
 import theCreepyProperty.entity.Player;
+import theCreepyProperty.menu.Menu;
 
 public class GuiComponents {
     private Player player;

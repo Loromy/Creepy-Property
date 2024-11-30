@@ -1,10 +1,10 @@
 package theCreepyProperty.main;
 
-import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import theCreepyProperty.entity.Player;
+import theCreepyProperty.menu.Menu;
 
 public class GUI {
     private final int width = 1000;
@@ -26,9 +26,10 @@ public class GUI {
         root.getChildren().add(this.guiComponents.getL_speed());
         root.getChildren().add(this.menu.getBackgroundMenu());
         root.getChildren().add(this.menu.getpMenu());
+        root.getChildren().add(this.menu.getSettings().getMenuSettings());
 
         // Add the KeyHandler for keyboard input
-        keyHandler = new KeyHandler(player,this, this.menu);
+        keyHandler = new KeyHandler(this.player, this, this.menu);
         keyHandler.addKeyListener(scene);
 
         // Set the settings for the stage
@@ -55,4 +56,16 @@ public class GUI {
     }
 
     public GuiComponents getGuiComponents() {return guiComponents;}
+
+    public Menu getMenu() {
+        return menu;
+    }
+
+    public KeyHandler getKeyHandler() {
+        return keyHandler;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
 }

@@ -4,8 +4,7 @@ import theCreepyProperty.entity.Player;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
-
-import java.util.Objects;
+import theCreepyProperty.menu.Menu;
 
 public class KeyHandler {
     private final Player player;
@@ -111,7 +110,12 @@ public class KeyHandler {
 
         if (escPressed) {
             this.escPressed = false;
-            this.menu.triggerMenu();
+            if (!menu.getSettings().getSettingOn()) {
+                this.menu.triggerMenu();
+            } else {
+                this.menu.getSettings().triggerSettings();
+                this.menu.getpMenu().setVisible(true);
+            }
         }
 
     }
