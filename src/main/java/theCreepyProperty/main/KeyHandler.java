@@ -52,7 +52,6 @@ public class KeyHandler {
                 case ESCAPE -> escPressed = false;
             }
         });
-
         // AnimationTimer für kontinuierliche Abfrage der Tasten
         AnimationTimer timer = new AnimationTimer() {
             @Override
@@ -88,23 +87,18 @@ public class KeyHandler {
 
             if (ctrlPressed) {
                 this.player.setControlSpeed(2);
-                //this.player.getPlayer().setFill(Color.YELLOW);
                 this.gui.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed());
             } else if (shiftPressed) {
                 this.player.setShiftSpeed();
-                //this.player.getPlayer().setFill(Color.LIGHTBLUE);
                 this.gui.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed());
             } else {
                 this.player.setControlSpeed(0);
-                //this.player.getPlayer().setFill(Color.DARKRED);
                 this.gui.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed());
             }
 
             if (dx != 0 || dy != 0) {
                 move(dx, dy);
-
             }
-
             animation();
         }
 

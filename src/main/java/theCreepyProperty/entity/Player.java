@@ -1,16 +1,13 @@
 package theCreepyProperty.entity;
 
 import theCreepyProperty.main.GUI;
-import theCreepyProperty.main.GamePanel;
 import theCreepyProperty.main.KeyHandler;
-
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import java.util.Objects;
+
 
 public class Player extends Entity{
     private final GUI gui;
-    private final KeyHandler keyHandler;
     private double controlSpeed = 0; // speed if strg pressed
     public Image playerImage;
     public ImageView i_player = new ImageView();
@@ -18,7 +15,6 @@ public class Player extends Entity{
 
     public Player(GUI gui, KeyHandler keyHandler)  {
         this.gui = gui;
-        this.keyHandler = keyHandler;
         setDefaultValues();
         this.i_player.setX(entity_world_X);
         this.i_player.setY(entity_world_Y);
@@ -27,41 +23,6 @@ public class Player extends Entity{
         this.i_player.setFitWidth(entity_size_X);
 
         createPlayerImage();
-    }
-
-    // set methode
-
-    public void setPlayer_world_X(double player_world_X){
-        this.entity_world_X = player_world_X;
-        i_player.setX(player_world_X); // update player
-    }
-
-    public void setPlayer_world_Y(double player_world_Y){
-        this.entity_world_Y = player_world_Y;
-        i_player.setY(player_world_Y); // update player
-    }
-
-    public void setControlSpeed(double speed) {
-        this.controlSpeed = speed;
-    }
-
-    public void setShiftSpeed() {
-        this.controlSpeed = (this.speed - 2) * (-1);
-    }
-
-    public void setDirection(String direction) {
-        this.direction = direction;
-        this.draw();
-    }
-
-    public void setDefaultValues() {
-        entity_size_X = 48;
-        entity_size_Y = 48;
-        entity_world_X = ((double) gui.getWidth() / 2) - (entity_size_X / 2);
-        entity_world_Y = ((double) gui.getHeight() / 2) - ((entity_size_Y / 2 ) + 19);
-        speed = 3; // 3
-        direction = "down";
-        System.out.println("[System]: Player defaultValues set ✔"); //✖
     }
 
     public void createPlayerImage(){
@@ -93,7 +54,6 @@ public class Player extends Entity{
 
     }
 
-    // get methode
     public ImageView draw() {
         playerImage = null;
 
@@ -152,6 +112,41 @@ public class Player extends Entity{
 
     }
 
+    // set methode
+    public void setPlayer_world_X(double player_world_X){
+        this.entity_world_X = player_world_X;
+        i_player.setX(player_world_X); // update player
+    }
+
+    public void setPlayer_world_Y(double player_world_Y){
+        this.entity_world_Y = player_world_Y;
+        i_player.setY(player_world_Y); // update player
+    }
+
+    public void setControlSpeed(double speed) {
+        this.controlSpeed = speed;
+    }
+
+    public void setShiftSpeed() {
+        this.controlSpeed = (this.speed - 2) * (-1);
+    }
+
+    public void setDirection(String direction) {
+        this.direction = direction;
+        this.draw();
+    }
+
+    public void setDefaultValues() {
+        entity_size_X = 48;
+        entity_size_Y = 48;
+        entity_world_X = ((double) gui.getWidth() / 2) - (entity_size_X / 2);
+        entity_world_Y = ((double) gui.getHeight() / 2) - ((entity_size_Y / 2 ) + 19);
+        speed = 3; // 3
+        direction = "down";
+        System.out.println("[System]: Player defaultValues set ✔"); //✖
+    }
+
+    // get methode
     public double getPlayer_world_X(){
         return entity_world_X;
     }

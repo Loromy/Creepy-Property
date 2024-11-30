@@ -1,7 +1,14 @@
 package theCreepyProperty.main;
 
 import javafx.scene.Scene;
+import javafx.scene.effect.Effect;
+import javafx.scene.effect.GaussianBlur;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import theCreepyProperty.entity.Player;
 import theCreepyProperty.menu.Menu;
@@ -10,7 +17,10 @@ public class GUI {
     private final int width = 1000;
     private final int height = 600;
 
-    private final Pane root = new Pane();
+    private final Pane root = new Pane(); //main
+    private final Pane pMenu = new Pane(); //Menu
+    private final Pane pGame = new Pane(); //game stuff
+
     private KeyHandler keyHandler;
     private final Player player = new Player(this, this.keyHandler);
     private final Menu menu = new Menu(this);
@@ -18,15 +28,16 @@ public class GUI {
 
     public void start(Stage primaryStage) {
         // Create the scene with the specified width and height values
+        root.getChildren().addAll(pGame,pMenu);
         Scene scene = new Scene(root, width, height);
 
         // Additional GUI components could be added here
-//        root.getChildren().add(this.player.getPlayer());
-        root.getChildren().add(this.player.draw());
-        root.getChildren().add(this.guiComponents.getL_speed());
-        root.getChildren().add(this.menu.getBackgroundMenu());
-        root.getChildren().add(this.menu.getpMenu());
-        root.getChildren().add(this.menu.getSettings().getMenuSettings());
+        root.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, null)));
+        pGame.getChildren().add(this.player.draw());
+        pGame.getChildren().add(this.guiComponents.getL_speed());
+        pMenu.getChildren().add(this.menu.getBackgroundMenu());
+        pMenu.getChildren().add(this.menu.getpMenu());
+        pMenu.getChildren().add(this.menu.getSettings().getMenuSettings());
 
         // Add the KeyHandler for keyboard input
         keyHandler = new KeyHandler(this.player, this, this.menu);
@@ -40,9 +51,8 @@ public class GUI {
         // Close the application when the window is closed
         primaryStage.setOnCloseRequest(e -> System.exit(0));
 
+        // Show primaryStage
         primaryStage.show();
-
-        //gameLoop.startGameLoop();
     }
 
 
@@ -55,7 +65,9 @@ public class GUI {
         return height;
     }
 
-    public GuiComponents getGuiComponents() {return guiComponents;}
+    public GuiComponents getGuiComponents() {
+        return guiComponents;
+    }
 
     public Menu getMenu() {
         return menu;
@@ -67,5 +79,10 @@ public class GUI {
 
     public Player getPlayer() {
         return player;
+    }
+
+    // Setter methods
+    public void setBlur(int strange){
+        pGame.setEffect(new GaussianBlur(strange));
     }
 }

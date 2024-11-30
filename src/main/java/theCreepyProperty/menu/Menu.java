@@ -3,13 +3,11 @@ package theCreepyProperty.menu;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import theCreepyProperty.main.GUI;
-import theCreepyProperty.main.GamePanel;
 
 public class Menu extends VBox {
     private GUI gui;
@@ -28,16 +26,9 @@ public class Menu extends VBox {
         this.gui = gui;
         settings = new Settings(this.gui, this);
 
-        // Styling for the overlay
-        this.backgroundMenu.setStyle("-fx-background-color: rgba(0, 0, 0, 0.5);");
-        //this.backgroundMenu.setOpacity(1); // Set 50% transparency
-        this.backgroundMenu.setOpacity(0.8); // 80% Deckkraft
-        this.backgroundMenu.setEffect(new GaussianBlur(15)); // Unschärfe-Effekt hinzufügen
+        //overlay
         this.backgroundMenu.setVisible(false);
         this.pMenu.setVisible(false);
-
-
-        //this.vBoxMenu.setStyle("-fx-background-color: rgba(0, 2, 0, 0.5);");//TODO TEST
 
 
         // Add menu items
@@ -46,6 +37,7 @@ public class Menu extends VBox {
         settingsButton = new Button("Settings");
         quitButton = new Button("Quit Game");
 
+        // Set styles
         name.setFont(new Font("Arial", 20));
         name.setStyle("-fx-font-size: 40px; -fx-font-weight: bold;");
         name.setAlignment(Pos.CENTER);
@@ -74,10 +66,12 @@ public class Menu extends VBox {
         if (!menu_on) {
             this.backgroundMenu.setVisible(true);
             this.pMenu.setVisible(true);
+            this.gui.setBlur(15); //Menu blur
             this.menu_on = true;
         } else {
             this.backgroundMenu.setVisible(false);
             this.pMenu.setVisible(false);
+            this.gui.setBlur(0); //Menu blur
             this.menu_on = false;
         }
     }

@@ -28,19 +28,19 @@ public class GamePanel extends Application {
 //    public final int world_height = tile_size * max_world_row;
 
     public GUI gui;
-    public Menu menu;
-    public KeyHandler keyHandler;
-    public Player player; // add Player
+//    public Menu menu;
+//    public KeyHandler keyHandler;
+//    public Player player; // add Player
 
-    // FPS
-    int FPS = 60;
-
-    private Canvas canvas;
-    private GraphicsContext context;
-
-    private long last_time = System.nanoTime();
-    private double delta = 0;
-    private final double draw_interval = 1000000000.0 / FPS;
+//    // FPS
+//    int FPS = 60;
+//
+//    private Canvas canvas;
+//    private GraphicsContext context;
+//
+//    private long last_time = System.nanoTime();
+//    private double delta = 0;
+//    private final double draw_interval = 1000000000.0 / FPS;
 
     //public CollisionChecker checker = new CollisionChecker(this);
     //public AssetSetter aSetter = new AssetSetter(this);
@@ -48,33 +48,33 @@ public class GamePanel extends Application {
 
     public GamePanel(){
         gui = new GUI();
-        menu = gui.getMenu();
-        keyHandler = gui.getKeyHandler();
-        player = gui.getPlayer(); // add Player
+//        menu = gui.getMenu();
+//        keyHandler = gui.getKeyHandler();
+//        player = gui.getPlayer(); // add Player
     }
 
     public void start(Stage primaryStage) {
         gui.start(primaryStage);
-        startGameLoop();
+        //startGameLoop();
     }
 
 
 
-    public void startGameLoop() {
-        AnimationTimer gameLoop = new AnimationTimer() {
-            @Override
-            public void handle(long now) {
-                delta += (now - last_time) / draw_interval;
-                last_time = now;
-
-                if (delta >= 1) {
-                    draw();
-                    delta--;
-                }
-            }
-        };
-        gameLoop.start();
-    }
+//    public void startGameLoop() {
+//        AnimationTimer gameLoop = new AnimationTimer() {
+//            @Override
+//            public void handle(long now) {
+//                delta += (now - last_time) / draw_interval;
+//                last_time = now;
+//
+//                if (delta >= 1) {
+//                    draw();
+//                    delta--;
+//                }
+//            }
+//        };
+//        gameLoop.start();
+//    }
 
 
     public void draw() {
@@ -91,9 +91,5 @@ public class GamePanel extends Application {
 
     public static void startGamePanel(){
         launch();
-    }
-
-    public GUI getGui() {
-        return this.gui;
     }
 }
