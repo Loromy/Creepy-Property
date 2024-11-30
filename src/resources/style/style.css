@@ -1,0 +1,10 @@
+.button {
+    -fx-background-color: linear-gradient(#800000, #c90202); /* Verlauf */
+    -fx-text-fill: white; /* Textfarbe */
+    -fx-font-family: Arial; /* Schriftart Arial */
+    -fx-font-size: 20px; /* Schriftgröße */
+    -fx-border-color: #690101; /* Randfarbe */
+    -fx-border-width: 2px; /* Randbreite */
+    -fx-border-radius: 10px; /* Abgerundete Ecken */
+    -fx-background-radius: 10px; /* Hintergrund-Ecken abrunden */
+}

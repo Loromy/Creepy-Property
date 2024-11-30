@@ -52,13 +52,13 @@ public class Settings {
         this.button6.setText("button6");
 
         // Button Font
-        this.backButton.setFont(new Font("Arial", 20));
-        this.button1.setFont(new Font("Arial", 20));
-        this.button2.setFont(new Font("Arial", 20));
-        this.button3.setFont(new Font("Arial", 20));
-        this.button4.setFont(new Font("Arial", 20));
-        this.button5.setFont(new Font("Arial", 20));
-        this.button6.setFont(new Font("Arial", 20));
+//        this.backButton.setFont(new Font("Arial", 20));
+//        this.button1.setFont(new Font("Arial", 20));
+//        this.button2.setFont(new Font("Arial", 20));
+//        this.button3.setFont(new Font("Arial", 20));
+//        this.button4.setFont(new Font("Arial", 20));
+//        this.button5.setFont(new Font("Arial", 20));
+//        this.button6.setFont(new Font("Arial", 20));
 
 
 //        //TODO Test

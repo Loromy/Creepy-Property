@@ -3,11 +3,15 @@ package theCreepyProperty.menu;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import theCreepyProperty.main.GUI;
+
+import java.util.Objects;
 
 public class Menu extends VBox {
     private GUI gui;
@@ -17,37 +21,39 @@ public class Menu extends VBox {
     private final Settings settings;
     private boolean menu_on = false;
 
-    private final Label name;
+    //private final Label name;
     private final Button resumeButton;
     private final Button settingsButton;
     private final Button quitButton;
+    private final ImageView logoView;
 
     public Menu(GUI gui) {
         this.gui = gui;
         settings = new Settings(this.gui, this);
 
         //overlay
+        backgroundMenu.setStyle("-fx-background-color: rgba(0, 0, 0, 0.1);");
         this.backgroundMenu.setVisible(false);
         this.pMenu.setVisible(false);
 
-
         // Add menu items
-        name = new Label("The Creepy Property");
+        //name = new Label("The Creepy Property");
         resumeButton = new Button("Back to Game");
+        //resumeButton.setStyle("-fx-background-color: linear-gradient(#ff7f50, #ff4500);");// TODO Test
         settingsButton = new Button("Settings");
         quitButton = new Button("Quit Game");
+        logoView = new ImageView(new Image("file:src/resources/logos/LogoRed.png")); //Logo
 
         // Set styles
-        name.setFont(new Font("Arial", 20));
-        name.setStyle("-fx-font-size: 40px; -fx-font-weight: bold;");
-        name.setAlignment(Pos.CENTER);
-        name.setTextFill(Color.DARKRED);
-        resumeButton.setFont(new Font("Arial", 20)); // Schriftgröße auf 20 setzen
-        settingsButton.setFont(new Font("Arial", 20));
-        quitButton.setFont(new Font("Arial", 20));
+        //name.setFont(new Font("Arial", 20));
+        //name.setStyle("-fx-font-size: 40px; -fx-font-weight: bold;-fx-text-fill: rgb(143, 100, 0);");
+        //name.setAlignment(Pos.CENTER);
+//        resumeButton.setFont(new Font("Arial", 20)); // Schriftgröße auf 20 setzen
+//        settingsButton.setFont(new Font("Arial", 20));
+//        quitButton.setFont(new Font("Arial", 20));
 
         // Add buttons to the VBox
-        this.vBoxMenu.getChildren().addAll(name, resumeButton, settingsButton, quitButton);
+        this.vBoxMenu.getChildren().addAll(logoView, /*name,*/ resumeButton, settingsButton, quitButton);
         this.pMenu.getChildren().add(vBoxMenu);
 
         // Set size and position
@@ -85,7 +91,7 @@ public class Menu extends VBox {
     }
 
     private void setMenuLayout(double width, double heigth) {
-        name.setPrefSize(width * 2 - 200, heigth);
+        //name.setPrefSize(width * 2 - 200, heigth);
         resumeButton.setPrefSize(width, heigth);
         settingsButton.setPrefSize(width, heigth);
         quitButton.setPrefSize(width, heigth);

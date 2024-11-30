@@ -3,6 +3,7 @@ package theCreepyProperty.main;
 import javafx.scene.Scene;
 import javafx.scene.effect.Effect;
 import javafx.scene.effect.GaussianBlur;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -31,6 +32,9 @@ public class GUI {
         root.getChildren().addAll(pGame,pMenu);
         Scene scene = new Scene(root, width, height);
 
+        //Styles
+        root.getStylesheets().add(("file:src/resources/style/style.css"));
+
         // Additional GUI components could be added here
         root.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, null)));
         pGame.getChildren().add(this.player.draw());
@@ -45,6 +49,7 @@ public class GUI {
 
         // Set the settings for the stage
         primaryStage.setTitle("The Creepy Proparty");
+        primaryStage.getIcons().add(new Image("file:src/resources/player/down_1.png"));
         primaryStage.setResizable(false);
         primaryStage.setScene(scene);
 
