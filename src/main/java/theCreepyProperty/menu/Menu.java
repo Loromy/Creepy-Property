@@ -39,7 +39,12 @@ public class Menu extends VBox {
         // Add menu items
         //name = new Label("The Creepy Property");
         resumeButton = new Button("Back to Game");
-        //resumeButton.setStyle("-fx-background-color: linear-gradient(#ff7f50, #ff4500);");// TODO Test
+//        // Setze die Mindestgröße des Buttons (damit die Größe konstant bleibt)
+//        resumeButton.setMinWidth(200);  // Mindestbreite
+//        resumeButton.setMinHeight(50);  // Mindesthöhe
+//        // Optional: Setze auch die bevorzugte Größe, um die Größe konsistent zu halten
+//        resumeButton.setPrefWidth(200);
+//        resumeButton.setPrefHeight(50);
         settingsButton = new Button("Settings");
         quitButton = new Button("Quit Game");
         quitButton.setId("quit-button"); // Spezifische ID für den Quit-Button

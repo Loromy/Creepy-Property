@@ -1,27 +1,42 @@
+@font-face {
+    font-family: "Creepster"; /* Schriftart "Creepster" definieren */
+    src: url("file:src/resources/fonts/Creepster-Regular.ttf") format("truetype"); /* Schriftdatei laden */
+}
+
 .button {
-    -fx-background-color: linear-gradient(#edf7f2 20%, #509974); /* green:#509974  Red:#820a3c*/
-    -fx-background-radius: 10px;
+    -fx-background-color: linear-gradient(#edf7f2 20%, #509974); /* Farbverlauf von weiß zu grün */
+    -fx-background-radius: 10px; /* abrunden */
 
-    -fx-text-fill: white;
-    -fx-font-family: Arial;
-    -fx-font-size: 20px;
+    -fx-text-fill: white; /* farbe */
+    -fx-padding: 1px 1px; /* Abstand */
+    -fx-alignment: center; /* zentrieren */
+    -fx-font-family: Creepster; /* Schriftart */
+    -fx-font-size: 40px; /* Schriftgröße */
+    -fx-font-weight: bold; /* fett */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 1), 5, 0, 10, 10); /* Schatten */
+    -fx-cursor: hand; /* Cursor in Hand-Form bei Hover */
 
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 1), 5, 0, 10, 10);
-    -fx-cursor: hand;
+    -fx-pref-width: 300px;  /* Bevorzugte Breite */
+    -fx-pref-height: 50px;  /* Bevorzugte Höhe */
+    -fx-min-width: 300px;   /* Mindestbreite */
+    -fx-min-height: 50px;   /* Mindesthöhe */
 }
 
 .button:hover {
-    -fx-background-color: linear-gradient(#edf7f2 20%, #94d1b2);
-
-    -fx-border-color: white;
-    -fx-border-width: 2px;
-    -fx-border-radius: 10px;
+    -fx-background-color: linear-gradient(#edf7f2 20%, #94d1b2); /* Farbverlauf bei Hover ändert sich */
+    -fx-border-color: white; /* Weißer Rand */
+    -fx-border-width: 2px; /* Randdicke */
+    -fx-border-radius: 10px; /* abgerundeten Ecken */
 }
 
 .button:pressed {
-    -fx-background-color: linear-gradient(#edf7f2 20%, #5a7065);
+    -fx-background-color: linear-gradient(#edf7f2 20%, #5a7065); /* Grauer Farbverlauf beim drücken */
+}
+
+#quit-button:hover {
+    -fx-background-color: linear-gradient(#edf7f2 20%, #d13636); /* Roter Farbverlauf bei Hover über "Quit"-Button */
 }
 
 #quit-button:pressed {
-    -fx-background-color: linear-gradient(#edf7f2 20%, #ed2513);
+    -fx-background-color: linear-gradient(#edf7f2 20%, #b80e02); /* Dunkel Roter Farbverlauf für den "Quit"-Button beim drücken */
 }
