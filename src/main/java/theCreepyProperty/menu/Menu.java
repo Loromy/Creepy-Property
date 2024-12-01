@@ -42,7 +42,7 @@ public class Menu extends VBox {
         //resumeButton.setStyle("-fx-background-color: linear-gradient(#ff7f50, #ff4500);");// TODO Test
         settingsButton = new Button("Settings");
         quitButton = new Button("Quit Game");
-        logoView = new ImageView(new Image("file:src/resources/logos/LogoRed.png")); //Logo
+        logoView = new ImageView(new Image("file:src/resources/logos/LogoGreen.png")); //Logo
 
         // Set styles
         //name.setFont(new Font("Arial", 20));
