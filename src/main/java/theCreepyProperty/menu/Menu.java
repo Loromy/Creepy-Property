@@ -42,6 +42,7 @@ public class Menu extends VBox {
         //resumeButton.setStyle("-fx-background-color: linear-gradient(#ff7f50, #ff4500);");// TODO Test
         settingsButton = new Button("Settings");
         quitButton = new Button("Quit Game");
+        quitButton.setId("quit-button"); // Spezifische ID für den Quit-Button
         logoView = new ImageView(new Image("file:src/resources/logos/LogoGreen.png")); //Logo
 
         // Set styles

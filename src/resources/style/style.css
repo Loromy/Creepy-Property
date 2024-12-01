@@ -1,11 +1,27 @@
 .button {
-    -fx-background-color: linear-gradient(#ffffff 20%, #509974); /* Verlauf */   /* green:#509974  Red:#820a3c*/
-    -fx-background-radius: 10px; /* Hintergrund-Ecken abrunden */
+    -fx-background-color: linear-gradient(#edf7f2 20%, #509974); /* green:#509974  Red:#820a3c*/
+    -fx-background-radius: 10px;
 
-    -fx-text-fill: white; /* Textfarbe */
-    -fx-font-family: Arial; /* Schriftart Arial */
-    -fx-font-size: 20px; /* Schriftgröße */
+    -fx-text-fill: white;
+    -fx-font-family: Arial;
+    -fx-font-size: 20px;
 
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 1), 5, 0, 10, 10); /* Shadow effect */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 1), 5, 0, 10, 10);
     -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(#edf7f2 20%, #94d1b2);
+
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+}
+
+.button:pressed {
+    -fx-background-color: linear-gradient(#edf7f2 20%, #5a7065);
+}
+
+#quit-button:pressed {
+    -fx-background-color: linear-gradient(#edf7f2 20%, #ed2513);
 }
