@@ -21,7 +21,7 @@ public class Menu extends VBox {
     private final Settings settings;
     private boolean menu_on = false;
 
-    //private final Label name;
+    private final Label name;
     private final Button resumeButton;
     private final Button settingsButton;
     private final Button quitButton;
@@ -37,29 +37,24 @@ public class Menu extends VBox {
         this.pMenu.setVisible(false);
 
         // Add menu items
-        //name = new Label("The Creepy Property");
+        name = new Label("The Creepy Property");
+        name.setId("name"); // Spezifische ID für den Quit-Button
         resumeButton = new Button("Back to Game");
-//        // Setze die Mindestgröße des Buttons (damit die Größe konstant bleibt)
-//        resumeButton.setMinWidth(200);  // Mindestbreite
-//        resumeButton.setMinHeight(50);  // Mindesthöhe
-//        // Optional: Setze auch die bevorzugte Größe, um die Größe konsistent zu halten
-//        resumeButton.setPrefWidth(200);
-//        resumeButton.setPrefHeight(50);
         settingsButton = new Button("Settings");
         quitButton = new Button("Quit Game");
         quitButton.setId("quit-button"); // Spezifische ID für den Quit-Button
-        logoView = new ImageView(new Image("file:src/resources/logos/LogoGreen.png")); //Logo
+        logoView = new ImageView(new Image("file:dsrc/resources/logos/LogoGreen.png")); //Logo
 
         // Set styles
-        //name.setFont(new Font("Arial", 20));
-        //name.setStyle("-fx-font-size: 40px; -fx-font-weight: bold;-fx-text-fill: rgb(143, 100, 0);");
-        //name.setAlignment(Pos.CENTER);
+//        name.setFont(new Font("Arial", 20));
+//        name.setStyle("-fx-font-size: 40px; -fx-font-weight: bold;-fx-text-fill: rgb(143, 100, 0);");
+//        name.setAlignment(Pos.CENTER);
 //        resumeButton.setFont(new Font("Arial", 20)); // Schriftgröße auf 20 setzen
 //        settingsButton.setFont(new Font("Arial", 20));
 //        quitButton.setFont(new Font("Arial", 20));
 
         // Add buttons to the VBox
-        this.vBoxMenu.getChildren().addAll(logoView, /*name,*/ resumeButton, settingsButton, quitButton);
+        this.vBoxMenu.getChildren().addAll(logoView, name, resumeButton, settingsButton, quitButton);
         this.pMenu.getChildren().add(vBoxMenu);
 
         // Set size and position
@@ -97,7 +92,6 @@ public class Menu extends VBox {
     }
 
     private void setMenuLayout(double width, double heigth) {
-        //name.setPrefSize(width * 2 - 200, heigth);
         resumeButton.setPrefSize(width, heigth);
         settingsButton.setPrefSize(width, heigth);
         quitButton.setPrefSize(width, heigth);

@@ -25,12 +25,19 @@
 .button:hover {
     -fx-background-color: linear-gradient(#edf7f2 20%, #94d1b2); /* Farbverlauf bei Hover ändert sich */
     -fx-border-color: white; /* Weißer Rand */
-    -fx-border-width: 2px; /* Randdicke */
+    -fx-border-width: 2px; /* Rand dicke */
     -fx-border-radius: 10px; /* abgerundeten Ecken */
 }
 
 .button:pressed {
     -fx-background-color: linear-gradient(#edf7f2 20%, #5a7065); /* Grauer Farbverlauf beim drücken */
+}
+
+.button:focused {
+    -fx-background-color: linear-gradient(#edf7f2 20%, #94d1b2); /* Farbverlauf bei Hover ändert sich */
+    -fx-border-color: white; /* Weißer Rand */
+    -fx-border-width: 2px; /* Rand dicke */
+    -fx-border-radius: 10px; /* abgerundeten Ecken */
 }
 
 #quit-button:hover {
@@ -39,4 +46,21 @@
 
 #quit-button:pressed {
     -fx-background-color: linear-gradient(#edf7f2 20%, #b80e02); /* Dunkel Roter Farbverlauf für den "Quit"-Button beim drücken */
+}
+
+#quit-button:focused{
+    -fx-background-color: linear-gradient(#edf7f2 20%, #d13636); /* Roter Farbverlauf bei Hover über "Quit"-Button */
+}
+
+#name {
+    -fx-alignment: center; /* zentrieren */
+    -fx-text-fill: linear-gradient(#edf7f2 40%, #509974); /* Farbverlauf von weiß zu grün */
+    -fx-font-size: 60px; /* Schriftgröße */
+    -fx-font-weight: bold; /* fett */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 1), 5, 0, 5, 5); /* Schatten */
+    -fx-font-family: Creepster; /* Schriftart */
+}
+
+.label {
+    -fx-font-family: Creepster; /* Schriftart */
 }
