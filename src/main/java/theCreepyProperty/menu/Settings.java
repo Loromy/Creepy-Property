@@ -7,9 +7,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import theCreepyProperty.main.GUI;
+import theCreepyProperty.main.GamePanel;
 
 public class Settings {
-    private final GUI gui;
+    private final GamePanel gp;
     private final Menu menu;
 
     private final Pane pMenuSettings = new Pane();
@@ -28,8 +29,8 @@ public class Settings {
 
     private boolean settings_on = false;
 
-    public Settings(GUI gui, Menu menu) {
-        this.gui = gui;
+    public Settings(GamePanel gp, Menu menu) {
+        this.gp = gp;
         this.menu = menu;
 
         this.button1 = new Button();
@@ -75,7 +76,7 @@ public class Settings {
         this.pMenuSettings.getChildren().add(vBoxSettings);
 
         // Set size and position
-        this.pMenuSettings.setPrefSize(this.gui.getWidth(), this.gui.getHeight()); // Set width and height for the overlay menu
+        this.pMenuSettings.setPrefSize(this.gp.getScreen_width(), this.gp.getScreen_height()); // Set width and height for the overlay menu
         this.hBoxSettingsLR.setSpacing(20);
         this.hBoxSettingsLR.setAlignment(Pos.CENTER);
         setMenuSettingsPosition(vBoxSettings, 630, 500, 10);
@@ -120,16 +121,16 @@ public class Settings {
 
     private void setMenuSettingsPosition(VBox vBoxSettings, double width, double height, int spacing) {
         vBoxSettings.setPrefSize(width,height);
-        vBoxSettings.setLayoutX((gui.getWidth() - width) / 2);
-        vBoxSettings.setLayoutY((gui.getHeight() - height) / 2);
+        vBoxSettings.setLayoutX((gp.getScreen_width() - width) / 2);
+        vBoxSettings.setLayoutY((gp.getScreen_height() - height) / 2);
         vBoxSettings.setSpacing(spacing);
         vBoxSettings.setAlignment(Pos.CENTER);
     }
 
     private void setMenuSettingsPositionLR(VBox vBoxSettings, double width, double height, int spacing) {
         vBoxSettings.setPrefSize(width,height);
-        vBoxSettings.setLayoutX((gui.getWidth() - width) / 2);
-        vBoxSettings.setLayoutY((gui.getHeight() - height) / 2);
+        vBoxSettings.setLayoutX((gp.getScreen_width() - width) / 2);
+        vBoxSettings.setLayoutY((gp.getScreen_height() - height) / 2);
         vBoxSettings.setSpacing(spacing);
         vBoxSettings.setAlignment(Pos.CENTER);
     }

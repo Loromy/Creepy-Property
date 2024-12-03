@@ -10,11 +10,13 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import theCreepyProperty.main.GUI;
+import theCreepyProperty.main.GamePanel;
 
 import java.util.Objects;
 
 public class Menu extends VBox {
-    private GUI gui;
+    private final GamePanel gp;
+    private final GUI gui;
     private final Pane backgroundMenu = new Pane(); // Background
     private final Pane pMenu = new Pane(); // Menu Items
     private final VBox vBoxMenu = new VBox();
@@ -27,9 +29,10 @@ public class Menu extends VBox {
     private final Button quitButton;
     private final ImageView logoView;
 
-    public Menu(GUI gui) {
+    public Menu(GamePanel gp, GUI gui) {
+        this.gp = gp;
         this.gui = gui;
-        settings = new Settings(this.gui, this);
+        settings = new Settings(this.gp, this);
 
         //overlay
         backgroundMenu.setStyle("-fx-background-color: rgba(0, 0, 0, 0.1);");
@@ -58,8 +61,8 @@ public class Menu extends VBox {
         this.pMenu.getChildren().add(vBoxMenu);
 
         // Set size and position
-        this.pMenu.setPrefSize(gui.getWidth(), gui.getHeight()); // Set width and height for the overlay menu
-        this.backgroundMenu.setPrefSize(gui.getWidth(), gui.getHeight());
+        this.pMenu.setPrefSize(gp.getScreen_width(), gp.getScreen_height()); // Set width and height for the overlay menu
+        this.backgroundMenu.setPrefSize(gp.getScreen_width(), gp.getScreen_height());
         this.setMenuPosition(500, 500, 10);
         this.setMenuLayout(300,50);
 
@@ -85,8 +88,8 @@ public class Menu extends VBox {
 
     private void setMenuPosition(double width, double height, int spacing) {
         this.vBoxMenu.setPrefSize(width,height);
-        this.vBoxMenu.setLayoutX((gui.getWidth() - width) / 2);
-        this.vBoxMenu.setLayoutY((gui.getHeight() - height) / 2);
+        this.vBoxMenu.setLayoutX((gp.getScreen_width()- width) / 2);
+        this.vBoxMenu.setLayoutY((gp.getScreen_height() - height) / 2);
         this.vBoxMenu.setSpacing(spacing);
         this.vBoxMenu.setAlignment(Pos.CENTER);
     }

@@ -1,20 +1,30 @@
 package theCreepyProperty.entity;
 
 import theCreepyProperty.main.GUI;
+import theCreepyProperty.main.GamePanel;
 import theCreepyProperty.main.KeyHandler;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import theCreepyProperty.menu.Menu;
+
+import java.util.Objects;
 
 
 public class Player extends Entity{
+    private final GamePanel gp;
     private final GUI gui;
+    private final KeyHandler keyHandler;
+    private final Menu menu;
     private double controlSpeed = 0; // speed if strg pressed
     public Image playerImage;
     public ImageView i_player = new ImageView();
 
 
-    public Player(GUI gui, KeyHandler keyHandler)  {
+    public Player(GamePanel gp, GUI gui, KeyHandler keyHandler, Menu menu)  {
+        this.gp = gp;
         this.gui = gui;
+        this.keyHandler = keyHandler;
+        this.menu = menu;
         setDefaultValues();
         this.i_player.setX(entity_world_X);
         this.i_player.setY(entity_world_Y);
@@ -23,6 +33,7 @@ public class Player extends Entity{
         this.i_player.setFitWidth(entity_size_X);
 
         createPlayerImage();
+
     }
 
     public void createPlayerImage(){
@@ -52,6 +63,162 @@ public class Player extends Entity{
 
         System.out.println("[System]: Player image created ✔"); //✖
 
+    }
+
+    public void setDefaultValues() {
+        entity_size_X = 48;
+        entity_size_Y = 48;
+        entity_world_X = ((double) gp.getScreen_width() / 2) - (entity_size_X / 2);
+        entity_world_Y = ((double) gp.getScreen_height() / 2) - ((entity_size_Y / 2 ) + 19);
+        speed = 3; // 3
+        direction = "down";
+        System.out.println("[System]: Player defaultValues set ✔"); //✖
+    }
+
+    public void update() {
+
+        if (keyHandler.wPressed || keyHandler.sPressed || keyHandler.aPressed || keyHandler.dPressed) {
+
+            if (keyHandler.wPressed) {
+                direction = "up";
+            }
+            else if (keyHandler.sPressed) {
+                direction = "down";
+            }
+            else if (keyHandler.aPressed) {
+                direction = "left";
+            }
+            else if (keyHandler.dPressed) {
+                direction = "right";
+            }
+
+            //CHECK TILE COLLISION
+            collision_on = false;
+            //gp.Checker.checkTile(this);
+
+            //CHECK OBJECT COLLISION
+            //int objIndex = gp.Checker.check_object(this, true);
+            //pickUpObject(objIndex);
+
+            //IF COLLISION IS FALSE; PLAYER CAN MOVE
+            handleMovement();
+
+            if (this.keyHandler.escPressed) {
+                this.keyHandler.escPressed = false;
+                if (!menu.getSettings().getSettingOn()) {
+                    this.menu.triggerMenu();
+                } else {
+                    this.menu.getSettings().triggerSettings();
+                    this.menu.getpMenu().setVisible(true);
+                }
+            }
+
+            sprite_counter++;
+            if (sprite_counter > 13) {
+
+                if (sprite_num == 1) {
+                    sprite_num = 2;
+                }
+                else if (sprite_num == 2) {
+                    sprite_num = 3;
+                }
+                else if (sprite_num == 3) {
+                    sprite_num = 4;
+                }
+                else if (sprite_num == 4) {
+                    sprite_num = 1;
+                }
+
+                sprite_counter = 0;
+            }
+
+        } else {
+            if (Objects.equals(direction, "up")) {
+                sprite_num = 1;
+            }else if (Objects.equals(direction, "down")) {
+                sprite_num = 1;
+            }else if (Objects.equals(direction, "left")) {
+                sprite_num = 1;
+            }else if (Objects.equals(direction, "right")) {
+                sprite_num = 1;
+            }
+        }
+    }
+
+    // Bewegung basierend auf Geschwindigkeits- und Bewegungsrichtung
+    public void move(double dx, double dy) {
+        double length = Math.sqrt(dx * dx + dy * dy);
+        if (length != 0) {
+            dx /= length;
+            dy /= length;
+        }
+
+        this.setPlayer_world_X(this.getPlayer_world_X() + dx * this.getSpeed());
+        this.setPlayer_world_Y(this.getPlayer_world_Y() + dy * this.getSpeed());
+    }
+
+    public void handleMovement() {
+        if (!this.menu.getMenu_on() && !collision_on) {
+            double dx = 0;
+            double dy = 0;
+
+            if (this.keyHandler.wPressed) {
+                dy -= 1;
+                this.setDirection("up");
+            }
+            if (this.keyHandler.sPressed) {
+                dy += 1;
+                this.setDirection("down");
+            }
+            if (this.keyHandler.aPressed) {
+                dx -= 1;
+                this.setDirection("left");
+            }
+            if (this.keyHandler.dPressed) {
+                dx += 1;
+                this.setDirection("right");
+            }
+
+            if (this.keyHandler.ctrlPressed) {
+                this.setControlSpeed(2);
+                this.gui.getGuiComponents().getL_speed().setText("Speed: " + this.getSpeed());
+            } else if (this.keyHandler.shiftPressed) {
+                this.setShiftSpeed();
+                this.gui.getGuiComponents().getL_speed().setText("Speed: " + this.getSpeed());
+            } else {
+                this.setControlSpeed(0);
+                this.gui.getGuiComponents().getL_speed().setText("Speed: " + this.getSpeed());
+            }
+
+            if (dx != 0 || dy != 0) {
+                move(dx, dy);
+            }
+            animation();
+        }
+    }
+
+    public void animation(){
+        if (this.keyHandler.wPressed || this.keyHandler.sPressed || this.keyHandler.aPressed || this.keyHandler.dPressed) {
+
+            this.sprite_counter++;
+            if (this.sprite_counter > 13) { // animation speed
+
+                if (this.sprite_num == 1) {
+                    this.sprite_num = 2;
+                }
+                else if (this.sprite_num == 2) {
+                    this.sprite_num = 3;
+                }
+                else if (this.sprite_num == 3) {
+                    this.sprite_num = 4;
+                }
+                else if (this.sprite_num == 4) {
+                    this.sprite_num = 1;
+                }
+
+                this.sprite_counter = 0;
+            }
+        }
     }
 
     public ImageView draw() {
@@ -134,16 +301,6 @@ public class Player extends Entity{
     public void setDirection(String direction) {
         this.direction = direction;
         this.draw();
-    }
-
-    public void setDefaultValues() {
-        entity_size_X = 48;
-        entity_size_Y = 48;
-        entity_world_X = ((double) gui.getWidth() / 2) - (entity_size_X / 2);
-        entity_world_Y = ((double) gui.getHeight() / 2) - ((entity_size_Y / 2 ) + 19);
-        speed = 3; // 3
-        direction = "down";
-        System.out.println("[System]: Player defaultValues set ✔"); //✖
     }
 
     // get methode

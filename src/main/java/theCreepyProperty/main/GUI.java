@@ -16,22 +16,34 @@ import theCreepyProperty.entity.Player;
 import theCreepyProperty.menu.Menu;
 
 public class GUI {
-    private final int width = 1000;
-    private final int height = 600;
+//    private final int width = 1000;
+//    private final int height = 600;
 
     private final Pane root = new Pane(); //main
     private final Pane pMenu = new Pane(); //Menu
     private final Pane pGame = new Pane(); //game stuff
 
+    private final GamePanel gp;
+    private final Menu menu;
+//    private KeyHandler keyHandler = new KeyHandler(this, this.menu);
+//    private final Player player = new Player(this, this.keyHandler, this.menu);
+    //private Menu menu;
+    private Player player;
     private KeyHandler keyHandler;
-    private final Player player = new Player(this, this.keyHandler);
-    private final Menu menu = new Menu(this);
-    private final GuiComponents guiComponents = new GuiComponents(this.player, this.menu);
+    private final GuiComponents guiComponents;
+
+    public GUI(GamePanel gp, KeyHandler keyHandler) {
+        this.gp = gp;
+        this.menu = new Menu(this.gp, this);;
+        this.keyHandler = keyHandler;
+        this.player = new Player(this.gp, this, this.keyHandler, this.menu);
+        this.guiComponents = new GuiComponents(this.player, this.menu);
+    }
 
     public void start(Stage primaryStage) {
         // Create the scene with the specified width and height values
         root.getChildren().addAll(pGame,pMenu);
-        Scene scene = new Scene(root, width, height);
+        Scene scene = new Scene(root, gp.getScreen_width(), this.gp.getScreen_height());
 
         //Styles
         root.getStylesheets().add(("file:src/resources/style/style.css"));
@@ -45,7 +57,7 @@ public class GUI {
         pMenu.getChildren().add(this.menu.getSettings().getMenuSettings());
 
         // Add the KeyHandler for keyboard input
-        keyHandler = new KeyHandler(this.player, this, this.menu);
+
         keyHandler.addKeyListener(scene);
 
         // Set the settings for the stage
@@ -63,13 +75,13 @@ public class GUI {
 
 
     // Getter methods
-    public int getWidth() {
-        return width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
+//    public int getWidth() {
+//        return width;
+//    }
+//
+//    public int getHeight() {
+//        return height;
+//    }
 
     public GuiComponents getGuiComponents() {
         return guiComponents;
