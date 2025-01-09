@@ -36,40 +36,39 @@ public class CollisionChecker {
         double wallMaxX = wallMinX + this.gui.getWall().getWidth();
         double wallMaxY = wallMinY + this.gui.getWall().getHeight();
 
-        // Überprüfe, ob sich die Rechtecke überschneiden
-        boolean tester = playerMaxX > wallMinX && playerMinX < wallMaxX && playerMaxY > wallMinY && playerMinY < wallMaxY;
+//        // Überprüfe, ob sich die Rechtecke überschneiden
+//        boolean tester = playerMaxX > wallMinX && playerMinX < wallMaxX && playerMaxY > wallMinY && playerMinY < wallMaxY;
+        // Prüfe auf Kollisionen in jede Richtung
+        boolean isWallLeft = playerMinX <= wallMaxX && playerMinX >= wallMinX && playerMaxY > wallMinY && playerMinY < wallMaxY;
+        boolean isWallRight = playerMaxX >= wallMinX && playerMaxX <= wallMaxX && playerMaxY > wallMinY && playerMinY < wallMaxY;
+        boolean isWallAbove = playerMinY <= wallMaxY && playerMinY >= wallMinY && playerMaxX > wallMinX && playerMinX < wallMaxX;
+        boolean isWallBelow = playerMaxY >= wallMinY && playerMaxY <= wallMaxY && playerMaxX > wallMinX && playerMinX < wallMaxX;
 
 
         switch (player.direction) {
             case "up":
-                System.out.println("up");
-                if (gui.getWall().getPlayer_block_collision()) {
-                    player.collision_on = true;
+                if (this.gui.getWall().getPlayer_block_collision() && isWallAbove) {
+                    this.gui.getPlayer().collision_on = true;
+                    this.gui.getWall().setWall_color("red");
                 }
                 break;
             case "down":
-//                entity_bottom_row = (entity_bottom_world_Y + entity.speed) / gp.tile_size;
-//                tile_num_1 = gp.tile_manager.level_tile_number[entity_left_col][entity_bottom_row];
-//                tile_num_2 = gp.tile_manager.level_tile_number[entity_right_col][entity_bottom_row];
-//                if (gp.tile_manager.tile[tile_num_1].player_tile_collision || gp.tile_manager.tile[tile_num_2].player_tile_collision) {
-//                    entity.collision_on = true;
-//                }
+                if (this.gui.getWall().getPlayer_block_collision() && isWallBelow) {
+                    this.gui.getPlayer().collision_on = true;
+                    this.gui.getWall().setWall_color("green");
+                }
                 break;
             case "left":
-//                entity_left_col = (entity_left_world_X - entity.speed) / gp.tile_size;
-//                tile_num_1 = gp.tile_manager.level_tile_number[entity_left_col][entity_top_row];
-//                tile_num_2 = gp.tile_manager.level_tile_number[entity_left_col][entity_bottom_row];
-//                if (gp.tile_manager.tile[tile_num_1].player_tile_collision || gp.tile_manager.tile[tile_num_2].player_tile_collision) {
-//                    entity.collision_on = true;
-//                }
+                if (this.gui.getWall().getPlayer_block_collision() && isWallLeft) {
+                    this.gui.getPlayer().collision_on = true;
+                    this.gui.getWall().setWall_color("blue");
+                }
                 break;
             case "right":
-//                entity_right_col = (entity_right_world_X + entity.speed) / gp.tile_size;
-//                tile_num_1 = gp.tile_manager.level_tile_number[entity_right_col][entity_top_row];
-//                tile_num_2 = gp.tile_manager.level_tile_number[entity_right_col][entity_bottom_row];
-//                if (gp.tile_manager.tile[tile_num_1].player_tile_collision || gp.tile_manager.tile[tile_num_2].player_tile_collision) {
-//                    entity.collision_on = true;
-//                }
+                if (this.gui.getWall().getPlayer_block_collision() && isWallRight) {
+                    this.gui.getPlayer().collision_on = true;
+                    this.gui.getWall().setWall_color("yellow");
+                }
                 break;
         }
     }

@@ -117,18 +117,19 @@ public class KeyHandler {
 
     // Bewegung basierend auf Geschwindigkeits- und Bewegungsrichtung
     private void move(double dx, double dy) {
+
+        double length = Math.sqrt(dx * dx + dy * dy);
+        if (length != 0) {
+            dx /= length;
+            dy /= length;
+        }
+
+        //CHECK Wall COLLISION
+        this.gui.getWall().setWall_color();
+        this.player.collision_on = false;
+        gui.getChecker().checkTile(this.player);
+
         if(!this.player.getCollision_on()) {
-
-            double length = Math.sqrt(dx * dx + dy * dy);
-            if (length != 0) {
-                dx /= length;
-                dy /= length;
-            }
-
-            //CHECK Wall COLLISION
-            this.player.collision_on = false;
-            gui.getChecker().checkTile(this.player);
-
             this.player.setPlayer_world_X(player.getPlayer_world_X() + dx * player.getSpeed());
             this.player.setPlayer_world_Y(player.getPlayer_world_Y() + dy * player.getSpeed());
         }

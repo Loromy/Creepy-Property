@@ -11,19 +11,29 @@ public class Wall extends Block{
         createWall();
     }
 
+    private void createWall() {
+        this.r_Wall = new Rectangle(positionX, positionY, width, height);
+        setWall_color(); // Farbe setzen
+    }
+
+    // set methode
     private void setDefaultValues() {
         positionX = 50;
         positionY = 50;
         width = 50; // Korrigiert, um konsistent zu sein
         height = 50; // Korrigiert, um konsistent zu sein
         color = "black";
+        System.out.println("[System]: Wall defaultValues set ✔"); //✖
     }
 
-    private void createWall() {
-        this.r_Wall = new Rectangle(positionX, positionY, width, height);
-        this.r_Wall.setFill(Color.web(color)); // Farbe setzen
+    public void setWall_color(String color) {
+        this.r_Wall.setFill(Color.web(color));
+    }
+    public void setWall_color() {
+        this.r_Wall.setFill(Color.web("black"));
     }
 
+    // get methode
     public Rectangle getWall() {
         return this.r_Wall; // JavaFX-Rectangle wird zurückgegeben
     }

@@ -6,5 +6,5 @@ public class Block {
     public int width;
     public int height;
     public String color;
-    public boolean player_block_collision;
+    public boolean player_block_collision = true;
 }
