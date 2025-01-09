@@ -12,6 +12,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import theCreepyProperty.Blocks.Wall;
 import theCreepyProperty.entity.Player;
 import theCreepyProperty.menu.Menu;
 
@@ -24,7 +25,8 @@ public class GUI {
     private final Pane pGame = new Pane(); //game stuff
 
     private KeyHandler keyHandler;
-    private final Player player = new Player(this, this.keyHandler);
+    private final Wall Wall1 = new Wall();
+    private final Player player = new Player(this, Wall1);
     private final Menu menu = new Menu(this);
     private final GuiComponents guiComponents = new GuiComponents(this.player, this.menu);
 
@@ -39,6 +41,7 @@ public class GUI {
         // Additional GUI components could be added here
         root.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, null)));
         pGame.getChildren().add(this.player.draw());
+        pGame.getChildren().add(this.Wall1.getWall());
         pGame.getChildren().add(this.guiComponents.getL_speed());
         pMenu.getChildren().add(this.menu.getBackgroundMenu());
         pMenu.getChildren().add(this.menu.getpMenu());

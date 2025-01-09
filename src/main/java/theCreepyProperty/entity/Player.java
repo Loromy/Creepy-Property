@@ -1,5 +1,6 @@
 package theCreepyProperty.entity;
 
+import theCreepyProperty.Blocks.Wall;
 import theCreepyProperty.main.GUI;
 import theCreepyProperty.main.KeyHandler;
 import javafx.scene.image.Image;
@@ -13,7 +14,7 @@ public class Player extends Entity{
     public ImageView i_player = new ImageView();
 
 
-    public Player(GUI gui, KeyHandler keyHandler)  {
+    public Player(GUI gui, Wall wall)  {
         this.gui = gui;
         setDefaultValues();
         this.i_player.setX(entity_world_X);
@@ -141,7 +142,7 @@ public class Player extends Entity{
         entity_size_Y = 48;
         entity_world_X = ((double) gui.getWidth() / 2) - (entity_size_X / 2);
         entity_world_Y = ((double) gui.getHeight() / 2) - ((entity_size_Y / 2 ) + 19);
-        speed = 3; // 3
+        speed = 3; // 3 bei 60hz
         direction = "down";
         System.out.println("[System]: Player defaultValues set ✔"); //✖
     }
