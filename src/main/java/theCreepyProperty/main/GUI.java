@@ -29,6 +29,7 @@ public class GUI {
     private final Player player = new Player(this, Wall1);
     private final Menu menu = new Menu(this);
     private final GuiComponents guiComponents = new GuiComponents(this.player, this.menu);
+    private final CollisionChecker checker = new CollisionChecker(this);
 
     public void start(Stage primaryStage) {
         // Create the scene with the specified width and height values
@@ -86,8 +87,16 @@ public class GUI {
         return keyHandler;
     }
 
+    public Wall getWall() {
+        return Wall1;
+    }
+
     public Player getPlayer() {
         return player;
+    }
+
+    public CollisionChecker getChecker() {
+        return checker;
     }
 
     // Setter methods

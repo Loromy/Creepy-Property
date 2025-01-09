@@ -9,6 +9,7 @@ import javafx.scene.image.ImageView;
 
 public class Player extends Entity{
     private final GUI gui;
+    private final Wall wall;
     private double controlSpeed = 0; // speed if strg pressed
     public Image playerImage;
     public ImageView i_player = new ImageView();
@@ -16,6 +17,7 @@ public class Player extends Entity{
 
     public Player(GUI gui, Wall wall)  {
         this.gui = gui;
+        this.wall = wall;
         setDefaultValues();
         this.i_player.setX(entity_world_X);
         this.i_player.setY(entity_world_Y);
@@ -113,6 +115,25 @@ public class Player extends Entity{
 
     }
 
+//    // Kollisionsüberprüfung zwischen Player und Wall
+//    public boolean isPlayerCollidingWithWall() {
+//        // Erhalte die Bounding Box des Players
+//        double playerMinX = i_player.getX();
+//        double playerMinY = i_player.getY();
+//        double playerMaxX = playerMinX + entity_size_X;
+//        double playerMaxY = playerMinY + entity_size_Y;
+//
+//        // Erhalte die Bounding Box der Wand
+//        double wallMinX = wall.getX();
+//        double wallMinY = wall.getY();
+//        double wallMaxX = wallMinX + wall.getWidth();
+//        double wallMaxY = wallMinY + wall.getHeight();
+//
+//        // Überprüfe, ob sich die Rechtecke überschneiden
+//        boolean tester = playerMaxX > wallMinX && playerMinX < wallMaxX && playerMaxY > wallMinY && playerMinY < wallMaxY;
+//        return tester;
+//    }
+
     // set methode
     public void setPlayer_world_X(double player_world_X){
         this.entity_world_X = player_world_X;
@@ -158,5 +179,9 @@ public class Player extends Entity{
 
     public double getSpeed(){
         return this.speed + this.controlSpeed;
+    }
+
+    public boolean getCollision_on(){
+        return this.collision_on;
     }
 }

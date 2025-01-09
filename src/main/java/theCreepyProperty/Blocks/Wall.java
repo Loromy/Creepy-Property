@@ -3,14 +3,8 @@ package theCreepyProperty.Blocks;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-public class Wall {
+public class Wall extends Block{
     private Rectangle r_Wall;
-
-    private int positionX;
-    private int positionY;
-    private int width;
-    private int height;
-    private String color;
 
     public Wall() {
         setDefaultValues();
@@ -32,5 +26,25 @@ public class Wall {
 
     public Rectangle getWall() {
         return this.r_Wall; // JavaFX-Rectangle wird zurückgegeben
+    }
+
+    public int getX(){
+        return this.positionX;
+    }
+
+    public int getY(){
+        return this.positionY;
+    }
+
+    public int getWidth() {
+        return this.width;
+    }
+
+    public int getHeight() {
+        return this.height;
+    }
+
+    public boolean getPlayer_block_collision() {
+        return player_block_collision;
     }
 }
