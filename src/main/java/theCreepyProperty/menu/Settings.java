@@ -5,8 +5,6 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import theCreepyProperty.GameOver;
 import theCreepyProperty.main.GUI;
 
 public class Settings {
@@ -144,10 +142,12 @@ public class Settings {
         System.out.println("[Settings]: Back");
         triggerSettings(); // Settings
         this.menu.getpMenu().setVisible(true); //Start Menu
+        this.menu.triggerFocus();
     }
 
     private void onButton1() {
         this.gui.getGameOver().triggerGameOver();
+        this.backButton.requestFocus();
         System.out.println("[Settings]: button1 (Game Over Screen)");
     }
 

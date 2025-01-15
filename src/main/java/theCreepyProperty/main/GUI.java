@@ -1,7 +1,6 @@
 package theCreepyProperty.main;
 
 import javafx.scene.Scene;
-import javafx.scene.effect.Effect;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
@@ -9,11 +8,9 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
-import theCreepyProperty.Blocks.Wall;
-import theCreepyProperty.GameOver;
+import theCreepyProperty.blocks.Wall;
+import theCreepyProperty.screens.GameOver;
 import theCreepyProperty.entity.Player;
 import theCreepyProperty.menu.Menu;
 

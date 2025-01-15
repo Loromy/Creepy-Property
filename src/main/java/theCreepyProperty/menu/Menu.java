@@ -77,6 +77,8 @@ public class Menu extends VBox {
             this.pMenu.setVisible(true);
             this.gui.setBlur(15); //Menu blur
             this.menu_on = true;
+
+            this.resumeButton.requestFocus();
         } else {
             this.gui.getpMenu().setVisible(false);
             this.backgroundMenu.setVisible(false);
@@ -115,6 +117,10 @@ public class Menu extends VBox {
     private void onQuit() {
         System.out.println("[Menu]: Quit game!");
         System.exit(0);
+    }
+
+    public void triggerFocus() {
+        this.resumeButton.requestFocus();
     }
 
     public boolean getMenu_on(){

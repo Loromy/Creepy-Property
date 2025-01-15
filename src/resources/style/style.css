@@ -88,13 +88,13 @@
 }
 
 #game-over:focused {
-    /*-fx-background-color: linear-gradient(#edf7f2 20%, #d13636); /* Roter Farbverlauf bei Hover über "Quit"-Button */
+    -fx-background-color: linear-gradient(#edf7f2 20%, #b50000); /* Roter Farbverlauf bei Hover über "Quit"-Button */
 
 }
 
 #background {
     -fx-background-color: rgba(0, 0, 0, 0.3);
-    -fx-background-radius: 15px;
+    -fx-background-radius: 15px; /* 15px */
 }
 
 /* Text */

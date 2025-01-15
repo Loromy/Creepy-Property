@@ -1,8 +1,7 @@
 package theCreepyProperty.entity;
 
-import theCreepyProperty.Blocks.Wall;
+import theCreepyProperty.blocks.Wall;
 import theCreepyProperty.main.GUI;
-import theCreepyProperty.main.KeyHandler;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 

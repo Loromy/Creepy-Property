@@ -1,6 +1,5 @@
 package theCreepyProperty.main;
-import theCreepyProperty.Blocks.Wall;
-import theCreepyProperty.GameOver;
+import theCreepyProperty.screens.GameOver;
 import theCreepyProperty.entity.Player;
 
 import javafx.animation.AnimationTimer;

@@ -1,14 +1,11 @@
-package theCreepyProperty;
+package theCreepyProperty.screens;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import theCreepyProperty.main.GUI;
-import theCreepyProperty.menu.Settings;
 
 public class GameOver extends VBox{
     private GUI gui;
@@ -20,6 +17,7 @@ public class GameOver extends VBox{
 
     private final Label text;
     private final Button retryButton;
+    private final Button quitButton;
 
     public GameOver(GUI gui) {
         this.gui = gui;
@@ -31,23 +29,26 @@ public class GameOver extends VBox{
 
         // Add menu items
         this.text = new Label("Game Over");
-        this.text.setId("game-over-text"); // Spezifische ID für den Quit-Button
+        this.text.setId("game-over-text"); // Spezifische ID für den GameOver-Text
         this.retryButton = new Button("Retry");
-        this.retryButton.setId("game-over"); // Spezifische ID für den Quit-Button
+        this.retryButton.setId("game-over"); // Spezifische ID für den Retry-Button
+        this.quitButton = new Button("Quit");
+        this.quitButton.setId("game-over"); // Spezifische ID für den Quit-Button
 
         // Add buttons to the VBox
-        this.vBoxGameOver.getChildren().addAll(text, retryButton);
+        this.vBoxGameOver.getChildren().addAll(text, retryButton, quitButton);
         this.vBoxGameOver.setId("background");
         this.pGameOver.getChildren().add(vBoxGameOver);
 
         // Set size and position
         this.pGameOver.setPrefSize(gui.getWidth(), gui.getHeight()); // Set width and height for the overlay menu
         this.backgroundGameOver.setPrefSize(gui.getWidth(), gui.getHeight());
-        this.setGameOverPosition(300, 200, 10);
+        this.setGameOverPosition(300, 300, 10);
 //        this.setGameOverLayout(100,50);
 
         // Button actions
         retryButton.setOnAction(e -> onRetry());
+        quitButton.setOnAction(e -> onQuit());
     }
 
     public void triggerGameOver(){
@@ -57,6 +58,8 @@ public class GameOver extends VBox{
             this.pGameOver.setVisible(true);
             this.gui.setBlur(15); //Menu blur
             this.gameOver_on = true;
+
+            this.retryButton.requestFocus();
         } else {
             this.backgroundGameOver.setVisible(false);
             this.pGameOver.setVisible(false);
@@ -80,6 +83,11 @@ public class GameOver extends VBox{
     private void onRetry() {
         System.out.println("[Game Over]: Retry");
         this.triggerGameOver();
+    }
+
+    private void onQuit() {
+        System.out.println("[Game Over]: Quit");
+        System.exit(0);
     }
 
     public boolean getGameOver_On() {

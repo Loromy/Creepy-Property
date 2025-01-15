@@ -1,4 +1,4 @@
-package theCreepyProperty.Blocks;
+package theCreepyProperty.blocks;
 
 public class Block {
     public int positionX;
