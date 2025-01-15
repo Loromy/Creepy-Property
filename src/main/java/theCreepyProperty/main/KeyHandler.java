@@ -1,5 +1,6 @@
 package theCreepyProperty.main;
 import theCreepyProperty.Blocks.Wall;
+import theCreepyProperty.GameOver;
 import theCreepyProperty.entity.Player;
 
 import javafx.animation.AnimationTimer;
@@ -11,6 +12,7 @@ public class KeyHandler {
     private final Player player;
     private final GUI gui;
     private final Menu menu;
+    private final GameOver gameOver;
     public boolean wPressed = false;
     public boolean aPressed = false;
     public boolean sPressed = false;
@@ -19,10 +21,11 @@ public class KeyHandler {
     private boolean shiftPressed = false;
     private boolean escPressed = false;
 
-    public KeyHandler(Player player, GUI gui, Menu menu) {
+    public KeyHandler(Player player, GUI gui, Menu menu, GameOver gameOver) {
         this.player = player;
         this.gui = gui;
         this.menu = menu;
+        this.gameOver = gameOver;
     }
 
     public void addKeyListener(Scene scene) {
@@ -65,7 +68,7 @@ public class KeyHandler {
 
     // Funktion für die Bewegungssteuerung basierend auf den gedrückten Tasten
     private void handleMovement() {
-        if (!this.menu.getMenu_on()) {
+        if (!this.menu.getMenu_on() && !this.gameOver.getGameOver_On()) {
             double dx = 0;
             double dy = 0;
 

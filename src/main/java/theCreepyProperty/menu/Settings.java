@@ -6,6 +6,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import theCreepyProperty.GameOver;
 import theCreepyProperty.main.GUI;
 
 public class Settings {
@@ -44,7 +45,7 @@ public class Settings {
 
         // Button text
         this.backButton.setText("Back");
-        this.button1.setText("button1");
+        this.button1.setText("Game Over Screen");
         this.button2.setText("button2");
         this.button3.setText("button3");
         this.button4.setText("button4");
@@ -72,13 +73,14 @@ public class Settings {
         this.hBoxSettingsLR.getChildren().addAll(vBoxSettingsL, vBoxSettingsR); // hBox für buttons Left/Right
         this.vBoxSettings.getChildren().add(hBoxSettingsLR);
         this.vBoxSettings.getChildren().add(backButton); // Button back
+        this.vBoxSettings.setId("background");
         this.pMenuSettings.getChildren().add(vBoxSettings);
 
         // Set size and position
         this.pMenuSettings.setPrefSize(this.gui.getWidth(), this.gui.getHeight()); // Set width and height for the overlay menu
         this.hBoxSettingsLR.setSpacing(20);
         this.hBoxSettingsLR.setAlignment(Pos.CENTER);
-        setMenuSettingsPosition(vBoxSettings, 630, 500, 10);
+        setMenuSettingsPosition(vBoxSettings, 700, 500, 10); //630
         setMenuSettingsPositionLR(vBoxSettingsL, 300, 300, 10);
         setMenuSettingsPositionLR(vBoxSettingsR, 300, 300, 10);
 
@@ -145,7 +147,8 @@ public class Settings {
     }
 
     private void onButton1() {
-        System.out.println("[Settings]: button1");
+        this.gui.getGameOver().triggerGameOver();
+        System.out.println("[Settings]: button1 (Game Over Screen)");
     }
 
     private void onButton2() {

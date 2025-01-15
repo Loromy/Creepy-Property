@@ -18,8 +18,8 @@ public class Wall extends Block{
 
     // set methode
     private void setDefaultValues() {
-        positionX = 50;
-        positionY = 50;
+        positionX = 100;
+        positionY = 100;
         width = 50; // Korrigiert, um konsistent zu sein
         height = 50; // Korrigiert, um konsistent zu sein
         color = "black";
