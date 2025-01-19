@@ -8,15 +8,15 @@ import javafx.scene.image.ImageView;
 
 public class Player extends Entity{
     private final GUI gui;
-    private final Wall wall;
+    //private final LevelDataWall wall;
     private double controlSpeed = 0; // speed if strg pressed
     public Image playerImage;
     public ImageView i_player = new ImageView();
 
 
-    public Player(GUI gui, Wall wall)  {
+    public Player(GUI gui)  {
         this.gui = gui;
-        this.wall = wall;
+        //this.wall = wall;
         setDefaultValues();
         this.i_player.setX(entity_world_X);
         this.i_player.setY(entity_world_Y);
@@ -114,7 +114,7 @@ public class Player extends Entity{
 
     }
 
-//    // Kollisionsüberprüfung zwischen Player und Wall
+//    // Kollisionsüberprüfung zwischen Player und LevelDataWall
 //    public boolean isPlayerCollidingWithWall() {
 //        // Erhalte die Bounding Box des Players
 //        double playerMinX = i_player.getX();

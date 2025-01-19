@@ -5,6 +5,6 @@ public class Block {
     public int positionY;
     public int width;
     public int height;
-    public String color;
+    public String texture;
     public boolean player_block_collision = true;
 }

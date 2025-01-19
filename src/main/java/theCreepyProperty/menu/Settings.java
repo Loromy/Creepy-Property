@@ -59,12 +59,6 @@ public class Settings {
 //        this.button5.setFont(new Font("Arial", 20));
 //        this.button6.setFont(new Font("Arial", 20));
 
-
-//        //TODO Test
-//        this.vBoxSettings.setStyle("-fx-background-color: rgba(30, 0, 0, 0.5);");
-//        this.vBoxSettingsL.setStyle("-fx-background-color: rgba(0, 100, 0, 0.5);");
-//        this.vBoxSettingsR.setStyle("-fx-background-color: rgba(0, 0, 500, 0.5);");
-
         // getChildren
         this.vBoxSettingsL.getChildren().addAll(button1, button3, button5); // Buttons Left
         this.vBoxSettingsR.getChildren().addAll(button2, button4, button6); // Buttons Right
@@ -78,17 +72,17 @@ public class Settings {
         this.pMenuSettings.setPrefSize(this.gui.getWidth(), this.gui.getHeight()); // Set width and height for the overlay menu
         this.hBoxSettingsLR.setSpacing(20);
         this.hBoxSettingsLR.setAlignment(Pos.CENTER);
-        setMenuSettingsPosition(vBoxSettings, 700, 500, 10); //630
-        setMenuSettingsPositionLR(vBoxSettingsL, 300, 300, 10);
-        setMenuSettingsPositionLR(vBoxSettingsR, 300, 300, 10);
+        setMenuSettingsPosition(vBoxSettings); //630
+        setMenuSettingsPositionLR(vBoxSettingsL);
+        setMenuSettingsPositionLR(vBoxSettingsR);
 
-        setMenuSettingsLayout(backButton, 300,50);
-        setMenuSettingsLayout(button1, 300,50);
-        setMenuSettingsLayout(button2, 300,50);
-        setMenuSettingsLayout(button3, 300,50);
-        setMenuSettingsLayout(button4, 300,50);
-        setMenuSettingsLayout(button5, 300,50);
-        setMenuSettingsLayout(button6, 300,50);
+//        setMenuSettingsLayout(backButton, 300,50);
+//        setMenuSettingsLayout(button1, 300,50);
+//        setMenuSettingsLayout(button2, 300,50);
+//        setMenuSettingsLayout(button3, 300,50);
+//        setMenuSettingsLayout(button4, 300,50);
+//        setMenuSettingsLayout(button5, 300,50);
+//        setMenuSettingsLayout(button6, 300,50);
 
         // Button action
         backButton.setOnAction(e -> onBack());
@@ -118,25 +112,25 @@ public class Settings {
         return settings_on;
     }
 
-    private void setMenuSettingsPosition(VBox vBoxSettings, double width, double height, int spacing) {
-        vBoxSettings.setPrefSize(width,height);
-        vBoxSettings.setLayoutX((gui.getWidth() - width) / 2);
-        vBoxSettings.setLayoutY((gui.getHeight() - height) / 2);
-        vBoxSettings.setSpacing(spacing);
+    private void setMenuSettingsPosition(VBox vBoxSettings) {
+        vBoxSettings.setPrefSize(700, 500);
+        vBoxSettings.setLayoutX((gui.getWidth() - (double) 700) / 2);
+        vBoxSettings.setLayoutY((gui.getHeight() - (double) 500) / 2);
+        vBoxSettings.setSpacing(10);
         vBoxSettings.setAlignment(Pos.CENTER);
     }
 
-    private void setMenuSettingsPositionLR(VBox vBoxSettings, double width, double height, int spacing) {
-        vBoxSettings.setPrefSize(width,height);
-        vBoxSettings.setLayoutX((gui.getWidth() - width) / 2);
-        vBoxSettings.setLayoutY((gui.getHeight() - height) / 2);
-        vBoxSettings.setSpacing(spacing);
+    private void setMenuSettingsPositionLR(VBox vBoxSettings) {
+        vBoxSettings.setPrefSize(300, 300);
+        vBoxSettings.setLayoutX((gui.getWidth() - (double) 300) / 2);
+        vBoxSettings.setLayoutY((gui.getHeight() - (double) 300) / 2);
+        vBoxSettings.setSpacing(10);
         vBoxSettings.setAlignment(Pos.CENTER);
     }
 
-    private void setMenuSettingsLayout(Button button, double width, double height) {
-        button.setPrefSize(width, height);
-    }
+//    private void setMenuSettingsLayout(Button button, double width, double height) {
+//        button.setPrefSize(width, height);
+//    }
 
     private void onBack() {
         System.out.println("[Settings]: Back");

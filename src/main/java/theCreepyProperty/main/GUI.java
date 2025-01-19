@@ -10,6 +10,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import theCreepyProperty.blocks.Wall;
+import theCreepyProperty.main.Map.LevelData;
+import theCreepyProperty.main.Map.MapCreate;
+import theCreepyProperty.main.Map.MapReader;
 import theCreepyProperty.screens.GameOver;
 import theCreepyProperty.entity.Player;
 import theCreepyProperty.menu.Menu;
@@ -24,8 +27,11 @@ public class GUI {
     private final Pane pGame = new Pane(); //game stuff
 
     private KeyHandler keyHandler;
-    private final Wall Wall1 = new Wall();
-    private final Player player = new Player(this, Wall1);
+    private LevelData levelData = new LevelData();
+    private final MapReader mapReader = new MapReader();
+    private final MapCreate mapCreate = new MapCreate();
+    private Wall wall; //todo entfernen
+    private final Player player = new Player(this);
     private final GameOver gameOver = new GameOver(this);
     private final Menu menu = new Menu(this);
     private final GuiComponents guiComponents = new GuiComponents(this.player, this.menu);
@@ -42,7 +48,8 @@ public class GUI {
         // Additional GUI components could be added here
         root.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, null)));
         pGame.getChildren().add(this.player.draw());
-        pGame.getChildren().add(this.Wall1.getWall());
+        //pGame.getChildren().add(this.Wall1.getWall());
+        //creatAllWall();
         pGame.getChildren().add(this.guiComponents.getL_speed());
 
         pGameOver.getChildren().add(this.gameOver.getBackgroundGameOver());
@@ -56,10 +63,26 @@ public class GUI {
         keyHandler = new KeyHandler(this.player, this, this.menu, this.gameOver);
         keyHandler.addKeyListener(scene);
 
+        // CSV-Datei lesen
+        String filePath = "src/resources/csv/maps/map1.csv"; // Pfad zur CSV-Datei
+        this.levelData = mapReader.readCsvFile(filePath, levelData);
+
+        //TODO Wände erstellen
+        System.out.println("TEst ------------------------------------------");
+        mapCreate.createMap(this, levelData);
+        System.out.println("TEst2 ------------------------------------------");
+
+
+//        //TODO Items ausgeben
+//        System.out.println("\nItems:");
+//        for (LevelData.Item item : levelData.getItems()) {
+//            System.out.printf("Item: type=%s, x=%d, y=%d%n", item.getType(), item.getX(), item.getY());
+//        }
+
         // Set the settings for the stage
         primaryStage.setTitle("The Creepy Proparty");
         primaryStage.getIcons().add(new Image("file:src/resources/player/down_1.png"));
-        primaryStage.setResizable(true); //TODO false
+        primaryStage.setResizable(false);
         primaryStage.setScene(scene);
 
         // Menu
@@ -71,6 +94,26 @@ public class GUI {
         // Show primaryStage
         primaryStage.show();
     }
+
+    public void pGameChildren(Wall wall) {
+        //this.pGame.getChildren().add(wall.getRectangel);//todo ractangel übergeben lassen von MapCreator und hier pG
+        // ame.getChildren
+    }
+
+//    private void creatAllWall() {
+//        //todo Test
+//        LevelDataWall wall2 = new LevelDataWall(50, 50, 50, 50, "blue");
+//        LevelDataWall wall3 = new LevelDataWall(200, 50, 500, 50, "red");
+//
+//        System.out.println(LevelDataWall.getWallList());
+//
+//        for (int i = 0; i < LevelDataWall.getWallList().size(); i++) {
+//            System.out.println("i: " + i);
+//            System.out.println(LevelDataWall.getWallList().get(i));
+//
+//            this.pGame.getChildren().add(LevelDataWall.getWallList().get(i).getWall());
+//        }
+//    }
 
 
     // Getter methods
@@ -94,6 +137,10 @@ public class GUI {
         return pMenu;
     }
 
+    public Pane getpGame() {
+        return pGame;
+    }
+
     public KeyHandler getKeyHandler() {
         return keyHandler;
     }
@@ -103,7 +150,7 @@ public class GUI {
     }
 
     public Wall getWall() {
-        return Wall1;
+        return wall;
     }
 
     public Player getPlayer() {

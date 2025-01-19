@@ -1,0 +1,11 @@
+type,x,y,width,height,texture
+wall,0,0,100,20,black
+wall,150,50,200,20,red
+wall,300,100,150,30,blue
+wall,500,150,250,40,green
+wall,50,200,300,50,yellow
+wall,400,250,120,60,orange
+wall,600,300,180,25,purple
+wall,100,350,220,35,gray
+wall,700,400,130,45,pink
+wall,200,450,170,30,brown

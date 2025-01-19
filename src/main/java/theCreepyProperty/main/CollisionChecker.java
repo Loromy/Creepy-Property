@@ -49,25 +49,21 @@ public class CollisionChecker {
             case "up":
                 if (this.gui.getWall().getPlayer_block_collision() && isWallAbove) {
                     this.gui.getPlayer().collision_on = true;
-                    this.gui.getWall().setWall_color("red");
                 }
                 break;
             case "down":
                 if (this.gui.getWall().getPlayer_block_collision() && isWallBelow) {
                     this.gui.getPlayer().collision_on = true;
-                    this.gui.getWall().setWall_color("green");
                 }
                 break;
             case "left":
                 if (this.gui.getWall().getPlayer_block_collision() && isWallLeft) {
                     this.gui.getPlayer().collision_on = true;
-                    this.gui.getWall().setWall_color("blue");
                 }
                 break;
             case "right":
                 if (this.gui.getWall().getPlayer_block_collision() && isWallRight) {
                     this.gui.getPlayer().collision_on = true;
-                    this.gui.getWall().setWall_color("yellow");
                 }
                 break;
         }

@@ -126,10 +126,9 @@ public class KeyHandler {
             dy /= length;
         }
 
-        //CHECK Wall COLLISION
-        this.gui.getWall().setWall_color();
+        //CHECK LevelDataWall COLLISION
         this.player.collision_on = false;
-        gui.getChecker().checkTile(this.player);
+        //gui.getChecker().checkTile(this.player); //TODO bearbeiten
 
         if(!this.player.getCollision_on()) {
             this.player.setPlayer_world_X(player.getPlayer_world_X() + dx * player.getSpeed());

@@ -1,48 +1,95 @@
 package theCreepyProperty.blocks;
 
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.image.Image;
 
-public class Wall extends Block{
-    private Rectangle r_Wall;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Wall extends Block {
+    //private Rectangle r_Wall = new Rectangle();
+    private final ArrayList<Wall> wallList = new ArrayList<>(); // Liste für alle Walls
 
     public Wall() {
+        // Standardwerte setzen, falls keine Parameter übergeben werden.
         setDefaultValues();
-        createWall();
+        //createWall();
+        wallList.add(this); // Zur Liste hinzufügen
+        System.out.println("Walls: " + this.wallList.size());
     }
 
-    private void createWall() {
-        this.r_Wall = new Rectangle(positionX, positionY, width, height);
-        setWall_color(); // Farbe setzen
+    public Wall(int x, int y, int width, int height, String texture) {
+        // Parameterwerte setzen und Wand erstellen
+        this.positionX = x;
+        this.positionY = y;
+        this.width = width;
+        this.height = height;
+        this.texture = texture;
+        //createWallWithTexture();
+        //createWall();//todo Rectangel erstellen und werte übergeben
+        wallList.add(this); // Zur Liste hinzufügen
     }
 
-    // set methode
+//    private void createWall() {
+//        this.r_Wall = new Rectangle(this.positionX, this.positionY, this.width, this.height);
+//        setWall_texture(); // Standardfarbe setzen
+//    }
+//
+//    private void createWallWithTexture() {
+//        this.r_Wall = new Rectangle(this.positionX, this.positionY, this.width, this.height);
+//        setWall_texture();
+//    }
+
+    // Standardwerte setzen
     private void setDefaultValues() {
         positionX = 100;
         positionY = 100;
-        width = 50; // Korrigiert, um konsistent zu sein
-        height = 50; // Korrigiert, um konsistent zu sein
-        color = "black";
-        System.out.println("[System]: Wall defaultValues set ✔"); //✖
+        width = 50;
+        height = 50;
+        texture = "black";
+        System.out.println("[System]: LevelDataWall defaultValues set ✔");
     }
 
-    public void setWall_color(String color) {
-        this.r_Wall.setFill(Color.web(color));
-    }
-    public void setWall_color() {
-        this.r_Wall.setFill(Color.web("black"));
-    }
+//    // Textur setzen
+//    public void setWall_texture() {
+//        this.r_Wall.setFill(Color.web(this.texture));
+//    }
 
-    // get methode
-    public Rectangle getWall() {
-        return this.r_Wall; // JavaFX-Rectangle wird zurückgegeben
-    }
+//    //TODO Textur setzen
+//    public void setWall_texture(String texture) {
+//        try {
+//            Image img = new Image(texture); // Lade das Bild basierend auf dem übergebenen Pfad
+//            this.r_Wall.setFill(new ImagePattern(img));
+//        } catch (Exception e) {
+//            System.err.println("[Error]: Failed to load texture - " + texture);
+//            setWall_texture(); // Fallback auf Standardfarbe
+//        }
+//    }
+    // Setter
+//    public void setR_Wall(int x, int y, int width, int height, String texture){
+//        //this.r_Wall = new Rectangle();
+//        Rectangle wall = new Rectangle(this.positionX, this.positionY, this.width, this.height);
+//        wall.setFill(Color.web(texture));
+//    }
 
-    public int getX(){
+
+    // Getter für Rectangle
+//    public Rectangle getWall() {
+//        return this.r_Wall;
+//    }
+
+//    public void createWall() {
+//        this.r_Wall =  new Rectangle(this.positionX ,this.positionY, this.width, this.height);
+//    }
+
+    // Getter für Position und Dimension
+    public int getX() {
         return this.positionX;
     }
 
-    public int getY(){
+    public int getY() {
         return this.positionY;
     }
 
@@ -54,7 +101,16 @@ public class Wall extends Block{
         return this.height;
     }
 
+    public String getTexture() {
+        return this.texture;
+    }
+
     public boolean getPlayer_block_collision() {
         return player_block_collision;
+    }
+
+    // Statische Methode, um die Liste aller Wände zurückzugeben
+    public List<Wall> getWallList() {
+        return this.wallList;
     }
 }
