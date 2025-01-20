@@ -15,14 +15,11 @@ public class MapCreate {
         this.wall = gui.getWall();
         this.levelData = levelData;
 
-        System.out.println("Walls levelData liste: " + this.levelData.getWalls().size()); //TODO warum 0???????????????????
-
         for (int i = 0; i < this.levelData.getWalls().size(); i++) {
-            System.out.println("i: " + i);
+            System.out.println("[Map Creator]: Wall id " + i);
 
             this.wall = new Wall(levelData.getWalls().get(i).getX(), levelData.getWalls().get(i).getY(), levelData.getWalls().get(i).getWidth(), levelData.getWalls().get(i).getHeight(), levelData.getWalls().get(i).getTexture());
             this.gui.pGameChildren(this.wall.getWall());
         }
-
     }
 }

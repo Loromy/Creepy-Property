@@ -19,7 +19,7 @@ public class Wall extends Block {
         this.width = width;
         this.height = height;
         this.texture = texture;
-        createWall();//todo Rectangel erstellen und werte übergeben
+        createWall();
         wallList.add(this); // Zur Liste hinzufügen
     }
 

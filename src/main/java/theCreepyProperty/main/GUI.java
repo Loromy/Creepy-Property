@@ -66,10 +66,8 @@ public class GUI {
         String filePath = "src/resources/csv/maps/map1.csv"; // Pfad zur CSV-Datei
         this.levelData = mapReader.readCsvFile(filePath, levelData);
 
-        //TODO Wände erstellen
-        System.out.println("TEst ------------------------------------------");
+        // Wände erstellen
         mapCreate.createMap(this, levelData);
-        System.out.println("TEst2 ------------------------------------------");
 
 
 //        //TODO Items ausgeben
@@ -95,8 +93,7 @@ public class GUI {
     }
 
     public void pGameChildren(Rectangle rectangle) {
-        this.pGame.getChildren().add(rectangle);//todo ractangel übergeben lassen von MapCreator und hier pG
-        // ame.getChildren
+        this.pGame.getChildren().add(rectangle);
     }
 
     // Getter methods

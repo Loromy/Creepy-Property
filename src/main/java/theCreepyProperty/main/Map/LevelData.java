@@ -4,8 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LevelData {
-    private List<LevelDataWall> walls = new ArrayList<>();
-    private List<Item> items = new ArrayList<>();
+    private List<LevelDataWall> walls;
+    private List<Item> items;
+
+    public LevelData() {
+        walls = new ArrayList<>();
+        items = new ArrayList<>();
+    }
 
     // Getter und Setter
     public List<LevelDataWall> getWalls() {
@@ -35,8 +40,6 @@ public class LevelData {
             this.width = width;
             this.height = height;
             this.texture = texture;
-            System.out.println(x + ":" + y + ":" + width + ":" + height + ":" + texture);
-            System.out.println("Walls size: " + walls.size());
         }
 
         // Getter
