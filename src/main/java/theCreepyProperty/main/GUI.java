@@ -49,8 +49,6 @@ public class GUI {
         // Additional GUI components could be added here
         root.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, null)));
         pGame.getChildren().add(this.player.draw());
-        //pGame.getChildren().add(this.Wall1.getWall());
-        //creatAllWall();
         pGame.getChildren().add(this.guiComponents.getL_speed());
 
         pGameOver.getChildren().add(this.gameOver.getBackgroundGameOver());
@@ -100,22 +98,6 @@ public class GUI {
         this.pGame.getChildren().add(rectangle);//todo ractangel übergeben lassen von MapCreator und hier pG
         // ame.getChildren
     }
-
-//    private void creatAllWall() {
-//        //todo Test
-//        LevelDataWall wall2 = new LevelDataWall(50, 50, 50, 50, "blue");
-//        LevelDataWall wall3 = new LevelDataWall(200, 50, 500, 50, "red");
-//
-//        System.out.println(LevelDataWall.getWallList());
-//
-//        for (int i = 0; i < LevelDataWall.getWallList().size(); i++) {
-//            System.out.println("i: " + i);
-//            System.out.println(LevelDataWall.getWallList().get(i));
-//
-//            this.pGame.getChildren().add(LevelDataWall.getWallList().get(i).getWall());
-//        }
-//    }
-
 
     // Getter methods
     public int getWidth() {
