@@ -8,6 +8,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import theCreepyProperty.blocks.Wall;
 import theCreepyProperty.main.Map.LevelData;
@@ -95,8 +96,8 @@ public class GUI {
         primaryStage.show();
     }
 
-    public void pGameChildren(Wall wall) {
-        //this.pGame.getChildren().add(wall.getRectangel);//todo ractangel übergeben lassen von MapCreator und hier pG
+    public void pGameChildren(Rectangle rectangle) {
+        this.pGame.getChildren().add(rectangle);//todo ractangel übergeben lassen von MapCreator und hier pG
         // ame.getChildren
     }
 

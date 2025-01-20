@@ -18,7 +18,7 @@ public class MapCreate {
 //
 //        }
 
-        //this.gui = gui;
+        this.gui = gui;
         this.wall = gui.getWall();
         this.levelData = levelData;
 
@@ -37,6 +37,7 @@ public class MapCreate {
             // System.out.println(this.wall.getWallList().get(i));
 
             //this.gui.getpGame().getChildren().add(wall);//todo ractange in die GUI übergeben
+            this.gui.pGameChildren(this.wall.getWall());
         }
 
     }

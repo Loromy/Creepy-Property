@@ -26,8 +26,8 @@ public class LevelData {
 
     // Inner classes für Walls und Items
     public class LevelDataWall {
-        private int x, y, width, height;
-        private String texture;
+        private final int x, y, width, height;
+        private final String texture;
 
         public LevelDataWall(int x, int y, int width, int height, String texture) {
             this.x = x;

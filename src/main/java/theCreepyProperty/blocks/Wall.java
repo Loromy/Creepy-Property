@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Wall extends Block {
-    //private Rectangle r_Wall = new Rectangle();
+    private Rectangle rWall;
     private final ArrayList<Wall> wallList = new ArrayList<>(); // Liste für alle Walls
 
     public Wall() {
@@ -28,15 +28,20 @@ public class Wall extends Block {
         this.height = height;
         this.texture = texture;
         //createWallWithTexture();
-        //createWall();//todo Rectangel erstellen und werte übergeben
+        createWall();//todo Rectangel erstellen und werte übergeben
         wallList.add(this); // Zur Liste hinzufügen
     }
 
-//    private void createWall() {
-//        this.r_Wall = new Rectangle(this.positionX, this.positionY, this.width, this.height);
-//        setWall_texture(); // Standardfarbe setzen
+    private void createWall() {
+        this.rWall = new Rectangle(this.positionX, this.positionY, this.width, this.height);
+        this.rWall.setFill(Color.web(this.texture));
+    }
+
+    // Textur setzen
+//    public void setWall_texture() {
+//        this.r_Wall.setFill(Color.web(this.texture));
 //    }
-//
+
 //    private void createWallWithTexture() {
 //        this.r_Wall = new Rectangle(this.positionX, this.positionY, this.width, this.height);
 //        setWall_texture();
@@ -52,10 +57,7 @@ public class Wall extends Block {
         System.out.println("[System]: LevelDataWall defaultValues set ✔");
     }
 
-//    // Textur setzen
-//    public void setWall_texture() {
-//        this.r_Wall.setFill(Color.web(this.texture));
-//    }
+
 
 //    //TODO Textur setzen
 //    public void setWall_texture(String texture) {
@@ -76,9 +78,9 @@ public class Wall extends Block {
 
 
     // Getter für Rectangle
-//    public Rectangle getWall() {
-//        return this.r_Wall;
-//    }
+    public Rectangle getWall() {
+        return this.rWall;
+    }
 
 //    public void createWall() {
 //        this.r_Wall =  new Rectangle(this.positionX ,this.positionY, this.width, this.height);
