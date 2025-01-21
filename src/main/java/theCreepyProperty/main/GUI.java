@@ -17,16 +17,27 @@ import theCreepyProperty.main.Map.MapReader;
 import theCreepyProperty.screens.GameOver;
 import theCreepyProperty.entity.Player;
 import theCreepyProperty.menu.Menu;
+import javafx.scene.control.Button;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
+import theCreepyProperty.screens.StartMenue;
 
 public class GUI {
-    private final int width = 1000;
-    private final int height = 600;
 
+    // Window size
+    private final int width = 1000 ; //1000
+    private final int height = 600; //600
+
+    // Start Scene Classes
+    private final StartMenue startMenue = new StartMenue(this);
+
+    // Game Scene Pane
     private final Pane root = new Pane(); //main
     private final Pane pMenu = new Pane(); //Menu
     private final Pane pGameOver = new Pane();
     private final Pane pGame = new Pane(); //game stuff
 
+    // Game Scene Classes
     private KeyHandler keyHandler;
     private LevelData levelData = new LevelData();
     private final MapReader mapReader = new MapReader();
@@ -39,12 +50,25 @@ public class GUI {
     private final CollisionChecker checker = new CollisionChecker(this);
 
     public void start(Stage primaryStage) {
-        // Create the scene with the specified width and height values
+        // Start Screen
+        StackPane startScreen = new StackPane();
+
+
+//        StackPane.setAlignment(this.startMenue.getTitle(), javafx.geometry.Pos.TOP_CENTER);
+//        StackPane.setAlignment(this.startMenue.getStartButton(), javafx.geometry.Pos.CENTER);
+
+        //startScreen.getChildren().addAll(this.startMenue.getTitle(),this.startMenue.getStartButton());
+        startScreen.getChildren().add(this.startMenue.getBackgroundStartMenu());
+        startScreen.getChildren().add(this.startMenue.getpStartMenu());
+        Scene startScene = new Scene(startScreen, width, height);
+
+        // Game Screen
         root.getChildren().addAll(pGame,pGameOver,pMenu);
-        Scene scene = new Scene(root, width, height);
+        Scene gameScene = new Scene(root, width, height);
 
         //Styles
-        root.getStylesheets().add(("file:src/resources/style/style.css"));
+        startScene.getStylesheets().add(("file:src/resources/style/style.css"));
+        gameScene.getStylesheets().add(("file:src/resources/style/style.css"));
 
         // Additional GUI components could be added here
         root.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, null)));
@@ -60,7 +84,7 @@ public class GUI {
 
         // Add the KeyHandler for keyboard input
         keyHandler = new KeyHandler(this.player, this, this.menu, this.gameOver);
-        keyHandler.addKeyListener(scene);
+        keyHandler.addKeyListener(gameScene);
 
         // CSV-Datei lesen
         String filePath = "src/resources/csv/maps/map1.csv"; // Pfad zur CSV-Datei
@@ -76,11 +100,20 @@ public class GUI {
 //            System.out.printf("Item: type=%s, x=%d, y=%d%n", item.getType(), item.getX(), item.getY());
 //        }
 
+        startMenue.getStartButton().setOnAction(e -> {
+            System.out.println("[Start Menu]: Spiel wird gestartet...");
+            primaryStage.setScene(gameScene);
+        });
+        startMenue.getQuitButton().setOnAction(e -> {
+            System.out.println("[Start Menu]: Quit");
+            System.exit(0);
+        });
+
         // Set the settings for the stage
         primaryStage.setTitle("The Creepy Proparty");
         primaryStage.getIcons().add(new Image("file:src/resources/player/down_1.png"));
-        primaryStage.setResizable(false);
-        primaryStage.setScene(scene);
+        primaryStage.setResizable(false); //false
+        primaryStage.setScene(startScene);
 
         // Menu
         this.pMenu.setVisible(false);
@@ -90,6 +123,10 @@ public class GUI {
 
         // Show primaryStage
         primaryStage.show();
+    }
+
+    private void startBildschirm() {
+
     }
 
     public void pGameChildren(Rectangle rectangle) {
@@ -130,7 +167,7 @@ public class GUI {
     }
 
     public Wall getWall() {
-        return wall;
+        return this.wall;
     }
 
     public Player getPlayer() {

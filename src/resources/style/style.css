@@ -4,7 +4,7 @@
 }
 
 .button {
-    -fx-background-color: linear-gradient(#edf7f2 20%, #509974); /* Farbverlauf von weiß zu grün */
+    -fx-background-color: linear-gradient(#525252 20%, #509974); /* Farbverlauf von weiß zu grün */
     -fx-background-radius: 10px; /* abrunden */
 
     -fx-text-fill: white; /* farbe */
@@ -23,19 +23,19 @@
 }
 
 .button:hover {
-    -fx-background-color: linear-gradient(#edf7f2 20%, #94d1b2); /* Farbverlauf bei Hover ändert sich */
+    -fx-background-color: linear-gradient(#8c8c8c 20%, #94d1b2); /* Farbverlauf bei Hover ändert sich */
     -fx-border-color: white; /* Weißer Rand */
     -fx-border-width: 2px; /* Rand dicke */
     -fx-border-radius: 10px; /* abgerundeten Ecken */
 }
 
 .button:pressed {
-    -fx-background-color: linear-gradient(#edf7f2 20%, #5a7065); /* Grauer Farbverlauf beim drücken */
+    -fx-background-color: linear-gradient(#525252 20%, #5a7065); /* Grauer Farbverlauf beim drücken */
 
 }
 
 .button:focused {
-    -fx-background-color: linear-gradient(#edf7f2 20%, #94d1b2); /* Farbverlauf bei Hover ändert sich */
+    -fx-background-color: linear-gradient(#8c8c8c 20%, #94d1b2); /* Farbverlauf bei Hover ändert sich */
     -fx-border-color: white; /* Weißer Rand */
     -fx-border-width: 2px; /* Rand dicke */
     -fx-border-radius: 10px; /* abgerundeten Ecken */
@@ -100,7 +100,7 @@
 /* Text */
 #name {
     -fx-alignment: center; /* zentrieren */
-    -fx-text-fill: linear-gradient(#edf7f2 40%, #509974); /* Farbverlauf von weiß zu grün */
+    -fx-text-fill: linear-gradient(#525252 40%, #509974); /* Farbverlauf von weiß zu grün */
     -fx-font-size: 60px; /* Schriftgröße */
     -fx-font-weight: bold; /* fett */
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.7), 5, 0, 5, 5); /* Schatten */
