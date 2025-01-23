@@ -11,15 +11,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import theCreepyProperty.blocks.Wall;
-import theCreepyProperty.main.Map.LevelData;
-import theCreepyProperty.main.Map.MapCreate;
-import theCreepyProperty.main.Map.MapReader;
+import theCreepyProperty.Map.LevelData;
+import theCreepyProperty.Map.MapCreate;
+import theCreepyProperty.Map.MapReader;
 import theCreepyProperty.screens.GameOver;
 import theCreepyProperty.entity.Player;
 import theCreepyProperty.menu.Menu;
-import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
 import theCreepyProperty.screens.StartMenue;
 
 public class GUI {
@@ -42,7 +40,7 @@ public class GUI {
     private LevelData levelData = new LevelData();
     private final MapReader mapReader = new MapReader();
     private final MapCreate mapCreate = new MapCreate();
-    private Wall wall; //todo entfernen
+    private Wall wall; //todo entfernen?
     private final Player player = new Player(this);
     private final GameOver gameOver = new GameOver(this);
     private final Menu menu = new Menu(this);
@@ -83,7 +81,7 @@ public class GUI {
         pMenu.getChildren().add(this.menu.getSettings().getMenuSettings());
 
         // Add the KeyHandler for keyboard input
-        keyHandler = new KeyHandler(this.player, this, this.menu, this.gameOver);
+        keyHandler = new KeyHandler(this.player, this, this.menu, this.gameOver, this.levelData);
         keyHandler.addKeyListener(gameScene);
 
         // CSV-Datei lesen
@@ -123,10 +121,6 @@ public class GUI {
 
         // Show primaryStage
         primaryStage.show();
-    }
-
-    private void startBildschirm() {
-
     }
 
     public void pGameChildren(Rectangle rectangle) {
@@ -176,6 +170,14 @@ public class GUI {
 
     public CollisionChecker getChecker() {
         return checker;
+    }
+
+    public LevelData getLevelData() {
+        return levelData;
+    }
+
+    public MapCreate getMapCreate() {
+        return mapCreate;
     }
 
     // Setter methods

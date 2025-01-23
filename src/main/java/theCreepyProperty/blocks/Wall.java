@@ -1,16 +1,13 @@
 package theCreepyProperty.blocks;
 
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.image.Image;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Wall extends Block {
     private Rectangle rWall;
-    private final ArrayList<Wall> wallList = new ArrayList<>(); // Liste für alle Walls
+    private final ArrayList<Wall> wallList = new ArrayList<>(); // Statische Liste für alle Wände
 
     public Wall(int x, int y, int width, int height, String texture) {
         // Parameterwerte setzen und Wand erstellen
@@ -20,7 +17,8 @@ public class Wall extends Block {
         this.height = height;
         this.texture = texture;
         createWall();
-        wallList.add(this); // Zur Liste hinzufügen
+        this.wallList.add(this); // Wand zur statischen Liste hinzufügen
+        //System.out.println("wallListe: " + wallList.size());//todo Entfernen Test
     }
 
     private void createWall() {
@@ -28,19 +26,13 @@ public class Wall extends Block {
         this.rWall.setFill(Color.web(this.texture));
     }
 
-    // Standardwerte setzen
-    private void setDefaultValues() {
-        positionX = 100;
-        positionY = 100;
-        width = 50;
-        height = 50;
-        texture = "black";
-        System.out.println("[System]: LevelDataWall defaultValues set ✔");
+    // Getter für Rectangle
+    public ArrayList<Wall> getWallListe() {
+        return this.wallList;
     }
 
-    // Getter für Rectangle
-    public Rectangle getWall() {
-        return this.rWall;
+    public Rectangle getRWall() {
+        return rWall;
     }
 
     // Getter für Position und Dimension
@@ -66,10 +58,5 @@ public class Wall extends Block {
 
     public boolean getPlayer_block_collision() {
         return player_block_collision;
-    }
-
-    // Statische Methode, um die Liste aller Wände zurückzugeben
-    public List<Wall> getWallList() {
-        return this.wallList;
     }
 }

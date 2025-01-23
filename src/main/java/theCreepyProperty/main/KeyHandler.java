@@ -1,4 +1,6 @@
 package theCreepyProperty.main;
+import theCreepyProperty.Map.LevelData;
+import theCreepyProperty.blocks.Wall;
 import theCreepyProperty.screens.GameOver;
 import theCreepyProperty.entity.Player;
 
@@ -7,11 +9,14 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import theCreepyProperty.menu.Menu;
 
+import java.util.ArrayList;
+
 public class KeyHandler {
     private final Player player;
     private final GUI gui;
     private final Menu menu;
     private final GameOver gameOver;
+    private final LevelData levelData;
     public boolean wPressed = false;
     public boolean aPressed = false;
     public boolean sPressed = false;
@@ -20,11 +25,12 @@ public class KeyHandler {
     private boolean shiftPressed = false;
     private boolean escPressed = false;
 
-    public KeyHandler(Player player, GUI gui, Menu menu, GameOver gameOver) {
+    public KeyHandler(Player player, GUI gui, Menu menu, GameOver gameOver, LevelData levelData) {
         this.player = player;
         this.gui = gui;
         this.menu = menu;
         this.gameOver = gameOver;
+        this.levelData = levelData;
     }
 
     public void addKeyListener(Scene scene) {
@@ -128,7 +134,7 @@ public class KeyHandler {
 
         //CHECK LevelDataWall COLLISION
         this.player.collision_on = false;
-        //gui.getChecker().checkTile(this.player); //TODO bearbeiten
+        gui.getChecker().checkTile(this.player, this.levelData.getWalls(), this.gui.getMapCreate()); //TODO bearbeiten
 
         if(!this.player.getCollision_on()) {
             this.player.setPlayer_world_X(player.getPlayer_world_X() + dx * player.getSpeed());

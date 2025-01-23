@@ -1,4 +1,4 @@
-package theCreepyProperty.main.Map;
+package theCreepyProperty.Map;
 
 import theCreepyProperty.blocks.Wall;
 import theCreepyProperty.main.GUI;
@@ -19,7 +19,11 @@ public class MapCreate {
             System.out.println("[Map Creator]: Wall id " + i);
 
             this.wall = new Wall(levelData.getWalls().get(i).getX(), levelData.getWalls().get(i).getY(), levelData.getWalls().get(i).getWidth(), levelData.getWalls().get(i).getHeight(), levelData.getWalls().get(i).getTexture());
-            this.gui.pGameChildren(this.wall.getWall());
+            this.gui.pGameChildren(this.wall.getRWall());
         }
+    }
+
+    public Wall getWall() {
+        return this.wall;
     }
 }

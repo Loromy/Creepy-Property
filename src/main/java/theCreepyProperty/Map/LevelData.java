@@ -1,11 +1,11 @@
-package theCreepyProperty.main.Map;
+package theCreepyProperty.Map;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LevelData {
-    private List<LevelDataWall> walls;
-    private List<Item> items;
+    private ArrayList<LevelDataWall> walls;
+    private ArrayList<Item> items;
 
     public LevelData() {
         walls = new ArrayList<>();
@@ -13,11 +13,11 @@ public class LevelData {
     }
 
     // Getter und Setter
-    public List<LevelDataWall> getWalls() {
+    public ArrayList<LevelDataWall> getWalls() {
         return walls;
     }
 
-    public void setWalls(List<LevelDataWall> walls) {
+    public void setWalls(ArrayList<LevelDataWall> walls) {
         this.walls = walls;
     }
 
@@ -25,7 +25,7 @@ public class LevelData {
         return items;
     }
 
-    public void setItems(List<Item> items) {
+    public void setItems(ArrayList<Item> items) {
         this.items = items;
     }
 

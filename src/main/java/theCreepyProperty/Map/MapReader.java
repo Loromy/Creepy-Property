@@ -1,4 +1,4 @@
-package theCreepyProperty.main.Map;
+package theCreepyProperty.Map;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

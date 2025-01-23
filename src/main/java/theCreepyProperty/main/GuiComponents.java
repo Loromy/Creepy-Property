@@ -13,6 +13,8 @@ public class GuiComponents {
     public GuiComponents(Player player, Menu menu){
         this.player = player;
         this.l_speed = new Label("Speed: " + player.getSpeed());
+        this.l_speed.setLayoutX(10);
+        this.l_speed.setLayoutY(10);
 
         this.menu = menu; //todo menu hier erstellen
 
