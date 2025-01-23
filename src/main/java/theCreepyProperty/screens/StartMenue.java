@@ -54,7 +54,7 @@ public class StartMenue {
         this.setGameOverPosition(500, 300, 10);
     }
 
-    private static BackgroundImage getBackgroundImage() {
+    private BackgroundImage getBackgroundImage() {
         Image image = new Image("file:src/resources/background/Creepy Property background1.png");
 
         // Setze das Hintergrundbild

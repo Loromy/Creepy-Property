@@ -6,5 +6,6 @@ wall,-5,0,10,600,black
 wall,300,180,10,100,black
 wall,300,180,300,10,black
 wall,600,180,10,400,black
-item,535,206,50,50,yellow
-item,627,523,30,30,pink
+item,535,206,50,50,file:src/resources/textures/items/Key.png
+item,627,523,30,30,file:src/resources/textures/items/Key.png
+item,946,10,50,50,file:src/resources/textures/items/Key.png

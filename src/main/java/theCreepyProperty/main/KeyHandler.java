@@ -142,7 +142,7 @@ public class KeyHandler {
 
         //CHECK LevelDataWall COLLISION
         this.player.collision_on = false;
-        gui.getChecker().checkTile(this.player, this.levelData.getWalls(), this.gui.getMapCreate()); //TODO bearbeiten
+        gui.getChecker().checkTile(this.player, this.levelData.getWalls(), this.levelData.getItems(), this.gui.getMapCreate()); //TODO bearbeiten
 
         if(!this.player.getCollision_on()) {
             this.player.setPlayer_world_X(player.getPlayer_world_X() + dx * player.getSpeed());

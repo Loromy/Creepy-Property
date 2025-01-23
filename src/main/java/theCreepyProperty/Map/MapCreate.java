@@ -29,7 +29,7 @@ public class MapCreate {
             System.out.println("[Map Creator]: Item id " + i);
 
             this.item = new Item(levelData.getItems().get(i).getX(), levelData.getItems().get(i).getY(), levelData.getItems().get(i).getWidth(), levelData.getItems().get(i).getHeight(), levelData.getItems().get(i).getTexture());
-            this.gui.pGameChildren(this.item.getRItem());
+            this.gui.pGameChildren(this.item.getIItem());
         }
     }
 

@@ -2,23 +2,25 @@ package theCreepyProperty.main;
 
 import theCreepyProperty.Map.LevelData;
 import theCreepyProperty.Map.MapCreate;
+import theCreepyProperty.blocks.Item;
 import theCreepyProperty.blocks.Wall;
 import theCreepyProperty.entity.Player;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class CollisionChecker {
     private final GUI gui;
     private final LevelData levelData;
     private final Wall wall;
+    private final Item item;
     public CollisionChecker(GUI gui) {
         this.gui = gui;
         this.levelData = gui.getLevelData();
         this.wall = gui.getWall();
+        this.item = gui.getItem();
     }
 
-    public void checkTile(Player player, ArrayList<LevelData.LevelDataWall> walls, MapCreate mapCreate) {
+    public void checkTile(Player player, ArrayList<LevelData.LevelDataWall> walls, ArrayList<LevelData.LevelDataItem> items, MapCreate mapCreate) {
         // Erhalte die Bounding Box des Players
         double playerMinX = player.i_player.getX();
         double playerMinY = player.i_player.getY();
@@ -69,6 +71,51 @@ public class CollisionChecker {
                     }
                     break;
             }
+        }
+
+        for (int i = 0; i < items.size() ; i++) {
+            double itemMinX = this.levelData.getItems().get(i).getX();
+            double itemMinY = this.levelData.getItems().get(i).getY();
+            double itemMaxX = itemMinX + this.levelData.getItems().get(i).getWidth();
+            double itemMaxY = itemMinY + this.levelData.getItems().get(i).getHeight();
+
+            // Prüfe auf Kollisionen in jede Richtung
+            boolean isItemLeft = playerMinX <= itemMaxX && playerMinX >= itemMinX && playerMaxY > itemMinY && playerMinY < itemMaxY;
+            boolean isItemRight = playerMaxX >= itemMinX && playerMaxX <= itemMaxX && playerMaxY > itemMinY && playerMinY < itemMaxY;
+            boolean isItemAbove = playerMinY <= itemMaxY && playerMinY >= itemMinY && playerMaxX > itemMinX && playerMinX < itemMaxX;
+            boolean isItemBelow = playerMaxY >= itemMinY && playerMaxY <= itemMaxY && playerMaxX > itemMinX && playerMinX < itemMaxX;
+
+            // Prüfe die Richtung des Spielers und setze Kollisionsstatus
+            switch (player.direction) {
+                case "up":
+                    if (mapCreate.getItem().getPlayer_block_collision() && isItemAbove) {
+                        //mapCreate.getItem().getItemListe().get(i).getRItem().setVisible(false);
+                        player.collision_on = true;
+                    }
+                    break;
+                case "down":
+                    if(mapCreate.getItem().getPlayer_block_collision() && isItemBelow) {
+                        //mapCreate.getItem().getRItem().setVisible(false);
+                        player.collision_on = true;
+                    }
+                    break;
+                case "left":
+                    if(mapCreate.getItem().getPlayer_block_collision() && isItemLeft) {
+                        //
+                        player.collision_on = true;
+                    }
+                    break;
+                case "right":
+                    if(mapCreate.getItem().getPlayer_block_collision() && isItemRight) {
+                        //mapCreate.getItem().getRItem().setVisible(false);
+                        player.collision_on = true;
+                    }
+                    break;
+            }
+
+
+
+
         }
     }
 }

@@ -18,7 +18,6 @@ public class Wall extends Object {
         this.texture = texture;
         createWall();
         this.wallList.add(this); // Wand zur statischen Liste hinzufügen
-        //System.out.println("wallListe: " + wallList.size());//todo Entfernen Test
     }
 
     private void createWall() {

@@ -51,7 +51,6 @@ public class LevelData {
         public int getY() { return y; }
         public int getWidth() { return width; }
         public int getHeight() { return height; }
-
         public String getTexture() { return texture; }
 
     }
@@ -65,7 +64,7 @@ public class LevelData {
         this.walls = walls;
     }
 
-    public List<LevelDataItem> getItems() {
+    public ArrayList<LevelDataItem> getItems() {
         return items;
     }
 
