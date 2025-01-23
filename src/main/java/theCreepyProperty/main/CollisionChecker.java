@@ -5,19 +5,24 @@ import theCreepyProperty.Map.MapCreate;
 import theCreepyProperty.blocks.Item;
 import theCreepyProperty.blocks.Wall;
 import theCreepyProperty.entity.Player;
+import theCreepyProperty.scenes.GameScene;
+import theCreepyProperty.scenes.StartScene;
 
 import java.util.ArrayList;
 
 public class CollisionChecker {
     private final GUI gui;
+    private final GameScene scene;
     private final LevelData levelData;
     private final Wall wall;
     private final Item item;
-    public CollisionChecker(GUI gui) {
+
+    public CollisionChecker(GUI gui, GameScene scene) {
         this.gui = gui;
-        this.levelData = gui.getLevelData();
-        this.wall = gui.getWall();
-        this.item = gui.getItem();
+        this.scene = scene;
+        this.levelData = scene.getLevelData();
+        this.wall = scene.getWall();
+        this.item = scene.getItem();
     }
 
     public void checkTile(Player player, ArrayList<LevelData.LevelDataWall> walls, ArrayList<LevelData.LevelDataItem> items, MapCreate mapCreate) {

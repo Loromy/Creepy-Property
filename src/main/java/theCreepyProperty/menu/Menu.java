@@ -10,11 +10,13 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import theCreepyProperty.main.GUI;
+import theCreepyProperty.scenes.GameScene;
 
 import java.util.Objects;
 
 public class Menu extends VBox {
     private GUI gui;
+    private GameScene scene;
     private final Pane backgroundMenu = new Pane(); // Background
     private final Pane pMenu = new Pane(); // Menu Items
     private final VBox vBoxMenu = new VBox();
@@ -27,9 +29,10 @@ public class Menu extends VBox {
     private final Button quitButton;
     private final ImageView logoView;
 
-    public Menu(GUI gui) {
+    public Menu(GUI gui, GameScene scene) {
         this.gui = gui;
-        settings = new Settings(this.gui, this);
+        this.scene = scene;
+        settings = new Settings(this.gui, this.scene,this);
 
         //overlay
         backgroundMenu.setStyle("-fx-background-color: rgba(0, 0, 0, 0.1);");
@@ -72,18 +75,18 @@ public class Menu extends VBox {
 
     public void triggerMenu(){
         if (!menu_on) {
-            this.gui.getpMenu().setVisible(true);
+            this.scene.getpMenu().setVisible(true);
             this.backgroundMenu.setVisible(true);
             this.pMenu.setVisible(true);
-            this.gui.setBlur(15); //Menu blur
+            this.scene.setBlur(15); //Menu blur
             this.menu_on = true;
 
             this.resumeButton.requestFocus();
         } else {
-            this.gui.getpMenu().setVisible(false);
+            this.scene.getpMenu().setVisible(false);
             this.backgroundMenu.setVisible(false);
             this.pMenu.setVisible(false);
-            this.gui.setBlur(0); //Menu blur
+            this.scene.setBlur(0); //Menu blur
             this.menu_on = false;
         }
     }

@@ -6,9 +6,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import theCreepyProperty.main.GUI;
+import theCreepyProperty.scenes.GameScene;
 
 public class Settings {
     private final GUI gui;
+    private final GameScene scene;
     private final Menu menu;
 
     private final Pane pMenuSettings = new Pane();
@@ -27,8 +29,9 @@ public class Settings {
 
     private boolean settings_on = false;
 
-    public Settings(GUI gui, Menu menu) {
+    public Settings(GUI gui, GameScene scene, Menu menu) {
         this.gui = gui;
+        this.scene = scene;
         this.menu = menu;
 
         this.button1 = new Button();
@@ -140,7 +143,7 @@ public class Settings {
     }
 
     private void onButton1() {
-        this.gui.getGameOver().triggerGameOver();
+        this.scene.getGameOver().triggerGameOver();
         this.backButton.requestFocus();
         System.out.println("[Settings]: button1 (Game Over Screen)");
     }

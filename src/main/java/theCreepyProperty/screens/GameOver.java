@@ -6,9 +6,12 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import theCreepyProperty.main.GUI;
+import theCreepyProperty.scenes.GameScene;
+import theCreepyProperty.scenes.StartScene;
 
 public class GameOver extends VBox{
     private GUI gui;
+    private GameScene scene;
     private final Pane backgroundGameOver = new Pane(); // Background
     private final Pane pGameOver = new Pane(); // Menu Items
     private final VBox vBoxGameOver = new VBox();
@@ -19,8 +22,9 @@ public class GameOver extends VBox{
     private final Button retryButton;
     private final Button quitButton;
 
-    public GameOver(GUI gui) {
+    public GameOver(GUI gui, GameScene scene) {
         this.gui = gui;
+        this.scene = scene;
 
         //overlay
         this.backgroundGameOver.setStyle("-fx-background-color: rgba(255, 0, 0, 0.7);");
@@ -53,17 +57,17 @@ public class GameOver extends VBox{
 
     public void triggerGameOver(){
         if (!gameOver_on) {
-            this.gui.getpMenu().setVisible(true);
+            this.scene.getpMenu().setVisible(true);
             this.backgroundGameOver.setVisible(true);
             this.pGameOver.setVisible(true);
-            this.gui.setBlur(15); //Menu blur
+            this.scene.setBlur(15); //Menu blur
             this.gameOver_on = true;
 
             this.retryButton.requestFocus();
         } else {
             this.backgroundGameOver.setVisible(false);
             this.pGameOver.setVisible(false);
-            this.gui.setBlur(0); //Menu blur
+            this.scene.setBlur(0); //Menu blur
             this.gameOver_on = false;
         }
     }

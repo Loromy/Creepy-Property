@@ -1,6 +1,7 @@
 package theCreepyProperty.main;
 import theCreepyProperty.Map.LevelData;
 import theCreepyProperty.blocks.Wall;
+import theCreepyProperty.scenes.GameScene;
 import theCreepyProperty.screens.GameOver;
 import theCreepyProperty.entity.Player;
 
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 
 public class KeyHandler {
     private final Player player;
-    private final GUI gui;
+    private final GameScene scene;
     private final Menu menu;
     private final GameOver gameOver;
     private final LevelData levelData;
@@ -26,9 +27,9 @@ public class KeyHandler {
     private boolean shiftPressed = false;
     private boolean escPressed = false;
 
-    public KeyHandler(Player player, GUI gui, Menu menu, GameOver gameOver, LevelData levelData) {
+    public KeyHandler(Player player, GameScene scene, Menu menu, GameOver gameOver, LevelData levelData) {
         this.player = player;
-        this.gui = gui;
+        this.scene = scene;
         this.menu = menu;
         this.gameOver = gameOver;
         this.levelData = levelData;
@@ -104,13 +105,13 @@ public class KeyHandler {
 
             if (ctrlPressed) {
                 this.player.setControlSpeed(2);
-                this.gui.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed());
+                this.scene.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed());
             } else if (shiftPressed) {
                 this.player.setShiftSpeed();
-                this.gui.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed());
+                this.scene.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed());
             } else {
                 this.player.setControlSpeed(0);
-                this.gui.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed());
+                this.scene.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed());
             }
 
             if (dx != 0 || dy != 0) {
@@ -142,7 +143,7 @@ public class KeyHandler {
 
         //CHECK LevelDataWall COLLISION
         this.player.collision_on = false;
-        gui.getChecker().checkTile(this.player, this.levelData.getWalls(), this.levelData.getItems(), this.gui.getMapCreate()); //TODO bearbeiten
+        this.scene.getChecker().checkTile(this.player, this.levelData.getWalls(), this.levelData.getItems(), this.scene.getMapCreate()); //TODO bearbeiten
 
         if(!this.player.getCollision_on()) {
             this.player.setPlayer_world_X(player.getPlayer_world_X() + dx * player.getSpeed());
