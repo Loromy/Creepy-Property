@@ -180,6 +180,10 @@ public class Player extends Entity{
         return this.speed + this.controlSpeed;
     }
 
+    public int getKeyEingesammelt() {
+        return keys_eingesammelt;
+    }
+
     public boolean getCollision_on(){
         return this.collision_on;
     }

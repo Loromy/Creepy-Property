@@ -5,29 +5,13 @@ import java.util.List;
 
 public class LevelData {
     private ArrayList<LevelDataWall> walls;
-    private ArrayList<Item> items;
+    private ArrayList<LevelDataItem> items;
 
     public LevelData() {
         walls = new ArrayList<>();
         items = new ArrayList<>();
     }
 
-    // Getter und Setter
-    public ArrayList<LevelDataWall> getWalls() {
-        return walls;
-    }
-
-    public void setWalls(ArrayList<LevelDataWall> walls) {
-        this.walls = walls;
-    }
-
-    public List<Item> getItems() {
-        return items;
-    }
-
-    public void setItems(ArrayList<Item> items) {
-        this.items = items;
-    }
 
     // Inner classes für Walls und Items
     public class LevelDataWall {
@@ -50,20 +34,43 @@ public class LevelData {
         public String getTexture() {return texture; }
     }
 
-    public static class Item {
-        private String type;
-        private int x, y;
+    public static class LevelDataItem {
+        private final String texture;
+        private final int x, y, width, height;
 
-        public Item(String type, int x, int y) {
-            this.type = type;
+        public LevelDataItem(int x, int y, int width, int height, String texture) {
             this.x = x;
             this.y = y;
+            this.width = width;
+            this.height = height;
+            this.texture = texture;
         }
 
         // Getter
-        public String getType() { return type; }
         public int getX() { return x; }
         public int getY() { return y; }
+        public int getWidth() { return width; }
+        public int getHeight() { return height; }
+
+        public String getTexture() { return texture; }
+
+    }
+
+    // Getter und Setter
+    public ArrayList<LevelDataWall> getWalls() {
+        return walls;
+    }
+
+    public void setWalls(ArrayList<LevelDataWall> walls) {
+        this.walls = walls;
+    }
+
+    public List<LevelDataItem> getItems() {
+        return items;
+    }
+
+    public void setItems(ArrayList<LevelDataItem> items) {
+        this.items = items;
     }
 }
 

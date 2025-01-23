@@ -3,3 +3,8 @@ wall,0,-5,1000,10,black
 wall,995,0,10,600,black
 wall,0,595,1000,10,black
 wall,-5,0,10,600,black
+wall,300,180,10,100,black
+wall,300,180,300,10,black
+wall,600,180,10,400,black
+item,535,206,50,50,yellow
+item,627,523,30,30,pink

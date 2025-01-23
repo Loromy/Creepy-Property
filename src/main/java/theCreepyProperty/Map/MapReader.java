@@ -31,8 +31,10 @@ public class MapReader {
                     String texture = parts[5];
                     levelData.getWalls().add(levelData.new LevelDataWall(x, y, width, height, texture));
                 } else if (type.equals("item")) {
-                    String itemType = parts[4];
-                    levelData.getItems().add(new LevelData.Item(itemType, x, y));
+                    int width = Integer.parseInt(parts[3]);
+                    int height = Integer.parseInt(parts[4]);
+                    String itemTexture = parts[5];
+                    levelData.getItems().add(new LevelData.LevelDataItem(x, y, width, height, itemTexture));
                 }
             }
         } catch (Exception e) {

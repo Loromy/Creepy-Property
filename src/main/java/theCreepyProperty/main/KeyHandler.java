@@ -17,10 +17,11 @@ public class KeyHandler {
     private final Menu menu;
     private final GameOver gameOver;
     private final LevelData levelData;
-    public boolean wPressed = false;
-    public boolean aPressed = false;
-    public boolean sPressed = false;
-    public boolean dPressed = false;
+    private boolean wPressed = false;
+    private boolean aPressed = false;
+    private boolean sPressed = false;
+    private boolean dPressed = false;
+    private boolean cPressed = false;
     private boolean ctrlPressed = false;
     private boolean shiftPressed = false;
     private boolean escPressed = false;
@@ -42,6 +43,7 @@ public class KeyHandler {
                 case S -> sPressed = true;
                 case A -> aPressed = true;
                 case D -> dPressed = true;
+                case C -> cPressed = true;
                 case CONTROL -> ctrlPressed = true;
                 case SHIFT -> shiftPressed = true;
                 case ESCAPE -> escPressed = true;
@@ -56,6 +58,7 @@ public class KeyHandler {
                 case S -> sPressed = false;
                 case A -> aPressed = false;
                 case D -> dPressed = false;
+                case C -> cPressed = false;
                 case CONTROL -> ctrlPressed = false;
                 case SHIFT -> shiftPressed = false;
                 case ESCAPE -> escPressed = false;
@@ -92,6 +95,11 @@ public class KeyHandler {
             if (dPressed) {
                 dx += 1;
                 this.player.setDirection("right");
+            }
+
+            if (cPressed) {
+                System.out.println("Position Player: x=" + this.player.getPlayer_world_X() + " y=" + this.player.getPlayer_world_Y());
+                this.cPressed = false;
             }
 
             if (ctrlPressed) {

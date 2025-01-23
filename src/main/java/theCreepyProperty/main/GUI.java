@@ -10,6 +10,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import theCreepyProperty.blocks.Item;
 import theCreepyProperty.blocks.Wall;
 import theCreepyProperty.Map.LevelData;
 import theCreepyProperty.Map.MapCreate;
@@ -41,6 +42,7 @@ public class GUI {
     private final MapReader mapReader = new MapReader();
     private final MapCreate mapCreate = new MapCreate();
     private Wall wall; //todo entfernen?
+    private Item item;
     private final Player player = new Player(this);
     private final GameOver gameOver = new GameOver(this);
     private final Menu menu = new Menu(this);
@@ -64,7 +66,7 @@ public class GUI {
         root.getChildren().addAll(pGame,pGameOver,pMenu);
         Scene gameScene = new Scene(root, width, height);
 
-        //Styles
+        //Styles //todo überprüfen ob style.css richtig geladen wurde
         startScene.getStylesheets().add(("file:src/resources/style/style.css"));
         gameScene.getStylesheets().add(("file:src/resources/style/style.css"));
 
@@ -72,6 +74,7 @@ public class GUI {
         root.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, null)));
         pGame.getChildren().add(this.player.draw());
         pGame.getChildren().add(this.guiComponents.getL_speed());
+        pGame.getChildren().add(this.guiComponents.getL_keys());
 
         pGameOver.getChildren().add(this.gameOver.getBackgroundGameOver());
         pGameOver.getChildren().add(this.gameOver.getPGameOver());
@@ -162,6 +165,10 @@ public class GUI {
 
     public Wall getWall() {
         return this.wall;
+    }
+
+    public Item getItem() {
+        return this.item;
     }
 
     public Player getPlayer() {

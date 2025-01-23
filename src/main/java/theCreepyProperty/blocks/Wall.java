@@ -5,7 +5,7 @@ import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;
 
-public class Wall extends Block {
+public class Wall extends Object {
     private Rectangle rWall;
     private final ArrayList<Wall> wallList = new ArrayList<>(); // Statische Liste für alle Wände
 
