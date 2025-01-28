@@ -101,8 +101,8 @@ public class GameScene {
         keyHandler.addKeyListener(gameScene);
 
         // CSV-Datei lesen
-        String filePath = "src/resources/csv/maps/map1.csv"; // Pfad zur CSV-Datei
-        this.levelData = mapReader.readCsvFile(filePath, levelData);
+        //this.gui.setFilePath("src/resources/csv/maps/map1.csv"); // Pfad zur CSV-Datei
+        this.levelData = mapReader.readCsvFile(this.gui.getFilePath(), levelData);
 
         // Wände erstellen
         mapCreate.createMap(this, levelData);
@@ -135,14 +135,6 @@ public class GameScene {
         return pMenu;
     }
 
-    public Pane getpGame() {
-        return pGame;
-    }
-
-    public KeyHandler getKeyHandler() {
-        return keyHandler;
-    }
-
     public GameOver getGameOver() {
         return gameOver;
     }
@@ -153,10 +145,6 @@ public class GameScene {
 
     public Item getItem() {
         return this.item;
-    }
-
-    public Player getPlayer() {
-        return player;
     }
 
     public CollisionChecker getChecker() {

@@ -7,12 +7,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import theCreepyProperty.main.GUI;
 import theCreepyProperty.scenes.GameScene;
-
-import java.util.Objects;
 
 public class Menu extends VBox {
     private GUI gui;
@@ -26,8 +22,8 @@ public class Menu extends VBox {
     private final Label name;
     private final Button resumeButton;
     private final Button settingsButton;
-    private final Button quitButton;
-    private final ImageView logoView;
+    private final Button backButton;
+    //private final ImageView logoView;
 
     public Menu(GUI gui, GameScene scene) {
         this.gui = gui;
@@ -44,9 +40,9 @@ public class Menu extends VBox {
         this.name.setId("name"); // Spezifische ID für den Quit-Button
         this.resumeButton = new Button("Back to Game");
         this.settingsButton = new Button("Settings");
-        this.quitButton = new Button("Quit Game");
-        this.quitButton.setId("quit-button"); // Spezifische ID für den Quit-Button
-        this.logoView = new ImageView(new Image("file:dsrc/resources/logos/LogoGreen.png")); //Logo
+        this.backButton = new Button("Quit Game");
+        this.backButton.setId("quit-button"); // Spezifische ID für den Quit-Button
+        //this.logoView = new ImageView(new Image("file:src/resources/logos/LogoGreen.png")); //Logo
 
         // Set styles
 //        name.setFont(new Font("Arial", 20));
@@ -57,7 +53,7 @@ public class Menu extends VBox {
 //        quitButton.setFont(new Font("Arial", 20));
 
         // Add buttons to the VBox
-        this.vBoxMenu.getChildren().addAll(logoView, name, resumeButton, settingsButton, quitButton);
+        this.vBoxMenu.getChildren().addAll(/*logoView,*/ name, resumeButton, settingsButton, backButton);
         this.vBoxMenu.setId("background");
         this.pMenu.getChildren().add(vBoxMenu);
 
@@ -70,7 +66,7 @@ public class Menu extends VBox {
         // Button actions
         this.resumeButton.setOnAction(e -> onResume());
         this.settingsButton.setOnAction(e -> onSettings());
-        this.quitButton.setOnAction(e -> onQuit());
+        this.backButton.setOnAction(e -> onBack());
     }
 
     public void triggerMenu(){
@@ -99,7 +95,7 @@ public class Menu extends VBox {
         this.vBoxMenu.setSpacing(spacing);
         this.vBoxMenu.setAlignment(Pos.CENTER);
     }
-
+//
 //    private void setMenuLayout(double width, double heigth) {
 //        resumeButton.setPrefSize(width, heigth);
 //        settingsButton.setPrefSize(width, heigth);
@@ -112,14 +108,14 @@ public class Menu extends VBox {
     }
 
     private void onSettings() {
-        System.out.println("[Menu]: Open settings menu!");
+        System.out.println("[Menu]: Open settings menu");
         this.pMenu.setVisible(false);
         this.settings.triggerSettings();
     }
 
-    private void onQuit() {
-        System.out.println("[Menu]: Quit game!");
-        System.exit(0);
+    private void onBack() {
+        System.out.println("[Menu]: Start Menu");
+        this.gui.switchToStartScene();
     }
 
     public void triggerFocus() {

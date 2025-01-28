@@ -59,7 +59,7 @@ public class StartScene {
 
         startMenue.getStartButton().setOnAction(e -> {
             System.out.println("[Start Menu]: Spiel wird gestartet...");
-            gui.switchToGameScene();
+            gui.switchToLevelSelectScene();
         });
         startMenue.getQuitButton().setOnAction(e -> {
             System.out.println("[Start Menu]: Quit");
