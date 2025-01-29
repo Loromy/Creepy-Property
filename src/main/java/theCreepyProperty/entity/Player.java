@@ -10,21 +10,33 @@ import javafx.scene.image.ImageView;
 
 public class Player extends Entity{
     private final GUI gui;
-    //private final LevelDataWall wall;
     private double controlSpeed = 0; // speed if strg pressed
-    public Image playerImage;
-    public ImageView i_player = new ImageView();
+    private final ImageView i_player = new ImageView();
 
 
     public Player(GUI gui)  {
         this.gui = gui;
-        //this.wall = wall;
         setDefaultValues();
-        this.i_player.setX(entity_world_X);
-        this.i_player.setY(entity_world_Y);
 
-        this.i_player.setFitHeight(entity_size_Y);
-        this.i_player.setFitWidth(entity_size_X);
+//        this.i_player.setX(entity_world_X);
+//        this.i_player.setY(entity_world_Y);
+//
+//        this.i_player.setFitWidth(entity_size_X);
+//        this.i_player.setFitHeight(entity_size_Y);
+
+        this.solid_player_aria = new Rectangle();
+        this.solid_player_aria.setVisible(false); //Collision Block of player invisible
+
+        this.solid_player_aria.setX(entity_world_X);
+        this.solid_player_aria.setY(entity_world_Y);
+        this.solid_player_aria.setWidth(entity_size_X);
+        this.solid_player_aria.setHeight(entity_size_Y);
+
+        this.i_player.xProperty().bind(solid_player_aria.xProperty().subtract(18));
+        this.i_player.yProperty().bind(solid_player_aria.yProperty().subtract(20));
+        this.i_player.fitWidthProperty().bind(solid_player_aria.widthProperty().add(36));
+        this.i_player.fitHeightProperty().bind(solid_player_aria.heightProperty().add(20));
+
 
 //        this.solid_player_aria = new Rectangle(1,1,Color.RED);
 //
@@ -67,12 +79,12 @@ public class Player extends Entity{
         right3 = new Image("file:src/resources/player/right_3.png");
         right4 = new Image("file:src/resources/player/right_4.png");
 
-        System.out.println("[System]: Player image created ✔"); //✖
+        System.out.println("[System]: Player image created ✔"); //✖ //todo try/catch test
 
     }
 
     public ImageView draw() {
-        playerImage = null;
+        Image playerImage = null;
 
         switch (direction) {
             case "up":
@@ -126,19 +138,20 @@ public class Player extends Entity{
 
         this.i_player.setImage(playerImage);
         return i_player;
-
     }
 
 
     // set methode
     public void setPlayer_world_X(double player_world_X){
         this.entity_world_X = player_world_X;
-        i_player.setX(player_world_X); // update player
+        //i_player.setX(player_world_X); // update player
+        this.solid_player_aria.setX(player_world_X);
     }
 
     public void setPlayer_world_Y(double player_world_Y){
         this.entity_world_Y = player_world_Y;
-        i_player.setY(player_world_Y); // update player
+        //i_player.setY(player_world_Y); // update player
+        this.solid_player_aria.setY(player_world_Y);
     }
 
     public void setControlSpeed(double speed) {
@@ -155,8 +168,8 @@ public class Player extends Entity{
     }
 
     public void setDefaultValues() {
-        entity_size_X = 48;
-        entity_size_Y = 48;
+        entity_size_X = 12; //48
+        entity_size_Y = 28; // 48
         entity_world_X = ((double) gui.getWidth() / 2) - (entity_size_X / 2);
         entity_world_Y = ((double) gui.getHeight() / 2) - ((entity_size_Y / 2 ) + 19);
         speed = 3; // 3 bei 60hz

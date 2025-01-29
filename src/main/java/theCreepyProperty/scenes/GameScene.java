@@ -34,6 +34,7 @@ public class GameScene {
     private final Pane pMenu = new Pane(); //Menu
     private final Pane pGameOver = new Pane();
     private final Pane pGame = new Pane(); //game stuff
+    private final Pane pWallsItems = new Pane(); //Walls und Items
 
 
     // Game Scene Classes
@@ -71,8 +72,9 @@ public class GameScene {
 
         // Additional GUI components could be added here
         root.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, null)));
+        pGame.getChildren().add(this.pWallsItems);
+        pGame.getChildren().add(this.player.getSolidPlayerAria());
         pGame.getChildren().add(this.player.draw());
-        //pGame.getChildren().add(this.player.getSolidPlayerAria());
         pGame.getChildren().add(this.guiComponents.getL_speed());
         pGame.getChildren().add(this.guiComponents.getL_keys());
 
@@ -84,7 +86,7 @@ public class GameScene {
         pMenu.getChildren().add(this.menu.getSettings().getMenuSettings());
 
         // Add the KeyHandler for keyboard input
-        keyHandler = new KeyHandler(this.player, this, this.menu, this.gameOver, this.levelData);
+        keyHandler = new KeyHandler(this.player, this, this.menu, this.gameOver);
         keyHandler.addKeyListener(gameScene);
 
         // CSV-Datei lesen
@@ -98,7 +100,7 @@ public class GameScene {
     }
 
     public void pGameChildren(Rectangle rectangle) {
-        this.pGame.getChildren().add(rectangle);
+        this.pWallsItems.getChildren().add(rectangle);
     }
 
     public void pGameChildren(ImageView image) {

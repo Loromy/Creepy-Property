@@ -14,7 +14,6 @@ public class KeyHandler {
     private final GameScene scene;
     private final Menu menu;
     private final GameOver gameOver;
-    private final LevelData levelData;
     private boolean wPressed = false;
     private boolean aPressed = false;
     private boolean sPressed = false;
@@ -24,12 +23,11 @@ public class KeyHandler {
     private boolean shiftPressed = false;
     private boolean escPressed = false;
 
-    public KeyHandler(Player player, GameScene scene, Menu menu, GameOver gameOver, LevelData levelData) {
+    public KeyHandler(Player player, GameScene scene, Menu menu, GameOver gameOver) {
         this.player = player;
         this.scene = scene;
         this.menu = menu;
         this.gameOver = gameOver;
-        this.levelData = levelData;
     }
 
     public void addKeyListener(Scene scene) {
