@@ -1,8 +1,9 @@
 package theCreepyProperty.entity;
 
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
-import java.awt.*;
 
 public class Entity {
     public double entity_world_X, entity_world_Y;

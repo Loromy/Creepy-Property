@@ -1,5 +1,7 @@
 package theCreepyProperty.entity;
 
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import theCreepyProperty.blocks.Wall;
 import theCreepyProperty.main.GUI;
 import javafx.scene.image.Image;
@@ -23,6 +25,16 @@ public class Player extends Entity{
 
         this.i_player.setFitHeight(entity_size_Y);
         this.i_player.setFitWidth(entity_size_X);
+
+        this.solid_player_aria = new Rectangle();
+
+        // Binde die Position und Größe des Rechtecks an das ImageView
+        this.solid_player_aria.xProperty().bind(i_player.xProperty());
+        this.solid_player_aria.yProperty().bind(i_player.yProperty());
+        this.solid_player_aria.widthProperty().bind(i_player.fitWidthProperty());
+        this.solid_player_aria.heightProperty().bind(i_player.fitHeightProperty());
+
+        this.solid_player_aria.setVisible(false);
 
         createPlayerImage();
     }
@@ -114,24 +126,6 @@ public class Player extends Entity{
 
     }
 
-//    // Kollisionsüberprüfung zwischen Player und LevelDataWall
-//    public boolean isPlayerCollidingWithWall() {
-//        // Erhalte die Bounding Box des Players
-//        double playerMinX = i_player.getX();
-//        double playerMinY = i_player.getY();
-//        double playerMaxX = playerMinX + entity_size_X;
-//        double playerMaxY = playerMinY + entity_size_Y;
-//
-//        // Erhalte die Bounding Box der Wand
-//        double wallMinX = wall.getX();
-//        double wallMinY = wall.getY();
-//        double wallMaxX = wallMinX + wall.getWidth();
-//        double wallMaxY = wallMinY + wall.getHeight();
-//
-//        // Überprüfe, ob sich die Rechtecke überschneiden
-//        boolean tester = playerMaxX > wallMinX && playerMinX < wallMaxX && playerMaxY > wallMinY && playerMinY < wallMaxY;
-//        return tester;
-//    }
 
     // set methode
     public void setPlayer_world_X(double player_world_X){
@@ -186,5 +180,9 @@ public class Player extends Entity{
 
     public boolean getCollision_on(){
         return this.collision_on;
+    }
+
+    public Rectangle getSolidPlayerAria() {
+        return this.solid_player_aria;
     }
 }

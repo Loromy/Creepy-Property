@@ -86,6 +86,7 @@ public class GameScene {
         // Additional GUI components could be added here
         root.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, null)));
         pGame.getChildren().add(this.player.draw());
+        pGame.getChildren().add(this.player.getSolidPlayerAria());
         pGame.getChildren().add(this.guiComponents.getL_speed());
         pGame.getChildren().add(this.guiComponents.getL_keys());
 
@@ -161,6 +162,10 @@ public class GameScene {
 
     public Scene getScene() {
         return this.gameScene;
+    }
+
+    public Player getPlayer() {
+        return this.player;
     }
 
     // Setter methods

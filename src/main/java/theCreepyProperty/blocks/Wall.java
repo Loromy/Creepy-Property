@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Wall extends Object {
     private Rectangle rWall;
-    private final ArrayList<Wall> wallList = new ArrayList<>(); // Statische Liste für alle Wände
+    //private final ArrayList<Wall> wallList = new ArrayList<>(); // Statische Liste für alle Wände
 
     public Wall(int x, int y, int width, int height, String texture) {
         // Parameterwerte setzen und Wand erstellen
@@ -17,7 +17,7 @@ public class Wall extends Object {
         this.height = height;
         this.texture = texture;
         createWall();
-        this.wallList.add(this); // Wand zur statischen Liste hinzufügen
+        //this.wallList.add(this); // Wand zur statischen Liste hinzufügen
     }
 
     private void createWall() {
@@ -26,9 +26,9 @@ public class Wall extends Object {
     }
 
     // Getter für Rectangle
-    public ArrayList<Wall> getWallListe() {
-        return this.wallList;
-    }
+//    public ArrayList<Wall> getWallListe() {
+//        return this.wallList;
+//    }
 
     public Rectangle getRWall() {
         return rWall;

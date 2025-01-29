@@ -137,13 +137,15 @@ public class KeyHandler {
 
         double length = Math.sqrt(dx * dx + dy * dy);
         if (length != 0) {
+            this.player.collision_on = false;
             dx /= length;
             dy /= length;
         }
 
         //CHECK LevelDataWall COLLISION
-        this.player.collision_on = false;
-        this.scene.getChecker().checkTile(this.player, this.levelData.getWalls(), this.levelData.getItems(), this.scene.getMapCreate()); //TODO bearbeiten
+        //this.player.collision_on = false;
+        //this.scene.getChecker().checkTile(this.player, this.levelData.getWalls(), this.levelData.getItems(), this.scene.getMapCreate()); //TODO bearbeiten
+        this.scene.getChecker().checkCollision(this.player, this.levelData.getWalls(), this.levelData.getItems(), this.scene.getMapCreate());
 
         if(!this.player.getCollision_on()) {
             this.player.setPlayer_world_X(player.getPlayer_world_X() + dx * player.getSpeed());

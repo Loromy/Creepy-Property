@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Item extends Object {
     private Image itemImage;
     private ImageView ivItem = new ImageView();
-    private final ArrayList<Item> itemList = new ArrayList<>(); // Statische Liste für alle Wände
+    //private final ArrayList<Item> itemList = new ArrayList<>(); // Statische Liste für alle Wände
 
     public Item(int x, int y, int width, int height, String texture) {
         // Parameterwerte setzen und Wand erstellen
@@ -18,7 +18,7 @@ public class Item extends Object {
         this.height = height;
         this.texture = texture;
         createItem();
-        this.itemList.add(this); // Wand zur statischen Liste hinzufügen
+        //this.itemList.add(this); // Wand zur statischen Liste hinzufügen
     }
 
     private void createItem() {
@@ -30,9 +30,9 @@ public class Item extends Object {
     }
 
     // Getter für Rectangle
-    public ArrayList<Item> getItemListe() {
-        return this.itemList;
-    }
+//    public ArrayList<Item> getItemListe() {
+//        return this.itemList;
+//    }
 
     public ImageView getIItem() {
         return ivItem;
