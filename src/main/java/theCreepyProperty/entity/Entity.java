@@ -15,6 +15,5 @@ public class Entity {
     public int sprite_counter = 0;
     public int sprite_num = 1;
     public Rectangle solid_player_aria;
-    public int solid_aria_default_x, solid_aria_default_y;
     public boolean collision_on = false;
 }

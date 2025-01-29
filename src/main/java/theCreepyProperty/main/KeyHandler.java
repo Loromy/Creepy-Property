@@ -1,6 +1,5 @@
 package theCreepyProperty.main;
 import theCreepyProperty.Map.LevelData;
-import theCreepyProperty.blocks.Wall;
 import theCreepyProperty.scenes.GameScene;
 import theCreepyProperty.screens.GameOver;
 import theCreepyProperty.entity.Player;
@@ -9,8 +8,6 @@ import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import theCreepyProperty.menu.Menu;
-
-import java.util.ArrayList;
 
 public class KeyHandler {
     private final Player player;
@@ -134,25 +131,34 @@ public class KeyHandler {
 
     // Bewegung basierend auf Geschwindigkeits- und Bewegungsrichtung
     private void move(double dx, double dy) {
-
+        // Länge des Vektors berechnen (Pythagoras)
         double length = Math.sqrt(dx * dx + dy * dy);
+
+        // Verhindern, dass diagonale Bewegung schneller wird
         if (length != 0) {
-            this.player.collision_on = false;
             dx /= length;
             dy /= length;
         }
 
-        //CHECK LevelDataWall COLLISION
-        //this.player.collision_on = false;
-        //this.scene.getChecker().checkTile(this.player, this.levelData.getWalls(), this.levelData.getItems(), this.scene.getMapCreate()); //TODO bearbeiten
-        this.scene.getChecker().checkCollision(this.player, this.levelData.getWalls(), this.levelData.getItems(), this.scene.getMapCreate());
+        double nextX = player.getPlayer_world_X() + dx * player.getSpeed();
+        double nextY = player.getPlayer_world_Y() + dy * player.getSpeed();
 
-        if(!this.player.getCollision_on()) {
-            this.player.setPlayer_world_X(player.getPlayer_world_X() + dx * player.getSpeed());
-            this.player.setPlayer_world_Y(player.getPlayer_world_Y() + dy * player.getSpeed());
+        // X-Bewegung prüfen
+        player.collision_on = false;
+        this.scene.getChecker().checkCollision(player, nextX, player.getPlayer_world_Y());
+
+        if (!player.getCollision_on()) {
+            player.setPlayer_world_X(nextX);
+        }
+
+        // Y-Bewegung prüfen
+        player.collision_on = false;
+        this.scene.getChecker().checkCollision(player, player.getPlayer_world_X(), nextY);
+
+        if (!player.getCollision_on()) {
+            player.setPlayer_world_Y(nextY);
         }
     }
-
 
     private void animation(){
         if (this.wPressed || this.sPressed || this.aPressed || this.dPressed) {

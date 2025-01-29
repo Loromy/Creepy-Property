@@ -26,15 +26,18 @@ public class Player extends Entity{
         this.i_player.setFitHeight(entity_size_Y);
         this.i_player.setFitWidth(entity_size_X);
 
-        this.solid_player_aria = new Rectangle();
-
-        // Binde die Position und Größe des Rechtecks an das ImageView
-        this.solid_player_aria.xProperty().bind(i_player.xProperty());
-        this.solid_player_aria.yProperty().bind(i_player.yProperty());
-        this.solid_player_aria.widthProperty().bind(i_player.fitWidthProperty());
-        this.solid_player_aria.heightProperty().bind(i_player.fitHeightProperty());
-
-        this.solid_player_aria.setVisible(false);
+//        this.solid_player_aria = new Rectangle(1,1,Color.RED);
+//
+//        // Binde die Position und Größe des Rechtecks an das ImageView
+//        this.solid_player_aria.widthProperty().bind(i_player.fitWidthProperty().subtract(10)); // 10 Pixel kleiner
+//        this.solid_player_aria.heightProperty().bind(i_player.fitHeightProperty().subtract(10)); // 10 Pixel kleiner
+//        this.solid_player_aria.xProperty().bind(i_player.xProperty().add(5)); // Hälfte von 10 abziehen
+//        this.solid_player_aria.yProperty().bind(i_player.yProperty().add(5));
+//
+//
+//        this.solid_player_aria.setVisible(true);
+        //todo solid_player_aria steuer und Bild drauf binden
+        //todo eventuel wird bild nicht angezeigt wenn recheck.visible(false) ist!
 
         createPlayerImage();
     }

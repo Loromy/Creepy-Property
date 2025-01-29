@@ -41,7 +41,7 @@ public class GameScene {
     private LevelData levelData = new LevelData();
     private final MapReader mapReader = new MapReader();
     private final MapCreate mapCreate = new MapCreate();
-    private Wall wall; //todo entfernen?
+    private Wall wall;
     private Item item;
     private final Player player;
     private final GameOver gameOver;
@@ -57,26 +57,12 @@ public class GameScene {
         this.gameOver = new GameOver(this.gui,this);
         this.menu = new Menu(this.gui, this);
         this.guiComponents = new GuiComponents(this.player, this.menu);
-        this.checker = new CollisionChecker(this.gui,this);
+        this.checker = new CollisionChecker(this);
 
         createScene();
     }
 
     private void createScene() {
-//        Pane root = new Pane();
-//
-//        // Beispiel: Hintergrund und Text
-//        root.setStyle("-fx-background-color: lightblue;");
-//
-//        Text gameText = new Text(50, 50, "Willkommen im Spiel!");
-//        gameText.setFill(Color.BLACK);
-//        gameText.setStyle("-fx-font-size: 24;");
-//
-//        root.getChildren().add(gameText);
-//
-//        // Szene initialisieren
-//        this.scene = new Scene(root, gui.getWidth(), gui.getHeight());
-
         root.getChildren().addAll(pGame,pGameOver,pMenu);
         gameScene = new Scene(root, gui.getWidth(), gui.getHeight());
 
@@ -86,7 +72,7 @@ public class GameScene {
         // Additional GUI components could be added here
         root.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, null)));
         pGame.getChildren().add(this.player.draw());
-        pGame.getChildren().add(this.player.getSolidPlayerAria());
+        //pGame.getChildren().add(this.player.getSolidPlayerAria());
         pGame.getChildren().add(this.guiComponents.getL_speed());
         pGame.getChildren().add(this.guiComponents.getL_keys());
 
@@ -102,7 +88,6 @@ public class GameScene {
         keyHandler.addKeyListener(gameScene);
 
         // CSV-Datei lesen
-        //this.gui.setFilePath("src/resources/csv/maps/map1.csv"); // Pfad zur CSV-Datei
         this.levelData = mapReader.readCsvFile(this.gui.getFilePath(), levelData);
 
         // Wände erstellen
@@ -110,9 +95,6 @@ public class GameScene {
 
         // Menu
         this.pMenu.setVisible(false);
-
-        //Szene initialisieren
-        //this.scene = new Scene(root, gui.getWidth(), gui.getHeight());
     }
 
     public void pGameChildren(Rectangle rectangle) {
