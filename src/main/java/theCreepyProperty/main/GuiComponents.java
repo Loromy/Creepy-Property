@@ -31,5 +31,7 @@ public class GuiComponents {
         return l_speed;
     }
 
-    public Label getL_keys() {return l_keys;}
+    public Label getL_keys() {
+        return l_keys;
+    }
 }

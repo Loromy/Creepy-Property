@@ -3,12 +3,9 @@ package theCreepyProperty.blocks;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-import java.util.ArrayList;
-
 public class Item extends Object {
     private Image itemImage;
     private ImageView ivItem = new ImageView();
-    //private final ArrayList<Item> itemList = new ArrayList<>(); // Statische Liste für alle Wände
 
     public Item(int x, int y, int width, int height, String texture) {
         // Parameterwerte setzen und Wand erstellen
@@ -30,9 +27,6 @@ public class Item extends Object {
     }
 
     // Getter für Rectangle
-//    public ArrayList<Item> getItemListe() {
-//        return this.itemList;
-//    }
 
     public ImageView getIItem() {
         return ivItem;
@@ -53,5 +47,13 @@ public class Item extends Object {
 
     public boolean getPlayer_block_collision() {
         return player_block_collision;
+    }
+
+    public void setX(int x) {
+        this.positionX = x;
+    }
+
+    public void setY(int y) {
+        this.positionY = y;
     }
 }

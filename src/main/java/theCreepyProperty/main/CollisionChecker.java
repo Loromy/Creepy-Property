@@ -1,6 +1,7 @@
 package theCreepyProperty.main;
 
 
+import javafx.scene.image.ImageView;
 import theCreepyProperty.Map.MapCreate;
 import theCreepyProperty.entity.Player;
 import theCreepyProperty.scenes.GameScene;
@@ -23,9 +24,24 @@ public class CollisionChecker {
         for (int i = 0; i < mapCreate.getWallList().size(); i++) {
             Rectangle wall = mapCreate.getWallList().get(i).getRWall();
 
-            if (futurePlayer.intersects(wall.getBoundsInLocal())) {
+            if (futurePlayer.intersects(wall.getBoundsInLocal()) && mapCreate.getWallList().get(i).getPlayer_block_collision()) {
                 player.collision_on = true;
+                return;
+            }
+        }
 
+        // Items
+        for (int i = 0; i < mapCreate.getItemList().size(); i++) {
+            ImageView item = mapCreate.getItemList().get(i).getIItem();
+
+            if (futurePlayer.intersects(item.getBoundsInLocal()) && mapCreate.getItemList().get(i).getPlayer_block_collision()) {
+                player.keys_eingesammelt++;
+
+                scene.pGameChildrenRemove(mapCreate.getItemList().get(i).getIItem()); // remove Item from Pane
+                mapCreate.getItemList().get(i).getIItem().setX(-100); // position moved
+                mapCreate.getItemList().get(i).getIItem().setY(-100); // position Moved
+
+                this.scene.getGuiComponents().getL_keys().setText("Keys: " + player.getKeyEingesammelt()); // Gui component update
                 return;
             }
         }
