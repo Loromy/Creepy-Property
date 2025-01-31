@@ -1,26 +1,40 @@
 package theCreepyProperty.main;
+import theCreepyProperty.Map.LevelData;
+import theCreepyProperty.scenes.GameScene;
+import theCreepyProperty.screens.GameOver;
 import theCreepyProperty.entity.Player;
 
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
+import theCreepyProperty.menu.Menu;
+import theCreepyProperty.screens.GameWin;
+
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class KeyHandler {
     private final Player player;
-    private final GUI gui;
+    private final GameScene scene;
     private final Menu menu;
+    private final GameOver gameOver;
+    private final GameWin gameWin;
+
     private boolean wPressed = false;
     private boolean aPressed = false;
     private boolean sPressed = false;
     private boolean dPressed = false;
+    private boolean cPressed = false;
     private boolean ctrlPressed = false;
     private boolean shiftPressed = false;
     private boolean escPressed = false;
 
-    public KeyHandler(Player player, GUI gui, Menu menu) {
+    public KeyHandler(Player player, GameScene scene, Menu menu, GameOver gameOver, GameWin gameWin) {
         this.player = player;
-        this.gui = gui;
+        this.scene = scene;
         this.menu = menu;
+        this.gameOver = gameOver;
+        this.gameWin = gameWin;
     }
 
     public void addKeyListener(Scene scene) {
@@ -32,6 +46,7 @@ public class KeyHandler {
                 case S -> sPressed = true;
                 case A -> aPressed = true;
                 case D -> dPressed = true;
+                case C -> cPressed = true;
                 case CONTROL -> ctrlPressed = true;
                 case SHIFT -> shiftPressed = true;
                 case ESCAPE -> escPressed = true;
@@ -46,12 +61,12 @@ public class KeyHandler {
                 case S -> sPressed = false;
                 case A -> aPressed = false;
                 case D -> dPressed = false;
+                case C -> cPressed = false;
                 case CONTROL -> ctrlPressed = false;
                 case SHIFT -> shiftPressed = false;
                 case ESCAPE -> escPressed = false;
             }
         });
-
         // AnimationTimer für kontinuierliche Abfrage der Tasten
         AnimationTimer timer = new AnimationTimer() {
             @Override
@@ -64,7 +79,7 @@ public class KeyHandler {
 
     // Funktion für die Bewegungssteuerung basierend auf den gedrückten Tasten
     private void handleMovement() {
-        if (!this.menu.getMenu_on()) {
+        if (!this.menu.getMenu_on() && !this.gameOver.getGameOver_On() && !this.gameWin.getGameWin_On()) {
             double dx = 0;
             double dy = 0;
 
@@ -85,41 +100,98 @@ public class KeyHandler {
                 this.player.setDirection("right");
             }
 
+            if (cPressed) {
+                System.out.println("Position Player: x=" + this.player.getPlayer_world_X() + " y=" + this.player.getPlayer_world_Y());
+                this.cPressed = false;
+            }
+
             if (ctrlPressed) {
-                this.player.setControlSpeed(2);
-                //this.player.getPlayer().setFill(Color.YELLOW);
-                this.gui.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed());
+                this.player.setControlSpeed(5);
+                this.scene.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed());
             } else if (shiftPressed) {
                 this.player.setShiftSpeed();
-                //this.player.getPlayer().setFill(Color.LIGHTBLUE);
-                this.gui.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed());
+                this.scene.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed());
             } else {
                 this.player.setControlSpeed(0);
-                //this.player.getPlayer().setFill(Color.DARKRED);
-                this.gui.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed());
+                this.scene.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed());
             }
 
             if (dx != 0 || dy != 0) {
                 move(dx, dy);
             }
+            animation();
         }
 
         if (escPressed) {
             this.escPressed = false;
-            this.menu.triggerMenu();
+            if (!menu.getSettings().getSettingOn()) {
+                this.menu.triggerMenu();
+            } else {
+                this.menu.getSettings().triggerSettings();
+                this.menu.getpMenu().setVisible(true);
+            }
         }
 
     }
 
     // Bewegung basierend auf Geschwindigkeits- und Bewegungsrichtung
     private void move(double dx, double dy) {
+        // Länge des Vektors berechnen (Pythagoras)
         double length = Math.sqrt(dx * dx + dy * dy);
+
+        // Verhindern, dass diagonale Bewegung schneller wird
         if (length != 0) {
             dx /= length;
             dy /= length;
         }
 
-        this.player.setPlayer_world_X(player.getPlayer_world_X() + dx * player.getSpeed());
-        this.player.setPlayer_world_Y(player.getPlayer_world_Y() + dy * player.getSpeed());
+        double nextX = player.getPlayer_world_X() + dx * player.getSpeed();
+        double nextY = player.getPlayer_world_Y() + dy * player.getSpeed();
+
+        // X-Bewegung prüfen
+        player.collision_on = false;
+        this.scene.getChecker().checkCollision(player, nextX, player.getPlayer_world_Y());
+
+        if (!player.getCollision_on()) {
+            player.setPlayer_world_X(nextX);
+        }
+
+        // Y-Bewegung prüfen
+        player.collision_on = false;
+        this.scene.getChecker().checkCollision(player, player.getPlayer_world_X(), nextY);
+
+        if (!player.getCollision_on()) {
+            player.setPlayer_world_Y(nextY);
+        }
     }
+
+    private void animation() {
+        if (this.wPressed || this.sPressed || this.aPressed || this.dPressed) {
+            player.sprite_counter++;
+
+            // Berechne das Intervall basierend auf der Geschwindigkeit des Spielers
+            // Höhere Geschwindigkeit = schnellere Sprite-Animation (weniger Frames pro Wechsel)
+            int frameSpeed = 14 - (int) player.getSpeed();  // Höhere Geschwindigkeit = weniger Frames pro Wechsel
+
+            // Sicherstellen, dass frameSpeed nicht zu klein wird (z.B. Minimum 4)
+            if (frameSpeed < 4) {
+                frameSpeed = 4;
+            }
+
+            if (player.sprite_counter > frameSpeed) {
+                // Wechsel der Sprite-Nummer
+                if (player.sprite_num == 1) {
+                    player.sprite_num = 2;
+                } else if (player.sprite_num == 2) {
+                    player.sprite_num = 3;
+                } else if (player.sprite_num == 3) {
+                    player.sprite_num = 4;
+                } else if (player.sprite_num == 4) {
+                    player.sprite_num = 1;
+                }
+                player.sprite_counter = 0;  // Zähler zurücksetzen
+            }
+        }
+    }
+
 }

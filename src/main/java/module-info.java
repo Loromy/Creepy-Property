@@ -7,4 +7,8 @@ module theCreepyProperty.main {
 
     opens theCreepyProperty.main to javafx.fxml;
     exports theCreepyProperty.main;
+    exports theCreepyProperty.menu;
+    opens theCreepyProperty.menu to javafx.fxml;
+    exports theCreepyProperty.Map;
+    opens theCreepyProperty.Map to javafx.fxml;
 }

@@ -1,0 +1,13 @@
+type,x,y,width,height,texture
+wall,0,-5,1000,10,black
+wall,995,0,10,600,black
+wall,0,595,1000,10,black
+wall,-5,0,10,600,black
+wall,300,180,10,100,black
+wall,300,180,300,10,black
+wall,600,180,10,380,black
+wall,360,190,10,50,black
+item,535,206,50,50,file:src/resources/textures/items/Key.png
+item,627,523,30,30,file:src/resources/textures/items/Key.png
+item,946,10,50,50,file:src/resources/textures/items/Key.png
+door,310,190,50,50,file:src/resources/textures/items/Door.png
