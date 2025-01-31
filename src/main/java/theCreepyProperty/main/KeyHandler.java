@@ -10,6 +10,9 @@ import javafx.scene.input.KeyCode;
 import theCreepyProperty.menu.Menu;
 import theCreepyProperty.screens.GameWin;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+
 public class KeyHandler {
     private final Player player;
     private final GameScene scene;
@@ -103,7 +106,7 @@ public class KeyHandler {
             }
 
             if (ctrlPressed) {
-                this.player.setControlSpeed(2);
+                this.player.setControlSpeed(5);
                 this.scene.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed());
             } else if (shiftPressed) {
                 this.player.setShiftSpeed();
@@ -162,27 +165,33 @@ public class KeyHandler {
         }
     }
 
-    private void animation(){
+    private void animation() {
         if (this.wPressed || this.sPressed || this.aPressed || this.dPressed) {
-
             player.sprite_counter++;
-            if (player.sprite_counter > 13) {
 
+            // Berechne das Intervall basierend auf der Geschwindigkeit des Spielers
+            // Höhere Geschwindigkeit = schnellere Sprite-Animation (weniger Frames pro Wechsel)
+            int frameSpeed = 14 - (int) player.getSpeed();  // Höhere Geschwindigkeit = weniger Frames pro Wechsel
+
+            // Sicherstellen, dass frameSpeed nicht zu klein wird (z.B. Minimum 4)
+            if (frameSpeed < 4) {
+                frameSpeed = 4;
+            }
+
+            if (player.sprite_counter > frameSpeed) {
+                // Wechsel der Sprite-Nummer
                 if (player.sprite_num == 1) {
                     player.sprite_num = 2;
-                }
-                else if (player.sprite_num == 2) {
+                } else if (player.sprite_num == 2) {
                     player.sprite_num = 3;
-                }
-                else if (player.sprite_num == 3) {
+                } else if (player.sprite_num == 3) {
                     player.sprite_num = 4;
-                }
-                else if (player.sprite_num == 4) {
+                } else if (player.sprite_num == 4) {
                     player.sprite_num = 1;
                 }
-
-                player.sprite_counter = 0;
+                player.sprite_counter = 0;  // Zähler zurücksetzen
             }
         }
     }
+
 }
