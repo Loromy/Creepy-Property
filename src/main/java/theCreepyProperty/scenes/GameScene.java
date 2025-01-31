@@ -1,5 +1,6 @@
 package theCreepyProperty.scenes;
 
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.ImageView;
@@ -83,6 +84,7 @@ public class GameScene {
         pGame.getChildren().add(this.player.draw());
         pGame.getChildren().add(this.guiComponents.getL_speed());
         pGame.getChildren().add(this.guiComponents.getL_keys());
+        pGame.getChildren().add(this.guiComponents.getL_fps());
 
         pGameOver.getChildren().add(this.gameOver.getBackgroundGameOver());
         pGameOver.getChildren().add(this.gameOver.getPGameOver());
@@ -96,7 +98,7 @@ public class GameScene {
 
         // Add the KeyHandler for keyboard input
         keyHandler = new KeyHandler(this.player, this, this.menu, this.gameOver, this.gameWin);
-        keyHandler.addKeyListener(gameScene);
+        keyHandler.addKeyListener(gameScene, this);
 
         // CSV-Datei lesen
         this.levelData = mapReader.readCsvFile(this.gui.getFilePath(), levelData);
