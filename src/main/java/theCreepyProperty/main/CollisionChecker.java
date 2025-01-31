@@ -11,6 +11,9 @@ import javafx.scene.shape.Rectangle;
 public class CollisionChecker {
     private final GameScene scene;
     private final MapCreate mapCreate;
+    private SoundPlayer soundPlayer;
+
+    private boolean isPlayed = false;
 
     public CollisionChecker(GameScene scene) {
         this.scene = scene;
@@ -23,6 +26,7 @@ public class CollisionChecker {
 
         openDoorsInLevel(player);
 
+        // Walls
         for (int i = 0; i < mapCreate.getWallList().size(); i++) {
             Rectangle wall = mapCreate.getWallList().get(i).getRWall();
 
@@ -39,10 +43,10 @@ public class CollisionChecker {
             if (futurePlayer.intersects(item.getBoundsInLocal()) && mapCreate.getItemList().get(i).getPlayer_block_collision()) {
                 player.keys_eingesammelt++;
 
-                scene.pGameChildrenRemove(mapCreate.getItemList().get(i).getIItem()); // remove Item from Pane
-//                mapCreate.getItemList().get(i).getIItem().setX(-100); // position moved
-//                mapCreate.getItemList().get(i).getIItem().setY(-100); // position Moved
+                this.soundPlayer = new SoundPlayer("src/resources/sounds/itemCollect.wav");
+                this.soundPlayer.play();
 
+                scene.pGameChildrenRemove(mapCreate.getItemList().get(i).getIItem()); // remove Item from Pane
                 mapCreate.getItemList().remove(i);
 
                 this.scene.getGuiComponents().getL_keys().setText("Keys: " + player.getKeyEingesammelt()); // Gui component update
@@ -58,6 +62,11 @@ public class CollisionChecker {
                 player.collision_on = true;
 
                 if (mapCreate.getDoorList().get(i).getDoorOpen()) {
+                    this.soundPlayer = new SoundPlayer("src/resources/sounds/youWin.wav");
+                    this.soundPlayer.play();
+                    this.soundPlayer = new SoundPlayer("src/resources/sounds/congratulations.wav");
+                    this.soundPlayer.play();
+
                     this.scene.getGameWin().triggerGameWin();
                 }
 
@@ -68,7 +77,12 @@ public class CollisionChecker {
 
     private void openDoorsInLevel(Player player) {
         for (int i = 0; i < mapCreate.getDoorList().size(); i++) {
-            if (player.keys_eingesammelt >= 3) {
+            if (player.keys_eingesammelt >= 3 && !this.isPlayed) {
+                this.isPlayed = true;
+                this.soundPlayer = new SoundPlayer("src/resources/sounds/doorOpen.wav");
+                this.soundPlayer.play();
+
+
                 this.mapCreate.getDoorList().get(i).openDoor();
             }
         }

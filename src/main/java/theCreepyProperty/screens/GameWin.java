@@ -31,7 +31,7 @@ public class GameWin extends VBox{
         this.pGameWin.setVisible(false);
 
         // Add menu items
-        this.text = new Label("congratulations");
+        this.text = new Label("Congratulations");
         this.text.setId("game-win-text"); // Spezifische ID für den GameOver-Text
         this.retryButton = new Button("Back");
         this.retryButton.setId("game-win"); // Spezifische ID für den Retry-Button
