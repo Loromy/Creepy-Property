@@ -37,7 +37,7 @@ public class KeyHandler {
         this.gameWin = gameWin;
     }
 
-    public void addKeyListener(Scene scene) {
+    public void addKeyListener(Scene scene, GameScene gameScene) {
         // KeyPressed: Setze Tastenstatus auf "gedrückt"
         scene.setOnKeyPressed(event -> {
             KeyCode keyCode = event.getCode();
@@ -53,6 +53,7 @@ public class KeyHandler {
             }
         });
 
+
         // KeyReleased: Setze Tastenstatus auf "nicht gedrückt"
         scene.setOnKeyReleased(event -> {
             KeyCode keyCode = event.getCode();
@@ -67,18 +68,39 @@ public class KeyHandler {
                 case ESCAPE -> escPressed = false;
             }
         });
-        // AnimationTimer für kontinuierliche Abfrage der Tasten
+
+        // **FPS-unabhängige Bewegungsberechnung mit AnimationTimer**
         AnimationTimer timer = new AnimationTimer() {
+            private long lastTime = System.nanoTime();
+            private long lastFPSUpdate = System.nanoTime();
+            private int frameCount = 0;
+            private double fps = 0;
+
             @Override
             public void handle(long now) {
-                handleMovement();
+                double deltaTime = (now - lastTime) / 1_000_000_000.0; // Delta-Zeit in Sekunden
+                lastTime = now;
+
+                handleMovement(deltaTime); // Bewegung aktualisieren
+
+                // **FPS-Berechnung**
+                frameCount++;
+                if (now - lastFPSUpdate >= 1_000_000_000) { // Wenn 1 Sekunde vergangen ist
+                    fps = frameCount;  // FPS speichern
+                    frameCount = 0;  // Frame-Zähler zurücksetzen
+                    lastFPSUpdate = now;  // Zeitpunkt der letzten Messung aktualisieren
+                    System.out.println("FPS: " + fps); // FPS ausgeben
+
+                    // FPS in der GUI anzeigen
+                    gameScene.getGuiComponents().updateFPS(fps);
+                }
             }
         };
         timer.start();
     }
 
     // Funktion für die Bewegungssteuerung basierend auf den gedrückten Tasten
-    private void handleMovement() {
+    private void handleMovement(double deltaTime) {
         if (!this.menu.getMenu_on() && !this.gameOver.getGameOver_On() && !this.gameWin.getGameWin_On()) {
             double dx = 0;
             double dy = 0;
@@ -117,9 +139,9 @@ public class KeyHandler {
             }
 
             if (dx != 0 || dy != 0) {
-                move(dx, dy);
+                move(dx, dy, deltaTime);
             }
-            animation();
+            animation(deltaTime);
         }
 
         if (escPressed) {
@@ -135,61 +157,46 @@ public class KeyHandler {
     }
 
     // Bewegung basierend auf Geschwindigkeits- und Bewegungsrichtung
-    private void move(double dx, double dy) {
-        // Länge des Vektors berechnen (Pythagoras)
+    private void move(double dx, double dy, double deltaTime) {
+        // Länge des Bewegungsvektors berechnen
         double length = Math.sqrt(dx * dx + dy * dy);
-
-        // Verhindern, dass diagonale Bewegung schneller wird
         if (length != 0) {
             dx /= length;
             dy /= length;
         }
 
-        double nextX = player.getPlayer_world_X() + dx * player.getSpeed();
-        double nextY = player.getPlayer_world_Y() + dy * player.getSpeed();
+        // FPS-unabhängige Bewegung berechnen
+        double speed = player.getSpeed() * deltaTime * 60; // Normale Geschwindigkeit für 60 FPS
+        double nextX = player.getPlayer_world_X() + dx * speed;
+        double nextY = player.getPlayer_world_Y() + dy * speed;
 
-        // X-Bewegung prüfen
+        // X-Kollision prüfen
         player.collision_on = false;
         this.scene.getChecker().checkCollision(player, nextX, player.getPlayer_world_Y());
-
         if (!player.getCollision_on()) {
             player.setPlayer_world_X(nextX);
         }
 
-        // Y-Bewegung prüfen
+        // Y-Kollision prüfen
         player.collision_on = false;
         this.scene.getChecker().checkCollision(player, player.getPlayer_world_X(), nextY);
-
         if (!player.getCollision_on()) {
             player.setPlayer_world_Y(nextY);
         }
     }
 
-    private void animation() {
+
+    private void animation(double deltaTime) {
         if (this.wPressed || this.sPressed || this.aPressed || this.dPressed) {
-            player.sprite_counter++;
+            //player.sprite_counter++;
+            player.sprite_counter += deltaTime * 60;
 
-            // Berechne das Intervall basierend auf der Geschwindigkeit des Spielers
-            // Höhere Geschwindigkeit = schnellere Sprite-Animation (weniger Frames pro Wechsel)
-            int frameSpeed = 14 - (int) player.getSpeed();  // Höhere Geschwindigkeit = weniger Frames pro Wechsel
-
-            // Sicherstellen, dass frameSpeed nicht zu klein wird (z.B. Minimum 4)
-            if (frameSpeed < 4) {
-                frameSpeed = 4;
-            }
+            // Sprite-Wechsel abhängig von der Spieler-Geschwindigkeit
+            int frameSpeed = Math.max(4, 14 - (int) player.getSpeed());
 
             if (player.sprite_counter > frameSpeed) {
-                // Wechsel der Sprite-Nummer
-                if (player.sprite_num == 1) {
-                    player.sprite_num = 2;
-                } else if (player.sprite_num == 2) {
-                    player.sprite_num = 3;
-                } else if (player.sprite_num == 3) {
-                    player.sprite_num = 4;
-                } else if (player.sprite_num == 4) {
-                    player.sprite_num = 1;
-                }
-                player.sprite_counter = 0;  // Zähler zurücksetzen
+                player.sprite_num = (player.sprite_num % 4) + 1; // Zyklus: 1 → 2 → 3 → 4 → 1
+                player.sprite_counter = 0;
             }
         }
     }
