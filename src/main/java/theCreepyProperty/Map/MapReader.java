@@ -35,6 +35,11 @@ public class MapReader {
                     int height = Integer.parseInt(parts[4]);
                     String itemTexture = parts[5];
                     levelData.getItems().add(new LevelData.LevelDataItem(x, y, width, height, itemTexture));
+                } else if (type.equals("door")) {
+                    int width = Integer.parseInt(parts[3]);
+                    int height = Integer.parseInt(parts[4]);
+                    String itemTexture = parts[5];
+                    levelData.getDoors().add(new LevelData.LevelDataDoor(x, y, width, height, itemTexture));
                 }
             }
         } catch (Exception e) {

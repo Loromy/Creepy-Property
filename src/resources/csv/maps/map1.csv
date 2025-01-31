@@ -9,3 +9,4 @@ wall,600,180,10,400,black
 item,535,206,50,50,file:src/resources/textures/items/Key.png
 item,627,523,30,30,file:src/resources/textures/items/Key.png
 item,946,10,50,50,file:src/resources/textures/items/Key.png
+door,100,100,50,50,file:src/resources/textures/items/Door.png

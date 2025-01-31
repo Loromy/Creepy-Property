@@ -1,5 +1,6 @@
 package theCreepyProperty.Map;
 
+import theCreepyProperty.blocks.Door;
 import theCreepyProperty.blocks.Item;
 import theCreepyProperty.blocks.Wall;
 import theCreepyProperty.main.GUI;
@@ -11,17 +12,20 @@ public class MapCreate {
 
     private Wall wall;
     private Item item;
+    private Door door;
     private GameScene scene;
     private LevelData levelData;
 
     private final ArrayList<Wall> wallList = new ArrayList<>();
     private final ArrayList<Item> itemList = new ArrayList<>();
+    private final ArrayList<Door> doorList = new ArrayList<>();
 
     public void createMap(GameScene scene, LevelData levelData){
 
         this.scene = scene;
         this.wall = scene.getWall();
         this.item = scene.getItem();
+        this.door = scene.getDoor();
         this.levelData = levelData;
 
         for (int i = 0; i < this.levelData.getWalls().size(); i++) {
@@ -39,6 +43,14 @@ public class MapCreate {
             this.itemList.add(this.item);
             this.scene.pGameChildren(this.item.getIItem());
         }
+
+        for (int i = 0; i < this.levelData.getDoors().size(); i++) {
+            System.out.println("[Map Creator]: Door id " + i);
+
+            this.door = new Door(levelData.getDoors().get(i).getX(), levelData.getDoors().get(i).getY(), levelData.getDoors().get(i).getWidth(), levelData.getDoors().get(i).getHeight(), levelData.getDoors().get(i).getTexture());
+            this.doorList.add(this.door);
+            this.scene.pGameChildren(this.door.getIDoor());
+        }
     }
 
     public Wall getWall() {
@@ -55,5 +67,9 @@ public class MapCreate {
 
     public ArrayList<Item> getItemList() {
         return this.itemList;
+    }
+
+    public ArrayList<Door> getDoorList() {
+        return this.doorList;
     }
 }

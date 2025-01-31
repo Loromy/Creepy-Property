@@ -8,12 +8,15 @@ import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import theCreepyProperty.menu.Menu;
+import theCreepyProperty.screens.GameWin;
 
 public class KeyHandler {
     private final Player player;
     private final GameScene scene;
     private final Menu menu;
     private final GameOver gameOver;
+    private final GameWin gameWin;
+
     private boolean wPressed = false;
     private boolean aPressed = false;
     private boolean sPressed = false;
@@ -23,11 +26,12 @@ public class KeyHandler {
     private boolean shiftPressed = false;
     private boolean escPressed = false;
 
-    public KeyHandler(Player player, GameScene scene, Menu menu, GameOver gameOver) {
+    public KeyHandler(Player player, GameScene scene, Menu menu, GameOver gameOver, GameWin gameWin) {
         this.player = player;
         this.scene = scene;
         this.menu = menu;
         this.gameOver = gameOver;
+        this.gameWin = gameWin;
     }
 
     public void addKeyListener(Scene scene) {
@@ -72,7 +76,7 @@ public class KeyHandler {
 
     // Funktion für die Bewegungssteuerung basierend auf den gedrückten Tasten
     private void handleMovement() {
-        if (!this.menu.getMenu_on() && !this.gameOver.getGameOver_On()) {
+        if (!this.menu.getMenu_on() && !this.gameOver.getGameOver_On() && !this.gameWin.getGameWin_On()) {
             double dx = 0;
             double dy = 0;
 

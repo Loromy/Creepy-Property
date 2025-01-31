@@ -6,10 +6,12 @@ import java.util.List;
 public class LevelData {
     private ArrayList<LevelDataWall> walls;
     private ArrayList<LevelDataItem> items;
+    private ArrayList<LevelDataDoor> doors;
 
     public LevelData() {
         walls = new ArrayList<>();
         items = new ArrayList<>();
+        doors = new ArrayList<>();
     }
 
 
@@ -55,6 +57,27 @@ public class LevelData {
 
     }
 
+    public static class LevelDataDoor {
+        private final String texture;
+        private final int x, y, width, height;
+
+        public LevelDataDoor(int x, int y, int width, int height, String texture) {
+            this.x = x;
+            this.y = y;
+            this.width = width;
+            this.height = height;
+            this.texture = texture;
+        }
+
+        // Getter
+        public int getX() { return x; }
+        public int getY() { return y; }
+        public int getWidth() { return width; }
+        public int getHeight() { return height; }
+        public String getTexture() { return texture; }
+
+    }
+
     // Getter und Setter
     public ArrayList<LevelDataWall> getWalls() {
         return walls;
@@ -70,6 +93,14 @@ public class LevelData {
 
     public void setItems(ArrayList<LevelDataItem> items) {
         this.items = items;
+    }
+
+    public ArrayList<LevelDataDoor> getDoors() {
+        return doors;
+    }
+
+    public void setDoors(ArrayList<LevelDataDoor> doors) {
+        this.doors = doors;
     }
 }
 

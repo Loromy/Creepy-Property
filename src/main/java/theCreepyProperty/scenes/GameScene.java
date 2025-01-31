@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import theCreepyProperty.Map.LevelData;
 import theCreepyProperty.Map.MapCreate;
 import theCreepyProperty.Map.MapReader;
+import theCreepyProperty.blocks.Door;
 import theCreepyProperty.blocks.Item;
 import theCreepyProperty.blocks.Wall;
 import theCreepyProperty.entity.Player;
@@ -22,6 +23,7 @@ import theCreepyProperty.main.GuiComponents;
 import theCreepyProperty.main.KeyHandler;
 import theCreepyProperty.menu.Menu;
 import theCreepyProperty.screens.GameOver;
+import theCreepyProperty.screens.GameWin;
 
 public class GameScene {
 
@@ -33,6 +35,7 @@ public class GameScene {
     private final Pane root = new Pane(); //main
     private final Pane pMenu = new Pane(); //Menu
     private final Pane pGameOver = new Pane();
+    private final Pane pGameWin = new Pane();
     private final Pane pGame = new Pane(); //game stuff
     private final Pane pWallsItems = new Pane(); //Walls und Items
 
@@ -44,8 +47,10 @@ public class GameScene {
     private final MapCreate mapCreate = new MapCreate();
     private Wall wall;
     private Item item;
+    private Door door;
     private final Player player;
     private final GameOver gameOver;
+    private final GameWin gameWin;
     private final Menu menu;
     private final GuiComponents guiComponents;
     private final CollisionChecker checker;
@@ -56,6 +61,7 @@ public class GameScene {
 
         this.player = new Player(this.gui);
         this.gameOver = new GameOver(this.gui,this);
+        this.gameWin = new GameWin(this.gui, this);
         this.menu = new Menu(this.gui, this);
         this.guiComponents = new GuiComponents(this.player, this.menu);
         this.checker = new CollisionChecker(this);
@@ -64,7 +70,7 @@ public class GameScene {
     }
 
     private void createScene() {
-        root.getChildren().addAll(pGame,pGameOver,pMenu);
+        root.getChildren().addAll(pGame,pGameOver,pGameWin,pMenu);
         gameScene = new Scene(root, gui.getWidth(), gui.getHeight());
 
         //Styles //todo überprüfen ob style.css richtig geladen wurde
@@ -81,12 +87,15 @@ public class GameScene {
         pGameOver.getChildren().add(this.gameOver.getBackgroundGameOver());
         pGameOver.getChildren().add(this.gameOver.getPGameOver());
 
+        pGameWin.getChildren().add(this.gameWin.getBackgroundGameWin());
+        pGameWin.getChildren().add(this.gameWin.getPGameWin());
+
         pMenu.getChildren().add(this.menu.getBackgroundMenu());
         pMenu.getChildren().add(this.menu.getpMenu());
         pMenu.getChildren().add(this.menu.getSettings().getMenuSettings());
 
         // Add the KeyHandler for keyboard input
-        keyHandler = new KeyHandler(this.player, this, this.menu, this.gameOver);
+        keyHandler = new KeyHandler(this.player, this, this.menu, this.gameOver, this.gameWin);
         keyHandler.addKeyListener(gameScene);
 
         // CSV-Datei lesen
@@ -128,12 +137,20 @@ public class GameScene {
         return gameOver;
     }
 
+    public GameWin getGameWin() {
+        return  gameWin;
+    }
+
     public Wall getWall() {
         return this.wall;
     }
 
     public Item getItem() {
         return this.item;
+    }
+
+    public Door getDoor() {
+        return this.door;
     }
 
     public CollisionChecker getChecker() {
