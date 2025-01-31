@@ -112,12 +112,12 @@ public class GameScene {
         this.pWallsItems.getChildren().add(rectangle);
     }
 
-    public void pGameChildrenRemove(ImageView image) {
-        this.pGame.getChildren().remove(image);
+    public void pGameChildren(ImageView image) {
+        this.pWallsItems.getChildren().add(image);
     }
 
-    public void pGameChildren(ImageView image) {
-        this.pGame.getChildren().add(image);
+    public void pGameChildrenRemove(ImageView image) {
+        this.pWallsItems.getChildren().remove(image);
     }
 
     // Getter methode

@@ -4,8 +4,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class Door extends Object {
-    private Image doorImage;
     private ImageView ivDoor = new ImageView();
+
+    private Boolean doorOpen = false;
 
     public Door(int x, int y, int width, int height, String texture) {
         // Parameterwerte setzen und Wand erstellen
@@ -26,8 +27,12 @@ public class Door extends Object {
         this.ivDoor.setFitHeight(this.height);
     }
 
-    // Getter für Rectangle
+    public void openDoor() {
+        this.ivDoor.setImage(new Image("file:src/resources/textures/items/DoorOpen.png"));
+        this.doorOpen = true;
+    }
 
+    // Getter für Rectangle
     public ImageView getIDoor() {
         return ivDoor;
     }
@@ -49,11 +54,23 @@ public class Door extends Object {
         return player_block_collision;
     }
 
+    public void setPlayer_block_collision(boolean collision) {
+        this.player_block_collision = collision;
+    }
+
     public void setX(int x) {
         this.positionX = x;
     }
 
     public void setY(int y) {
         this.positionY = y;
+    }
+
+    public Boolean getDoorOpen() {
+        return doorOpen;
+    }
+
+    public void setDoorOpen(Boolean doorOpen) {
+        this.doorOpen = doorOpen;
     }
 }

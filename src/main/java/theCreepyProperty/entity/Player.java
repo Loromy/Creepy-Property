@@ -7,80 +7,56 @@ import theCreepyProperty.main.GUI;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-
 public class Player extends Entity{
     private final GUI gui;
     private double controlSpeed = 0; // speed if strg pressed
     private final ImageView i_player = new ImageView();
 
-
     public Player(GUI gui)  {
         this.gui = gui;
         setDefaultValues();
-
-//        this.i_player.setX(entity_world_X);
-//        this.i_player.setY(entity_world_Y);
-//
-//        this.i_player.setFitWidth(entity_size_X);
-//        this.i_player.setFitHeight(entity_size_Y);
-
         this.solid_player_aria = new Rectangle();
         this.solid_player_aria.setVisible(false); //Collision Block of player invisible
-
         this.solid_player_aria.setX(entity_world_X);
         this.solid_player_aria.setY(entity_world_Y);
         this.solid_player_aria.setWidth(entity_size_X);
         this.solid_player_aria.setHeight(entity_size_Y);
-
         this.i_player.xProperty().bind(solid_player_aria.xProperty().subtract(18));
         this.i_player.yProperty().bind(solid_player_aria.yProperty().subtract(20));
         this.i_player.fitWidthProperty().bind(solid_player_aria.widthProperty().add(36));
         this.i_player.fitHeightProperty().bind(solid_player_aria.heightProperty().add(20));
-
-
-//        this.solid_player_aria = new Rectangle(1,1,Color.RED);
-//
-//        // Binde die Position und Größe des Rechtecks an das ImageView
-//        this.solid_player_aria.widthProperty().bind(i_player.fitWidthProperty().subtract(10)); // 10 Pixel kleiner
-//        this.solid_player_aria.heightProperty().bind(i_player.fitHeightProperty().subtract(10)); // 10 Pixel kleiner
-//        this.solid_player_aria.xProperty().bind(i_player.xProperty().add(5)); // Hälfte von 10 abziehen
-//        this.solid_player_aria.yProperty().bind(i_player.yProperty().add(5));
-//
-//
-//        this.solid_player_aria.setVisible(true);
-        //todo solid_player_aria steuer und Bild drauf binden
-        //todo eventuel wird bild nicht angezeigt wenn recheck.visible(false) ist!
-
         createPlayerImage();
     }
 
-    public void createPlayerImage(){
-        // Bilder für die Bewegungen nach oben
-        up1 = new Image("file:src/resources/player/up_1.png");
-        up2 = new Image("file:src/resources/player/up_2.png");
-        up3 = new Image("file:src/resources/player/up_3.png");
-        up4 = new Image("file:src/resources/player/up_4.png");
+    public void createPlayerImage() {
+        up1 = loadImage("file:src/resources/player/up_1.png");
+        up2 = loadImage("file:src/resources/player/up_2.png");
+        up3 = loadImage("file:src/resources/player/up_3.png");
+        up4 = loadImage("file:src/resources/player/up_4.png");
+        down1 = loadImage("file:src/resources/player/down_1.png");
+        down2 = loadImage("file:src/resources/player/down_2.png");
+        down3 = loadImage("file:src/resources/player/down_3.png");
+        down4 = loadImage("file:src/resources/player/down_4.png");
+        left1 = loadImage("file:src/resources/player/left_1.png");
+        left2 = loadImage("file:src/resources/player/left_2.png");
+        left3 = loadImage("file:src/resources/player/left_3.png");
+        left4 = loadImage("file:src/resources/player/left_4.png");
+        right1 = loadImage("file:src/resources/player/right_1.png");
+        right2 = loadImage("file:src/resources/player/right_2.png");
+        right3 = loadImage("file:src/resources/player/right_3.png");
+        right4 = loadImage("file:src/resources/player/right_4.png");
+        System.out.println("[Player Image]: Player images successfully loaded ✔");
+    }
 
-        // Bilder für die Bewegungen nach unten
-        down1 = new Image("file:src/resources/player/down_1.png");
-        down2 = new Image("file:src/resources/player/down_2.png");
-        down3 = new Image("file:src/resources/player/down_3.png");
-        down4 = new Image("file:src/resources/player/down_4.png");
-
-        // Bilder für die Bewegungen nach links
-        left1 = new Image("file:src/resources/player/left_1.png");
-        left2 = new Image("file:src/resources/player/left_2.png");
-        left3 = new Image("file:src/resources/player/left_3.png");
-        left4 = new Image("file:src/resources/player/left_4.png");
-
-        // Bilder für die Bewegungen nach rechts
-        right1 = new Image("file:src/resources/player/right_1.png");
-        right2 = new Image("file:src/resources/player/right_2.png");
-        right3 = new Image("file:src/resources/player/right_3.png");
-        right4 = new Image("file:src/resources/player/right_4.png");
-
-        System.out.println("[System]: Player image created ✔"); //✖ //todo try/catch test
-
+    private Image loadImage(String path) {
+        Image image = new Image(path);
+        if (image.isError()) {
+            System.err.println("[Error]: Failed to load image: " + path);
+            if (image.getException() != null) {
+                image.getException().printStackTrace();
+            }
+        }
+        return image;
     }
 
     public ImageView draw() {
@@ -88,69 +64,39 @@ public class Player extends Entity{
 
         switch (direction) {
             case "up":
-                if (sprite_num == 1) {
-                    playerImage = up1;
-                } else if (sprite_num == 2) {
-                    playerImage = up2;
-                } else if (sprite_num == 3) {
-                    playerImage = up3;
-                } else if (sprite_num == 4) {
-                    playerImage = up4;
-                }
+                playerImage = switchSprite(up1, up2, up3, up4);
                 break;
-
             case "down":
-                if (sprite_num == 1) {
-                    playerImage = down1;
-                } else if (sprite_num == 2) {
-                    playerImage = down2;
-                } else if (sprite_num == 3) {
-                    playerImage = down3;
-                } else if (sprite_num == 4) {
-                    playerImage = down4;
-                }
+                playerImage = switchSprite(down1, down2, down3, down4);
                 break;
-
             case "left":
-                if (sprite_num == 1) {
-                    playerImage = left1;
-                } else if (sprite_num == 2) {
-                    playerImage = left2;
-                } else if (sprite_num == 3) {
-                    playerImage = left3;
-                } else if (sprite_num == 4) {
-                    playerImage = left4;
-                }
+                playerImage = switchSprite(left1, left2, left3, left4);
                 break;
-
             case "right":
-                if (sprite_num == 1) {
-                    playerImage = right1;
-                } else if (sprite_num == 2) {
-                    playerImage = right2;
-                } else if (sprite_num == 3) {
-                    playerImage = right3;
-                } else if (sprite_num == 4) {
-                    playerImage = right4;
-                }
+                playerImage = switchSprite(right1, right2, right3, right4);
                 break;
         }
-
         this.i_player.setImage(playerImage);
         return i_player;
     }
 
+    private Image switchSprite(Image img1, Image img2, Image img3, Image img4) {
+        return switch (sprite_num) {
+            case 1 -> img1;
+            case 2 -> img2;
+            case 3 -> img3;
+            case 4 -> img4;
+            default -> img1;
+        };
+    }
 
-    // set methode
     public void setPlayer_world_X(double player_world_X){
         this.entity_world_X = player_world_X;
-        //i_player.setX(player_world_X); // update player
         this.solid_player_aria.setX(player_world_X);
     }
 
     public void setPlayer_world_Y(double player_world_Y){
         this.entity_world_Y = player_world_Y;
-        //i_player.setY(player_world_Y); // update player
         this.solid_player_aria.setY(player_world_Y);
     }
 
@@ -168,16 +114,15 @@ public class Player extends Entity{
     }
 
     public void setDefaultValues() {
-        entity_size_X = 12; //48
-        entity_size_Y = 28; // 48
+        entity_size_X = 12;
+        entity_size_Y = 28;
         entity_world_X = ((double) gui.getWidth() / 2) - (entity_size_X / 2);
         entity_world_Y = ((double) gui.getHeight() / 2) - ((entity_size_Y / 2 ) + 19);
-        speed = 3; // 3 bei 60hz
+        speed = 3;
         direction = "down";
-        System.out.println("[System]: Player defaultValues set ✔"); //✖
+        System.out.println("[System]: Player defaultValues set ✔");
     }
 
-    // get methode
     public double getPlayer_world_X(){
         return entity_world_X;
     }

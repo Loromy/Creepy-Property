@@ -21,6 +21,8 @@ public class CollisionChecker {
     public void checkCollision(Player player, double nextX, double nextY) {
         Rectangle futurePlayer = new Rectangle(nextX, nextY, player.entity_size_X, player.entity_size_Y);
 
+        openDoorsInLevel(player);
+
         for (int i = 0; i < mapCreate.getWallList().size(); i++) {
             Rectangle wall = mapCreate.getWallList().get(i).getRWall();
 
@@ -53,11 +55,21 @@ public class CollisionChecker {
             ImageView door = mapCreate.getDoorList().get(i).getIDoor();
 
             if (futurePlayer.intersects(door.getBoundsInLocal()) && mapCreate.getDoorList().get(i).getPlayer_block_collision()) {
-                if (player.keys_eingesammelt >= 3) {
+                player.collision_on = true;
+
+                if (mapCreate.getDoorList().get(i).getDoorOpen()) {
                     this.scene.getGameWin().triggerGameWin();
                 }
 
                 return;
+            }
+        }
+    }
+
+    private void openDoorsInLevel(Player player) {
+        for (int i = 0; i < mapCreate.getDoorList().size(); i++) {
+            if (player.keys_eingesammelt >= 3) {
+                this.mapCreate.getDoorList().get(i).openDoor();
             }
         }
     }

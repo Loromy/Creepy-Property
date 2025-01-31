@@ -29,27 +29,41 @@ public class MapCreate {
         this.levelData = levelData;
 
         for (int i = 0; i < this.levelData.getWalls().size(); i++) {
-            System.out.println("[Map Creator]: Wall id " + i);
+            //System.out.println("[Map Creator]: Wall id " + i);
 
             this.wall = new Wall(levelData.getWalls().get(i).getX(), levelData.getWalls().get(i).getY(), levelData.getWalls().get(i).getWidth(), levelData.getWalls().get(i).getHeight(), levelData.getWalls().get(i).getTexture());
             this.wallList.add(this.wall);
             this.scene.pGameChildren(this.wall.getRWall());
+
+            if (this.levelData.getWalls().size()-1 == i) {
+                i++;
+                System.out.println("[Map Creator]: " + i + " Walls created");
+            }
         }
 
         for (int i = 0; i < this.levelData.getItems().size(); i++) {
-            System.out.println("[Map Creator]: Item id " + i);
+            //System.out.println("[Map Creator]: Item id " + i);
 
             this.item = new Item(levelData.getItems().get(i).getX(), levelData.getItems().get(i).getY(), levelData.getItems().get(i).getWidth(), levelData.getItems().get(i).getHeight(), levelData.getItems().get(i).getTexture());
             this.itemList.add(this.item);
             this.scene.pGameChildren(this.item.getIItem());
+            if (this.levelData.getItems().size()-1 == i) {
+                i++;
+                System.out.println("[Map Creator]: " + i + " Items created");
+            }
         }
 
         for (int i = 0; i < this.levelData.getDoors().size(); i++) {
-            System.out.println("[Map Creator]: Door id " + i);
+            //System.out.println("[Map Creator]: Door id " + i);
 
             this.door = new Door(levelData.getDoors().get(i).getX(), levelData.getDoors().get(i).getY(), levelData.getDoors().get(i).getWidth(), levelData.getDoors().get(i).getHeight(), levelData.getDoors().get(i).getTexture());
             this.doorList.add(this.door);
             this.scene.pGameChildren(this.door.getIDoor());
+
+            if (this.levelData.getDoors().size()-1 == i) {
+                i++;
+                System.out.println("[Map Creator]: " + i + " Doors created");
+            }
         }
     }
 
