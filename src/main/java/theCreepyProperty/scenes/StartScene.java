@@ -25,29 +25,6 @@ public class StartScene {
     }
 
     private void createScene() {
-//        StackPane root = new StackPane();
-//
-//        // Buttons erstellen
-//        Button startButton = new Button("Start Game");
-//        Button quitButton = new Button("Quit");
-//
-//        // Aktionen für die Buttons
-//        startButton.setOnAction(e -> {
-//            System.out.println("[StartScene]: Wechsel zu GameScene");
-//            gui.switchToGameScene();
-//        });
-//
-//        quitButton.setOnAction(e -> {
-//            System.out.println("[StartScene]: Anwendung wird geschlossen");
-//            System.exit(0);
-//        });
-//
-//        // Buttons zum Layout hinzufügen
-//        root.getChildren().addAll(startButton, quitButton);
-//
-//        // Szene initialisieren
-//        this.scene = new Scene(root, gui.getWidth(), gui.getHeight());
-
         // Start Screen
         StackPane startScreen = new StackPane();
 
@@ -58,11 +35,11 @@ public class StartScene {
         this.startScene = new Scene(startScreen, gui.getWidth(), gui.getHeight());
 
         startMenue.getStartButton().setOnAction(e -> {
-            System.out.println("[Start Menu]: Spiel wird gestartet...");
+            System.out.println("[Start Menu]: Spiel wird gestartet... ✔");
             gui.switchToLevelSelectScene();
         });
         startMenue.getQuitButton().setOnAction(e -> {
-            System.out.println("[Start Menu]: Quit");
+            System.out.println("[Start Menu]: Quit ✔");
             System.exit(0);
         });
     }

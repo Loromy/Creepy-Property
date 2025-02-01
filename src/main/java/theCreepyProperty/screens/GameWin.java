@@ -7,10 +7,12 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import theCreepyProperty.main.GUI;
 import theCreepyProperty.scenes.GameScene;
+import theCreepyProperty.scenes.LevelSelectScene;
 
 public class GameWin extends VBox{
-    private GUI gui;
-    private GameScene scene;
+    private final GUI gui;
+    private final GameScene gameScene;
+    private final LevelSelectScene levelSelectScene;
     private final Pane backgroundGameWin = new Pane(); // Background
     private final Pane pGameWin = new Pane(); // Menu Items
     private final VBox vBoxGameWin = new VBox();
@@ -18,12 +20,13 @@ public class GameWin extends VBox{
     private boolean gameWin_on = false;
 
     private final Label text;
-    private final Button retryButton;
-    private final Button quitButton;
+    private final Button backButton;
+    private final Button nextButton;
 
-    public GameWin(GUI gui, GameScene scene) {
+    public GameWin(GUI gui, GameScene gameScene) {
         this.gui = gui;
-        this.scene = scene;
+        this.gameScene = gameScene;
+        this.levelSelectScene = this.gui.getSelectScene();
 
         //overlay
         this.backgroundGameWin.setStyle("-fx-background-color: rgba(0, 255, 0, 0.7);");
@@ -33,13 +36,15 @@ public class GameWin extends VBox{
         // Add menu items
         this.text = new Label("Congratulations");
         this.text.setId("game-win-text"); // Spezifische ID für den GameOver-Text
-        this.retryButton = new Button("Back");
-        this.retryButton.setId("game-win"); // Spezifische ID für den Retry-Button
-        this.quitButton = new Button("Quit");
-        this.quitButton.setId("game-win"); // Spezifische ID für den Quit-Button
+
+        this.backButton = new Button("Back");
+        this.backButton.setId("game-win"); // Spezifische ID für den Retry-Button
+
+        this.nextButton = new Button("Next");
+        this.nextButton.setId("game-win"); // Spezifische ID für den Retry-Button
 
         // Add buttons to the VBox
-        this.vBoxGameWin.getChildren().addAll(text, retryButton, quitButton);
+        this.vBoxGameWin.getChildren().addAll(text, nextButton, backButton);
         this.vBoxGameWin.setId("background");
         this.pGameWin.getChildren().add(vBoxGameWin);
 
@@ -49,22 +54,24 @@ public class GameWin extends VBox{
         this.setGameOverPosition(500, 300, 10);
 
         // Button actions
-        retryButton.setOnAction(e -> onRetry());
-        quitButton.setOnAction(e -> onQuit());
+        backButton.setOnAction(e -> onBack());
+        nextButton.setOnAction(e -> onNext());
     }
 
     public void triggerGameWin(){
         if (!gameWin_on) {
             this.backgroundGameWin.setVisible(true);
             this.pGameWin.setVisible(true);
-            this.scene.setBlur(15); //Menu blur
+            this.gameScene.setBlur(15); //Menu blur
             this.gameWin_on = true;
 
-            this.retryButton.requestFocus();
+            this.backButton.requestFocus();
+
+            this.levelSelectScene.setLevelCompleted(this.levelSelectScene.getMapSelected(), true);
         } else {
             this.backgroundGameWin.setVisible(false);
             this.pGameWin.setVisible(false);
-            this.scene.setBlur(0); //Menu blur
+            this.gameScene.setBlur(0); //Menu blur
             this.gameWin_on = false;
         }
     }
@@ -77,15 +84,35 @@ public class GameWin extends VBox{
         this.vBoxGameWin.setAlignment(Pos.CENTER);
     }
 
-    private void onRetry() {
-        System.out.println("[Game Over]: Retry");
-        this.triggerGameWin();
+    private void setMap() {
+         this.levelSelectScene.setMapSelected(this.levelSelectScene.getMapSelected() + 1);
+
+
+        switch (this.levelSelectScene.getMapSelected()) {
+            case 1:
+                this.gui.setFilePath("src/resources/csv/maps/map1.csv");
+                System.out.println("[Level]: 1 selected ✔");
+                break;
+            case 2:
+                this.gui.setFilePath("src/resources/csv/maps/map2.csv");
+                System.out.println("[Level]: 2 selected ✔");
+                break;
+            default:
+                System.out.println("[Error]: Invalid map selection ✖");
+                break;
+        }
+    }
+
+    private void onBack() {
+        System.out.println("[Game Win]: Back ✔");
         this.gui.switchToLevelSelectScene();
     }
 
-    private void onQuit() {
-        System.out.println("[Game Over]: Quit");
-        System.exit(0);
+    private void onNext() {
+        System.out.println("[Game Win]: Next ✔");
+        this.gui.switchToLevelSelectScene();
+        setMap();
+        this.gui.switchToGameScene();
     }
 
     public boolean getGameWin_On() {

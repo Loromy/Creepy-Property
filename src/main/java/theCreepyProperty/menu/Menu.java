@@ -103,18 +103,18 @@ public class Menu extends VBox {
 //    }
 
     private void onResume() {
-        System.out.println("[Menu]: Back to Game");
+        System.out.println("[Menu]: Back to Game ✔");
         this.triggerMenu();
     }
 
     private void onSettings() {
-        System.out.println("[Menu]: Open settings menu");
+        System.out.println("[Menu]: Open settings menu ✔");
         this.pMenu.setVisible(false);
         this.settings.triggerSettings();
     }
 
     private void onBack() {
-        System.out.println("[Menu]: Start Menu");
+        System.out.println("[Menu]: Start Menu ✔");
         this.gui.switchToStartScene();
     }
 

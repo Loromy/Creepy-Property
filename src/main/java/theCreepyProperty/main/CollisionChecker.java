@@ -77,7 +77,7 @@ public class CollisionChecker {
 
     private void openDoorsInLevel(Player player) {
         for (int i = 0; i < mapCreate.getDoorList().size(); i++) {
-            if (player.keys_eingesammelt >= 3 && !this.isPlayed) {
+            if (player.keys_eingesammelt >= this.mapCreate.getNetToCollectKeys() && !this.isPlayed) {
                 this.isPlayed = true;
                 this.soundPlayer = new SoundPlayer("src/resources/sounds/doorOpen.wav");
                 this.soundPlayer.play();

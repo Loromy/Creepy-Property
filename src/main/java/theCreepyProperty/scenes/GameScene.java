@@ -105,7 +105,7 @@ public class GameScene {
 
         // Menu
         this.pMenu.setVisible(false);
-    } //todo beim schleisen einer stage ganz löschen!!!!!!!!!!!
+    }
 
     public void pGameChildren(Rectangle rectangle) {
         this.pWallsItems.getChildren().add(rectangle);

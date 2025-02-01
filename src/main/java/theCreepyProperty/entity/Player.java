@@ -45,13 +45,13 @@ public class Player extends Entity{
         right2 = loadImage("file:src/resources/player/right_2.png");
         right3 = loadImage("file:src/resources/player/right_3.png");
         right4 = loadImage("file:src/resources/player/right_4.png");
-        System.out.println("[Player Image]: Player images successfully loaded ✔");
+        System.out.println("[Player Image]: Player images successfully loaded ✔ ️");
     }
 
     private Image loadImage(String path) {
         Image image = new Image(path);
         if (image.isError()) {
-            System.err.println("[Error]: Failed to load image: " + path);
+            System.err.println("[Error]: Failed to load image: " + path + " ️️✖");
             if (image.getException() != null) {
                 image.getException().printStackTrace();
             }
