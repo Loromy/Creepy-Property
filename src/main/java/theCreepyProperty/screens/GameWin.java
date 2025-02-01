@@ -67,6 +67,7 @@ public class GameWin extends VBox{
 
             this.backButton.requestFocus();
 
+            System.out.println("selected Level________" + this.levelSelectScene.getMapSelected());
             this.levelSelectScene.setLevelCompleted(this.levelSelectScene.getMapSelected(), true);
         } else {
             this.backgroundGameWin.setVisible(false);
@@ -85,17 +86,24 @@ public class GameWin extends VBox{
     }
 
     private void setMap() {
-         this.levelSelectScene.setMapSelected(this.levelSelectScene.getMapSelected() + 1);
+         this.levelSelectScene.setMapSelected(this.levelSelectScene.getMapSelected()); //todo
 
-
-        switch (this.levelSelectScene.getMapSelected()) {
+        int level = this.levelSelectScene.getMapSelected() + 1;
+        switch (level) {
             case 1:
                 this.gui.setFilePath("src/resources/csv/maps/map1.csv");
                 System.out.println("[Level]: 1 selected ✔");
+                this.levelSelectScene.setMapSelected(1);
                 break;
             case 2:
                 this.gui.setFilePath("src/resources/csv/maps/map2.csv");
                 System.out.println("[Level]: 2 selected ✔");
+                this.levelSelectScene.setMapSelected(2);
+                break;
+            case 3:
+                this.gui.setFilePath("src/resources/csv/maps/map3.csv");
+                System.out.println("[Level]: 3 selected ✔");
+                this.levelSelectScene.setMapSelected(3);
                 break;
             default:
                 System.out.println("[Error]: Invalid map selection ✖");
