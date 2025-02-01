@@ -93,25 +93,32 @@ public class LevelSelectScene {
 
         levelMenu.getStartButton().setOnAction(e -> {
             System.out.println("[LevelSelectScene]: Spiel wird gestartet... ✔");
-            gui.switchToGameScene();
+            this.gui.switchToGameScene();
         });
         levelMenu.getBackButton().setOnAction(e -> {
             System.out.println("[LevelSelectScene]: Start Menu ✔");
-            gui.switchToStartScene();
+            this.gui.switchToStartScene();
         });
     }
 
-    private void setMap(int map) {
+    public void setMap(int map) {
         this.mapSelected = map;
 
         switch (mapSelected) {
             case 1:
                 this.gui.setFilePath("src/resources/csv/maps/map1.csv");
                 System.out.println("[LevelSelectScene]: 1 selected ✔");
+                this.mapSelected = 1;
                 break;
             case 2:
                 this.gui.setFilePath("src/resources/csv/maps/map2.csv");
                 System.out.println("[LevelSelectScene]: 2 selected ✔");
+                this.mapSelected = 2;
+                break;
+            case 3:
+                this.gui.setFilePath("src/resources/csv/maps/map3.csv");
+                System.out.println("[LevelSelectScene]: 3 selected ✔");
+                this.mapSelected = 3;
                 break;
             default:
                 System.out.println("[LevelSelectScene]: Invalid map selection ✖");
