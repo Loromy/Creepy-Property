@@ -136,7 +136,7 @@ public class Settings {
 //    }
 
     private void onBack() {
-        System.out.println("[Settings]: Back");
+        System.out.println("[Settings]: Back ✔");
         triggerSettings(); // Settings
         this.menu.getpMenu().setVisible(true); //Start Menu
         this.menu.triggerFocus();
@@ -145,26 +145,26 @@ public class Settings {
     private void onButton1() {
         this.scene.getGameOver().triggerGameOver();
         this.backButton.requestFocus();
-        System.out.println("[Settings]: button1 (Game Over Screen)");
+        System.out.println("[Settings]: button1 (Game Over Screen) ✔");
     }
 
     private void onButton2() {
-        System.out.println("[Settings]: button2");
+        System.out.println("[Settings]: button2 ✔");
     }
 
     private void onButton3() {
-        System.out.println("[Settings]: button3");
+        System.out.println("[Settings]: button3 ✔");
     }
 
     private void onButton4() {
-        System.out.println("[Settings]: button4");
+        System.out.println("[Settings]: button4 ✔");
     }
 
     private void onButton5() {
-        System.out.println("[Settings]: button5");
+        System.out.println("[Settings]: button5 ✔");
     }
 
     private void onButton6() {
-        System.out.println("[Settings]: button6");
+        System.out.println("[Settings]: button6 ✔");
     }
 }

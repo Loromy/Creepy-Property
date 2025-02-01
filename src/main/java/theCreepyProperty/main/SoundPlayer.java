@@ -14,7 +14,7 @@ public class SoundPlayer {
             clip = AudioSystem.getClip();
             clip.open(audioStream);
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-            System.err.println("Fehler beim Laden der Audiodatei: " + e.getMessage());
+            System.err.println("[SoundPlayer]: Fehler beim Laden der Audiodatei: " + e.getMessage() + " ️️✖");
         }
     }
 

@@ -89,7 +89,7 @@ public class KeyHandler {
                     fps = frameCount;  // FPS speichern
                     frameCount = 0;  // Frame-Zähler zurücksetzen
                     lastFPSUpdate = now;  // Zeitpunkt der letzten Messung aktualisieren
-                    System.out.println("FPS: " + fps); // FPS ausgeben
+                    //System.out.println("FPS: " + fps); // FPS ausgeben
 
                     // FPS in der GUI anzeigen
                     gameScene.getGuiComponents().updateFPS(fps);

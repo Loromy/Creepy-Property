@@ -85,12 +85,12 @@ public class GameOver extends VBox{
 //    }
 
     private void onRetry() {
-        System.out.println("[Game Over]: Retry");
+        System.out.println("[Game Over]: Retry ✔");
         this.triggerGameOver();
     }
 
     private void onQuit() {
-        System.out.println("[Game Over]: Quit");
+        System.out.println("[Game Over]: Quit ✔");
         System.exit(0);
     }
 

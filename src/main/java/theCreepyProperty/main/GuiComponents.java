@@ -7,11 +7,11 @@ import theCreepyProperty.menu.Menu;
 
 public class GuiComponents {
     private Player player;
+    private final Menu menu;
+
     private final Label l_speed ;
     private final Label l_keys;
     private final Label l_fps;
-
-    private final Menu menu;
 
     public GuiComponents(Player player, Menu menu){
         this.player = player;

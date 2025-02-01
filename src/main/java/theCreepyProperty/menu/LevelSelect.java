@@ -77,7 +77,7 @@ public class LevelSelect {
         this.backButton.setStyle("-fx-pref-width: 200px; -fx-min-width: 200px;");
 
         // disable
-        //this.bL2.setDisable(true);
+        this.bL2.setDisable(true);
         this.bL3.setDisable(true);
         this.bL4.setDisable(true);
         this.bL5.setDisable(true);
