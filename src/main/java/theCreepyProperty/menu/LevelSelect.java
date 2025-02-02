@@ -78,7 +78,7 @@ public class LevelSelect {
 
         // disable
         this.bL2.setDisable(true);
-        this.bL3.setDisable(true);
+        //this.bL3.setDisable(true);
         this.bL4.setDisable(true);
         this.bL5.setDisable(true);
         this.bL6.setDisable(true);

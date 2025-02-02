@@ -64,7 +64,8 @@ public class LevelSelectScene {
         });
 
         levelMenu.getbL3().setOnAction(e ->{
-
+            setMap(3);
+            levelMenu.getStartButton().setDisable(false);
         });
 
         levelMenu.getbL4().setOnAction(e ->{
