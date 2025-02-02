@@ -8,6 +8,7 @@ import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import theCreepyProperty.Map.LevelData;
@@ -116,26 +117,27 @@ public class GameScene {
 
     private void drawDarknessOverlay() {
         GraphicsContext gc = darknessCanvas.getGraphicsContext2D();
-
-        // Canvas löschen
         gc.clearRect(0, 0, darknessCanvas.getWidth(), darknessCanvas.getHeight());
 
-        // KOMPLETT SCHWARZE EBENE
         gc.setFill(Color.BLACK);
         gc.fillRect(0, 0, darknessCanvas.getWidth(), darknessCanvas.getHeight());
 
-        // Nur den Spieler sichtbar machen
         double playerX = player.getPlayer_world_X();
         double playerY = player.getPlayer_world_Y();
-        double visionRadius = 50; // Nur Spieler sichtbar
+        double visionRadius = 50;
 
-        // "Loch" in das schwarze Overlay schneiden (komplett durchsichtig)
         gc.clearRect(playerX - visionRadius, playerY - visionRadius, visionRadius * 2, visionRadius * 2);
 
-        // Alternativ: Glatter Kreis-Effekt
-        gc.setFill(new Color(0, 0, 0, 0)); // Transparenz
-        gc.fillOval(playerX - visionRadius, playerY - visionRadius, visionRadius * 2, visionRadius * 2);
+//        // Erzeuge eine weiche Transparenz um den Spieler
+//        int i = 1;
+//        //for (int i = 0; i < 10; i++) {
+//            double alpha = 0.1 * (10 - i);
+//            gc.setFill(new Color(0, 0, 0, alpha));
+//            gc.fillOval(playerX - visionRadius - i * 5, playerY - visionRadius - i * 5,
+//                    (visionRadius + i * 5) * 2, (visionRadius + i * 5) * 2);
+//        //}
     }
+
 
     public void updateGameScene() {
         drawDarknessOverlay();
