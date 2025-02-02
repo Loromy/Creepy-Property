@@ -7,8 +7,6 @@ wall,195,318,400,20,black
 wall,595,318,10,200,black
 wall,356,218,40,100,black
 item,295,257,50,50,file:src/resources/textures/items/Key.png
-item,919,512,40,40,file:src/resources/textures/items/Key.png
 item,540,353,30,30,file:src/resources/textures/items/Key.png
-item,823,74,30,30,file:src/resources/textures/items/Key.png
 item,119,486,30,30,file:src/resources/textures/items/Key.png
 door,200,200,50,50,file:src/resources/textures/items/door.png

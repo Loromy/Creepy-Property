@@ -14,15 +14,20 @@ public class CollisionChecker {
     private SoundPlayer soundPlayer;
 
     private boolean isPlayed = false;
+    private int keysToColect = 0;
 
     public CollisionChecker(GameScene scene) {
         this.scene = scene;
         this.mapCreate = scene.getMapCreate();
-
     }
 
     public void checkCollision(Player player, double nextX, double nextY) {
         Rectangle futurePlayer = new Rectangle(nextX, nextY, player.entity_size_X, player.entity_size_Y);
+
+        if (keysToColect <= this.mapCreate.getItemList().size()) {
+            this.keysToColect = this.mapCreate.getItemList().size();
+            this.scene.getGuiComponents().getL_keys().setText("Keys: " + player.getKeyEingesammelt() + "/" + keysToColect); // Gui component update
+        }
 
         openDoorsInLevel(player);
 
@@ -49,7 +54,7 @@ public class CollisionChecker {
                 scene.pGameChildrenRemove(mapCreate.getItemList().get(i).getIItem()); // remove Item from Pane
                 mapCreate.getItemList().remove(i);
 
-                this.scene.getGuiComponents().getL_keys().setText("Keys: " + player.getKeyEingesammelt()); // Gui component update
+                this.scene.getGuiComponents().getL_keys().setText("Keys: " + player.getKeyEingesammelt() + "/" + keysToColect); // Gui component update
                 return;
             }
         }
