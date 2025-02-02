@@ -164,6 +164,7 @@ public class KeyHandler {
             dx /= length;
             dy /= length;
         }
+        this.scene.updateGameScene();
 
         // FPS-unabhängige Bewegung berechnen
         double speed = player.getSpeed() * deltaTime * 60; // Normale Geschwindigkeit für 60 FPS

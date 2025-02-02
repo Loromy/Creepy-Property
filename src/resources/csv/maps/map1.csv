@@ -3,7 +3,7 @@ wall,0,-5,1000,10,black
 wall,995,0,10,600,black
 wall,0,595,1000,10,black
 wall,-5,0,10,600,black
-wall,300,180,10,100,black
+wall,300,180,10,100,green
 wall,300,180,300,10,black
 wall,600,180,10,380,black
 wall,360,190,10,50,black
