@@ -2,12 +2,11 @@ package theCreepyProperty.scenes;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -25,18 +24,20 @@ import theCreepyProperty.screens.GameWin;
 
 public class GameScene {
 
-    private final Stage stage;  // Referenz zur Haupt-Stage
-    private final GUI gui;      // Referenz zur GUI-Klasse
-    private Scene gameScene;        // Szene des Spiels
+    private final Stage stage;
+    private final GUI gui;
+    private Scene gameScene;
 
     // Game Scene Pane
-    private final Pane root = new Pane(); //main
-    private final Pane pMenu = new Pane(); //Menu
+    private final Pane root = new Pane();
+    private final Pane pMenu = new Pane();
     private final Pane pGameOver = new Pane();
     private final Pane pGameWin = new Pane();
-    private final Pane pGame = new Pane(); //game stuff
-    private final Pane pWallsItems = new Pane(); //Walls und Items
+    private final Pane pGame = new Pane();
+    private final Pane pWallsItems = new Pane();
 
+    // Darkness Overlay
+    private final Canvas darknessCanvas = new Canvas();
 
     // Game Scene Classes
     private KeyHandler keyHandler;
@@ -58,7 +59,7 @@ public class GameScene {
         this.gui = gui;
 
         this.player = new Player(this.gui);
-        this.gameOver = new GameOver(this.gui,this);
+        this.gameOver = new GameOver(this.gui, this);
         this.gameWin = new GameWin(this.gui, this);
         this.menu = new Menu(this.gui, this);
         this.guiComponents = new GuiComponents(this.player, this.menu);
@@ -68,14 +69,14 @@ public class GameScene {
     }
 
     private void createScene() {
-        root.getChildren().addAll(pGame,pGameOver,pGameWin,pMenu);
+        root.getChildren().addAll(pGame, pGameOver, pGameWin, pMenu);
         gameScene = new Scene(root, gui.getWidth(), gui.getHeight());
 
         //Styles //todo überprüfen ob style.css richtig geladen wurde
         gameScene.getStylesheets().add(("file:src/resources/style/style.css"));
 
-        // Additional GUI components could be added here
         root.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, null)));
+
         pGame.getChildren().add(this.pWallsItems);
         pGame.getChildren().add(this.player.getSolidPlayerAria());
         pGame.getChildren().add(this.player.draw());
@@ -83,6 +84,13 @@ public class GameScene {
         pGame.getChildren().add(this.guiComponents.getL_keys());
         pGame.getChildren().add(this.guiComponents.getL_fps());
 
+        // Darkness Overlay
+        darknessCanvas.setWidth(gui.getWidth());
+        darknessCanvas.setHeight(gui.getHeight());
+        pGame.getChildren().add(darknessCanvas);
+        drawDarknessOverlay();  // Erstes Zeichnen
+
+        // Game Over / Win Menüs hinzufügen
         pGameOver.getChildren().add(this.gameOver.getBackgroundGameOver());
         pGameOver.getChildren().add(this.gameOver.getPGameOver());
 
@@ -93,7 +101,7 @@ public class GameScene {
         pMenu.getChildren().add(this.menu.getpMenu());
         pMenu.getChildren().add(this.menu.getSettings().getMenuSettings());
 
-        // Add the KeyHandler for keyboard input
+        // KeyHandler hinzufügen
         keyHandler = new KeyHandler(this.player, this, this.menu, this.gameOver, this.gameWin);
         keyHandler.addKeyListener(gameScene, this);
 
@@ -103,8 +111,34 @@ public class GameScene {
         // Wände erstellen
         mapCreate.createMap(this, levelData);
 
-        // Menu
         this.pMenu.setVisible(false);
+    }
+
+    private void drawDarknessOverlay() {
+        GraphicsContext gc = darknessCanvas.getGraphicsContext2D();
+
+        // Canvas löschen
+        gc.clearRect(0, 0, darknessCanvas.getWidth(), darknessCanvas.getHeight());
+
+        // KOMPLETT SCHWARZE EBENE
+        gc.setFill(Color.BLACK);
+        gc.fillRect(0, 0, darknessCanvas.getWidth(), darknessCanvas.getHeight());
+
+        // Nur den Spieler sichtbar machen
+        double playerX = player.getPlayer_world_X();
+        double playerY = player.getPlayer_world_Y();
+        double visionRadius = 50; // Nur Spieler sichtbar
+
+        // "Loch" in das schwarze Overlay schneiden (komplett durchsichtig)
+        gc.clearRect(playerX - visionRadius, playerY - visionRadius, visionRadius * 2, visionRadius * 2);
+
+        // Alternativ: Glatter Kreis-Effekt
+        gc.setFill(new Color(0, 0, 0, 0)); // Transparenz
+        gc.fillOval(playerX - visionRadius, playerY - visionRadius, visionRadius * 2, visionRadius * 2);
+    }
+
+    public void updateGameScene() {
+        drawDarknessOverlay();
     }
 
     public void pGameChildren(Rectangle rectangle) {
@@ -119,7 +153,7 @@ public class GameScene {
         this.pWallsItems.getChildren().remove(image);
     }
 
-    // Getter methode
+    // Getter Methoden
     public GuiComponents getGuiComponents() {
         return guiComponents;
     }
@@ -137,7 +171,7 @@ public class GameScene {
     }
 
     public GameWin getGameWin() {
-        return  gameWin;
+        return gameWin;
     }
 
     public Wall getWall() {
@@ -172,8 +206,8 @@ public class GameScene {
         return this.player;
     }
 
-    // Setter methods
-    public void setBlur(int strange){
+    // Setter Methoden
+    public void setBlur(int strange) {
         pGame.setEffect(new GaussianBlur(strange));
     }
 }
