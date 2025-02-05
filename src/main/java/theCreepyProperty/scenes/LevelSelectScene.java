@@ -5,19 +5,21 @@ import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import theCreepyProperty.Map.SetMap;
 import theCreepyProperty.main.GUI;
 import theCreepyProperty.menu.LevelSelect;
 
 public class LevelSelectScene {
 
     //private final Stage stage;
-    private final GUI gui;
+    private GUI gui;
     private final GameScene gameScene;
     private Scene levelSelectScene;
     private final LevelSelect levelMenu;
 
     private final Pane pLevelBlur = new Pane();
     private final Pane pLevelComponents = new Pane();
+    private final SetMap setMap;
 
     private int mapSelected = 0;
 
@@ -37,6 +39,7 @@ public class LevelSelectScene {
         this.gameScene = gameScene;
 
         this.levelMenu = new LevelSelect(this.gui,this);
+        setMap = new SetMap(this.gui);
         createScene();
     }
 
@@ -107,17 +110,17 @@ public class LevelSelectScene {
 
         switch (mapSelected) {
             case 1:
-                this.gui.setFilePath("src/resources/csv/maps/map1.csv");
+                this.gui.setFilePath(this.setMap.getPath1());
                 System.out.println("[LevelSelectScene]: 1 selected ✔");
                 this.mapSelected = 1;
                 break;
             case 2:
-                this.gui.setFilePath("src/resources/csv/maps/map2.csv");
+                this.gui.setFilePath(this.setMap.getPath2());
                 System.out.println("[LevelSelectScene]: 2 selected ✔");
                 this.mapSelected = 2;
                 break;
             case 3:
-                this.gui.setFilePath("src/resources/csv/maps/map3.csv");
+                this.gui.setFilePath(this.setMap.getPath3());
                 System.out.println("[LevelSelectScene]: 3 selected ✔");
                 this.mapSelected = 3;
                 break;

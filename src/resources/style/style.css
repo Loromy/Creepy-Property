@@ -128,7 +128,7 @@
 }
 
 #background {
-    -fx-background-color: rgba(0, 0, 0, 0.3);
+    -fx-background-color: rgba(3, 59, 1, 0.3);
     -fx-background-radius: 15px; /* 15px */
     -fx-padding: 25px;
 }
@@ -159,6 +159,15 @@
     -fx-font-weight: bold;
     -fx-effect: dropshadow(gaussian, rgba(0, 255, 0, 0.5), 5, 0, 5, 5);
     -fx-font-family: Creepster;
+}
+
+#gui-components {
+    -fx-alignment: center; /* zentrieren */
+    -fx-text-fill: linear-gradient(#525252 40%, #509974); /* Farbverlauf von weiß zu grün */
+    -fx-font-size: 15px; /* Schriftgröße */
+    -fx-font-weight: bold; /* fett */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.9), 2, 0, 2, 2); /* Schatten */
+    -fx-font-family: Creepster; /* Schriftart */
 }
 
 .label {

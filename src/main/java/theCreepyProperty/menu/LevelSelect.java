@@ -9,7 +9,7 @@ import theCreepyProperty.main.GUI;
 import theCreepyProperty.scenes.LevelSelectScene;
 
 public class LevelSelect {
-    private GUI gui;
+    private final GUI gui;
     private LevelSelectScene scene;
     private final Pane backgroundLevelSelect = new Pane(); // Background
     private final Pane pLevelSelect = new Pane(); // Menu Items
@@ -21,17 +21,17 @@ public class LevelSelect {
     private final HBox hBoxLevelButton = new HBox();
 
     private Label title;
-    private Button bL1;
-    private Button bL2;
-    private Button bL3;
-    private Button bL4;
-    private Button bL5;
-    private Button bL6;
-    private Button bL7;
-    private Button bL8;
-    private Button bL9;
-    private Button startButton;
-    private Button backButton;
+    private final Button bL1;
+    private final Button bL2;
+    private final Button bL3;
+    private final Button bL4;
+    private final Button bL5;
+    private final Button bL6;
+    private final Button bL7;
+    private final Button bL8;
+    private final Button bL9;
+    private final Button startButton;
+    private final Button backButton;
 
     public LevelSelect(GUI gui, LevelSelectScene scene) {
         this.gui = gui;
@@ -78,7 +78,7 @@ public class LevelSelect {
 
         // disable
         this.bL2.setDisable(true);
-        //this.bL3.setDisable(true);
+        this.bL3.setDisable(true);
         this.bL4.setDisable(true);
         this.bL5.setDisable(true);
         this.bL6.setDisable(true);

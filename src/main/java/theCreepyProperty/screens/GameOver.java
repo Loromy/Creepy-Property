@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import theCreepyProperty.Map.SetMap;
 import theCreepyProperty.main.GUI;
 import theCreepyProperty.scenes.GameScene;
 import theCreepyProperty.scenes.StartScene;
@@ -15,6 +16,7 @@ public class GameOver extends VBox{
     private final Pane backgroundGameOver = new Pane(); // Background
     private final Pane pGameOver = new Pane(); // Menu Items
     private final VBox vBoxGameOver = new VBox();
+    private final SetMap setMap;
 
     private boolean gameOver_on = false;
 
@@ -25,6 +27,7 @@ public class GameOver extends VBox{
     public GameOver(GUI gui, GameScene scene) {
         this.gui = gui;
         this.scene = scene;
+        setMap = new SetMap(this.gui);
 
         //overlay
         this.backgroundGameOver.setStyle("-fx-background-color: rgba(255, 0, 0, 0.7);");
@@ -87,6 +90,10 @@ public class GameOver extends VBox{
     private void onRetry() {
         System.out.println("[Game Over]: Retry ✔");
         this.triggerGameOver();
+
+        this.gui.switchToLevelSelectScene();
+        this.setMap.setThisMap();
+        this.gui.switchToGameScene();
     }
 
     private void onQuit() {
