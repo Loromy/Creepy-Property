@@ -63,7 +63,7 @@ public class GameScene {
         this.gameOver = new GameOver(this.gui, this);
         this.gameWin = new GameWin(this.gui, this);
         this.menu = new Menu(this.gui, this);
-        this.guiComponents = new GuiComponents(this.player, this.menu);
+        this.guiComponents = new GuiComponents(this.gui, this.player);
         this.checker = new CollisionChecker(this);
 
         createScene();
@@ -75,20 +75,22 @@ public class GameScene {
 
         //Styles //todo überprüfen ob style.css richtig geladen wurde
         gameScene.getStylesheets().add(("file:src/resources/style/style.css"));
+        pGame.getStylesheets().add(("file:src/resources/style/style.css"));
 
         root.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, null)));
 
         pGame.getChildren().add(this.pWallsItems);
         pGame.getChildren().add(this.player.getSolidPlayerAria());
         pGame.getChildren().add(this.player.draw());
+        pGame.getChildren().add(darknessCanvas); // black Overlay
+        pGame.getChildren().add(this.guiComponents.getL_level());
         pGame.getChildren().add(this.guiComponents.getL_speed());
         pGame.getChildren().add(this.guiComponents.getL_keys());
         pGame.getChildren().add(this.guiComponents.getL_fps());
 
-        // Darkness Overlay
+        // Darkness Overlay todo black overlay
         darknessCanvas.setWidth(gui.getWidth());
         darknessCanvas.setHeight(gui.getHeight());
-        pGame.getChildren().add(darknessCanvas);
         drawDarknessOverlay();  // Erstes Zeichnen
 
         // Game Over / Win Menüs hinzufügen
@@ -124,7 +126,7 @@ public class GameScene {
 
         double playerX = player.getPlayer_world_X();
         double playerY = player.getPlayer_world_Y();
-        double visionRadius = 50;
+        double visionRadius = 70;
 
         gc.clearRect(playerX - visionRadius, playerY - visionRadius, visionRadius * 2, visionRadius * 2);
 

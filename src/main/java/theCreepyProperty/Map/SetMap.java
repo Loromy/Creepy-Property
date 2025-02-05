@@ -1,0 +1,112 @@
+package theCreepyProperty.Map;
+
+import theCreepyProperty.main.GUI;
+import theCreepyProperty.scenes.LevelSelectScene;
+
+public class SetMap {
+    private final GUI gui;
+    private final LevelSelectScene levelSelectScene;
+
+    private final String path1 = "src/resources/csv/maps/map1.csv";
+    private final String path2 = "src/resources/csv/maps/map2.csv";
+    private final String path3 = "src/resources/csv/maps/map3.csv";
+    private final String path4 = "src/resources/csv/maps/map4.csv";
+    private final String path5 = "src/resources/csv/maps/map5.csv";
+    private final String path6 = "src/resources/csv/maps/map6.csv";
+    private final String path7 = "src/resources/csv/maps/map7.csv";
+    private final String path8 = "src/resources/csv/maps/map8.csv";
+    private final String path9 = "src/resources/csv/maps/map9.csv";
+
+
+    public SetMap(GUI gui) {
+        this.gui = gui;
+        this.levelSelectScene = gui.getSelectScene();
+    }
+
+    public void setMapPlus1() {
+        this.levelSelectScene.setMapSelected(this.levelSelectScene.getMapSelected()); //todo
+
+        int level = this.levelSelectScene.getMapSelected() + 1;
+        switch (level) {
+            case 1:
+                this.gui.setFilePath(path1);
+                System.out.println("[Level]: 1 selected ✔");
+                this.levelSelectScene.setMapSelected(1);
+                break;
+            case 2:
+                this.gui.setFilePath(path2);
+                System.out.println("[Level]: 2 selected ✔");
+                this.levelSelectScene.setMapSelected(2);
+                break;
+            case 3:
+                this.gui.setFilePath(path3);
+                System.out.println("[Level]: 3 selected ✔");
+                this.levelSelectScene.setMapSelected(3);
+                break;
+            default:
+                System.out.println("[Error]: Invalid map selection ✖");
+                break;
+        }
+    }
+
+    public void setThisMap() {
+        this.levelSelectScene.setMapSelected(this.levelSelectScene.getMapSelected()); //todo
+
+        switch (this.levelSelectScene.getMapSelected()) {
+            case 1:
+                this.gui.setFilePath(path1);
+                System.out.println("[Level]: 1 selected ✔");
+                this.levelSelectScene.setMapSelected(1);
+                break;
+            case 2:
+                this.gui.setFilePath(path2);
+                System.out.println("[Level]: 2 selected ✔");
+                this.levelSelectScene.setMapSelected(2);
+                break;
+            case 3:
+                this.gui.setFilePath(path3);
+                System.out.println("[Level]: 3 selected ✔");
+                this.levelSelectScene.setMapSelected(3);
+                break;
+            default:
+                System.out.println("[Error]: Invalid map selection ✖");
+                break;
+        }
+    }
+
+    public String getPath1() {
+        return this.path1;
+    }
+
+    public String getPath2() {
+        return this.path2;
+    }
+
+    public String getPath3() {
+        return this.path3;
+    }
+
+    public String getPath4() {
+        return this.path4;
+    }
+
+    public String getPath5() {
+        return this.path5;
+    }
+
+    public String getPath6() {
+        return this.path6;
+    }
+
+    public String getPath7() {
+        return this.path7;
+    }
+
+    public String getPath8() {
+        return this.path8;
+    }
+
+    public String getPath9() {
+        return this.path9;
+    }
+}

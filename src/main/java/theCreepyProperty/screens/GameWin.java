@@ -5,17 +5,19 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import theCreepyProperty.Map.SetMap;
 import theCreepyProperty.main.GUI;
 import theCreepyProperty.scenes.GameScene;
 import theCreepyProperty.scenes.LevelSelectScene;
 
 public class GameWin extends VBox{
-    private final GUI gui;
+    private GUI gui;
     private final GameScene gameScene;
     private final LevelSelectScene levelSelectScene;
     private final Pane backgroundGameWin = new Pane(); // Background
     private final Pane pGameWin = new Pane(); // Menu Items
     private final VBox vBoxGameWin = new VBox();
+    private final SetMap setMap;
 
     private boolean gameWin_on = false;
 
@@ -27,6 +29,7 @@ public class GameWin extends VBox{
         this.gui = gui;
         this.gameScene = gameScene;
         this.levelSelectScene = this.gui.getSelectScene();
+        setMap = new SetMap(this.gui);
 
         //overlay
         this.backgroundGameWin.setStyle("-fx-background-color: rgba(0, 255, 0, 0.7);");
@@ -85,32 +88,6 @@ public class GameWin extends VBox{
         this.vBoxGameWin.setAlignment(Pos.CENTER);
     }
 
-    private void setMap() {
-         this.levelSelectScene.setMapSelected(this.levelSelectScene.getMapSelected()); //todo
-
-        int level = this.levelSelectScene.getMapSelected() + 1;
-        switch (level) {
-            case 1:
-                this.gui.setFilePath("src/resources/csv/maps/map1.csv");
-                System.out.println("[Level]: 1 selected ✔");
-                this.levelSelectScene.setMapSelected(1);
-                break;
-            case 2:
-                this.gui.setFilePath("src/resources/csv/maps/map2.csv");
-                System.out.println("[Level]: 2 selected ✔");
-                this.levelSelectScene.setMapSelected(2);
-                break;
-            case 3:
-                this.gui.setFilePath("src/resources/csv/maps/map3.csv");
-                System.out.println("[Level]: 3 selected ✔");
-                this.levelSelectScene.setMapSelected(3);
-                break;
-            default:
-                System.out.println("[Error]: Invalid map selection ✖");
-                break;
-        }
-    }
-
     private void onBack() {
         System.out.println("[Game Win]: Back ✔");
         this.gui.switchToLevelSelectScene();
@@ -119,7 +96,7 @@ public class GameWin extends VBox{
     private void onNext() {
         System.out.println("[Game Win]: Next ✔");
         this.gui.switchToLevelSelectScene();
-        setMap();
+        this.setMap.setMapPlus1();
         this.gui.switchToGameScene();
     }
 
