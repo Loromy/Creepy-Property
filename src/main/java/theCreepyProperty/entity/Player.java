@@ -1,8 +1,6 @@
 package theCreepyProperty.entity;
 
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import theCreepyProperty.blocks.Wall;
 import theCreepyProperty.main.GUI;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;

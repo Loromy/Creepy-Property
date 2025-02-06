@@ -32,7 +32,7 @@ public class GameWin extends VBox{
         setMap = new SetMap(this.gui);
 
         //overlay
-        this.backgroundGameWin.setStyle("-fx-background-color: rgba(0, 255, 0, 0.7);");
+        this.backgroundGameWin.setStyle("-fx-background-color: rgba(0, 255, 0, 0.5);");
         this.backgroundGameWin.setVisible(false);
         this.pGameWin.setVisible(false);
 

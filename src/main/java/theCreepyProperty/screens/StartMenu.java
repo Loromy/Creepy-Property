@@ -32,6 +32,7 @@ public class StartMenu {
         this.title.setId("name");
         this.startButton = new Button("Play");
         this.quitButton = new Button("Quit");
+        this.quitButton.setId("quit-button");
 
         // Add buttons to the VBox
         this.vBoxGameOver.getChildren().addAll(title, startButton, quitButton);
