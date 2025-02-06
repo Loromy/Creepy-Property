@@ -70,7 +70,7 @@ public class GameScene {
         mapCreate.createMap(this, levelData);
 
         // Hintergrund
-        root.getChildren().add(new ImageView(new Image("file:src/resources/textures/flor/Flor.png")));
+        //root.getChildren().add(new ImageView(new Image("file:src/resources/textures/flor/Flor.png")));
 
         //GUI components
         this.guiComponents = new GuiComponents(this.gui, this.player,this);
@@ -83,7 +83,7 @@ public class GameScene {
         pGame.getStylesheets().add(("file:src/resources/style/style.css"));
 
         //root.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, null)));
-
+        pGame.getChildren().add(new ImageView(new Image("file:src/resources/textures/flor/Flor.png")));
         pGame.getChildren().add(this.pWallsItems);
         pGame.getChildren().add(this.player.getSolidPlayerAria());
         pGame.getChildren().add(this.player.draw());
@@ -102,6 +102,7 @@ public class GameScene {
         pMenu.getChildren().add(this.menu.getBackgroundMenu());
         pMenu.getChildren().add(this.menu.getpMenu());
         pMenu.getChildren().add(this.menu.getSettings().getMenuSettings());
+        pMenu.getChildren().add(this.menu.getSettings().getAudio().getMenuAudio());
 
         // KeyHandler hinzufügen
         keyHandler = new KeyHandler(this.player, this, this.menu, this.gameOver, this.gameWin);

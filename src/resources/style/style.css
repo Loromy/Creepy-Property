@@ -41,18 +41,50 @@
     -fx-border-radius: 10px; /* abgerundeten Ecken */
 }
 
+/* Gesamt-Styling des Sliders */
+.slider {
+    -fx-background-radius: 10px; /* abrunden */
+
+    -fx-padding: 1px 1px; /* Abstand */
+    -fx-alignment: center; /* zentrieren */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.7), 5, 0, 10, 10); /* Schatten */
+
+    -fx-pref-width: 300px;  /* Bevorzugte Breite */
+    -fx-pref-height: 50px;  /* Bevorzugte Höhe */
+    -fx-min-width: 100px;   /* Mindestbreite */
+    -fx-min-height: 50px;   /* Mindesthöhe */
+}
+
+/* Die Spur (Track) des Sliders */
+.slider .track {
+    -fx-background-color: linear-gradient(#525252 20%, #509974);
+    -fx-background-radius: 10px;
+    -fx-pref-height: 48px;
+}
+
+/* Der bewegliche Regler (Thumb) */
+.slider .thumb {
+    -fx-background-color: white;
+    -fx-background-radius: 5px;
+    -fx-pref-width: 14px;
+    -fx-pref-height: 55px;
+}
+
 /* Quit Button */
 #quit-button:hover {
+    -fx-text-fill: darkRed;
     -fx-background-color: linear-gradient(#edf7f2 20%, #d13636); /* Roter Farbverlauf bei Hover über "Quit"-Button */
 
 }
 
 #quit-button:pressed {
+    -fx-text-fill: darkRed;
     -fx-background-color: linear-gradient(#edf7f2 20%, #b80e02); /* Dunkel Roter Farbverlauf für den "Quit"-Button beim drücken */
 
 }
 
 #quit-button:focused {
+    -fx-text-fill: darkRed;
     -fx-background-color: linear-gradient(#edf7f2 20%, #d13636); /* Roter Farbverlauf bei Hover über "Quit"-Button */
 
 }

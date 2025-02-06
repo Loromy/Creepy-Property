@@ -99,11 +99,11 @@ public class GuiComponents {
     public void triggerAnzeige() {
         if (!anzeige_on) {
             this.vBox_anzeige.setVisible(true);
-            this.gui.getGameScene().getMenu().getSettings().getButton2().setText("Anzeige [ON]");
+            this.gui.getGameScene().getMenu().getSettings().getButton4().setText("Anzeige [ON]");
             this.anzeige_on = true;
         } else {
             this.vBox_anzeige.setVisible(false);
-            this.gui.getGameScene().getMenu().getSettings().getButton2().setText("Anzeige [OFF]");
+            this.gui.getGameScene().getMenu().getSettings().getButton4().setText("Anzeige [OFF]");
             this.anzeige_on = false;
         }
     }

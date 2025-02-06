@@ -8,10 +8,13 @@ import javafx.scene.layout.VBox;
 import theCreepyProperty.main.GUI;
 import theCreepyProperty.scenes.GameScene;
 
+import java.util.Scanner;
+
 public class Settings {
     private final GUI gui;
     private final GameScene scene;
     private final Menu menu;
+    private final Audio audio;
 
     private final Pane pMenuSettings = new Pane();
     private final VBox vBoxSettings = new VBox();
@@ -26,13 +29,15 @@ public class Settings {
     private Button button6;
 
     private Button backButton;
-
     private boolean settings_on = false;
+    String adminPasswort = "123";
 
     public Settings(GUI gui, GameScene scene, Menu menu) {
         this.gui = gui;
         this.scene = scene;
         this.menu = menu;
+
+        this.audio = new Audio(this.gui,this.scene,this);
 
         this.button1 = new Button();
         this.button2 = new Button();
@@ -47,14 +52,13 @@ public class Settings {
         // Button text
         this.backButton.setText("Back");
         this.button1.setText("Game Over Screen");
-        this.button2.setText("Anzeige [OFF]");
-        this.button3.setText("button3");
-        this.button4.setText("button4");
+        this.button2.setText("Audio Menu");
+        this.button3.setText("Collision [ON]");
+        this.button4.setText("Anzeige [OFF]");
         this.button5.setText("button5");
         this.button6.setText("Overlay [ON]");
 
-        this.button3.setDisable(true);
-        this.button4.setDisable(true);
+        this.button1.setStyle("-fx-text-fill: darkRed;");
         this.button5.setDisable(true);
 
         // getChildren
@@ -108,15 +112,31 @@ public class Settings {
     }
 
     private void onButton2() {
-        this.scene.getGuiComponents().triggerAnzeige();
+        this.pMenuSettings.setVisible(false);
+        this.audio.triggerAudio();
         System.out.println("[Settings]: button2 ✔");
     }
 
     private void onButton3() {
+        Scanner scanner = new Scanner(System.in);
+
+
+        System.out.print("-----------------------------------------\nBitte Administrator Passwort eingeben: ");
+        String eingegebenesPasswort = scanner.nextLine();
+
+        if (eingegebenesPasswort.equals(this.adminPasswort)) {
+            System.out.println("Aktion gewährt!\n-----------------------------------------");
+
+            this.scene.getMapCreate().triggerCollision();
+        } else {
+            System.out.println("Falsches Passwort!\n-----------------------------------------");
+        }
+
         System.out.println("[Settings]: button3 ✔");
     }
 
     private void onButton4() {
+        this.scene.getGuiComponents().triggerAnzeige();
         System.out.println("[Settings]: button4 ✔");
     }
 
@@ -125,7 +145,19 @@ public class Settings {
     }
 
     private void onButton6() {
-        this.scene.getPlayer().triggerOverlay();
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("-----------------------------------------\nBitte Administrator Passwort eingeben: ");
+        String eingegebenesPasswort = scanner.nextLine();
+
+        if (eingegebenesPasswort.equals(this.adminPasswort)) {
+            System.out.println("Aktion gewährt!\n-----------------------------------------");
+
+            this.scene.getPlayer().triggerOverlay();
+        } else {
+            System.out.println("Falsches Passwort!\n-----------------------------------------");
+        }
+
         System.out.println("[Settings]: button6 ✔");
     }
 
@@ -137,7 +169,6 @@ public class Settings {
     public boolean getSettingOn() {
         return settings_on;
     }
-
 
     public Button getButton1() {
         return button1;
@@ -161,6 +192,10 @@ public class Settings {
 
     public Button getButton6() {
         return button6;
+    }
+
+    public Audio getAudio() {
+        return this.audio;
     }
 
     // Setter Methoden
