@@ -3,8 +3,6 @@ package theCreepyProperty.menu;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import theCreepyProperty.main.GUI;
@@ -23,7 +21,6 @@ public class Menu extends VBox {
     private final Button resumeButton;
     private final Button settingsButton;
     private final Button backButton;
-    //private final ImageView logoView;
 
     public Menu(GUI gui, GameScene scene) {
         this.gui = gui;
@@ -37,20 +34,11 @@ public class Menu extends VBox {
 
         // Add menu items
         this.name = new Label("The Creepy Property");
-        this.name.setId("name"); // Spezifische ID für den Quit-Button
+        this.name.setId("name");
         this.resumeButton = new Button("Back to Game");
         this.settingsButton = new Button("Settings");
         this.backButton = new Button("Quit Game");
-        this.backButton.setId("quit-button"); // Spezifische ID für den Quit-Button
-        //this.logoView = new ImageView(new Image("file:src/resources/logos/LogoGreen.png")); //Logo
-
-        // Set styles
-//        name.setFont(new Font("Arial", 20));
-//        name.setStyle("-fx-font-size: 40px; -fx-font-weight: bold;-fx-text-fill: rgb(143, 100, 0);");
-//        name.setAlignment(Pos.CENTER);
-//        resumeButton.setFont(new Font("Arial", 20)); // Schriftgröße auf 20 setzen
-//        settingsButton.setFont(new Font("Arial", 20));
-//        quitButton.setFont(new Font("Arial", 20));
+        this.backButton.setId("quit-button");
 
         // Add buttons to the VBox
         this.vBoxMenu.getChildren().addAll(/*logoView,*/ name, resumeButton, settingsButton, backButton);
@@ -58,10 +46,9 @@ public class Menu extends VBox {
         this.pMenu.getChildren().add(vBoxMenu);
 
         // Set size and position
-        this.pMenu.setPrefSize(gui.getWidth(), gui.getHeight()); // Set width and height for the overlay menu
+        this.pMenu.setPrefSize(gui.getWidth(), gui.getHeight());
         this.backgroundMenu.setPrefSize(gui.getWidth(), gui.getHeight());
         this.setMenuPosition(600, 500, 10);
-//        this.setMenuLayout(300,50);
 
         // Button actions
         this.resumeButton.setOnAction(e -> onResume());
@@ -95,12 +82,6 @@ public class Menu extends VBox {
         this.vBoxMenu.setSpacing(spacing);
         this.vBoxMenu.setAlignment(Pos.CENTER);
     }
-//
-//    private void setMenuLayout(double width, double heigth) {
-//        resumeButton.setPrefSize(width, heigth);
-//        settingsButton.setPrefSize(width, heigth);
-//        quitButton.setPrefSize(width, heigth);
-//    }
 
     private void onResume() {
         System.out.println("[Menu]: Back to Game ✔");
@@ -122,6 +103,7 @@ public class Menu extends VBox {
         this.resumeButton.requestFocus();
     }
 
+    // Getter Methoden
     public boolean getMenu_on(){
         return this.menu_on;
     }

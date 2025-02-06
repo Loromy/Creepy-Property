@@ -11,20 +11,28 @@ public class Player extends Entity{
     private final GUI gui;
     private double controlSpeed = 0; // speed if strg pressed
     private final ImageView i_player = new ImageView();
+    private final ImageView i_darkness_overlay = new ImageView();
 
     public Player(GUI gui)  {
         this.gui = gui;
         setDefaultValues();
         this.solid_player_aria = new Rectangle();
-        this.solid_player_aria.setVisible(false); //Collision Block of player invisible
+        this.solid_player_aria.setVisible(false); //Collision Block of player
         this.solid_player_aria.setX(entity_world_X);
         this.solid_player_aria.setY(entity_world_Y);
         this.solid_player_aria.setWidth(entity_size_X);
         this.solid_player_aria.setHeight(entity_size_Y);
+
         this.i_player.xProperty().bind(solid_player_aria.xProperty().subtract(18));
         this.i_player.yProperty().bind(solid_player_aria.yProperty().subtract(20));
         this.i_player.fitWidthProperty().bind(solid_player_aria.widthProperty().add(36));
         this.i_player.fitHeightProperty().bind(solid_player_aria.heightProperty().add(20));
+
+        this.i_darkness_overlay.xProperty().bind(solid_player_aria.xProperty().subtract(1000));
+        this.i_darkness_overlay.yProperty().bind(solid_player_aria.yProperty().subtract(610));
+        this.i_darkness_overlay.fitWidthProperty().bind(solid_player_aria.widthProperty().add(2000));
+        this.i_darkness_overlay.fitHeightProperty().bind(solid_player_aria.heightProperty().add(1200));
+
         createPlayerImage();
     }
 
@@ -45,6 +53,9 @@ public class Player extends Entity{
         right2 = loadImage("file:src/resources/player/right_2.png");
         right3 = loadImage("file:src/resources/player/right_3.png");
         right4 = loadImage("file:src/resources/player/right_4.png");
+
+        darknessOverlay = loadImage("file:src/resources/textures/overlay/darknessOverlay.png");
+
         System.out.println("[Player Image]: Player images successfully loaded ✔ ️");
     }
 
@@ -78,6 +89,11 @@ public class Player extends Entity{
         }
         this.i_player.setImage(playerImage);
         return i_player;
+    }
+
+    public ImageView loadOverlay() {
+        this.i_darkness_overlay.setImage(darknessOverlay);
+        return i_darkness_overlay;
     }
 
     private Image switchSprite(Image img1, Image img2, Image img3, Image img4) {

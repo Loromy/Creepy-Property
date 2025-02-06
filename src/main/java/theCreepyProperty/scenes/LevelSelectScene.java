@@ -10,8 +10,6 @@ import theCreepyProperty.main.GUI;
 import theCreepyProperty.menu.LevelSelect;
 
 public class LevelSelectScene {
-
-    //private final Stage stage;
     private GUI gui;
     private final GameScene gameScene;
     private Scene levelSelectScene;
@@ -31,10 +29,8 @@ public class LevelSelectScene {
     private boolean level6Completed = false;
     private boolean level7Completed = false;
     private boolean level8Completed = false;
-    //private boolean level9Completed = false;
 
     public LevelSelectScene(Stage stage, GUI gui, GameScene gameScene) {
-        //this.stage = stage;
         this.gui = gui;
         this.gameScene = gameScene;
 
@@ -44,7 +40,6 @@ public class LevelSelectScene {
     }
 
     private void createScene() {
-        // Start Screen
         StackPane levelSelectScreen = new StackPane();
 
         levelSelectScreen.getStylesheets().add(("file:src/resources/style/style.css"));
@@ -59,16 +54,19 @@ public class LevelSelectScene {
         levelMenu.getbL1().setOnAction(e ->{
             setMap(1);
             levelMenu.getStartButton().setDisable(false);
+            this.levelMenu.getStartButton().requestFocus();
         });
 
         levelMenu.getbL2().setOnAction(e ->{
             setMap(2);
             levelMenu.getStartButton().setDisable(false);
+            this.levelMenu.getStartButton().requestFocus();
         });
 
         levelMenu.getbL3().setOnAction(e ->{
             setMap(3);
             levelMenu.getStartButton().setDisable(false);
+            this.levelMenu.getStartButton().requestFocus();
         });
 
         levelMenu.getbL4().setOnAction(e ->{
@@ -167,15 +165,6 @@ public class LevelSelectScene {
         return this.mapSelected;
     }
 
-    // Setter
-    public void setMapSelected(int map) {
-        this.mapSelected = map;
-    }
-
-    public void setBlur(int strange){
-        pLevelBlur.setEffect(new GaussianBlur(strange));
-    }
-
     public boolean getLevelCompleted(int level) {
         boolean thisLevel = false;
 
@@ -204,10 +193,6 @@ public class LevelSelectScene {
             case 8:
                 thisLevel = this.level8Completed;
                 break;
-//            case 9:
-//                thisLevel = this.level9Completed;
-//                break;
-
             default:
                 System.out.println("[LevelSelectScene]: get Invalid level ✖");
                 break;
@@ -215,12 +200,20 @@ public class LevelSelectScene {
         return thisLevel;
     }
 
+    // Setter
+    public void setMapSelected(int map) {
+        this.mapSelected = map;
+    }
+
+    public void setBlur(int strange){
+        pLevelBlur.setEffect(new GaussianBlur(strange));
+    }
+
     public void setLevelCompleted(int map, boolean level) {
-        System.out.println("test___________________________map: " + map);
+        System.out.println("[LevelSelectScene]: Map " + map + " selected ✔");
         switch (map) {
             case 1:
                 this.level1Completed = level;
-                System.out.println("level1: " + this.level1Completed);
                 break;
             case 2:
                 this.level2Completed = level;
@@ -243,10 +236,6 @@ public class LevelSelectScene {
             case 8:
                 this.level8Completed = level;
                 break;
-//            case 9:
-//                this.level9Completed = level;
-//                break;
-
             default:
                 System.out.println("[LevelSelectScene]: set Invalid level ✖");
                 break;

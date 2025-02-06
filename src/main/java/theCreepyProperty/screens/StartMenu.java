@@ -7,10 +7,8 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import theCreepyProperty.main.GUI;
 
-public class StartMenue {
-//    Text title;
-//    Button startButton;
-    private GUI gui;
+public class StartMenu {
+    private final GUI gui;
     private final Pane backgroundStartMenu = new Pane(); // Background
     private final Pane pStartMenu = new Pane(); // Menu Items
     private final VBox vBoxGameOver = new VBox();
@@ -19,29 +17,21 @@ public class StartMenue {
     private final Button startButton;
     private final Button quitButton;
 
-    public StartMenue(GUI gui) {
-//        title = new Text("Willkommen zum Spiel!");
-//        startButton = new Button("Starten");
-
+    public StartMenu(GUI gui) {
         this.gui = gui;
 
         // Lade das Bild
         BackgroundImage backgroundImage = getBackgroundImage();
         backgroundStartMenu.setBackground(new Background(backgroundImage));
 
-        //overlay
-        //this.backgroundStartMenu.setStyle("-fx-background-color: rgba(255, 0, 0, 0.7);");
-
         this.backgroundStartMenu.setVisible(true);
         this.pStartMenu.setVisible(true);
 
         // Add menu items
         this.title = new Label("Creepy Property");
-        this.title.setId("name"); // Spezifische ID für den GameOver-Text
+        this.title.setId("name");
         this.startButton = new Button("Play");
-        //this.startButton.setId("game-over"); // Spezifische ID für den Retry-Button
         this.quitButton = new Button("Quit");
-        //this.quitButton.setId("game-over"); // Spezifische ID für den Quit-Button
 
         // Add buttons to the VBox
         this.vBoxGameOver.getChildren().addAll(title, startButton, quitButton);
@@ -87,14 +77,7 @@ public class StartMenue {
         return backgroundImage;
     }
 
-    private void setGameOverPosition(double width, double height, int spacing) {
-        this.vBoxGameOver.setPrefSize(width,height);
-        this.vBoxGameOver.setLayoutX((gui.getWidth() - width) / 2);
-        this.vBoxGameOver.setLayoutY((gui.getHeight() - height) / 2);
-        this.vBoxGameOver.setSpacing(spacing);
-        this.vBoxGameOver.setAlignment(Pos.CENTER);
-    }
-
+    // Getter Methoden
     public Button getStartButton() {
         return startButton;
     }
@@ -109,5 +92,14 @@ public class StartMenue {
 
     public Pane getBackgroundStartMenu() {
         return backgroundStartMenu;
+    }
+
+    // Setter Methoden
+    private void setGameOverPosition(double width, double height, int spacing) {
+        this.vBoxGameOver.setPrefSize(width,height);
+        this.vBoxGameOver.setLayoutX((gui.getWidth() - width) / 2);
+        this.vBoxGameOver.setLayoutY((gui.getHeight() - height) / 2);
+        this.vBoxGameOver.setSpacing(spacing);
+        this.vBoxGameOver.setAlignment(Pos.CENTER);
     }
 }

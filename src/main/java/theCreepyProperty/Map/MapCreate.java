@@ -38,7 +38,7 @@ public class MapCreate {
 
             if (this.levelData.getWalls().size()-1 == i) {
                 i++;
-                System.out.println("[Map Creator]: " + i + " Walls created ✔");
+                System.out.println("[MapCreator]: " + i + " Walls created ✔");
             }
         }
 
@@ -50,7 +50,7 @@ public class MapCreate {
             this.scene.pGameChildren(this.item.getIItem());
             if (this.levelData.getItems().size()-1 == i) {
                 i++;
-                System.out.println("[Map Creator]: " + i + " Items created ✔");
+                System.out.println("[MapCreator]: " + i + " Items created ✔");
             }
         }
 

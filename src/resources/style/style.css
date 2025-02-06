@@ -170,6 +170,25 @@
     -fx-font-family: Creepster; /* Schriftart */
 }
 
+#gui-components-background-keys {
+    /*-fx-background-color: rgba(3, 59, 1, 0.8);*/
+    -fx-background-color: rgba(64, 64, 64, 0.8);
+    -fx-background-radius: 0px 0px 15px 0px;
+    -fx-padding: 3px;
+}
+
+#gui-components-background-mitte {
+    -fx-background-color: rgba(3, 59, 1, 0.8);
+    -fx-background-radius: 0px 0px 15px 15px;
+    -fx-padding: 2px 5px 5px 5px;
+}
+
+#gui-components-background-anzeige {
+    -fx-background-color: rgba(3, 59, 1, 0.8);
+    -fx-background-radius: 0px 15px 15px 0px;
+    -fx-padding: 5px 10px 5px 2px;
+}
+
 .label {
     -fx-font-family: Creepster; /* Schriftart */
 

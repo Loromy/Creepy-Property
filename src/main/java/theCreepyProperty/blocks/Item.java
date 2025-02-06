@@ -4,7 +4,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class Item extends Object {
-    private Image itemImage;
     private ImageView ivItem = new ImageView();
 
     public Item(int x, int y, int width, int height, String texture) {
@@ -15,7 +14,6 @@ public class Item extends Object {
         this.height = height;
         this.texture = texture;
         createItem();
-        //this.itemList.add(this); // Wand zur statischen Liste hinzufügen
     }
 
     private void createItem() {
@@ -26,13 +24,11 @@ public class Item extends Object {
         this.ivItem.setFitHeight(this.height);
     }
 
-    // Getter für Rectangle
-
+    // Getter Methoden
     public ImageView getIItem() {
         return ivItem;
     }
 
-    // Getter für Position und Dimension
     public int getX() {
         return this.positionX;
     }

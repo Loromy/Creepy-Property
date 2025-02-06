@@ -1,14 +1,10 @@
 package theCreepyProperty.scenes;
 
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import theCreepyProperty.Map.LevelData;
@@ -37,9 +33,6 @@ public class GameScene {
     private final Pane pGame = new Pane();
     private final Pane pWallsItems = new Pane();
 
-    // Darkness Overlay
-    private final Canvas darknessCanvas = new Canvas();
-
     // Game Scene Classes
     private KeyHandler keyHandler;
     private LevelData levelData = new LevelData();
@@ -52,7 +45,7 @@ public class GameScene {
     private final GameOver gameOver;
     private final GameWin gameWin;
     private final Menu menu;
-    private final GuiComponents guiComponents;
+    private GuiComponents guiComponents;
     private final CollisionChecker checker;
 
     public GameScene(Stage stage, GUI gui) {
@@ -63,13 +56,21 @@ public class GameScene {
         this.gameOver = new GameOver(this.gui, this);
         this.gameWin = new GameWin(this.gui, this);
         this.menu = new Menu(this.gui, this);
-        this.guiComponents = new GuiComponents(this.gui, this.player);
         this.checker = new CollisionChecker(this);
 
         createScene();
     }
 
     private void createScene() {
+        // CSV-Datei lesen
+        this.levelData = mapReader.readCsvFile(this.gui.getFilePath(), levelData);
+
+        // Wände erstellen
+        mapCreate.createMap(this, levelData);
+
+        //GUI components
+        this.guiComponents = new GuiComponents(this.gui, this.player,this);
+
         root.getChildren().addAll(pGame, pGameOver, pGameWin, pMenu);
         gameScene = new Scene(root, gui.getWidth(), gui.getHeight());
 
@@ -82,16 +83,10 @@ public class GameScene {
         pGame.getChildren().add(this.pWallsItems);
         pGame.getChildren().add(this.player.getSolidPlayerAria());
         pGame.getChildren().add(this.player.draw());
-        pGame.getChildren().add(darknessCanvas); // black Overlay
-        pGame.getChildren().add(this.guiComponents.getL_level());
-        pGame.getChildren().add(this.guiComponents.getL_speed());
-        pGame.getChildren().add(this.guiComponents.getL_keys());
-        pGame.getChildren().add(this.guiComponents.getL_fps());
-
-        // Darkness Overlay todo black overlay
-        darknessCanvas.setWidth(gui.getWidth());
-        darknessCanvas.setHeight(gui.getHeight());
-        drawDarknessOverlay();  // Erstes Zeichnen
+        pGame.getChildren().add(this.player.loadOverlay());
+        pGame.getChildren().add(this.guiComponents.gethBox_Level());
+        pGame.getChildren().add(this.guiComponents.getvBox_anzeige());
+        pGame.getChildren().add(this.guiComponents.gethBox_keys());
 
         // Game Over / Win Menüs hinzufügen
         pGameOver.getChildren().add(this.gameOver.getBackgroundGameOver());
@@ -108,41 +103,7 @@ public class GameScene {
         keyHandler = new KeyHandler(this.player, this, this.menu, this.gameOver, this.gameWin);
         keyHandler.addKeyListener(gameScene, this);
 
-        // CSV-Datei lesen
-        this.levelData = mapReader.readCsvFile(this.gui.getFilePath(), levelData);
-
-        // Wände erstellen
-        mapCreate.createMap(this, levelData);
-
         this.pMenu.setVisible(false);
-    }
-
-    private void drawDarknessOverlay() {
-        GraphicsContext gc = darknessCanvas.getGraphicsContext2D();
-        gc.clearRect(0, 0, darknessCanvas.getWidth(), darknessCanvas.getHeight());
-
-        gc.setFill(Color.BLACK);
-        gc.fillRect(0, 0, darknessCanvas.getWidth(), darknessCanvas.getHeight());
-
-        double playerX = player.getPlayer_world_X();
-        double playerY = player.getPlayer_world_Y();
-        double visionRadius = 70;
-
-        gc.clearRect(playerX - visionRadius, playerY - visionRadius, visionRadius * 2, visionRadius * 2);
-
-//        // Erzeuge eine weiche Transparenz um den Spieler
-//        int i = 1;
-//        //for (int i = 0; i < 10; i++) {
-//            double alpha = 0.1 * (10 - i);
-//            gc.setFill(new Color(0, 0, 0, alpha));
-//            gc.fillOval(playerX - visionRadius - i * 5, playerY - visionRadius - i * 5,
-//                    (visionRadius + i * 5) * 2, (visionRadius + i * 5) * 2);
-//        //}
-    }
-
-
-    public void updateGameScene() {
-        drawDarknessOverlay();
     }
 
     public void pGameChildren(Rectangle rectangle) {
