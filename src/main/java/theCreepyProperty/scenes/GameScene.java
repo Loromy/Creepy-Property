@@ -2,6 +2,7 @@ package theCreepyProperty.scenes;
 
 import javafx.scene.Scene;
 import javafx.scene.effect.GaussianBlur;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -68,6 +69,9 @@ public class GameScene {
         // Wände erstellen
         mapCreate.createMap(this, levelData);
 
+        // Hintergrund
+        root.getChildren().add(new ImageView(new Image("file:src/resources/textures/flor/Flor.png")));
+
         //GUI components
         this.guiComponents = new GuiComponents(this.gui, this.player,this);
 
@@ -78,7 +82,7 @@ public class GameScene {
         gameScene.getStylesheets().add(("file:src/resources/style/style.css"));
         pGame.getStylesheets().add(("file:src/resources/style/style.css"));
 
-        root.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, null)));
+        //root.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, null)));
 
         pGame.getChildren().add(this.pWallsItems);
         pGame.getChildren().add(this.player.getSolidPlayerAria());
