@@ -8,7 +8,6 @@ import javafx.scene.layout.VBox;
 import theCreepyProperty.Map.SetMap;
 import theCreepyProperty.main.GUI;
 import theCreepyProperty.scenes.GameScene;
-import theCreepyProperty.scenes.StartScene;
 
 public class GameOver extends VBox{
     private GUI gui;
@@ -36,11 +35,11 @@ public class GameOver extends VBox{
 
         // Add menu items
         this.text = new Label("Game Over");
-        this.text.setId("game-over-text"); // Spezifische ID für den GameOver-Text
+        this.text.setId("game-over-text");
         this.retryButton = new Button("Retry");
-        this.retryButton.setId("game-over"); // Spezifische ID für den Retry-Button
+        this.retryButton.setId("game-over");
         this.quitButton = new Button("Quit");
-        this.quitButton.setId("game-over"); // Spezifische ID für den Quit-Button
+        this.quitButton.setId("game-over");
 
         // Add buttons to the VBox
         this.vBoxGameOver.getChildren().addAll(text, retryButton, quitButton);
@@ -51,7 +50,6 @@ public class GameOver extends VBox{
         this.pGameOver.setPrefSize(gui.getWidth(), gui.getHeight()); // Set width and height for the overlay menu
         this.backgroundGameOver.setPrefSize(gui.getWidth(), gui.getHeight());
         this.setGameOverPosition(300, 300, 10);
-//        this.setGameOverLayout(100,50);
 
         // Button actions
         retryButton.setOnAction(e -> onRetry());
@@ -83,10 +81,6 @@ public class GameOver extends VBox{
         this.vBoxGameOver.setAlignment(Pos.CENTER);
     }
 
-//    private void setGameOverLayout(double width, double heigth) {
-//        retryButton.setPrefSize(width, heigth);
-//    }
-
     private void onRetry() {
         System.out.println("[Game Over]: Retry ✔");
         this.triggerGameOver();
@@ -101,6 +95,7 @@ public class GameOver extends VBox{
         System.exit(0);
     }
 
+    // Getter Methoden
     public boolean getGameOver_On() {
         return gameOver_on;
     }

@@ -14,7 +14,7 @@ public class CollisionChecker {
     private SoundPlayer soundPlayer;
 
     private boolean isPlayed = false;
-    private int keysToColect = 0;
+    private int keysToCollect = 0;
 
     public CollisionChecker(GameScene scene) {
         this.scene = scene;
@@ -24,9 +24,9 @@ public class CollisionChecker {
     public void checkCollision(Player player, double nextX, double nextY) {
         Rectangle futurePlayer = new Rectangle(nextX, nextY, player.entity_size_X, player.entity_size_Y);
 
-        if (keysToColect <= this.mapCreate.getItemList().size()) {
-            this.keysToColect = this.mapCreate.getItemList().size();
-            this.scene.getGuiComponents().getL_keys().setText("Keys: " + player.getKeyEingesammelt() + "/" + keysToColect); // Gui component update
+        if (keysToCollect <= this.mapCreate.getItemList().size()) {
+            this.keysToCollect = this.mapCreate.getItemList().size();
+            this.scene.getGuiComponents().getL_keys().setText("Keys: " + player.getKeyEingesammelt() + "/" + keysToCollect); // Gui component update
         }
 
         openDoorsInLevel(player);
@@ -54,7 +54,9 @@ public class CollisionChecker {
                 scene.pGameChildrenRemove(mapCreate.getItemList().get(i).getIItem()); // remove Item from Pane
                 mapCreate.getItemList().remove(i);
 
-                this.scene.getGuiComponents().getL_keys().setText("Keys: " + player.getKeyEingesammelt() + "/" + keysToColect); // Gui component update
+                this.scene.getGuiComponents().getL_keys().setText("Keys: " + player.getKeyEingesammelt() + "/" + keysToCollect); // Gui component update
+
+                this.scene.getGuiComponents().collectKey(keysToCollect);
                 return;
             }
         }
@@ -84,10 +86,9 @@ public class CollisionChecker {
         for (int i = 0; i < mapCreate.getDoorList().size(); i++) {
             if (player.keys_eingesammelt >= this.mapCreate.getNetToCollectKeys() && !this.isPlayed) {
                 this.isPlayed = true;
+                this.scene.getGuiComponents().gethBox_keys().setStyle("-fx-background-color: rgba(3, 59, 1, 0.8);");
                 this.soundPlayer = new SoundPlayer("src/resources/sounds/doorOpen.wav");
                 this.soundPlayer.play();
-
-
                 this.mapCreate.getDoorList().get(i).openDoor();
             }
         }

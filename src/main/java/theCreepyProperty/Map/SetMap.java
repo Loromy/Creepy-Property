@@ -30,21 +30,21 @@ public class SetMap {
         switch (level) {
             case 1:
                 this.gui.setFilePath(path1);
-                System.out.println("[Level]: 1 selected ✔");
+                System.out.println("[SetMap]: 1 selected ✔");
                 this.levelSelectScene.setMapSelected(1);
                 break;
             case 2:
                 this.gui.setFilePath(path2);
-                System.out.println("[Level]: 2 selected ✔");
+                System.out.println("[SetMap]: 2 selected ✔");
                 this.levelSelectScene.setMapSelected(2);
                 break;
             case 3:
                 this.gui.setFilePath(path3);
-                System.out.println("[Level]: 3 selected ✔");
+                System.out.println("[SetMap]: 3 selected ✔");
                 this.levelSelectScene.setMapSelected(3);
                 break;
             default:
-                System.out.println("[Error]: Invalid map selection ✖");
+                System.out.println("[SetMap Error]: Invalid map selection ✖");
                 break;
         }
     }
@@ -55,25 +55,26 @@ public class SetMap {
         switch (this.levelSelectScene.getMapSelected()) {
             case 1:
                 this.gui.setFilePath(path1);
-                System.out.println("[Level]: 1 selected ✔");
+                System.out.println("[SetMap]: 1 selected ✔");
                 this.levelSelectScene.setMapSelected(1);
                 break;
             case 2:
                 this.gui.setFilePath(path2);
-                System.out.println("[Level]: 2 selected ✔");
+                System.out.println("[SetMap]: 2 selected ✔");
                 this.levelSelectScene.setMapSelected(2);
                 break;
             case 3:
                 this.gui.setFilePath(path3);
-                System.out.println("[Level]: 3 selected ✔");
+                System.out.println("[SetMap]: 3 selected ✔");
                 this.levelSelectScene.setMapSelected(3);
                 break;
             default:
-                System.out.println("[Error]: Invalid map selection ✖");
+                System.out.println("[SetMap Error]: Invalid map selection ✖");
                 break;
         }
     }
 
+    // Getter Methoden
     public String getPath1() {
         return this.path1;
     }

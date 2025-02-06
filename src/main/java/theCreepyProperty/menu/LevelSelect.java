@@ -50,7 +50,6 @@ public class LevelSelect {
         this.startButton = new Button();
         this.backButton = new Button();
 
-        //this.backgroundLevelSelect.setStyle("-fx-background-color: rgba(0, 0, 0, 0.1);");
         // Lade das Bild
         BackgroundImage backgroundImage = getBackgroundImage();
         backgroundLevelSelect.setBackground(new Background(backgroundImage));
@@ -61,7 +60,7 @@ public class LevelSelect {
 
         // Add menu items
         this.title.setText("Level Select");
-        this.title.setId("name"); // Spezifische ID für den GameOver-Text
+        this.title.setId("name");
         this.bL1.setText("Level 1");
         this.bL2.setText("Level 2");
         this.bL3.setText("Level 3");
@@ -144,6 +143,7 @@ public class LevelSelect {
         return backgroundImage;
     }
 
+    // Getter Methoden
     public  Button getbL1() {
         return this.bL1;
     }

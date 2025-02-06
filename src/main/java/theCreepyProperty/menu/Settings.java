@@ -47,20 +47,11 @@ public class Settings {
         // Button text
         this.backButton.setText("Back");
         this.button1.setText("Game Over Screen");
-        this.button2.setText("button2");
+        this.button2.setText("Anzeige [OFF]");
         this.button3.setText("button3");
         this.button4.setText("button4");
         this.button5.setText("button5");
         this.button6.setText("button6");
-
-        // Button Font
-//        this.backButton.setFont(new Font("Arial", 20));
-//        this.button1.setFont(new Font("Arial", 20));
-//        this.button2.setFont(new Font("Arial", 20));
-//        this.button3.setFont(new Font("Arial", 20));
-//        this.button4.setFont(new Font("Arial", 20));
-//        this.button5.setFont(new Font("Arial", 20));
-//        this.button6.setFont(new Font("Arial", 20));
 
         // getChildren
         this.vBoxSettingsL.getChildren().addAll(button1, button3, button5); // Buttons Left
@@ -78,14 +69,6 @@ public class Settings {
         setMenuSettingsPosition(vBoxSettings); //630
         setMenuSettingsPositionLR(vBoxSettingsL);
         setMenuSettingsPositionLR(vBoxSettingsR);
-
-//        setMenuSettingsLayout(backButton, 300,50);
-//        setMenuSettingsLayout(button1, 300,50);
-//        setMenuSettingsLayout(button2, 300,50);
-//        setMenuSettingsLayout(button3, 300,50);
-//        setMenuSettingsLayout(button4, 300,50);
-//        setMenuSettingsLayout(button5, 300,50);
-//        setMenuSettingsLayout(button6, 300,50);
 
         // Button action
         backButton.setOnAction(e -> onBack());
@@ -107,34 +90,6 @@ public class Settings {
         }
     }
 
-    public Pane getMenuSettings() {
-        return pMenuSettings;
-    }
-
-    public boolean getSettingOn() {
-        return settings_on;
-    }
-
-    private void setMenuSettingsPosition(VBox vBoxSettings) {
-        vBoxSettings.setPrefSize(700, 500);
-        vBoxSettings.setLayoutX((gui.getWidth() - (double) 700) / 2);
-        vBoxSettings.setLayoutY((gui.getHeight() - (double) 500) / 2);
-        vBoxSettings.setSpacing(10);
-        vBoxSettings.setAlignment(Pos.CENTER);
-    }
-
-    private void setMenuSettingsPositionLR(VBox vBoxSettings) {
-        vBoxSettings.setPrefSize(300, 300);
-        vBoxSettings.setLayoutX((gui.getWidth() - (double) 300) / 2);
-        vBoxSettings.setLayoutY((gui.getHeight() - (double) 300) / 2);
-        vBoxSettings.setSpacing(10);
-        vBoxSettings.setAlignment(Pos.CENTER);
-    }
-
-//    private void setMenuSettingsLayout(Button button, double width, double height) {
-//        button.setPrefSize(width, height);
-//    }
-
     private void onBack() {
         System.out.println("[Settings]: Back ✔");
         triggerSettings(); // Settings
@@ -149,6 +104,7 @@ public class Settings {
     }
 
     private void onButton2() {
+        this.scene.getGuiComponents().triggerAnzeige();
         System.out.println("[Settings]: button2 ✔");
     }
 
@@ -166,5 +122,35 @@ public class Settings {
 
     private void onButton6() {
         System.out.println("[Settings]: button6 ✔");
+    }
+
+    // Getter Methoden
+    public Pane getMenuSettings() {
+        return pMenuSettings;
+    }
+
+    public boolean getSettingOn() {
+        return settings_on;
+    }
+
+    public Button getButton2() {
+        return button2;
+    }
+
+    // Setter Methoden
+    private void setMenuSettingsPosition(VBox vBoxSettings) {
+        vBoxSettings.setPrefSize(700, 500);
+        vBoxSettings.setLayoutX((gui.getWidth() - (double) 700) / 2);
+        vBoxSettings.setLayoutY((gui.getHeight() - (double) 500) / 2);
+        vBoxSettings.setSpacing(10);
+        vBoxSettings.setAlignment(Pos.CENTER);
+    }
+
+    private void setMenuSettingsPositionLR(VBox vBoxSettings) {
+        vBoxSettings.setPrefSize(300, 300);
+        vBoxSettings.setLayoutX((gui.getWidth() - (double) 300) / 2);
+        vBoxSettings.setLayoutY((gui.getHeight() - (double) 300) / 2);
+        vBoxSettings.setSpacing(10);
+        vBoxSettings.setAlignment(Pos.CENTER);
     }
 }

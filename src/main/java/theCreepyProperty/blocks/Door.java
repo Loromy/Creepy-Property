@@ -16,7 +16,6 @@ public class Door extends Object {
         this.height = height;
         this.texture = texture;
         createDoor();
-        //this.itemList.add(this); // Wand zur statischen Liste hinzufügen
     }
 
     private void createDoor() {
@@ -32,12 +31,11 @@ public class Door extends Object {
         this.doorOpen = true;
     }
 
-    // Getter für Rectangle
+    // Getter Methoden
     public ImageView getIDoor() {
         return ivDoor;
     }
 
-    // Getter für Position und Dimension
     public int getX() {
         return this.positionX;
     }
@@ -54,6 +52,11 @@ public class Door extends Object {
         return player_block_collision;
     }
 
+    public Boolean getDoorOpen() {
+        return doorOpen;
+    }
+
+    //Setter Methoden
     public void setPlayer_block_collision(boolean collision) {
         this.player_block_collision = collision;
     }
@@ -64,10 +67,6 @@ public class Door extends Object {
 
     public void setY(int y) {
         this.positionY = y;
-    }
-
-    public Boolean getDoorOpen() {
-        return doorOpen;
     }
 
     public void setDoorOpen(Boolean doorOpen) {

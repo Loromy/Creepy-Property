@@ -1,5 +1,5 @@
 package theCreepyProperty.main;
-import theCreepyProperty.Map.LevelData;
+
 import theCreepyProperty.scenes.GameScene;
 import theCreepyProperty.screens.GameOver;
 import theCreepyProperty.entity.Player;
@@ -9,9 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import theCreepyProperty.menu.Menu;
 import theCreepyProperty.screens.GameWin;
-
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 
 public class KeyHandler {
     private final Player player;
@@ -69,7 +66,7 @@ public class KeyHandler {
             }
         });
 
-        // **FPS-unabhängige Bewegungsberechnung mit AnimationTimer**
+        // FPS-unabhängige Bewegungsberechnung mit AnimationTimer
         AnimationTimer timer = new AnimationTimer() {
             private long lastTime = System.nanoTime();
             private long lastFPSUpdate = System.nanoTime();
@@ -123,7 +120,7 @@ public class KeyHandler {
             }
 
             if (cPressed) {
-                System.out.println("Position Player: x=" + this.player.getPlayer_world_X() + " y=" + this.player.getPlayer_world_Y());
+                System.out.println("[KeyHandler]: Position Player: x=" + this.player.getPlayer_world_X() + " y=" + this.player.getPlayer_world_Y());
                 this.cPressed = false;
             }
 
@@ -164,7 +161,6 @@ public class KeyHandler {
             dx /= length;
             dy /= length;
         }
-        this.scene.updateGameScene();
 
         // FPS-unabhängige Bewegung berechnen
         double speed = player.getSpeed() * deltaTime * 60; // Normale Geschwindigkeit für 60 FPS
@@ -201,5 +197,4 @@ public class KeyHandler {
             }
         }
     }
-
 }

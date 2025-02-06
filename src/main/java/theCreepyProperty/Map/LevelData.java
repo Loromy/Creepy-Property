@@ -78,25 +78,26 @@ public class LevelData {
 
     }
 
-    // Getter und Setter
+    // Getter Methoden
     public ArrayList<LevelDataWall> getWalls() {
         return walls;
-    }
-
-    public void setWalls(ArrayList<LevelDataWall> walls) {
-        this.walls = walls;
     }
 
     public ArrayList<LevelDataItem> getItems() {
         return items;
     }
 
+    public ArrayList<LevelDataDoor> getDoors() {
+        return doors;
+    }
+
+    // Setter Methoden
     public void setItems(ArrayList<LevelDataItem> items) {
         this.items = items;
     }
 
-    public ArrayList<LevelDataDoor> getDoors() {
-        return doors;
+    public void setWalls(ArrayList<LevelDataWall> walls) {
+        this.walls = walls;
     }
 
     public void setDoors(ArrayList<LevelDataDoor> doors) {

@@ -31,11 +31,9 @@ public class GUI {
     }
 
     public void switchToStartScene() {
-        // GameScene initialisieren, falls noch nicht geschehen
         if (this.startScene == null) {
             this.startScene = new StartScene(stage, this);
         }
-
         // Scene wechseln
         stage.setScene(this.startScene.getScene());
         // Scene zurücksetzen
@@ -44,11 +42,9 @@ public class GUI {
     }
 
     public void switchToGameScene() {
-        // GameScene initialisieren, falls noch nicht geschehen
         if (this.gameScene == null) {
             this.gameScene = new GameScene(stage, this);
         }
-
         // Scene wechseln
         stage.setScene(this.gameScene.getScene());
         // Scene zurücksetzen
@@ -57,13 +53,10 @@ public class GUI {
     }
 
     public void switchToLevelSelectScene() {
-        // GameScene initialisieren, falls noch nicht geschehen
         if (this.selectScene == null) {
             this.selectScene = new LevelSelectScene(stage, this, this.gameScene);
         }
-
         this.selectScene.unlockLevel();
-
         // Scene wechseln
         stage.setScene(this.selectScene.getScene());
         // Scene zurücksetzen
@@ -86,6 +79,10 @@ public class GUI {
 
     public LevelSelectScene getSelectScene() {
         return this.selectScene;
+    }
+
+    public GameScene getGameScene() {
+        return gameScene;
     }
 
     // Setter Methoden

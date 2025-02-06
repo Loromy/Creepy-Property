@@ -67,10 +67,7 @@ public class GameWin extends VBox{
             this.pGameWin.setVisible(true);
             this.gameScene.setBlur(15); //Menu blur
             this.gameWin_on = true;
-
-            this.backButton.requestFocus();
-
-            System.out.println("selected Level________" + this.levelSelectScene.getMapSelected());
+            this.nextButton.requestFocus();
             this.levelSelectScene.setLevelCompleted(this.levelSelectScene.getMapSelected(), true);
         } else {
             this.backgroundGameWin.setVisible(false);
@@ -100,6 +97,7 @@ public class GameWin extends VBox{
         this.gui.switchToGameScene();
     }
 
+    // Getter Methoden
     public boolean getGameWin_On() {
         return gameWin_on;
     }
