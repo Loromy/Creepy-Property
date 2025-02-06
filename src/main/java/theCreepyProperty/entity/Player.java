@@ -13,6 +13,8 @@ public class Player extends Entity{
     private final ImageView i_player = new ImageView();
     private final ImageView i_darkness_overlay = new ImageView();
 
+    private boolean overlay_on = true;
+
     public Player(GUI gui)  {
         this.gui = gui;
         setDefaultValues();
@@ -106,6 +108,18 @@ public class Player extends Entity{
         };
     }
 
+    public void triggerOverlay() {
+        if (!overlay_on) {
+            this.i_darkness_overlay.setImage(darknessOverlay);
+            this.gui.getGameScene().getMenu().getSettings().getButton6().setText("Overlay [ON]");
+            this.overlay_on = true;
+        } else {
+            this.i_darkness_overlay.setImage(null);
+            this.gui.getGameScene().getMenu().getSettings().getButton6().setText("Overlay [OFF]");
+            this.overlay_on = false;
+        }
+    }
+
     public void setPlayer_world_X(double player_world_X){
         this.entity_world_X = player_world_X;
         this.solid_player_aria.setX(player_world_X);
@@ -139,6 +153,7 @@ public class Player extends Entity{
         System.out.println("[System]: Player defaultValues set ✔");
     }
 
+    // Getter Methoden
     public double getPlayer_world_X(){
         return entity_world_X;
     }

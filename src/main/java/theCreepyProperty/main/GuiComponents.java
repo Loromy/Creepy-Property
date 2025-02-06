@@ -97,7 +97,6 @@ public class GuiComponents {
     }
 
     public void triggerAnzeige() {
-        System.out.println("[GuiComponents]: war hier_________________");
         if (!anzeige_on) {
             this.vBox_anzeige.setVisible(true);
             this.gui.getGameScene().getMenu().getSettings().getButton2().setText("Anzeige [ON]");

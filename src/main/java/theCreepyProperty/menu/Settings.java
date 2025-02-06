@@ -51,7 +51,11 @@ public class Settings {
         this.button3.setText("button3");
         this.button4.setText("button4");
         this.button5.setText("button5");
-        this.button6.setText("button6");
+        this.button6.setText("Overlay [ON]");
+
+        this.button3.setDisable(true);
+        this.button4.setDisable(true);
+        this.button5.setDisable(true);
 
         // getChildren
         this.vBoxSettingsL.getChildren().addAll(button1, button3, button5); // Buttons Left
@@ -121,6 +125,7 @@ public class Settings {
     }
 
     private void onButton6() {
+        this.scene.getPlayer().triggerOverlay();
         System.out.println("[Settings]: button6 ✔");
     }
 
@@ -133,8 +138,29 @@ public class Settings {
         return settings_on;
     }
 
+
+    public Button getButton1() {
+        return button1;
+    }
+
     public Button getButton2() {
         return button2;
+    }
+
+    public Button getButton3() {
+        return button3;
+    }
+
+    public Button getButton4() {
+        return button4;
+    }
+
+    public Button getButton5() {
+        return button5;
+    }
+
+    public Button getButton6() {
+        return button6;
     }
 
     // Setter Methoden
