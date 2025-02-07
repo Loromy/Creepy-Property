@@ -143,11 +143,23 @@ public class KeyHandler {
 
         if (escPressed) {
             this.escPressed = false;
-            if (!menu.getSettings().getSettingOn()) {
+            if (!menu.getSettings().getSettingOn() && !menu.getSettings().getAudio().getAudioOn()) {
                 this.menu.triggerMenu();
-            } else {
+                System.out.println("Test 1");
+            }
+            else if (menu.getSettings().getSettingOn() && !menu.getSettings().getAudio().getAudioOn()){ // Settings aktive
                 this.menu.getSettings().triggerSettings();
                 this.menu.getpMenu().setVisible(true);
+                System.out.println("Test 2");
+            }
+//            else if(!menu.getSettings().getAudio().getAudioOn()) {
+//                this.menu.getSettings().triggerSettings();
+//                System.out.println("Test 3");
+//            }
+            else if(menu.getSettings().getSettingOn() && menu.getSettings().getAudio().getAudioOn() ) { // Audio Aktive
+                this.menu.getSettings().getAudio().triggerAudio();
+                this.menu.getSettings().getMenuSettings().setVisible(true);
+                System.out.println("Test 4");
             }
         }
 

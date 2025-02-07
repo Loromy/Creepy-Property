@@ -34,9 +34,15 @@ public class SoundPlayer {
     public void setVolume(float volume) {
         if (clip != null) {
             FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-            float min = gainControl.getMinimum();
-            float max = gainControl.getMaximum();
-            float gain = min + (max - min) * volume; // volume zwischen 0.0 (leise) und 1.0 (laut)
+            float min = gainControl.getMinimum(); // z. B. -80.0 dB
+            float max = gainControl.getMaximum(); // z. B. 6.0 dB
+
+            // Verhindern, dass volume außerhalb des Bereichs liegt
+            volume = Math.max(0.0f, Math.min(1.0f, volume));
+
+            // Logarithmische Umrechnung für eine natürliche Lautstärkeanpassung
+            float gain = (float) (min + (max - min) * Math.log10(1 + 9 * volume));
+
             gainControl.setValue(gain);
         }
     }

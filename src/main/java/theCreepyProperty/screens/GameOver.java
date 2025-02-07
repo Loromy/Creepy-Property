@@ -63,7 +63,6 @@ public class GameOver extends VBox{
             this.pGameOver.setVisible(true);
             this.scene.setBlur(15); //Menu blur
             this.gameOver_on = true;
-
             this.retryButton.requestFocus();
         } else {
             this.backgroundGameOver.setVisible(false);
