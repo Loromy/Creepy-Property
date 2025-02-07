@@ -57,7 +57,7 @@
 
 /* Die Spur (Track) des Sliders */
 .slider .track {
-    -fx-background-color: linear-gradient(#525252 20%, #509974);
+    -fx-background-color: linear-gradient(to right, #454242 0%, #509974 50%, #454242 50%, #454242 100%);
     -fx-background-radius: 10px;
     -fx-pref-height: 48px;
 }
@@ -73,25 +73,28 @@
 /* Quit Button */
 #quit-button:hover {
     -fx-text-fill: darkRed;
-    -fx-background-color: linear-gradient(#edf7f2 20%, #d13636); /* Roter Farbverlauf bei Hover über "Quit"-Button */
-
+    -fx-background-color: linear-gradient(#454242 20%, #d13636); /* Roter Farbverlauf bei Hover über "Quit"-Button */
+    -fx-border-color: darkRed;
+    -fx-border-weight: 5px;
 }
 
 #quit-button:pressed {
     -fx-text-fill: darkRed;
-    -fx-background-color: linear-gradient(#edf7f2 20%, #b80e02); /* Dunkel Roter Farbverlauf für den "Quit"-Button beim drücken */
-
+    -fx-background-color: linear-gradient(#454242 20%, #b80e02);
+    -fx-border-color: darkRed;
+    -fx-border-weight: 5px;
 }
 
 #quit-button:focused {
     -fx-text-fill: darkRed;
-    -fx-background-color: linear-gradient(#edf7f2 20%, #d13636); /* Roter Farbverlauf bei Hover über "Quit"-Button */
-
+    -fx-background-color: linear-gradient(#454242 20%, #d13636);
+    -fx-border-color: darkRed;
+    -fx-border-weight: 5px;
 }
 
 /* Game Over */
 #game-over {
-    -fx-background-color: linear-gradient(#edf7f2 20%, #ff0000); /* Farbverlauf von weiß zu grün */
+    -fx-background-color: linear-gradient(#edf7f2 20%, #ff0000);
     -fx-background-radius: 10px; /* abrunden */
 
     -fx-text-fill: white; /* farbe */
@@ -173,6 +176,13 @@
     -fx-font-weight: bold; /* fett */
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.7), 5, 0, 5, 5); /* Schatten */
     -fx-font-family: Creepster; /* Schriftart */
+}
+
+#audio-text {
+    -fx-text-fill: linear-gradient(#525252 40%, #509974);
+    -fx-font-size: 20px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.7), 5, 0, 5, 5);
+    -fx-font-family: Creepster;
 }
 
 #game-over-text {

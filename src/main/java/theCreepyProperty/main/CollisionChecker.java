@@ -49,6 +49,7 @@ public class CollisionChecker {
                 player.keys_eingesammelt++;
 
                 this.soundPlayer = new SoundPlayer("src/resources/sounds/itemCollect.wav");
+                this.soundPlayer.setVolume(this.scene.getMenu().getSettings().getAudio().getMaster()); // Standard 2
                 this.soundPlayer.play();
 
                 scene.pGameChildrenRemove(mapCreate.getItemList().get(i).getIItem()); // remove Item from Pane
@@ -70,8 +71,10 @@ public class CollisionChecker {
 
                 if (mapCreate.getDoorList().get(i).getDoorOpen()) {
                     this.soundPlayer = new SoundPlayer("src/resources/sounds/youWin.wav");
+                    this.soundPlayer.setVolume(this.scene.getMenu().getSettings().getAudio().getMaster()); // Standard 2
                     this.soundPlayer.play();
                     this.soundPlayer = new SoundPlayer("src/resources/sounds/congratulations.wav");
+                    this.soundPlayer.setVolume(this.scene.getMenu().getSettings().getAudio().getMaster()); // Standard 2
                     this.soundPlayer.play();
 
                     this.scene.getGameWin().triggerGameWin();

@@ -1,10 +1,13 @@
 package theCreepyProperty.menu;
 
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import theCreepyProperty.main.GUI;
 import theCreepyProperty.scenes.GameScene;
@@ -19,7 +22,7 @@ public class Audio {
     private final HBox hBoxAudioLR = new HBox();
     private final VBox vBoxAudioL = new VBox();
     private final VBox vBoxAudioR = new VBox();
-    //private Button button1;
+    private Label label1;
     private Slider slider1;
     private Button button2;
     private Button button3;
@@ -29,13 +32,14 @@ public class Audio {
     private Button backButton;
 
     private boolean audio_on = false;
+    private float master = 3;
 
     public Audio(GUI gui, GameScene scene, Settings settings) {
         this.gui = gui;
         this.scene = scene;
         this.settings = settings;
 
-        //this.button1 = new Button();
+        this.label1 = new Label();
         this.slider1 = new Slider();
         this.button2 = new Button();
         this.button3 = new Button();
@@ -48,7 +52,7 @@ public class Audio {
 
         // Button text
         this.backButton.setText("Back");
-        //this.button1.setText("button1");
+        this.label1.setText("Master");
         this.button2.setText("button2");
         this.button3.setText("button3");
         this.button4.setText("button4");
@@ -61,13 +65,19 @@ public class Audio {
 //        this.button5.setDisable(true);
 //        this.button6.setDisable(true);
 
+        // Label
+        this.label1.setMaxWidth(Double.MAX_VALUE);
+        VBox.setVgrow(this.label1, Priority.ALWAYS);
+        this.label1.setAlignment(Pos.BOTTOM_LEFT);
+        this.label1.setId("audio-text");
+
         // Slider
-        this.slider1.setValue(20);
-        this.slider1.setMax(100);
-        this.slider1.setMin(1);
+        this.slider1.setValue(this.master);
+        this.slider1.setMax(6);
+        this.slider1.setMin(0.1);
 
         // getChildren
-        this.vBoxAudioL.getChildren().addAll(slider1, button3, button5); // Buttons Left
+        this.vBoxAudioL.getChildren().addAll(label1, slider1, button3, button5); // Buttons Left
         this.vBoxAudioR.getChildren().addAll(button2, button4, button6); // Buttons Right
         this.hBoxAudioLR.getChildren().addAll(vBoxAudioL, vBoxAudioR); // hBox für buttons Left/Right
         this.vBoxAudio.getChildren().add(hBoxAudioLR);
@@ -83,11 +93,9 @@ public class Audio {
         setMenuAudioPositionLR(vBoxAudioL);
         setMenuAudioPositionLR(vBoxAudioR);
 
-        // Button action
-        backButton.setOnAction(e -> onBack());
-        //button1.setOnAction(e -> onButton1());
         // Event-Listener für Wertänderungen
-        slider1.valueProperty().addListener((obs, oldVal, newVal) -> onSlider1());
+        backButton.setOnAction(e -> onBack());
+        slider1.valueProperty().addListener((obs, oldVal, newVal) -> onSlider1(oldVal, newVal));
         button2.setOnAction(e -> onButton2());
         button3.setOnAction(e -> onButton3());
         button4.setOnAction(e -> onButton4());
@@ -111,8 +119,21 @@ public class Audio {
         System.out.println("[Audio]: Back ✔");
     }
 
-    private void onSlider1() {
-        System.out.println("[Audio]: slider1 ✔");
+    private void onSlider1(Number oldVal, Number newVal) {
+        // Style update
+        double percent = (newVal.doubleValue() - slider1.getMin()) / (slider1.getMax() - slider1.getMin());
+        String style = String.format(
+                "-fx-background-color: linear-gradient(to right, #454242 0%%, #509974 %.0f%%, #454242 %.0f%%, #454242 100%%);",
+                percent * 100, percent * 100
+        );
+        slider1.lookup(".track").setStyle(style);
+
+        // sound anpassen
+        float value = newVal.floatValue();
+        this.master = Math.round(value * 10000f) / 10000f;
+        System.out.println("Value: " + this.master);
+
+        //System.out.println("[Audio]: slider1 ✔");
     }
 
     private void onButton2() {
@@ -166,6 +187,10 @@ public class Audio {
 
     public Button getButton6() {
         return button6;
+    }
+
+    public float getMaster() {
+        return master;
     }
 
     // Setter Methoden
