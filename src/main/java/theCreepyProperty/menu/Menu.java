@@ -37,8 +37,7 @@ public class Menu extends VBox {
         this.name.setId("name");
         this.resumeButton = new Button("Back to Game");
         this.settingsButton = new Button("Settings");
-        this.backButton = new Button("Quit Game");
-        this.backButton.setId("quit-button");
+        this.backButton = new Button("Level Auswahl");
 
         // Add buttons to the VBox
         this.vBoxMenu.getChildren().addAll(/*logoView,*/ name, resumeButton, settingsButton, backButton);
@@ -96,7 +95,7 @@ public class Menu extends VBox {
 
     private void onBack() {
         System.out.println("[Menu]: Start Menu ✔");
-        this.gui.switchToStartScene();
+        this.gui.switchToLevelSelectScene();
     }
 
     public void triggerFocus() {

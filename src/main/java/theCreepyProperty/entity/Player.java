@@ -109,11 +109,11 @@ public class Player extends Entity{
     public void triggerOverlay() {
         if (!overlay_on) {
             this.i_darkness_overlay.setImage(darknessOverlay);
-            this.gui.getGameScene().getMenu().getSettings().getButton6().setText("Overlay [ON]");
+//            this.gui.getGameScene().getMenu().getSettings().getButton6().setText("Overlay [ON]");
             this.overlay_on = true;
         } else {
             this.i_darkness_overlay.setImage(null);
-            this.gui.getGameScene().getMenu().getSettings().getButton6().setText("Overlay [OFF]");
+//            this.gui.getGameScene().getMenu().getSettings().getButton6().setText("Overlay [OFF]");
             this.overlay_on = false;
         }
     }

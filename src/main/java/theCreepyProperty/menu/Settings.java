@@ -5,14 +5,14 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import theCreepyProperty.DeveloperMode.DevMode;
+import theCreepyProperty.DeveloperMode.PasswordHandler;
 import theCreepyProperty.main.GUI;
 import theCreepyProperty.scenes.GameScene;
 
-import java.util.Scanner;
-
-public class Settings {
+public class Settings implements PasswordHandler {
     private final GUI gui;
-    private final GameScene scene;
+    private final GameScene gameScene;
     private final Menu menu;
     private final Audio audio;
 
@@ -32,12 +32,12 @@ public class Settings {
     private boolean settings_on = false;
     String adminPasswort = "123";
 
-    public Settings(GUI gui, GameScene scene, Menu menu) {
+    public Settings(GUI gui, GameScene gameScene, Menu menu)  {
         this.gui = gui;
-        this.scene = scene;
+        this.gameScene = gameScene;
         this.menu = menu;
 
-        this.audio = new Audio(this.gui,this.scene,this);
+        this.audio = new Audio(this.gui,this.gameScene,this);
 
         this.button1 = new Button();
         this.button2 = new Button();
@@ -51,15 +51,18 @@ public class Settings {
 
         // Button text
         this.backButton.setText("Back");
-        this.button1.setText("Game Over Screen");
+        //this.button1.setText("Game Over Screen");
+        this.button1.setText("button1");
         this.button2.setText("Audio Menu");
-        this.button3.setText("Collision [ON]");
+        this.button3.setText("DevMode [OFF]");
         this.button4.setText("Anzeige [OFF]");
-        this.button5.setText("button5");
-        this.button6.setText("Overlay [ON]");
+        this.button5.setText("button5"); //No usage
+        this.button6.setText("button6");
 
-        this.button1.setStyle("-fx-text-fill: darkRed;");
+        //this.button1.setStyle("-fx-text-fill: darkRed;");
+        this.button1.setDisable(true);
         this.button5.setDisable(true);
+        this.button6.setDisable(true);
 
         // getChildren
         this.vBoxSettingsL.getChildren().addAll(button1, button3, button5); // Buttons Left
@@ -106,9 +109,9 @@ public class Settings {
     }
 
     private void onButton1() {
-        this.scene.getGameOver().triggerGameOver();
-        this.backButton.requestFocus();
-        System.out.println("[Settings]: button1 (Game Over Screen) ✔");
+//        this.gameScene.getGameOver().triggerGameOver();
+//        this.backButton.requestFocus();
+//        System.out.println("[Settings]: button1 (Game Over Screen) ✔");
     }
 
     private void onButton2() {
@@ -118,25 +121,13 @@ public class Settings {
     }
 
     private void onButton3() {
-        Scanner scanner = new Scanner(System.in);
-
-
-        System.out.print("-----------------------------------------\nBitte Administrator Passwort eingeben: ");
-        String eingegebenesPasswort = scanner.nextLine();
-
-        if (eingegebenesPasswort.equals(this.adminPasswort)) {
-            System.out.println("Aktion gewährt!\n-----------------------------------------");
-
-            this.scene.getMapCreate().triggerCollision();
-        } else {
-            System.out.println("Falsches Passwort!\n-----------------------------------------");
-        }
+        new DevMode(this).show(this.gameScene);
 
         System.out.println("[Settings]: button3 ✔");
     }
 
     private void onButton4() {
-        this.scene.getGuiComponents().triggerAnzeige();
+        this.gameScene.getGuiComponents().triggerAnzeige();
         System.out.println("[Settings]: button4 ✔");
     }
 
@@ -145,19 +136,6 @@ public class Settings {
     }
 
     private void onButton6() {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.print("-----------------------------------------\nBitte Administrator Passwort eingeben: ");
-        String eingegebenesPasswort = scanner.nextLine();
-
-        if (eingegebenesPasswort.equals(this.adminPasswort)) {
-            System.out.println("Aktion gewährt!\n-----------------------------------------");
-
-            this.scene.getPlayer().triggerOverlay();
-        } else {
-            System.out.println("Falsches Passwort!\n-----------------------------------------");
-        }
-
         System.out.println("[Settings]: button6 ✔");
     }
 
@@ -213,5 +191,11 @@ public class Settings {
         vBoxSettings.setLayoutY((gui.getHeight() - (double) 300) / 2);
         vBoxSettings.setSpacing(10);
         vBoxSettings.setAlignment(Pos.CENTER);
+    }
+
+    @Override
+    public void handlePassword(String password) {
+        System.out.println("Eingegebenes Passwort: " + password);
+        // Hier kannst du z. B. eine Passwort-Validierung oder Weiterverarbeitung machen
     }
 }

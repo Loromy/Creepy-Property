@@ -59,11 +59,11 @@ public class Audio {
         this.button5.setText("button5");
         this.button6.setText("button6");
 
-//        this.button2.setDisable(true);
-//        this.button3.setDisable(true);
-//        this.button4.setDisable(true);
-//        this.button5.setDisable(true);
-//        this.button6.setDisable(true);
+        this.button2.setDisable(true);
+        this.button3.setDisable(true);
+        this.button4.setDisable(true);
+        this.button5.setDisable(true);
+        this.button6.setDisable(true);
 
         // Label
         this.label1.setMaxWidth(Double.MAX_VALUE);

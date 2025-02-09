@@ -41,7 +41,7 @@
     -fx-border-radius: 10px; /* abgerundeten Ecken */
 }
 
-/* Gesamt-Styling des Sliders */
+/* Sliders */
 .slider {
     -fx-background-radius: 10px; /* abrunden */
 
@@ -55,20 +55,38 @@
     -fx-min-height: 50px;   /* Mindesthöhe */
 }
 
-/* Die Spur (Track) des Sliders */
+/* Sliders (Track) */
 .slider .track {
     -fx-background-color: linear-gradient(to right, #454242 0%, #509974 50%, #454242 50%, #454242 100%);
     -fx-background-radius: 10px;
     -fx-pref-height: 48px;
 }
 
-/* Der bewegliche Regler (Thumb) */
+/* Slider Regler (Thumb) */
 .slider .thumb {
     -fx-background-color: white;
     -fx-background-radius: 5px;
     -fx-pref-width: 14px;
     -fx-pref-height: 55px;
 }
+
+/* Standard-PasswordField */
+.password-field {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.7), 5, 0, 10, 10);
+    -fx-background-color: #509974;  /* Hintergrundfarbe */
+    -fx-border-color: #454242;      /* Umrandung */
+    -fx-padding: 5px;               /* Innenabstand */
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 12px;
+    -fx-text-fill: white;
+}
+
+/* Passwort-Punkte (falls geändert werden sollen) */
+.password-field {
+    -fx-echo-char: '*';  /* Standard ist '●' */
+}
+
 
 /* Quit Button */
 #quit-button:hover {
