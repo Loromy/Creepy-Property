@@ -1,4 +1,4 @@
 setting,value
-anzeige,0
-devMode,0
+anzeige,false
+devMode,false
 master,3
