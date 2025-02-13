@@ -107,4 +107,8 @@ public class MapCreate {
     public ArrayList<Door> getDoorList() {
         return this.doorList;
     }
+
+    public void setCollision_on(boolean value) {
+        this.collision_on = value;
+    }
 }

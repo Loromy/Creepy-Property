@@ -136,6 +136,10 @@ public class Player extends Entity{
         this.controlSpeed = (this.speed - 2) * (-1);
     }
 
+    public void setOverlay_on(boolean value) {
+        this.overlay_on = value;
+    }
+
     public void setDirection(String direction) {
         this.direction = direction;
         this.draw();

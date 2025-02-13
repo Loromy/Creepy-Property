@@ -17,8 +17,6 @@ public class ReadSettings {
     public void settingsRead(String filePath, GameScene gameScene, GuiComponents guiComponents) {
         this.gameScene = gameScene;
         this.guiComponents = guiComponents;
-        System.out.println("1gui: ---------" + this.guiComponents);
-        System.out.println("(readsettings) gamescreen: " + gameScene);
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
@@ -52,23 +50,33 @@ public class ReadSettings {
     }
 
     public void setSettings(String setting, int value) {
-        System.out.println("2gui: ---------" + this.guiComponents);
         switch (setting) {
             case "anzeige":
                 if (value == 0) {
                     this.guiComponents.setAnzeige_on(true);
-                    System.out.println("[GuiComponents]: SettingsRead value: false ✔️");
+                    System.out.println("[GuiComponents]: SettingsRead \"anzeige\" value: false ✔️");
                 } else if (value == 1) {
                     this.guiComponents.setAnzeige_on(false);
-                    System.out.println("[GuiComponents]: SettingsRead value: true ✔️");
+                    System.out.println("[GuiComponents]: SettingsRead \"anzeige\" value: true ✔️");
                 } else {
-                    System.out.println("[GuiComponents]: SettingsRead wrong value: " + value + " does not exist ✖");
+                    System.out.println("[GuiComponents]: SettingsRead \"anzeige\" wrong value: " + value + " does not exist ✖");
                 }
-                //System.out.println("guiComponents: " + this.gameScene.getGuiComponents());
                 this.guiComponents.triggerAnzeige(this.gameScene);
-                System.out.println("anzeige: " + this.guiComponents.getAnzeige_on());
                 break;
             case "devMode":
+                if (value == 0) {
+                    this.gameScene.getMapCreate().setCollision_on(false);
+                    this.gameScene.getPlayer().setOverlay_on(false);
+                    System.out.println("[GuiComponents]: SettingsRead \"devMode\" value: false ✔️");
+                } else  if (value == 1) {
+                    this.gameScene.getMapCreate().setCollision_on(true);
+                    this.gameScene.getPlayer().setOverlay_on(true);
+                    System.out.println("[GuiComponents]: SettingsRead \"devMode\" value: true ✔️");
+                } else {
+                    System.out.println("[GuiComponents]: SettingsRead \"devMode\" wrong value: " + value + " does not exist ✖");
+                }
+                this.gameScene.getMapCreate().triggerCollision();
+                this.gameScene.getPlayer().triggerOverlay();
                 break;
             default:
                 System.out.println("[GuiComponents]: SettingsRead wrong setting: " + setting + " does not exist ✖");

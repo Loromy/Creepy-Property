@@ -15,7 +15,6 @@ public class GuiComponents {
     private final GUI gui;
     private final LevelSelectScene levelSelectScene;
     private final GameScene gameScene;
-    //private final ReadSettings readSettings = new ReadSettings();
 
     private final Label l_speed ;
     private final Label l_keys;
@@ -95,14 +94,9 @@ public class GuiComponents {
             this.i_keys.setFitHeight(40);
             hBox_keys.getChildren().add(this.i_keys);
         }
-
-//        // Settings Set
-//        System.out.println("test: " + this.getGameScene());
-//        this.readSettings.settingsRead("src/resources/csv/Einstelungen/settings.csv",this);
     }
 
     public void triggerAnzeige(GameScene gameScene) {
-        System.out.println("gamescene: " + gameScene + " gui: " + this.gui); // todo entfernen gameScene = null
         if (!anzeige_on) {
             this.vBox_anzeige.setVisible(true);
             gameScene.getMenu().getSettings().getButton4().setText("Anzeige [ON]");
@@ -153,26 +147,4 @@ public class GuiComponents {
     public void setAnzeige_on(boolean value) {
         this.anzeige_on = value;
     }
-
-//    public void setSettings(String setting, int value) {
-//        switch (setting) {
-//            case "anzeige":
-//                if (value == 0) {
-//                    this.anzeige_on = false;
-//                    System.out.println("[GuiComponents]: SettingsRead value: false ✔️");
-//                } else if (value == 1) {
-//                    this.anzeige_on = true;
-//                    System.out.println("[GuiComponents]: SettingsRead value: true ✔️");
-//                } else {
-//                    System.out.println("[GuiComponents]: SettingsRead wrong value: " + value + " does not exist ✖");
-//                }
-//                //triggerAnzeige();
-//                break;
-//            case "devMode":
-//                break;
-//            default:
-//                System.out.println("[GuiComponents]: SettingsRead wrong setting: " + setting + " does not exist ✖");
-//                break;
-//        }
-//    }
 }
