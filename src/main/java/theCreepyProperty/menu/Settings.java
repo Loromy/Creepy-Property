@@ -7,6 +7,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import theCreepyProperty.DeveloperMode.DevMode;
 import theCreepyProperty.DeveloperMode.PasswordHandler;
+import theCreepyProperty.Save.ReadSettings;
 import theCreepyProperty.main.GUI;
 import theCreepyProperty.scenes.GameScene;
 
@@ -15,6 +16,7 @@ public class Settings implements PasswordHandler {
     private final GameScene gameScene;
     private final Menu menu;
     private final Audio audio;
+    private final ReadSettings readSettings;
 
     private final Pane pMenuSettings = new Pane();
     private final VBox vBoxSettings = new VBox();
@@ -37,6 +39,8 @@ public class Settings implements PasswordHandler {
         this.gameScene = gameScene;
         this.menu = menu;
 
+        this.readSettings = new ReadSettings(this.gameScene.getGuiComponents());
+
         this.audio = new Audio(this.gui,this.gameScene,this);
 
         this.button1 = new Button();
@@ -48,6 +52,9 @@ public class Settings implements PasswordHandler {
         this.backButton = new Button();
 
         pMenuSettings.setVisible(false);
+
+//        System.out.println("0gui: ---------" + this.gameScene.getGuiComponents());
+//        this.readSettings.settingsRead("src/resources/csv/Einstelungen/settings.csv", this.gameScene.getGuiComponents());
 
         // Button text
         this.backButton.setText("Back");
@@ -127,7 +134,7 @@ public class Settings implements PasswordHandler {
     }
 
     private void onButton4() {
-        this.gameScene.getGuiComponents().triggerAnzeige();
+        this.gameScene.getGuiComponents().triggerAnzeige(this.gameScene);
         System.out.println("[Settings]: button4 ✔");
     }
 
