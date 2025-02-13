@@ -53,9 +53,6 @@ public class Settings implements PasswordHandler {
 
         pMenuSettings.setVisible(false);
 
-//        System.out.println("0gui: ---------" + this.gameScene.getGuiComponents());
-//        this.readSettings.settingsRead("src/resources/csv/Einstelungen/settings.csv", this.gameScene.getGuiComponents());
-
         // Button text
         this.backButton.setText("Back");
         //this.button1.setText("Game Over Screen");

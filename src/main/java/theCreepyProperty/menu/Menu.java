@@ -26,7 +26,6 @@ public class Menu extends VBox {
         this.gui = gui;
         this.scene = scene;
         settings = new Settings(this.gui, this.scene,this);
-        System.out.println("0.1gamescene: ---------" + this.scene.getGuiComponents());
 
         //overlay
         backgroundMenu.setStyle("-fx-background-color: rgba(0, 0, 0, 0.1);");

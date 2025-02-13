@@ -86,7 +86,6 @@ public class KeyHandler {
                     fps = frameCount;  // FPS speichern
                     frameCount = 0;  // Frame-Zähler zurücksetzen
                     lastFPSUpdate = now;  // Zeitpunkt der letzten Messung aktualisieren
-                    //System.out.println("FPS: " + fps); // FPS ausgeben
 
                     // FPS in der GUI anzeigen
                     gameScene.getGuiComponents().updateFPS(fps);
@@ -145,27 +144,20 @@ public class KeyHandler {
             this.escPressed = false;
             if (!menu.getSettings().getSettingOn() && !menu.getSettings().getAudio().getAudioOn()) {
                 this.menu.triggerMenu();
-                System.out.println("Test 1");
             }
             else if (menu.getSettings().getSettingOn() && !menu.getSettings().getAudio().getAudioOn()){ // Settings aktive
                 this.menu.getSettings().triggerSettings();
                 this.menu.getpMenu().setVisible(true);
-                System.out.println("Test 2");
             }
-//            else if(!menu.getSettings().getAudio().getAudioOn()) {
-//                this.menu.getSettings().triggerSettings();
-//                System.out.println("Test 3");
-//            }
             else if(menu.getSettings().getSettingOn() && menu.getSettings().getAudio().getAudioOn() ) { // Audio Aktive
                 this.menu.getSettings().getAudio().triggerAudio();
                 this.menu.getSettings().getMenuSettings().setVisible(true);
-                System.out.println("Test 4");
             }
         }
 
     }
 
-    // Bewegung basierend auf Geschwindigkeits- und Bewegungsrichtung
+    // Bewegung basierend auf Geschwindigkeit- und Bewegungsrichtung
     private void move(double dx, double dy, double deltaTime) {
         // Länge des Bewegungsvektors berechnen
         double length = Math.sqrt(dx * dx + dy * dy);

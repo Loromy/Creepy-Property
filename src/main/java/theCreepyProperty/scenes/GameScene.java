@@ -65,7 +65,6 @@ public class GameScene {
         createScene();
 
         // Settings Set
-        System.out.println("testGamescene: " + this.guiComponents + "this: " + this);
         this.readSettings.settingsRead("src/resources/csv/Einstelungen/settings.csv",this,this.guiComponents);
     }
 
@@ -79,9 +78,6 @@ public class GameScene {
         // GUI components
         this.guiComponents = new GuiComponents(this.gui, this.player,this);
 
-//        // readSettings
-//        this.readSettings = new ReadSettings(this.guiComponents);
-
         root.getChildren().addAll(pGame, pGameOver, pGameWin, pMenu);
         gameScene = new Scene(root, gui.getWidth(), gui.getHeight());
 
@@ -89,7 +85,6 @@ public class GameScene {
         gameScene.getStylesheets().add(("file:src/resources/style/style.css"));
         pGame.getStylesheets().add(("file:src/resources/style/style.css"));
 
-        //root.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, null)));
         pGame.getChildren().add(new ImageView(new Image("file:src/resources/textures/flor/Flor.png")));
         pGame.getChildren().add(this.pWallsItems);
         pGame.getChildren().add(this.player.getSolidPlayerAria());
@@ -116,10 +111,6 @@ public class GameScene {
         keyHandler.addKeyListener(gameScene, this);
 
         this.pMenu.setVisible(false);
-
-        // Settings Set
-        //System.out.println("test: " + this.guiComponents.getGameScene());
-        //this.readSettings.settingsRead("src/resources/csv/Einstelungen/settings.csv",this.guiComponents);
     }
 
     public void pGameChildren(Rectangle rectangle) {
