@@ -1,5 +1,6 @@
 package theCreepyProperty.Map;
 
+import theCreepyProperty.Save.ReedWriteSettings;
 import theCreepyProperty.blocks.Door;
 import theCreepyProperty.blocks.Item;
 import theCreepyProperty.blocks.Wall;
@@ -68,18 +69,36 @@ public class MapCreate {
         }
     }
 
-    public void triggerCollision() {
+    public void triggerCollisionRWSettings(ReedWriteSettings reedWriteSettings) {
         if (!collision_on) {
             for (int i = 0; i < this.scene.getMapCreate().getWallList().size(); i++) {
                 this.wallList.get(i).setPlayer_block_collision(true);
             }
-//            this.scene.getMenu().getSettings().getButton3().setText("Collision [ON]");
+            //reedWriteSettings.updateSetting("src/resources/csv/Einstelungen/settings.csv", "collision", 1);
             this.collision_on = true;
         } else {
             for (int i = 0; i < this.scene.getMapCreate().getWallList().size(); i++) {
                 this.wallList.get(i).setPlayer_block_collision(false);
             }
-//            this.scene.getMenu().getSettings().getButton3().setText("Collision [OFF]");
+            //reedWriteSettings.updateSetting("src/resources/csv/Einstelungen/settings.csv", "collision", 1);
+            this.collision_on = false;
+        }
+    }
+
+    public void triggerCollision(ReedWriteSettings reedWriteSettings) {
+        if (!collision_on) {
+            for (int i = 0; i < this.scene.getMapCreate().getWallList().size(); i++) {
+                this.wallList.get(i).setPlayer_block_collision(true);
+            }
+            this.scene.getMenu().getSettings().getButton5().setText("Collision [ON]");
+            reedWriteSettings.updateSetting("src/resources/csv/Einstelungen/settings.csv", "collision", 1);
+            this.collision_on = true;
+        } else {
+            for (int i = 0; i < this.scene.getMapCreate().getWallList().size(); i++) {
+                this.wallList.get(i).setPlayer_block_collision(false);
+            }
+            this.scene.getMenu().getSettings().getButton5().setText("Collision [OFF]");
+            reedWriteSettings.updateSetting("src/resources/csv/Einstelungen/settings.csv", "collision", 0);
             this.collision_on = false;
         }
     }

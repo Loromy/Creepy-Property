@@ -7,7 +7,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import theCreepyProperty.DeveloperMode.DevMode;
 import theCreepyProperty.DeveloperMode.PasswordHandler;
-import theCreepyProperty.Save.ReadSettings;
+import theCreepyProperty.Save.ReedWriteSettings;
 import theCreepyProperty.main.GUI;
 import theCreepyProperty.scenes.GameScene;
 
@@ -16,7 +16,7 @@ public class Settings implements PasswordHandler {
     private final GameScene gameScene;
     private final Menu menu;
     private final Audio audio;
-    private final ReadSettings readSettings;
+    private final ReedWriteSettings reedWriteSettings;
 
     private final Pane pMenuSettings = new Pane();
     private final VBox vBoxSettings = new VBox();
@@ -39,7 +39,7 @@ public class Settings implements PasswordHandler {
         this.gameScene = gameScene;
         this.menu = menu;
 
-        this.readSettings = new ReadSettings(this.gameScene.getGuiComponents());
+        this.reedWriteSettings = new ReedWriteSettings(this.gameScene.getGuiComponents());
 
         this.audio = new Audio(this.gui,this.gameScene,this);
 
@@ -56,16 +56,21 @@ public class Settings implements PasswordHandler {
         // Button text
         this.backButton.setText("Back");
         //this.button1.setText("Game Over Screen");
-        this.button1.setText("button1");
-        this.button2.setText("Audio Menu");
-        this.button3.setText("DevMode [OFF]");
+//        this.button1.setText("button1");
+//        this.button2.setText("Audio Menu");
+//        this.button3.setText("DevMode [OFF]");
+//        this.button4.setText("Anzeige [OFF]");
+//        this.button5.setText("button5"); //No usage
+//        this.button6.setText("button6");
+        this.button1.setText("Audio Menu");
+        this.button2.setText("");
+        this.button3.setText("Overlay [ON]");
         this.button4.setText("Anzeige [OFF]");
-        this.button5.setText("button5"); //No usage
-        this.button6.setText("button6");
+        this.button5.setText("Collision [ON]"); //No usage
+        this.button6.setText("");
 
         //this.button1.setStyle("-fx-text-fill: darkRed;");
-        this.button1.setDisable(true);
-        this.button5.setDisable(true);
+        this.button2.setDisable(true);
         this.button6.setDisable(true);
 
         // getChildren
@@ -112,30 +117,32 @@ public class Settings implements PasswordHandler {
         this.menu.triggerFocus();
     }
 
-    private void onButton1() {
 //        this.gameScene.getGameOver().triggerGameOver();
 //        this.backButton.requestFocus();
-//        System.out.println("[Settings]: button1 (Game Over Screen) ✔");
+
+    private void onButton1() {
+        this.pMenuSettings.setVisible(false);
+        this.audio.triggerAudio();
+        System.out.println("[Settings]: button1 ✔");
     }
 
     private void onButton2() {
-        this.pMenuSettings.setVisible(false);
-        this.audio.triggerAudio();
         System.out.println("[Settings]: button2 ✔");
     }
 
     private void onButton3() {
-        new DevMode(this).show(this.gameScene);
-
+//        new DevMode(this).show(this.gameScene);
+        this.gameScene.getPlayer().triggerOverlay(this.reedWriteSettings);
         System.out.println("[Settings]: button3 ✔");
     }
 
     private void onButton4() {
-        this.gameScene.getGuiComponents().triggerAnzeige(this.gameScene);
+        this.gameScene.getGuiComponents().triggerAnzeige(this.reedWriteSettings);
         System.out.println("[Settings]: button4 ✔");
     }
 
     private void onButton5() {
+        this.gameScene.getMapCreate().triggerCollision(this.reedWriteSettings);
         System.out.println("[Settings]: button5 ✔");
     }
 

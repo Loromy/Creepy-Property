@@ -6,6 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import theCreepyProperty.Save.ReedWriteSettings;
 import theCreepyProperty.entity.Player;
 import theCreepyProperty.scenes.GameScene;
 import theCreepyProperty.scenes.LevelSelectScene;
@@ -96,14 +97,28 @@ public class GuiComponents {
         }
     }
 
-    public void triggerAnzeige(GameScene gameScene) {
+    public void triggerAnzeigeRWSettings(ReedWriteSettings reedWriteSettings) {
+        if (!anzeige_on) {
+            this.vBox_anzeige.setVisible(true);
+            //reedWriteSettings.updateSetting("src/resources/csv/Einstelungen/settings.csv", "anzeige", 1);
+            this.anzeige_on = true;
+        } else {
+            this.vBox_anzeige.setVisible(false);
+            //reedWriteSettings.updateSetting("src/resources/csv/Einstelungen/settings.csv", "anzeige", 0);
+            this.anzeige_on = false;
+        }
+    }
+
+    public void triggerAnzeige(ReedWriteSettings reedWriteSettings) {
         if (!anzeige_on) {
             this.vBox_anzeige.setVisible(true);
             gameScene.getMenu().getSettings().getButton4().setText("Anzeige [ON]");
+            reedWriteSettings.updateSetting("src/resources/csv/Einstelungen/settings.csv", "anzeige", 1);
             this.anzeige_on = true;
         } else {
             this.vBox_anzeige.setVisible(false);
             gameScene.getMenu().getSettings().getButton4().setText("Anzeige [OFF]");
+            reedWriteSettings.updateSetting("src/resources/csv/Einstelungen/settings.csv", "anzeige", 0);
             this.anzeige_on = false;
         }
     }

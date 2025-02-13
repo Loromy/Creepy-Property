@@ -1,4 +1,5 @@
 setting,value
+collision,1
+overlay,1
 anzeige,0
-devMode,0
-master,3
+master,1

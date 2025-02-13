@@ -1,5 +1,6 @@
 package theCreepyProperty.menu;
 
+import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -9,6 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import theCreepyProperty.Save.ReedWriteSettings;
 import theCreepyProperty.main.GUI;
 import theCreepyProperty.scenes.GameScene;
 
@@ -16,6 +18,7 @@ public class Audio {
     private final GUI gui;
     private final GameScene scene;
     private final Settings settings;
+    private ReedWriteSettings reedWriteSettings;
 
     private final Pane pMenuAudio = new Pane();
     private final VBox vBoxAudio = new VBox();
@@ -38,6 +41,8 @@ public class Audio {
         this.gui = gui;
         this.scene = scene;
         this.settings = settings;
+
+        this.reedWriteSettings = new ReedWriteSettings(this.scene.getGuiComponents());
 
         this.label1 = new Label();
         this.slider1 = new Slider();
@@ -74,19 +79,28 @@ public class Audio {
         // Slider
         this.slider1.setValue(this.master);
         this.slider1.setMax(6);
-        this.slider1.setMin(0.1);
+        this.slider1.setMin(1);
+
+        Platform.runLater(() -> {
+            double percent = (slider1.getValue() - slider1.getMin()) / (slider1.getMax() - slider1.getMin());
+            String style = String.format(
+                    "-fx-background-color: linear-gradient(to right, #454242 0%%, #509974 %.0f%%, #454242 %.0f%%, #454242 100%%);",
+                    percent * 100, percent * 100
+            );
+            slider1.lookup(".track").setStyle(style);
+        });
 
         // getChildren
-        this.vBoxAudioL.getChildren().addAll(label1, slider1, button3, button5); // Buttons Left
-        this.vBoxAudioR.getChildren().addAll(button2, button4, button6); // Buttons Right
-        this.hBoxAudioLR.getChildren().addAll(vBoxAudioL, vBoxAudioR); // hBox für buttons Left/Right
+        this.vBoxAudioL.getChildren().addAll(label1, slider1, button3, button5);
+        this.vBoxAudioR.getChildren().addAll(button2, button4, button6);
+        this.hBoxAudioLR.getChildren().addAll(vBoxAudioL, vBoxAudioR);
         this.vBoxAudio.getChildren().add(hBoxAudioLR);
-        this.vBoxAudio.getChildren().add(backButton); // Button back
+        this.vBoxAudio.getChildren().add(backButton);
         this.vBoxAudio.setId("background");
         this.pMenuAudio.getChildren().add(vBoxAudio);
 
         // Set size and position
-        this.pMenuAudio.setPrefSize(this.gui.getWidth(), this.gui.getHeight()); // Set width and height for the overlay menu
+        this.pMenuAudio.setPrefSize(this.gui.getWidth(), this.gui.getHeight());
         this.hBoxAudioLR.setSpacing(20);
         this.hBoxAudioLR.setAlignment(Pos.CENTER);
         setMenuAudioPosition(vBoxAudio); //630
@@ -126,12 +140,17 @@ public class Audio {
                 "-fx-background-color: linear-gradient(to right, #454242 0%%, #509974 %.0f%%, #454242 %.0f%%, #454242 100%%);",
                 percent * 100, percent * 100
         );
-        slider1.lookup(".track").setStyle(style);
+        if (slider1.lookup(".track") != null) {
+            slider1.lookup(".track").setStyle(style);
+        }
 
         // sound anpassen
         float value = newVal.floatValue();
         this.master = Math.round(value * 10000f) / 10000f;
         System.out.println("Value: " + this.master);
+
+
+        reedWriteSettings.updateSetting("src/resources/csv/Einstelungen/settings.csv", "master", (int) this.master);
 
         //System.out.println("[Audio]: slider1 ✔");
     }
@@ -191,6 +210,13 @@ public class Audio {
 
     public float getMaster() {
         return master;
+    }
+
+    public void setMaster(float master, Slider slider) {
+        this.master = master;
+        this.slider1.setValue(master);
+
+        System.out.println("slider: " + this.slider1.lookup(".track"));
     }
 
     // Setter Methoden

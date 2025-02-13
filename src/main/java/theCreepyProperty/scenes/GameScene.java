@@ -5,13 +5,12 @@ import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import theCreepyProperty.Map.LevelData;
 import theCreepyProperty.Map.MapCreate;
 import theCreepyProperty.Map.MapReader;
-import theCreepyProperty.Save.ReadSettings;
+import theCreepyProperty.Save.ReedWriteSettings;
 import theCreepyProperty.blocks.Door;
 import theCreepyProperty.blocks.Item;
 import theCreepyProperty.blocks.Wall;
@@ -40,7 +39,7 @@ public class GameScene {
     private LevelData levelData = new LevelData();
     private final MapReader mapReader = new MapReader();
     private final MapCreate mapCreate = new MapCreate();
-    private ReadSettings readSettings;
+    private ReedWriteSettings reedWriteSettings;
     private Wall wall;
     private Item item;
     private Door door;
@@ -60,12 +59,12 @@ public class GameScene {
         this.gameWin = new GameWin(this.gui, this);
         this.menu = new Menu(this.gui, this);
         this.checker = new CollisionChecker(this);
-        this.readSettings = new ReadSettings(this.guiComponents);
+        this.reedWriteSettings = new ReedWriteSettings(this.guiComponents);
 
         createScene();
 
         // Settings Set
-        this.readSettings.settingsRead("src/resources/csv/Einstelungen/settings.csv",this,this.guiComponents);
+        this.reedWriteSettings.settingsRead("src/resources/csv/Einstelungen/settings.csv",this,this.guiComponents);
     }
 
     private void createScene() {

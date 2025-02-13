@@ -69,8 +69,8 @@ public class DevMode {
 
                 this.gameScene.getMenu().getSettings().getButton3().setText("DevMode [ON]");
 
-                this.gameScene.getMapCreate().triggerCollision();
-                this.gameScene.getPlayer().triggerOverlay();
+                //this.gameScene.getMapCreate().triggerCollision();
+                //this.gameScene.getPlayer().triggerOverlay();
             } else {
                 passwordStage.close();
                 this.gameScene.getMenu().getSettings().getButton3().setText("DevMode [OFF]");
