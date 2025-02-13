@@ -5,12 +5,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import theCreepyProperty.Save.ReadWriteSpielstand;
 import theCreepyProperty.main.GUI;
 import theCreepyProperty.scenes.LevelSelectScene;
 
 public class LevelSelect {
     private final GUI gui;
     private LevelSelectScene scene;
+    private ReadWriteSpielstand readWriteSpielstand;
+
     private final Pane backgroundLevelSelect = new Pane(); // Background
     private final Pane pLevelSelect = new Pane(); // Menu Items
     private final VBox vBoxLevelSelect = new VBox();
@@ -36,6 +39,8 @@ public class LevelSelect {
     public LevelSelect(GUI gui, LevelSelectScene scene) {
         this.gui = gui;
         this.scene = scene;
+
+        this.readWriteSpielstand = new ReadWriteSpielstand(this.gui.getGameScene().getGuiComponents());
 
         this.title = new Label();
         this.bL1 = new Button();
@@ -105,6 +110,12 @@ public class LevelSelect {
         setLevelSelectPositionLR(vBoxLevel2);
         setLevelSelectPositionLR(vBoxLevel3);
         setPlayBack(hBoxLevelButton);
+
+        //setLevelFortschritt();
+    }
+
+    public void setLevelFortschritt(int level, boolean unlocked, boolean completed) {
+        //TODO Fortschritt setzen
     }
 
     private void setLevelSelectPosition(VBox vBox) {

@@ -5,9 +5,8 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import theCreepyProperty.DeveloperMode.DevMode;
 import theCreepyProperty.DeveloperMode.PasswordHandler;
-import theCreepyProperty.Save.ReedWriteSettings;
+import theCreepyProperty.Save.ReadWriteSettings;
 import theCreepyProperty.main.GUI;
 import theCreepyProperty.scenes.GameScene;
 
@@ -16,7 +15,7 @@ public class Settings implements PasswordHandler {
     private final GameScene gameScene;
     private final Menu menu;
     private final Audio audio;
-    private final ReedWriteSettings reedWriteSettings;
+    private final ReadWriteSettings readWriteSettings;
 
     private final Pane pMenuSettings = new Pane();
     private final VBox vBoxSettings = new VBox();
@@ -39,7 +38,7 @@ public class Settings implements PasswordHandler {
         this.gameScene = gameScene;
         this.menu = menu;
 
-        this.reedWriteSettings = new ReedWriteSettings(this.gameScene.getGuiComponents());
+        this.readWriteSettings = new ReadWriteSettings(this.gameScene.getGuiComponents());
 
         this.audio = new Audio(this.gui,this.gameScene,this);
 
@@ -132,17 +131,17 @@ public class Settings implements PasswordHandler {
 
     private void onButton3() {
 //        new DevMode(this).show(this.gameScene);
-        this.gameScene.getPlayer().triggerOverlay(this.reedWriteSettings);
+        this.gameScene.getPlayer().triggerOverlay(this.readWriteSettings);
         System.out.println("[Settings]: button3 ✔");
     }
 
     private void onButton4() {
-        this.gameScene.getGuiComponents().triggerAnzeige(this.reedWriteSettings);
+        this.gameScene.getGuiComponents().triggerAnzeige(this.readWriteSettings);
         System.out.println("[Settings]: button4 ✔");
     }
 
     private void onButton5() {
-        this.gameScene.getMapCreate().triggerCollision(this.reedWriteSettings);
+        this.gameScene.getMapCreate().triggerCollision(this.readWriteSettings);
         System.out.println("[Settings]: button5 ✔");
     }
 

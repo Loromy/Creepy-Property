@@ -6,6 +6,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import theCreepyProperty.Map.SetMap;
+import theCreepyProperty.Save.ReadWriteSpielstand;
 import theCreepyProperty.main.GUI;
 import theCreepyProperty.menu.LevelSelect;
 
@@ -14,6 +15,7 @@ public class LevelSelectScene {
     private final GameScene gameScene;
     private Scene levelSelectScene;
     private final LevelSelect levelMenu;
+    private ReadWriteSpielstand readWriteSpielstand;
 
     private final Pane pLevelBlur = new Pane();
     private final Pane pLevelComponents = new Pane();
@@ -34,9 +36,13 @@ public class LevelSelectScene {
         this.gui = gui;
         this.gameScene = gameScene;
 
+        this.readWriteSpielstand = new ReadWriteSpielstand(this.gameScene.getGuiComponents());
+
         this.levelMenu = new LevelSelect(this.gui,this);
         setMap = new SetMap(this.gui);
         createScene();
+
+        this.readWriteSpielstand.spielstandRead("src/resources/csv/Einstellungen/spielstand.csv",this,this.gameScene.getGuiComponents());
     }
 
     private void createScene() {
@@ -157,6 +163,12 @@ public class LevelSelectScene {
     }
 
     // Getter
+
+
+    public LevelSelect getLevelMenu() {
+        return levelMenu;
+    }
+
     public Scene getScene() {
         return this.levelSelectScene;
     }

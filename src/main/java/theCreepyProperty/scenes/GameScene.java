@@ -10,7 +10,8 @@ import javafx.stage.Stage;
 import theCreepyProperty.Map.LevelData;
 import theCreepyProperty.Map.MapCreate;
 import theCreepyProperty.Map.MapReader;
-import theCreepyProperty.Save.ReedWriteSettings;
+import theCreepyProperty.Save.ReadWriteSettings;
+import theCreepyProperty.Save.ReadWriteSpielstand;
 import theCreepyProperty.blocks.Door;
 import theCreepyProperty.blocks.Item;
 import theCreepyProperty.blocks.Wall;
@@ -39,7 +40,8 @@ public class GameScene {
     private LevelData levelData = new LevelData();
     private final MapReader mapReader = new MapReader();
     private final MapCreate mapCreate = new MapCreate();
-    private ReedWriteSettings reedWriteSettings;
+    private ReadWriteSettings readWriteSettings;
+    private ReadWriteSpielstand readWriteSpielstand;
     private Wall wall;
     private Item item;
     private Door door;
@@ -59,12 +61,12 @@ public class GameScene {
         this.gameWin = new GameWin(this.gui, this);
         this.menu = new Menu(this.gui, this);
         this.checker = new CollisionChecker(this);
-        this.reedWriteSettings = new ReedWriteSettings(this.guiComponents);
+        this.readWriteSettings = new ReadWriteSettings(this.guiComponents);
 
         createScene();
 
         // Settings Set
-        this.reedWriteSettings.settingsRead("src/resources/csv/Einstelungen/settings.csv",this,this.guiComponents);
+        this.readWriteSettings.settingsRead("src/resources/csv/Einstellungen/settings.csv",this,this.guiComponents);
     }
 
     private void createScene() {

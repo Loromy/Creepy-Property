@@ -7,12 +7,12 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ReedWriteSettings {
+public class ReadWriteSettings {
     private GameScene gameScene;
     private GuiComponents guiComponents;
     private Map<String, Integer> settingsMap;
 
-    public ReedWriteSettings(GuiComponents guiComponents) {
+    public ReadWriteSettings(GuiComponents guiComponents) {
         this.guiComponents = guiComponents;
         this.settingsMap = new HashMap<>();
     }
@@ -45,6 +45,7 @@ public class ReedWriteSettings {
         }
     }
 
+    // lesen
     public void setSettings(String setting, int value) {
         switch (setting) {
             case "anzeige":
@@ -89,19 +90,18 @@ public class ReedWriteSettings {
                 else {
                     System.out.println("[ReedWriteSettings]: SettingsRead \"collision\" wrong value: " + value + " does not exist ✖");
                 }
-                this.gameScene.getMapCreate().triggerCollisionRWSettings(this);
-                System.out.println("colision: " + value);
+                this.gameScene.getMapCreate().triggerCollisionRWSettings();
                 break;
 
             case "master":
                 if (value >= 1 && value <= 6) {
-                    this.gameScene.getMenu().getSettings().getAudio().setMaster(value, this.gameScene.getMenu().getSettings().getAudio().getSlider1());
+                    this.gameScene.getMenu().getSettings().getAudio().setMaster(value);
                     System.out.println("[ReedWriteSettings]: SettingsRead \"collision\" value: " + value + " ✔");
                 }
                 else {
                     System.out.println("[ReedWriteSettings]: SettingsRead \"collision\" wrong value: " + value + " does not exist ✖");
                 }
-                this.gameScene.getMapCreate().triggerCollisionRWSettings(this);
+                this.gameScene.getMapCreate().triggerCollisionRWSettings();
                 break;
 
             default:
@@ -110,7 +110,9 @@ public class ReedWriteSettings {
         }
     }
 
-    public void updateSetting(String filePath, String setting, int newValue) {
+    // schreiben
+    public void updateSetting(String setting, int newValue) {
+        String filePath = "src/resources/csv/Einstellungen/settings.csv";
         Map<String, Integer> tempSettingsMap = new HashMap<>();
 
         // Datei einlesen und vorhandene Werte speichern

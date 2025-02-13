@@ -1,7 +1,7 @@
 package theCreepyProperty.entity;
 
 import javafx.scene.shape.Rectangle;
-import theCreepyProperty.Save.ReedWriteSettings;
+import theCreepyProperty.Save.ReadWriteSettings;
 import theCreepyProperty.main.GUI;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -107,7 +107,7 @@ public class Player extends Entity{
         };
     }
 
-    public void triggerOverlayRWSettings(ReedWriteSettings reedWriteSettings) {
+    public void triggerOverlayRWSettings(ReadWriteSettings readWriteSettings) {
         if (!overlay_on) {
             this.i_darkness_overlay.setImage(darknessOverlay);
             //reedWriteSettings.updateSetting("src/resources/csv/Einstelungen/settings.csv", "overlay", 1);
@@ -119,16 +119,16 @@ public class Player extends Entity{
         }
     }
 
-    public void triggerOverlay(ReedWriteSettings reedWriteSettings) {
+    public void triggerOverlay(ReadWriteSettings readWriteSettings) {
         if (!overlay_on) {
             this.i_darkness_overlay.setImage(darknessOverlay);
             this.gui.getGameScene().getMenu().getSettings().getButton3().setText("Overlay [ON]");
-            reedWriteSettings.updateSetting("src/resources/csv/Einstelungen/settings.csv", "overlay", 1);
+            readWriteSettings.updateSetting("overlay", 1);
             this.overlay_on = true;
         } else {
             this.i_darkness_overlay.setImage(null);
             this.gui.getGameScene().getMenu().getSettings().getButton3().setText("Overlay [OFF]");
-            reedWriteSettings.updateSetting("src/resources/csv/Einstelungen/settings.csv", "overlay", 0);
+            readWriteSettings.updateSetting("overlay", 0);
             this.overlay_on = false;
         }
     }

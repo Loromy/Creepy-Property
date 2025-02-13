@@ -1,7 +1,6 @@
 package theCreepyProperty.menu;
 
 import javafx.application.Platform;
-import javafx.beans.value.ObservableValue;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -10,7 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import theCreepyProperty.Save.ReedWriteSettings;
+import theCreepyProperty.Save.ReadWriteSettings;
 import theCreepyProperty.main.GUI;
 import theCreepyProperty.scenes.GameScene;
 
@@ -18,7 +17,7 @@ public class Audio {
     private final GUI gui;
     private final GameScene scene;
     private final Settings settings;
-    private ReedWriteSettings reedWriteSettings;
+    private ReadWriteSettings readWriteSettings;
 
     private final Pane pMenuAudio = new Pane();
     private final VBox vBoxAudio = new VBox();
@@ -42,7 +41,7 @@ public class Audio {
         this.scene = scene;
         this.settings = settings;
 
-        this.reedWriteSettings = new ReedWriteSettings(this.scene.getGuiComponents());
+        this.readWriteSettings = new ReadWriteSettings(this.scene.getGuiComponents());
 
         this.label1 = new Label();
         this.slider1 = new Slider();
@@ -147,10 +146,9 @@ public class Audio {
         // sound anpassen
         float value = newVal.floatValue();
         this.master = Math.round(value * 10000f) / 10000f;
-        System.out.println("Value: " + this.master);
 
 
-        reedWriteSettings.updateSetting("src/resources/csv/Einstelungen/settings.csv", "master", (int) this.master);
+        readWriteSettings.updateSetting("master", (int) this.master);
 
         //System.out.println("[Audio]: slider1 ✔");
     }
@@ -212,11 +210,9 @@ public class Audio {
         return master;
     }
 
-    public void setMaster(float master, Slider slider) {
+    public void setMaster(float master) {
         this.master = master;
         this.slider1.setValue(master);
-
-        System.out.println("slider: " + this.slider1.lookup(".track"));
     }
 
     // Setter Methoden

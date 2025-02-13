@@ -1,12 +1,11 @@
 package theCreepyProperty.main;
 
-import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import theCreepyProperty.Save.ReedWriteSettings;
+import theCreepyProperty.Save.ReadWriteSettings;
 import theCreepyProperty.entity.Player;
 import theCreepyProperty.scenes.GameScene;
 import theCreepyProperty.scenes.LevelSelectScene;
@@ -97,7 +96,7 @@ public class GuiComponents {
         }
     }
 
-    public void triggerAnzeigeRWSettings(ReedWriteSettings reedWriteSettings) {
+    public void triggerAnzeigeRWSettings(ReadWriteSettings readWriteSettings) {
         if (!anzeige_on) {
             this.vBox_anzeige.setVisible(true);
             //reedWriteSettings.updateSetting("src/resources/csv/Einstelungen/settings.csv", "anzeige", 1);
@@ -109,16 +108,16 @@ public class GuiComponents {
         }
     }
 
-    public void triggerAnzeige(ReedWriteSettings reedWriteSettings) {
+    public void triggerAnzeige(ReadWriteSettings readWriteSettings) {
         if (!anzeige_on) {
             this.vBox_anzeige.setVisible(true);
             gameScene.getMenu().getSettings().getButton4().setText("Anzeige [ON]");
-            reedWriteSettings.updateSetting("src/resources/csv/Einstelungen/settings.csv", "anzeige", 1);
+            readWriteSettings.updateSetting("anzeige", 1);
             this.anzeige_on = true;
         } else {
             this.vBox_anzeige.setVisible(false);
             gameScene.getMenu().getSettings().getButton4().setText("Anzeige [OFF]");
-            reedWriteSettings.updateSetting("src/resources/csv/Einstelungen/settings.csv", "anzeige", 0);
+            readWriteSettings.updateSetting("anzeige", 0);
             this.anzeige_on = false;
         }
     }
