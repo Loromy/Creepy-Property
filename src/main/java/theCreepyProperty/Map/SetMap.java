@@ -26,7 +26,7 @@ public class SetMap {
     public void setMapPlus1() {
         this.levelSelectScene.setMapSelected(this.levelSelectScene.getMapSelected()); //todo
 
-        int level = this.levelSelectScene.getMapSelected() + 1;
+        int level = this.levelSelectScene.getMapSelected();
         switch (level) {
             case 1:
                 this.gui.setFilePath(path1);
@@ -43,8 +43,38 @@ public class SetMap {
                 System.out.println("[SetMap]: 3 selected ✔");
                 this.levelSelectScene.setMapSelected(3);
                 break;
+            case 4:
+                this.gui.setFilePath(path4);
+                System.out.println("[SetMap]: 4 selected ✔");
+                this.levelSelectScene.setMapSelected(4);
+                break;
+            case 5:
+                this.gui.setFilePath(path5);
+                System.out.println("[SetMap]: 5 selected ✔");
+                this.levelSelectScene.setMapSelected(5);
+                break;
+            case 6:
+                this.gui.setFilePath(path6);
+                System.out.println("[SetMap]: 6 selected ✔");
+                this.levelSelectScene.setMapSelected(6);
+                break;
+            case 7:
+                this.gui.setFilePath(path7);
+                System.out.println("[SetMap]: 7 selected ✔");
+                this.levelSelectScene.setMapSelected(7);
+                break;
+            case 8:
+                this.gui.setFilePath(path8);
+                System.out.println("[SetMap]: 8 selected ✔");
+                this.levelSelectScene.setMapSelected(8);
+                break;
+            case 9:
+                this.gui.setFilePath(path9);
+                System.out.println("[SetMap]: 9 selected ✔");
+                this.levelSelectScene.setMapSelected(9);
+                break;
             default:
-                System.out.println("[SetMap Error]: Invalid map selection ✖");
+                System.out.println("[SetMap Error]: Invalid map level: " + level + " does not exist ✖");
                 break;
         }
     }

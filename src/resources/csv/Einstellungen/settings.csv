@@ -1,5 +1,5 @@
 setting,value
-collision,1
-overlay,1
-anzeige,0
+collision,0
+overlay,0
+anzeige,1
 master,3

@@ -88,27 +88,39 @@ public class LevelSelectScene {
         });
 
         levelMenu.getbL4().setOnAction(e ->{
-
+            setMap(4);
+            levelMenu.getStartButton().setDisable(false);
+            this.levelMenu.getStartButton().requestFocus();
         });
 
         levelMenu.getbL5().setOnAction(e ->{
-
+            setMap(5);
+            levelMenu.getStartButton().setDisable(false);
+            this.levelMenu.getStartButton().requestFocus();
         });
 
         levelMenu.getbL6().setOnAction(e ->{
-
+            setMap(6);
+            levelMenu.getStartButton().setDisable(false);
+            this.levelMenu.getStartButton().requestFocus();
         });
 
         levelMenu.getbL7().setOnAction(e ->{
-
+            setMap(7);
+            levelMenu.getStartButton().setDisable(false);
+            this.levelMenu.getStartButton().requestFocus();
         });
 
         levelMenu.getbL8().setOnAction(e ->{
-
+            setMap(8);
+            levelMenu.getStartButton().setDisable(false);
+            this.levelMenu.getStartButton().requestFocus();
         });
 
         levelMenu.getbL9().setOnAction(e ->{
-
+            setMap(9);
+            levelMenu.getStartButton().setDisable(false);
+            this.levelMenu.getStartButton().requestFocus();
         });
 
         levelMenu.getStartButton().setOnAction(e -> {
