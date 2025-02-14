@@ -60,7 +60,7 @@ public class ReadWriteSettings {
                 else {
                     System.out.println("[ReedWriteSettings]: SettingsRead \"anzeige\" wrong value: " + value + " does not exist ✖");
                 }
-                this.guiComponents.triggerAnzeigeRWSettings(this);
+                this.guiComponents.triggerAnzeigeRWSettings();
                 break;
 
             case "overlay":
@@ -75,7 +75,7 @@ public class ReadWriteSettings {
                 else {
                     System.out.println("[ReedWriteSettings]: SettingsRead \"overlay\" wrong value: " + value + " does not exist ✖");
                 }
-                this.gameScene.getPlayer().triggerOverlayRWSettings(this);
+                this.gameScene.getPlayer().triggerOverlayRWSettings(this.gameScene);
                 break;
 
             case "collision":

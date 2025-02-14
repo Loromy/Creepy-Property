@@ -40,7 +40,7 @@ public class LevelSelect {
         this.gui = gui;
         this.scene = scene;
 
-        this.readWriteSpielstand = new ReadWriteSpielstand(this.gui.getGameScene().getGuiComponents());
+        this.readWriteSpielstand = new ReadWriteSpielstand();
 
         this.title = new Label();
         this.bL1 = new Button();
@@ -110,12 +110,6 @@ public class LevelSelect {
         setLevelSelectPositionLR(vBoxLevel2);
         setLevelSelectPositionLR(vBoxLevel3);
         setPlayBack(hBoxLevelButton);
-
-        //setLevelFortschritt();
-    }
-
-    public void setLevelFortschritt(int level, boolean unlocked, boolean completed) {
-        //TODO Fortschritt setzen
     }
 
     private void setLevelSelectPosition(VBox vBox) {

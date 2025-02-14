@@ -54,7 +54,7 @@ public class GUI {
 
     public void switchToLevelSelectScene() {
         if (this.selectScene == null) {
-            this.selectScene = new LevelSelectScene(stage, this, this.gameScene);
+            this.selectScene = new LevelSelectScene(stage, this);
         }
         this.selectScene.unlockLevel();
         // Scene wechseln

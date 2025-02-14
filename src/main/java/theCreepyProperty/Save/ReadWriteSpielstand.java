@@ -1,8 +1,5 @@
 package theCreepyProperty.Save;
 
-import theCreepyProperty.main.GuiComponents;
-import theCreepyProperty.menu.LevelSelect;
-import theCreepyProperty.scenes.GameScene;
 import theCreepyProperty.scenes.LevelSelectScene;
 
 import java.io.*;
@@ -11,16 +8,16 @@ import java.util.Map;
 
 public class ReadWriteSpielstand {
     private LevelSelectScene levelSelectScene;
-    private GuiComponents guiComponents;
+    //private GuiComponents guiComponents;
     private Map<Integer, Setting> settingsMap;
 
-    public ReadWriteSpielstand(GuiComponents guiComponents) {
-        this.guiComponents = guiComponents;
+    public ReadWriteSpielstand() {
+        //this.guiComponents = guiComponents;
         this.settingsMap = new HashMap<>();
     }
 
-    public void spielstandRead(String filePath, LevelSelectScene levelSelectScene, GuiComponents guiComponents) {
-        this.guiComponents = guiComponents;
+    public void spielstandRead(String filePath, LevelSelectScene levelSelectScene) {
+        //this.guiComponents = guiComponents;
         this.levelSelectScene = levelSelectScene;
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
@@ -50,11 +47,14 @@ public class ReadWriteSpielstand {
 
     // lesen
     public void setSpielstand(int level, boolean unlocked, boolean completed) {
-        this.levelSelectScene.getLevelMenu().setLevelFortschritt(level, unlocked, completed);
+        //this.levelSelectScene.getLevelMenu().setLevelFortschritt(level, unlocked, completed);
+
+        this.levelSelectScene.setLevelCompleted(level, completed);
+        this.levelSelectScene.setLevelUnlocked(level, unlocked);
     }
 
     // schreiben
-    public void updateSetting(int level, boolean unlocked, boolean completed) {
+    public void updateSpielstand(int level, boolean unlocked, boolean completed) {
         String filePath = "src/resources/csv/Save/spielstand.csv";
         Map<Integer, Setting> tempSettingsMap = new HashMap<>();
 

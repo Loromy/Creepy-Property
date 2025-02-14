@@ -68,7 +68,7 @@ public class GameWin extends VBox{
             this.gameScene.setBlur(15); //Menu blur
             this.gameWin_on = true;
             this.nextButton.requestFocus();
-            this.levelSelectScene.setLevelCompleted(this.levelSelectScene.getMapSelected(), true);
+            this.levelSelectScene.unlockNextLevel();
         } else {
             this.backgroundGameWin.setVisible(false);
             this.pGameWin.setVisible(false);

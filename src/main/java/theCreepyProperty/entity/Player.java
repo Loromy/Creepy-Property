@@ -5,6 +5,7 @@ import theCreepyProperty.Save.ReadWriteSettings;
 import theCreepyProperty.main.GUI;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import theCreepyProperty.scenes.GameScene;
 
 public class Player extends Entity{
     private final GUI gui;
@@ -107,14 +108,14 @@ public class Player extends Entity{
         };
     }
 
-    public void triggerOverlayRWSettings(ReadWriteSettings readWriteSettings) {
+    public void triggerOverlayRWSettings(GameScene gameScene) {
         if (!overlay_on) {
             this.i_darkness_overlay.setImage(darknessOverlay);
-            //reedWriteSettings.updateSetting("src/resources/csv/Einstelungen/settings.csv", "overlay", 1);
+            gameScene.getMenu().getSettings().getButton3().setText("Overlay [ON]");
             this.overlay_on = true;
         } else {
             this.i_darkness_overlay.setImage(null);
-            //reedWriteSettings.updateSetting("src/resources/csv/Einstelungen/settings.csv", "overlay", 0);
+            gameScene.getMenu().getSettings().getButton3().setText("Overlay [OFF]");
             this.overlay_on = false;
         }
     }

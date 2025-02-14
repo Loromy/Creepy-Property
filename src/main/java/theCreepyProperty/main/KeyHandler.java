@@ -124,14 +124,14 @@ public class KeyHandler {
             }
 
             if (ctrlPressed) {
-                this.player.setControlSpeed(5);
-                this.scene.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed());
+                this.player.setControlSpeed(5); // Control speed | standard speed + (value)
+                this.scene.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed()); // anzeigen von speed
             } else if (shiftPressed) {
                 this.player.setShiftSpeed();
-                this.scene.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed());
+                this.scene.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed()); // anzeigen von speed
             } else {
                 this.player.setControlSpeed(0);
-                this.scene.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed());
+                this.scene.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed()); // anzeigen von speed
             }
 
             if (dx != 0 || dy != 0) {

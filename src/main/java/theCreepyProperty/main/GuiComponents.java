@@ -96,14 +96,14 @@ public class GuiComponents {
         }
     }
 
-    public void triggerAnzeigeRWSettings(ReadWriteSettings readWriteSettings) {
+    public void triggerAnzeigeRWSettings() {
         if (!anzeige_on) {
             this.vBox_anzeige.setVisible(true);
-            //reedWriteSettings.updateSetting("src/resources/csv/Einstelungen/settings.csv", "anzeige", 1);
+            gameScene.getMenu().getSettings().getButton4().setText("Anzeige [ON]");
             this.anzeige_on = true;
         } else {
             this.vBox_anzeige.setVisible(false);
-            //reedWriteSettings.updateSetting("src/resources/csv/Einstelungen/settings.csv", "anzeige", 0);
+            gameScene.getMenu().getSettings().getButton4().setText("Anzeige [OFF]");
             this.anzeige_on = false;
         }
     }
