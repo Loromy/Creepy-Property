@@ -57,11 +57,11 @@ public class Audio {
         // Button text
         this.backButton.setText("Back");
         this.label1.setText("Master");
-        this.button2.setText("button2");
-        this.button3.setText("button3");
-        this.button4.setText("button4");
-        this.button5.setText("button5");
-        this.button6.setText("button6");
+        this.button2.setText("");
+        this.button3.setText("");
+        this.button4.setText("");
+        this.button5.setText("");
+        this.button6.setText("");
 
         this.button2.setDisable(true);
         this.button3.setDisable(true);

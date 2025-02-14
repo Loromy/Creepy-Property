@@ -218,16 +218,17 @@ public class LevelSelectScene {
     }
 
     private void outputCU() {
+        System.out.println("[LevelSelectScene]: outputCU");
         System.out.println("----------------------------------------------------");
-        System.out.println("Level 1 Completed: " + level1Completed + " | Level 1 Unlocked: " + level1Unlocked);
-        System.out.println("Level 2 Completed: " + level2Completed + " | Level 2 Unlocked: " + level2Unlocked);
-        System.out.println("Level 3 Completed: " + level3Completed + " | Level 3 Unlocked: " + level3Unlocked);
-        System.out.println("Level 4 Completed: " + level4Completed + " | Level 4 Unlocked: " + level4Unlocked);
-        System.out.println("Level 5 Completed: " + level5Completed + " | Level 5 Unlocked: " + level5Unlocked);
-        System.out.println("Level 6 Completed: " + level6Completed + " | Level 6 Unlocked: " + level6Unlocked);
-        System.out.println("Level 7 Completed: " + level7Completed + " | Level 7 Unlocked: " + level7Unlocked);
-        System.out.println("Level 8 Completed: " + level8Completed + " | Level 8 Unlocked: " + level8Unlocked);
-        System.out.println("Level 9 Completed: " + level9Completed + " | Level 9 Unlocked: " + level9Unlocked);
+        System.out.println("Level1 Unlocked: " + level1Unlocked + " | Level1 Completed: " + level1Completed);
+        System.out.println("Level2 Unlocked: " + level2Unlocked + " | Level2 Completed: " + level2Completed);
+        System.out.println("Level3 Unlocked: " + level3Unlocked + " | Level3 Completed: " + level3Completed);
+        System.out.println("Level4 Unlocked: " + level4Unlocked + " | Level4 Completed: " + level4Completed);
+        System.out.println("Level5 Unlocked: " + level5Unlocked + " | Level5 Completed: " + level5Completed);
+        System.out.println("Level6 Unlocked: " + level6Unlocked + " | Level6 Completed: " + level6Completed);
+        System.out.println("Level7 Unlocked: " + level7Unlocked + " | Level7 Completed: " + level7Completed);
+        System.out.println("Level8 Unlocked: " + level8Unlocked + " | Level8 Completed: " + level8Completed);
+        System.out.println("Level9 Unlocked: " + level9Unlocked + " | Level9 Completed: " + level9Completed);
         System.out.println("----------------------------------------------------");
     }
 
