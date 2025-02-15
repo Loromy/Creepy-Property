@@ -7,6 +7,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import theCreepyProperty.scenes.GameScene;
 
+import java.awt.*;
+
 public class Player extends Entity{
     private final GUI gui;
     private double controlSpeed = 0; // speed if strg pressed
@@ -19,7 +21,7 @@ public class Player extends Entity{
         this.gui = gui;
         setDefaultValues();
         this.solid_player_aria = new Rectangle();
-        this.solid_player_aria.setVisible(false); //Collision Block of player
+        this.solid_player_aria.setVisible(false); //Collision Block of player anzeigen
         this.solid_player_aria.setX(entity_world_X);
         this.solid_player_aria.setY(entity_world_Y);
         this.solid_player_aria.setWidth(entity_size_X);

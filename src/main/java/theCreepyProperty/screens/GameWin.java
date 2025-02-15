@@ -20,6 +20,7 @@ public class GameWin extends VBox{
     private final SetMap setMap;
 
     private boolean gameWin_on = false;
+    private int mapSelected = 0;
 
     private final Label text;
     private final Button backButton;
@@ -56,6 +57,13 @@ public class GameWin extends VBox{
         this.backgroundGameWin.setPrefSize(gui.getWidth(), gui.getHeight());
         this.setGameOverPosition(500, 300, 10);
 
+//        // disable next bei level9
+//        //todo finish scene anzeigen
+//        if (++this.mapSelected >= 9) {
+//            this.nextButton.setText("Finish Game");
+//            this.gui.switchToFinishScene();
+//        }
+
         // Button actions
         backButton.setOnAction(e -> onBack());
         nextButton.setOnAction(e -> onNext());
@@ -68,7 +76,12 @@ public class GameWin extends VBox{
             this.gameScene.setBlur(15); //Menu blur
             this.gameWin_on = true;
             this.nextButton.requestFocus();
+            this.mapSelected = this.levelSelectScene.getMapSelected();
             this.levelSelectScene.unlockNextLevel();
+            int map = this.mapSelected;
+            if (++map > 9) {
+                this.nextButton.setText("Finish Game");
+            }
         } else {
             this.backgroundGameWin.setVisible(false);
             this.pGameWin.setVisible(false);
@@ -91,10 +104,16 @@ public class GameWin extends VBox{
     }
 
     private void onNext() {
-        System.out.println("[Game Win]: Next ✔");
-        this.gui.switchToLevelSelectScene();
-        this.setMap.setMapPlus1();
-        this.gui.switchToGameScene();
+        int map = this.mapSelected;
+        if (++map > 9) {
+            this.gui.switchToFinishScene();
+            System.out.println("[GameWin]: onNext switch to Finish Scene ✔");
+        } else {
+            System.out.println("[Game Win]: Next ✔");
+            this.gui.switchToLevelSelectScene();
+            this.setMap.setMapPlus1();
+            this.gui.switchToGameScene();
+        }
     }
 
     // Getter Methoden

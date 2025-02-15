@@ -192,39 +192,48 @@ public class LevelSelectScene {
         if (level1Completed) {
             //todo in csv schreiben das completed ist
             this.readWriteSpielstand.updateSpielstand(1,true,true);
-            this.levelMenu.getbL1().setStyle("-fx-text-fill: #ffae00;");
+            this.levelMenu.getbL1().setStyle("-fx-text-fill: #11b30e;");
+            this.levelMenu.getbL1().setText("Level 1 ✔");
         }
         if (level2Completed) {
             this.readWriteSpielstand.updateSpielstand(2,true,true);
-            this.levelMenu.getbL2().setStyle("-fx-text-fill: #ffae00;");
+            this.levelMenu.getbL2().setStyle("-fx-text-fill: #11b30e;");
+            this.levelMenu.getbL2().setText("Level 2 ✔");
         }
         if (level3Completed) {
             this.readWriteSpielstand.updateSpielstand(3,true,true);
-            this.levelMenu.getbL3().setStyle("-fx-text-fill: #ffae00;");
+            this.levelMenu.getbL3().setStyle("-fx-text-fill: #11b30e;");
+            this.levelMenu.getbL3().setText("Level 3 ✔");
         }
         if (level4Completed) {
             this.readWriteSpielstand.updateSpielstand(4,true,true);
-            this.levelMenu.getbL4().setStyle("-fx-text-fill: #ffae00;");
+            this.levelMenu.getbL4().setStyle("-fx-text-fill: #11b30e;");
+            this.levelMenu.getbL4().setText("Level 4 ✔");
         }
         if (level5Completed) {
             this.readWriteSpielstand.updateSpielstand(5,true,true);
-            this.levelMenu.getbL5().setStyle("-fx-text-fill: #ffae00;");
+            this.levelMenu.getbL5().setStyle("-fx-text-fill: #11b30e;");
+            this.levelMenu.getbL5().setText("Level 5 ✔");
         }
         if (level6Completed) {
             this.readWriteSpielstand.updateSpielstand(6,true,true);
-            this.levelMenu.getbL6().setStyle("-fx-text-fill: #ffae00;");
+            this.levelMenu.getbL6().setStyle("-fx-text-fill: #11b30e;");
+            this.levelMenu.getbL6().setText("Level 6 ✔");
         }
         if (level7Completed) {
             this.readWriteSpielstand.updateSpielstand(7,true,true);
-            this.levelMenu.getbL7().setStyle("-fx-text-fill: #ffae00;");
+            this.levelMenu.getbL7().setStyle("-fx-text-fill: #11b30e;");
+            this.levelMenu.getbL7().setText("Level 7 ✔");
         }
         if (level8Completed) {
             this.readWriteSpielstand.updateSpielstand(8,true,true);
-            this.levelMenu.getbL8().setStyle("-fx-text-fill: #ffae00;");
+            this.levelMenu.getbL8().setStyle("-fx-text-fill: #11b30e;");
+            this.levelMenu.getbL8().setText("Level 8 ✔");
         }
         if (level9Completed) {
             this.readWriteSpielstand.updateSpielstand(9,true,true);
-            this.levelMenu.getbL9().setStyle("-fx-text-fill: #ffae00;");
+            this.levelMenu.getbL9().setStyle("-fx-text-fill: #11b30e;");
+            this.levelMenu.getbL9().setText("Level 9 ✔");
         }
         outputCU();
     }
@@ -245,39 +254,51 @@ public class LevelSelectScene {
     }
 
     public void unlockLevel() {
-        levelCompleted();
         if (level1Unlocked) {
             levelMenu.getbL1().setDisable(false);
+            this.readWriteSpielstand.updateSpielstand(1,true,false);
         }
         if (level2Unlocked) {
             levelMenu.getbL2().setDisable(false);
+            this.readWriteSpielstand.updateSpielstand(2,true,false);
         }
         if (level3Unlocked) {
             levelMenu.getbL3().setDisable(false);
+            this.readWriteSpielstand.updateSpielstand(3,true,false);
         }
         if (level4Unlocked) {
             levelMenu.getbL4().setDisable(false);
+            this.readWriteSpielstand.updateSpielstand(4,true,false);
         }
         if (level5Unlocked) {
             levelMenu.getbL5().setDisable(false);
+            this.readWriteSpielstand.updateSpielstand(5,true,false);
         }
         if (level6Unlocked) {
             levelMenu.getbL6().setDisable(false);
+            this.readWriteSpielstand.updateSpielstand(6,true,false);
         }
         if (level7Unlocked) {
             levelMenu.getbL7().setDisable(false);
+            this.readWriteSpielstand.updateSpielstand(7,true,false);
         }
         if (level8Unlocked) {
             levelMenu.getbL8().setDisable(false);
+            this.readWriteSpielstand.updateSpielstand(8,true,false);
         }
         if (level9Unlocked) {
             levelMenu.getbL9().setDisable(false);
+            this.readWriteSpielstand.updateSpielstand(9,true,false);
         }
+        levelCompleted();
     }
 
     public void unlockNextLevel() {
-        setLevelCompleted(this.mapSelected,true);
-        setLevelUnlocked(++this.mapSelected,true);
+        int thisMap = this.mapSelected;
+        if(++thisMap <= 9) {
+            setLevelCompleted(this.mapSelected, true);
+            setLevelUnlocked(++this.mapSelected, true);
+        }
     }
 
 

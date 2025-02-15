@@ -249,7 +249,16 @@
     -fx-padding: 5px 10px 5px 2px;
 }
 
-.label {
-    -fx-font-family: Creepster; /* Schriftart */
+#finishScene {
+    -fx-font-family: Creepster;
+    -fx-text-fill: linear-gradient(#525252 20%, #509974);
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.7), 5, 0, 5, 5);
+    -fx-font-size: 20px;
+}
 
+#finishScene-background {
+    -fx-background-color: rgba(64, 64, 64, 0.5);
+    -fx-background-radius: 30px;
+    -fx-border-radius: 30;-fx-border-color: black;
 }

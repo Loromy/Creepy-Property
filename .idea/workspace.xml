@@ -4,21 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="87a96b04-91ba-4fe6-93a4-31fd9b49747e" name="Changes" comment="V0.3.1.4&#10;- Spielstand csv save / read">
-      <change afterPath="$PROJECT_DIR$/src/resources/csv/maps/map4.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/csv/maps/map5.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/csv/maps/map6.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/csv/maps/map7.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/csv/maps/map8.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/csv/maps/map9.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
+    <list default="true" id="87a96b04-91ba-4fe6-93a4-31fd9b49747e" name="Changes" comment="V0.3.1.5&#10;- map 2/3 update">
+      <change afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/scenes/FinishScene.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/background/finish Scene Background.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/SetMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/SetMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/entity/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/GUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/scenes/GameScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/scenes/GameScene.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/scenes/LevelSelectScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/scenes/LevelSelectScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/csv/Einstellungen/settings.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/Einstellungen/settings.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/screens/GameWin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/screens/GameWin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/csv/Save/spielstand.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/Save/spielstand.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/csv/maps/map2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/maps/map2.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/csv/maps/map1.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/maps/map1.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/csv/maps/map3.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/maps/map3.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/csv/maps/map4.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/maps/map4.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/csv/maps/map5.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/maps/map5.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/csv/maps/map6.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/maps/map6.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/csv/maps/map7.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/maps/map7.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/csv/maps/map8.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/maps/map8.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/csv/maps/map9.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/maps/map9.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/style/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/style/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,7 +196,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739542997722</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="V0.3.1.5&#10;- map 2/3 update">
+      <option name="closed" value="true" />
+      <created>1739570758957</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1739570758957</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -218,7 +230,8 @@
     <MESSAGE value="V0.3.1.3&#10;- audio save value in settings" />
     <MESSAGE value="V0.3.1.3.1&#10;- add" />
     <MESSAGE value="V0.3.1.4&#10;- Spielstand csv save / read" />
-    <option name="LAST_COMMIT_MESSAGE" value="V0.3.1.4&#10;- Spielstand csv save / read" />
+    <MESSAGE value="V0.3.1.5&#10;- map 2/3 update" />
+    <option name="LAST_COMMIT_MESSAGE" value="V0.3.1.5&#10;- map 2/3 update" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

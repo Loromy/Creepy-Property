@@ -26,6 +26,7 @@ public class GameScene {
     private final Stage stage;
     private final GUI gui;
     private Scene gameScene;
+    private SoundPlayer soundPlayer;
 
     // Game Scene Pane
     private final Pane root = new Pane();
@@ -112,6 +113,11 @@ public class GameScene {
         keyHandler.addKeyListener(gameScene, this);
 
         this.pMenu.setVisible(false);
+
+        // play sound
+        this.soundPlayer = new SoundPlayer("src/resources/sounds/background/background-atmosphere.wav");
+        this.soundPlayer.setVolume(this.getMenu().getSettings().getAudio().getMaster()); // Standard 2
+        this.soundPlayer.play();
     }
 
     public void pGameChildren(Rectangle rectangle) {
