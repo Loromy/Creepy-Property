@@ -56,7 +56,7 @@ public class Audio {
 
         // Button text
         this.backButton.setText("Back");
-        this.label1.setText("Master");
+        this.label1.setText("Master: " + Math.round(this.master * 100f) / 100f);
         this.button2.setText("");
         this.button3.setText("");
         this.button4.setText("");
@@ -148,7 +148,9 @@ public class Audio {
         this.master = Math.round(value * 10000f) / 10000f;
 
 
-        readWriteSettings.updateSetting("master", (int) this.master);
+        readWriteSettings.updateSetting("master",this.master);
+
+        this.label1.setText("Master: " + Math.round(this.master * 100f) / 100f);
 
         //System.out.println("[Audio]: slider1 ✔");
     }

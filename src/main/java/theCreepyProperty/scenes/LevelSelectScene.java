@@ -294,8 +294,10 @@ public class LevelSelectScene {
     }
 
     public void unlockNextLevel() {
-        int thisMap = this.mapSelected;
-        if(++thisMap <= 9) {
+        int nextMap = this.mapSelected;
+        System.out.println("____________________\nmapSelecte:" + this.mapSelected + " | thismap: " + nextMap);
+        if(++nextMap <= 10) {
+            System.out.println("2____________________\nmapSelecte:" + this.mapSelected + " | thismap: " + nextMap);
             setLevelCompleted(this.mapSelected, true);
             setLevelUnlocked(++this.mapSelected, true);
         }
@@ -410,6 +412,7 @@ public class LevelSelectScene {
                 break;
             case 9:
                 this.level9Completed = completed;
+                levelCompleted();
                 break;
             default:
                 System.out.println("[LevelSelectScene]: setLevelCompleted level: " + level + " does not exist ✖");

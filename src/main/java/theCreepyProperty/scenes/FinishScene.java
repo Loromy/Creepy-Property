@@ -40,6 +40,9 @@ public class FinishScene {
     private final Label aName;
     private final Label l_bilder;
     private final Label bildPlayer;
+    private final Label bildPlayerLink;
+    private final Label bildStart;
+    private final Label bildStartLink;
 
     private final Label l_slidDown_CreepyProperty;
     private final Label l_slidDown_danke;
@@ -78,8 +81,17 @@ public class FinishScene {
         this.l_bilder.setId("finishScene");
         this.l_bilder.setStyle("-fx-font-size: 40px;");
 
-        this.bildPlayer = new Label("PLayer: https://");
+        this.bildPlayer = new Label("PLayer:");
         this.bildPlayer.setId("finishScene");
+
+        this.bildPlayerLink = new Label("https://artistsnclients.com/slots/106828-character-sprite-sheet");
+        this.bildPlayerLink.setId("finishScene");
+
+        this.bildStart = new Label("Start Bildschirm Bild:");
+        this.bildStart.setId("finishScene");
+
+        this.bildStartLink = new Label(" generiert von Chat GPT: https://chatgpt.com");
+        this.bildStartLink.setId("finishScene");
 
         this.back = new Button("Back");
 
@@ -122,7 +134,7 @@ public class FinishScene {
         this.vBox_audio.getChildren().addAll(this.l_audio,this.aName);
         this.vBox_audio.setAlignment(Pos.TOP_CENTER);
 
-        this.vBox_bilder.getChildren().addAll(this.l_bilder,this.bildPlayer);
+        this.vBox_bilder.getChildren().addAll(this.l_bilder,this.bildPlayer,this.bildPlayerLink,this.bildStart,this.bildStartLink);
         this.vBox_bilder.setAlignment(Pos.TOP_CENTER);
 
 
@@ -138,7 +150,7 @@ public class FinishScene {
 
 
         // Animation für das Hochscrollen
-        TranslateTransition scrollAnimation = new TranslateTransition(Duration.seconds(10), this.textDisplay);
+        TranslateTransition scrollAnimation = new TranslateTransition(Duration.seconds(20), this.textDisplay);
         scrollAnimation.setFromY(height - 300);
         scrollAnimation.setToY(((double) -height / 2)+200);
         scrollAnimation.setCycleCount(1);
@@ -146,7 +158,7 @@ public class FinishScene {
         scrollAnimation.play();
 
 
-        TranslateTransition scrollAnimationTitel = new TranslateTransition(Duration.seconds(10), this.slidDown);
+        TranslateTransition scrollAnimationTitel = new TranslateTransition(Duration.seconds(20), this.slidDown);
         scrollAnimationTitel.setFromY(-10000);
         scrollAnimationTitel.setToY(-100);
         scrollAnimationTitel.setCycleCount(1);

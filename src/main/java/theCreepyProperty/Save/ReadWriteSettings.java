@@ -10,7 +10,7 @@ import java.util.Map;
 public class ReadWriteSettings {
     private GameScene gameScene;
     private GuiComponents guiComponents;
-    private Map<String, Integer> settingsMap;
+    private Map<String, Float> settingsMap;
 
     public ReadWriteSettings(GuiComponents guiComponents) {
         this.guiComponents = guiComponents;
@@ -35,7 +35,7 @@ public class ReadWriteSettings {
                 if (parts.length < 2) continue;
 
                 String setting = parts[0].trim();
-                int value = Integer.parseInt(parts[1].trim());
+                float value = Float.parseFloat(parts[1].trim());
                 settingsMap.put(setting, value);
 
                 setSettings(setting, value);
@@ -46,7 +46,7 @@ public class ReadWriteSettings {
     }
 
     // lesen
-    public void setSettings(String setting, int value) {
+    public void setSettings(String setting, float value) {
         switch (setting) {
             case "anzeige":
                 if (value == 0) {
@@ -111,9 +111,9 @@ public class ReadWriteSettings {
     }
 
     // schreiben
-    public void updateSetting(String setting, int newValue) {
+    public void updateSetting(String setting, float newValue) {
         String filePath = "src/resources/csv/Einstellungen/settings.csv";
-        Map<String, Integer> tempSettingsMap = new HashMap<>();
+        Map<String, Float> tempSettingsMap = new HashMap<>();
 
         // Datei einlesen und vorhandene Werte speichern
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
@@ -130,7 +130,7 @@ public class ReadWriteSettings {
                 if (parts.length < 2) continue;
 
                 String key = parts[0].trim();
-                int value = Integer.parseInt(parts[1].trim());
+                float value = Float.parseFloat(parts[1].trim());
 
                 tempSettingsMap.put(key, value);
             }
@@ -145,11 +145,11 @@ public class ReadWriteSettings {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
             bw.write("setting,value"); // Header beibehalten
 
-            for (Map.Entry<String, Integer> entry : tempSettingsMap.entrySet()) {
+            for (Map.Entry<String, Float> entry : tempSettingsMap.entrySet()) {
                 bw.write("\n" + entry.getKey() + "," + entry.getValue());
             }
 
-            System.out.println("[ReadSettings]: Einstellung \"" + setting + "\" auf " + newValue + " aktualisiert.");
+            //System.out.println("[ReadWriteSettings]: Einstellung \"" + setting + "\" auf " + newValue + " aktualisiert.");
         } catch (IOException e) {
             e.printStackTrace();
         }

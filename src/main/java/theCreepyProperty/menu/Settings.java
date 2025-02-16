@@ -31,7 +31,6 @@ public class Settings implements PasswordHandler {
 
     private Button backButton;
     private boolean settings_on = false;
-    String adminPasswort = "123";
 
     public Settings(GUI gui, GameScene gameScene, Menu menu)  {
         this.gui = gui;
@@ -66,11 +65,10 @@ public class Settings implements PasswordHandler {
         this.button3.setText("Overlay [ON]");
         this.button4.setText("Anzeige [OFF]");
         this.button5.setText("Collision [ON]"); //No usage
-        this.button6.setText("");
+        this.button6.setText("End-Scene");
 
         //this.button1.setStyle("-fx-text-fill: darkRed;");
         this.button2.setDisable(true);
-        this.button6.setDisable(true);
 
         // getChildren
         this.vBoxSettingsL.getChildren().addAll(button1, button3, button5); // Buttons Left
@@ -146,6 +144,7 @@ public class Settings implements PasswordHandler {
     }
 
     private void onButton6() {
+        this.gui.switchToFinishScene();
         System.out.println("[Settings]: button6 ✔");
     }
 
