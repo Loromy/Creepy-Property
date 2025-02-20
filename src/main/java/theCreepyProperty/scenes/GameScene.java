@@ -24,6 +24,8 @@ import theCreepyProperty.menu.Menu;
 import theCreepyProperty.screens.GameOver;
 import theCreepyProperty.screens.GameWin;
 
+import java.util.Random;
+
 public class GameScene {
 
     private final Stage stage;
@@ -58,6 +60,19 @@ public class GameScene {
 
     private Timeline timer;
     private double time_seconds = 0.0;
+
+    private Timeline noiseTimer;
+    private final Random random = new Random();
+
+    // Liste von zufälligen Hintergrundgeräuschen
+    private final String[] randomSounds = {
+            "src/resources/sounds/background/random background noise/creepy-breath.wav",
+            "src/resources/sounds/background/random background noise/creepy-hifreq-woosh.wav",
+            "src/resources/sounds/background/random background noise/creepy-laugh.wav",
+            "src/resources/sounds/background/random background noise/creepy-room-sound.wav",
+            "src/resources/sounds/background/random background noise/creepy-whispering.wav",
+            "src/resources/sounds/background/random background noise/creepy-wind.wav"
+    };
 
     public GameScene(Stage stage, GUI gui) {
         this.stage = stage;
@@ -125,9 +140,12 @@ public class GameScene {
         //timer Start
         startTimer();
 
+        // random noise
+        startRandomNoise();
+
         // play sound
-        this.soundPlayer = new SoundPlayer("src/resources/sounds/background/background-atmosphere.wav");
-        this.soundPlayer.setVolume(this.getMenu().getSettings().getAudio().getMaster()); // Standard 2
+        this.soundPlayer = new SoundPlayer("src/resources/sounds/background/background-creepy-sound.wav");
+        this.soundPlayer.setVolume(this.getMenu().getSettings().getAudio().getMaster());
         this.soundPlayer.play();
     }
 
@@ -155,6 +173,28 @@ public class GameScene {
         if (timer != null) {
             timer.stop();
         }
+    }
+
+    private void startRandomNoise() {
+        noiseTimer = new Timeline(new KeyFrame(Duration.seconds(getRandomInterval()), event -> {
+            playRandomNoise();
+            noiseTimer.getKeyFrames().setAll(new KeyFrame(Duration.seconds(getRandomInterval()), e -> playRandomNoise()));
+            noiseTimer.play();
+        }));
+        noiseTimer.setCycleCount(Timeline.INDEFINITE);
+        noiseTimer.play();
+    }
+
+    private void playRandomNoise() {
+        int soundIndex = random.nextInt(randomSounds.length);
+        String soundPath = randomSounds[soundIndex];
+        SoundPlayer noisePlayer = new SoundPlayer(soundPath);
+        noisePlayer.setVolume((float) (this.getMenu().getSettings().getAudio().getMaster() * 0.5)); // Leiser als Hintergrundmusik
+        noisePlayer.play();
+    }
+
+    private int getRandomInterval() {
+        return random.nextInt(25) + 5; // Zufälliges Intervall zwischen 5 und 30 Sekunden
     }
 
     public double getTime_seconds() {

@@ -46,7 +46,7 @@ public class StartMenu {
     }
 
     private BackgroundImage getBackgroundImage() {
-        Image image = new Image("file:src/resources/background/Creepy Property background1.png");
+        Image image = new Image("file:src/resources/background/Creepy Property background.png");
 
         // Setze das Hintergrundbild
         BackgroundImage backgroundImage = new BackgroundImage(

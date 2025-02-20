@@ -28,7 +28,7 @@ public class GUI {
         // Standard-Scene auf StartScene setzen
         stage.setScene(startScene.getScene());
         stage.setTitle("The Creepy Property");
-        stage.setResizable(false);
+        stage.setResizable(true);
         stage.show();
     }
 

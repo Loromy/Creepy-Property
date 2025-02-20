@@ -8,6 +8,7 @@ import javafx.scene.layout.VBox;
 import theCreepyProperty.DeveloperMode.PasswordHandler;
 import theCreepyProperty.Save.ReadWriteSettings;
 import theCreepyProperty.main.GUI;
+import theCreepyProperty.main.SoundPlayer;
 import theCreepyProperty.scenes.GameScene;
 
 public class Settings implements PasswordHandler {
@@ -16,6 +17,7 @@ public class Settings implements PasswordHandler {
     private final Menu menu;
     private final Audio audio;
     private final ReadWriteSettings readWriteSettings;
+    private SoundPlayer soundPlayer;
 
     private final Pane pMenuSettings = new Pane();
     private final VBox vBoxSettings = new VBox();
@@ -31,6 +33,8 @@ public class Settings implements PasswordHandler {
 
     private Button backButton;
     private boolean settings_on = false;
+
+    private final String soundButtonClick = "src/resources/sounds/button click.wav";
 
     public Settings(GUI gui, GameScene gameScene, Menu menu)  {
         this.gui = gui;
@@ -111,6 +115,11 @@ public class Settings implements PasswordHandler {
         System.out.println("[Settings]: Back ✔");
         triggerSettings(); // Settings
         this.menu.getpMenu().setVisible(true); //Start Menu
+
+        soundPlayer = new SoundPlayer(soundButtonClick);
+        this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster()); // Standard 2
+        this.soundPlayer.play();
+
         this.menu.triggerFocus();
     }
 
@@ -121,31 +130,55 @@ public class Settings implements PasswordHandler {
         this.pMenuSettings.setVisible(false);
         this.audio.triggerAudio();
         System.out.println("[Settings]: button1 ✔");
+
+        soundPlayer = new SoundPlayer(soundButtonClick);
+        this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster()); // Standard 2
+        this.soundPlayer.play();
     }
 
     private void onButton2() {
         System.out.println("[Settings]: button2 ✔");
+
+        soundPlayer = new SoundPlayer(soundButtonClick);
+        this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster()); // Standard 2
+        this.soundPlayer.play();
     }
 
     private void onButton3() {
 //        new DevMode(this).show(this.gameScene);
         this.gameScene.getPlayer().triggerOverlay(this.readWriteSettings);
         System.out.println("[Settings]: button3 ✔");
+
+        soundPlayer = new SoundPlayer(soundButtonClick);
+        this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster()); // Standard 2
+        this.soundPlayer.play();
     }
 
     private void onButton4() {
         this.gameScene.getGuiComponents().triggerAnzeige(this.readWriteSettings);
         System.out.println("[Settings]: button4 ✔");
+
+        soundPlayer = new SoundPlayer(soundButtonClick);
+        this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster()); // Standard 2
+        this.soundPlayer.play();
     }
 
     private void onButton5() {
         this.gameScene.getMapCreate().triggerCollision(this.readWriteSettings);
         System.out.println("[Settings]: button5 ✔");
+
+        soundPlayer = new SoundPlayer(soundButtonClick);
+        this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster()); // Standard 2
+        this.soundPlayer.play();
     }
 
     private void onButton6() {
         this.gui.switchToFinishScene();
         System.out.println("[Settings]: button6 ✔");
+
+        soundPlayer = new SoundPlayer(soundButtonClick);
+        this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster()); // Standard 2
+        this.soundPlayer.play();
     }
 
     // Getter Methoden

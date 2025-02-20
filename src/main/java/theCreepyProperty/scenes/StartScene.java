@@ -4,6 +4,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import theCreepyProperty.main.GUI;
+import theCreepyProperty.main.SoundPlayer;
 import theCreepyProperty.screens.StartMenu;
 
 public class StartScene {
@@ -11,8 +12,11 @@ public class StartScene {
     private final Stage stage;
     private final GUI gui;
     private Scene startScene;
+    private SoundPlayer soundPlayer;
 
     private final StartMenu startMenu;
+
+    private final String soundButtonClick = "src/resources/sounds/button click.wav";
 
     public StartScene(Stage stage, GUI gui) {
         this.stage = stage;
@@ -33,10 +37,20 @@ public class StartScene {
 
         startMenu.getStartButton().setOnAction(e -> {
             System.out.println("[Start Menu]: Spiel wird gestartet... ✔");
+
+            soundPlayer = new SoundPlayer(soundButtonClick);
+            this.soundPlayer.setVolume(3); // Standard 2
+            this.soundPlayer.play();
+
             gui.switchToLevelSelectScene();
         });
         startMenu.getQuitButton().setOnAction(e -> {
             System.out.println("[Start Menu]: Quit ✔");
+
+            soundPlayer = new SoundPlayer(soundButtonClick);
+            this.soundPlayer.setVolume(3); // Standard 2
+            this.soundPlayer.play();
+
             System.exit(0);
         });
     }

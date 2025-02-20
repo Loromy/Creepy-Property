@@ -24,7 +24,7 @@ public class Menu extends VBox {
     private final Button settingsButton;
     private final Button backButton;
 
-    private final String soundButtonClick = "src/resources/sounds/itemCollect.wav";
+    private final String soundButtonClick = "src/resources/sounds/button click.wav";
 
     public Menu(GUI gui, GameScene scene) {
         this.gui = gui;

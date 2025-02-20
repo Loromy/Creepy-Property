@@ -112,10 +112,10 @@ public class FinishScene {
         this.textDisplay.getStylesheets().add(("file:src/resources/style/style.css"));
         this.slidDown.getStylesheets().add(("file:src/resources/style/style.css"));
 
-        // play sound
-        this.soundPlayer = new SoundPlayer("src/resources/sounds/background/background-atmosphere.wav");
-        this.soundPlayer.setVolume(3); // Standard 2
-        this.soundPlayer.play();
+//        // play sound
+//        this.soundPlayer = new SoundPlayer("src/resources/sounds/background/background-atmosphere.wav");
+//        this.soundPlayer.setVolume(3); // Standard 2
+//        this.soundPlayer.play();
 
         //this.root.getChildren().add(new ImageView(new Image("file:src/resources/background/finish Scene Background.png")));
         BackgroundImage backgroundImage = getBackgroundImage();

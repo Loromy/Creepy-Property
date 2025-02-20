@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import theCreepyProperty.Map.SetMap;
 import theCreepyProperty.Save.ReadWriteSpielstand;
 import theCreepyProperty.main.GUI;
+import theCreepyProperty.main.SoundPlayer;
 import theCreepyProperty.menu.LevelSelect;
 
 public class LevelSelectScene {
@@ -16,6 +17,7 @@ public class LevelSelectScene {
     private Scene levelSelectScene;
     private final LevelSelect levelMenu;
     private ReadWriteSpielstand readWriteSpielstand;
+    private SoundPlayer soundPlayer;
 
     private final Pane pLevelBlur = new Pane();
     private final Pane pLevelComponents = new Pane();
@@ -42,6 +44,8 @@ public class LevelSelectScene {
     private boolean level7Unlocked = false;
     private boolean level8Unlocked = false;
     private boolean level9Unlocked = false;
+
+    private final String soundButtonClick = "src/resources/sounds/button click.wav";
 
 
     public LevelSelectScene(Stage stage, GUI gui) {
@@ -73,62 +77,108 @@ public class LevelSelectScene {
             setMap(1);
             levelMenu.getStartButton().setDisable(false);
             this.levelMenu.getStartButton().requestFocus();
+
+            soundPlayer = new SoundPlayer(soundButtonClick);
+            this.soundPlayer.setVolume(3); // Standard 2
+            this.soundPlayer.play();
         });
 
         levelMenu.getbL2().setOnAction(e ->{
             setMap(2);
             levelMenu.getStartButton().setDisable(false);
             this.levelMenu.getStartButton().requestFocus();
+
+            soundPlayer = new SoundPlayer(soundButtonClick);
+            this.soundPlayer.setVolume(3); // Standard 2
+            this.soundPlayer.play();
         });
 
         levelMenu.getbL3().setOnAction(e ->{
             setMap(3);
             levelMenu.getStartButton().setDisable(false);
             this.levelMenu.getStartButton().requestFocus();
+
+            soundPlayer = new SoundPlayer(soundButtonClick);
+            this.soundPlayer.setVolume(3); // Standard 2
+            this.soundPlayer.play();
         });
 
         levelMenu.getbL4().setOnAction(e ->{
             setMap(4);
             levelMenu.getStartButton().setDisable(false);
             this.levelMenu.getStartButton().requestFocus();
+
+            soundPlayer = new SoundPlayer(soundButtonClick);
+            this.soundPlayer.setVolume(3); // Standard 2
+            this.soundPlayer.play();
         });
 
         levelMenu.getbL5().setOnAction(e ->{
             setMap(5);
             levelMenu.getStartButton().setDisable(false);
             this.levelMenu.getStartButton().requestFocus();
+
+            soundPlayer = new SoundPlayer(soundButtonClick);
+            this.soundPlayer.setVolume(3); // Standard 2
+            this.soundPlayer.play();
         });
 
         levelMenu.getbL6().setOnAction(e ->{
             setMap(6);
             levelMenu.getStartButton().setDisable(false);
             this.levelMenu.getStartButton().requestFocus();
+
+            soundPlayer = new SoundPlayer(soundButtonClick);
+            this.soundPlayer.setVolume(3); // Standard 2
+            this.soundPlayer.play();
         });
 
         levelMenu.getbL7().setOnAction(e ->{
             setMap(7);
             levelMenu.getStartButton().setDisable(false);
             this.levelMenu.getStartButton().requestFocus();
+
+            soundPlayer = new SoundPlayer(soundButtonClick);
+            this.soundPlayer.setVolume(3); // Standard 2
+            this.soundPlayer.play();
         });
 
         levelMenu.getbL8().setOnAction(e ->{
             setMap(8);
             levelMenu.getStartButton().setDisable(false);
             this.levelMenu.getStartButton().requestFocus();
+
+            soundPlayer = new SoundPlayer(soundButtonClick);
+            this.soundPlayer.setVolume(3); // Standard 2
+            this.soundPlayer.play();
         });
 
         levelMenu.getbL9().setOnAction(e ->{
             setMap(9);
             levelMenu.getStartButton().setDisable(false);
             this.levelMenu.getStartButton().requestFocus();
+
+            soundPlayer = new SoundPlayer(soundButtonClick);
+            this.soundPlayer.setVolume(3); // Standard 2
+            this.soundPlayer.play();
         });
 
         levelMenu.getStartButton().setOnAction(e -> {
             System.out.println("[LevelSelectScene]: Spiel wird gestartet... ✔");
+
+            soundPlayer = new SoundPlayer(soundButtonClick);
+            this.soundPlayer.setVolume(3); // Standard 2
+            this.soundPlayer.play();
+
             this.gui.switchToGameScene();
         });
         levelMenu.getBackButton().setOnAction(e -> {
             System.out.println("[LevelSelectScene]: Start Menu ✔");
+
+            soundPlayer = new SoundPlayer(soundButtonClick);
+            this.soundPlayer.setVolume(3); // Standard 2
+            this.soundPlayer.play();
+
             this.gui.switchToStartScene();
         });
     }
