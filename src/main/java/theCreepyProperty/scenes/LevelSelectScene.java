@@ -190,7 +190,6 @@ public class LevelSelectScene {
 
     public void levelCompleted() {
         if (level1Completed) {
-            //todo in csv schreiben das completed ist
             this.readWriteSpielstand.updateSpielstand(1,true,true);
             this.levelMenu.getbL1().setStyle("-fx-text-fill: #11b30e;");
             this.levelMenu.getbL1().setText("Level 1 ✔");

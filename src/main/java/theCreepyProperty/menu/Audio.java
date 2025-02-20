@@ -73,7 +73,7 @@ public class Audio {
         this.label1.setMaxWidth(Double.MAX_VALUE);
         VBox.setVgrow(this.label1, Priority.ALWAYS);
         this.label1.setAlignment(Pos.BOTTOM_LEFT);
-        this.label1.setId("audio-text");
+        this.label1.setId("text");
 
         // Slider
         this.slider1.setValue(this.master);

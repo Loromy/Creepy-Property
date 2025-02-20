@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import theCreepyProperty.main.GUI;
+import theCreepyProperty.main.SoundPlayer;
 import theCreepyProperty.scenes.GameScene;
 
 public class Menu extends VBox {
@@ -16,11 +17,14 @@ public class Menu extends VBox {
     private final VBox vBoxMenu = new VBox();
     private final Settings settings;
     private boolean menu_on = false;
+    private SoundPlayer soundPlayer;
 
     private final Label name;
     private final Button resumeButton;
     private final Button settingsButton;
     private final Button backButton;
+
+    private final String soundButtonClick = "src/resources/sounds/itemCollect.wav";
 
     public Menu(GUI gui, GameScene scene) {
         this.gui = gui;
@@ -84,17 +88,29 @@ public class Menu extends VBox {
 
     private void onResume() {
         System.out.println("[Menu]: Back to Game ✔");
+        soundPlayer = new SoundPlayer(soundButtonClick);
+        this.soundPlayer.setVolume(this.scene.getMenu().getSettings().getAudio().getMaster()); // Standard 2
+        this.soundPlayer.play();
+
         this.triggerMenu();
     }
 
     private void onSettings() {
         System.out.println("[Menu]: Open settings menu ✔");
+        soundPlayer = new SoundPlayer(soundButtonClick);
+        this.soundPlayer.setVolume(this.scene.getMenu().getSettings().getAudio().getMaster()); // Standard 2
+        this.soundPlayer.play();
+
         this.pMenu.setVisible(false);
         this.settings.triggerSettings();
     }
 
     private void onBack() {
         System.out.println("[Menu]: Start Menu ✔");
+        soundPlayer = new SoundPlayer(soundButtonClick);
+        this.soundPlayer.setVolume(this.scene.getMenu().getSettings().getAudio().getMaster()); // Standard 2
+        this.soundPlayer.play();
+
         this.gui.switchToLevelSelectScene();
     }
 

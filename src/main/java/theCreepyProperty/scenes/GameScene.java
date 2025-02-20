@@ -1,5 +1,7 @@
 package theCreepyProperty.scenes;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.scene.Scene;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
@@ -7,6 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import theCreepyProperty.Map.LevelData;
 import theCreepyProperty.Map.MapCreate;
 import theCreepyProperty.Map.MapReader;
@@ -53,6 +56,9 @@ public class GameScene {
     private GuiComponents guiComponents;
     private final CollisionChecker checker;
 
+    private Timeline timer;
+    private double time_seconds = 0.0;
+
     public GameScene(Stage stage, GUI gui) {
         this.stage = stage;
         this.gui = gui;
@@ -68,6 +74,7 @@ public class GameScene {
 
         // Settings Set
         this.readWriteSettings.settingsRead("src/resources/csv/Einstellungen/settings.csv",this,this.guiComponents);
+
     }
 
     private void createScene() {
@@ -95,6 +102,7 @@ public class GameScene {
         pGame.getChildren().add(this.guiComponents.gethBox_Level());
         pGame.getChildren().add(this.guiComponents.getvBox_anzeige());
         pGame.getChildren().add(this.guiComponents.gethBox_keys());
+        pGame.getChildren().add(this.guiComponents.getvBox_Time());
 
         // Game Over / Win Menüs hinzufügen
         pGameOver.getChildren().add(this.gameOver.getBackgroundGameOver());
@@ -114,10 +122,43 @@ public class GameScene {
 
         this.pMenu.setVisible(false);
 
+        //timer Start
+        startTimer();
+
         // play sound
         this.soundPlayer = new SoundPlayer("src/resources/sounds/background/background-atmosphere.wav");
         this.soundPlayer.setVolume(this.getMenu().getSettings().getAudio().getMaster()); // Standard 2
         this.soundPlayer.play();
+    }
+
+    private void startTimer() {
+        time_seconds = 0.0; // Timer zurücksetzen
+        timer = new Timeline(new KeyFrame(Duration.millis(10), event -> {
+            time_seconds += 0.01;
+
+            // Berechnung der Zeitkomponenten
+            int hours = (int) (time_seconds / 3600);
+            int minutes = (int) ((time_seconds % 3600) / 60);
+            int seconds = (int) (time_seconds % 60);
+            int milliseconds = (int) ((time_seconds * 100) % 100); // Millisekunden berechnen
+
+            // Formatierte Zeit als HH:MM:SS.mmm anzeigen
+            String formattedTime = String.format("%02d:%02d:%02d:%02d", hours, minutes, seconds, milliseconds);
+            this.guiComponents.getL_time().setText("Time: " + formattedTime);
+        }));
+
+        timer.setCycleCount(Timeline.INDEFINITE);
+        timer.play();
+    }
+
+    private void stopTimer() {
+        if (timer != null) {
+            timer.stop();
+        }
+    }
+
+    public double getTime_seconds() {
+        return time_seconds;
     }
 
     public void pGameChildren(Rectangle rectangle) {

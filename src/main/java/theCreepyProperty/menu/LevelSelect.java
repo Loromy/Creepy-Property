@@ -23,7 +23,8 @@ public class LevelSelect {
     private final VBox hBoxLevel = new VBox();
     private final HBox hBoxLevelButton = new HBox();
 
-    private Label title;
+    private final Label title;
+    private final Label levelTime;
     private final Button bL1;
     private final Button bL2;
     private final Button bL3;
@@ -43,6 +44,7 @@ public class LevelSelect {
         this.readWriteSpielstand = new ReadWriteSpielstand();
 
         this.title = new Label();
+        this.levelTime = new Label();
         this.bL1 = new Button();
         this.bL2 = new Button();
         this.bL3 = new Button();
@@ -66,6 +68,8 @@ public class LevelSelect {
         // Add menu items
         this.title.setText("Level Select");
         this.title.setId("name");
+        this.levelTime.setText("Level: 0 | Time: 00:00:00:00");
+        this.levelTime.setId("text");
         this.bL1.setText("Level 1");
         this.bL2.setText("Level 2");
         this.bL3.setText("Level 3");
@@ -97,7 +101,7 @@ public class LevelSelect {
         this.vBoxLevel3.getChildren().addAll(bL7, bL8, bL9);
         this.hBoxLevel.getChildren().addAll(vBoxLevel1, vBoxLevel2, vBoxLevel3);
         this.hBoxLevelButton.getChildren().addAll(startButton, backButton);
-        this.vBoxLevelSelect.getChildren().addAll(title, hBoxLevel, hBoxLevelButton);
+        this.vBoxLevelSelect.getChildren().addAll(title, levelTime, hBoxLevel, hBoxLevelButton);
         this.vBoxLevelSelect.setId("background");
         this.pLevelSelect.getChildren().add(vBoxLevelSelect);
 

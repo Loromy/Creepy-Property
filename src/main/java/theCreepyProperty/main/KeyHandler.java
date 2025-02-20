@@ -120,6 +120,7 @@ public class KeyHandler {
 
             if (cPressed) {
                 System.out.println("[KeyHandler]: Position Player: x=" + this.player.getPlayer_world_X() + " y=" + this.player.getPlayer_world_Y());
+                System.out.println("Timer: " + scene.getTime_seconds());
                 this.cPressed = false;
             }
 

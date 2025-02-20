@@ -20,9 +20,11 @@ public class GuiComponents {
     private final Label l_keys;
     private final Label l_fps;
     private final Label l_level;
+    private final Label l_time;
     private HBox hBox_keys;
     private HBox hBox_Level;
     private VBox vBox_anzeige;
+    private VBox vBox_Time;
     private ImageView i_keys;
 
     private boolean anzeige_on = false;
@@ -43,16 +45,23 @@ public class GuiComponents {
 
         // VBox
         this.vBox_anzeige = new VBox();
-        this.vBox_anzeige.setLayoutY(60);
-        this.vBox_anzeige.setId("gui-components-background-anzeige");
+        this.vBox_anzeige.setLayoutY(100);
+        this.vBox_anzeige.setId("gui-components-background-links");
         this.vBox_anzeige.setVisible(false);
 
+        this.vBox_Time = new VBox();
+        this.vBox_Time.setLayoutY(60);
+        this.vBox_Time.setMinSize(110,20);
+        this.vBox_Time.setId("gui-components-background-links");
+
         // Label
+        // Level
         this.l_level = new Label("Level " + this.levelSelectScene.getMapSelected());
         this.l_level.setStyle("-fx-font-size: 40px; -fx-alignment: center;");
         this.l_level.setId("gui-components");
         this.hBox_Level.getChildren().add(getL_level());
 
+        // Anzeige
         this.l_speed = new Label("Speed: " + player.getSpeed());
         this.l_speed.setId("gui-components");
         this.vBox_anzeige.getChildren().add(l_speed);
@@ -64,6 +73,11 @@ public class GuiComponents {
         this.l_keys = new Label("Keys: " + player.getKeyEingesammelt());
         this.l_keys.setId("gui-components");
         this.vBox_anzeige.getChildren().add(l_keys);
+
+        // Time
+        this.l_time = new Label("Time: 0.00s");
+        this.l_time.setId("gui-components");
+        this.vBox_Time.getChildren().add(l_time);
 
         // Keys Display
         for (int i = 0; i < this.gameScene.getMapCreate().getItemList().size(); i++) {
@@ -142,6 +156,10 @@ public class GuiComponents {
         return  l_fps;
     }
 
+    public Label getL_time() {
+        return l_time;
+    }
+
     public HBox gethBox_keys() {
         return hBox_keys;
     }
@@ -152,6 +170,10 @@ public class GuiComponents {
 
     public VBox getvBox_anzeige() {
         return vBox_anzeige;
+    }
+
+    public VBox getvBox_Time() {
+        return vBox_Time;
     }
 
     public boolean getAnzeige_on() {
