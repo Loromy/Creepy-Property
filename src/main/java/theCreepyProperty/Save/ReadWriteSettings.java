@@ -10,7 +10,7 @@ import java.util.Map;
 public class ReadWriteSettings {
     private GameScene gameScene;
     private GuiComponents guiComponents;
-    private Map<String, Float> settingsMap;
+    private Map<String, Integer> settingsMap;
 
     public ReadWriteSettings(GuiComponents guiComponents) {
         this.guiComponents = guiComponents;
@@ -35,7 +35,7 @@ public class ReadWriteSettings {
                 if (parts.length < 2) continue;
 
                 String setting = parts[0].trim();
-                float value = Float.parseFloat(parts[1].trim());
+                int value = Integer.parseInt(parts[1].trim());
                 settingsMap.put(setting, value);
 
                 setSettings(setting, value);
@@ -46,7 +46,7 @@ public class ReadWriteSettings {
     }
 
     // lesen
-    public void setSettings(String setting, float value) {
+    public void setSettings(String setting, int value) {
         switch (setting) {
             case "anzeige":
                 if (value == 0) {
@@ -80,28 +80,37 @@ public class ReadWriteSettings {
 
             case "collision":
                 if (value == 0) {
-                    this.gameScene.getMapCreate().setCollision_on(false);
+                    this.gameScene.getMapCreate().setCollision_on(true);
                     System.out.println("[ReedWriteSettings]: SettingsRead \"collision\" value: false ✔");
                 }
                 else if (value == 1) {
-                    this.gameScene.getMapCreate().setCollision_on(true);
+                    this.gameScene.getMapCreate().setCollision_on(false);
                     System.out.println("[ReedWriteSettings]: SettingsRead \"collision\" value: true ️✔");
                 }
                 else {
                     System.out.println("[ReedWriteSettings]: SettingsRead \"collision\" wrong value: " + value + " does not exist ✖");
                 }
-                this.gameScene.getMapCreate().triggerCollisionRWSettings();
+                this.gameScene.getMapCreate().triggerCollisionRWSettings(this.gameScene);
                 break;
 
             case "master":
-                if (value >= 1 && value <= 6) {
+                if (value >= 1 && value <= 100) {
                     this.gameScene.getMenu().getSettings().getAudio().setMaster(value);
-                    System.out.println("[ReedWriteSettings]: SettingsRead \"collision\" value: " + value + " ✔");
+                    System.out.println("[ReedWriteSettings]: SettingsRead \"master\" value: " + value + " ✔");
                 }
                 else {
-                    System.out.println("[ReedWriteSettings]: SettingsRead \"collision\" wrong value: " + value + " does not exist ✖");
+                    System.out.println("[ReedWriteSettings]: SettingsRead \"master\" wrong value: " + value + " does not exist ✖");
                 }
-                this.gameScene.getMapCreate().triggerCollisionRWSettings();
+                break;
+
+            case "background":
+                if (value >= 1 && value <= 100) {
+                    this.gameScene.getMenu().getSettings().getAudio().setBackground(value);
+                    System.out.println("[ReedWriteSettings]: SettingsRead \"background\" value: " + value + " ✔");
+                }
+                else {
+                    System.out.println("[ReedWriteSettings]: SettingsRead \"background\" wrong value: " + value + " does not exist ✖");
+                }
                 break;
 
             default:
@@ -111,9 +120,9 @@ public class ReadWriteSettings {
     }
 
     // schreiben
-    public void updateSetting(String setting, float newValue) {
+    public void updateSetting(String setting, int newValue) {
         String filePath = "src/resources/csv/Einstellungen/settings.csv";
-        Map<String, Float> tempSettingsMap = new HashMap<>();
+        Map<String, Integer> tempSettingsMap = new HashMap<>();
 
         // Datei einlesen und vorhandene Werte speichern
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
@@ -130,7 +139,7 @@ public class ReadWriteSettings {
                 if (parts.length < 2) continue;
 
                 String key = parts[0].trim();
-                float value = Float.parseFloat(parts[1].trim());
+                int value = Integer.parseInt(parts[1].trim());
 
                 tempSettingsMap.put(key, value);
             }
@@ -145,7 +154,7 @@ public class ReadWriteSettings {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
             bw.write("setting,value"); // Header beibehalten
 
-            for (Map.Entry<String, Float> entry : tempSettingsMap.entrySet()) {
+            for (Map.Entry<String, Integer> entry : tempSettingsMap.entrySet()) {
                 bw.write("\n" + entry.getKey() + "," + entry.getValue());
             }
 

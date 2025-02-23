@@ -2,6 +2,7 @@ package theCreepyProperty.main;
 
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import theCreepyProperty.menu.Settings;
 import theCreepyProperty.scenes.FinishScene;
 import theCreepyProperty.scenes.LevelSelectScene;
 import theCreepyProperty.scenes.StartScene;
@@ -40,7 +41,7 @@ public class GUI {
         stage.setScene(this.startScene.getScene());
         // Scene zurücksetzen
         this.gameScene = null;
-        //this.selectScene = null;
+//        this.selectScene = null;
     }
 
     public void switchToGameScene() {
@@ -50,19 +51,20 @@ public class GUI {
         // Scene wechseln
         stage.setScene(this.gameScene.getScene());
         // Scene zurücksetzen
-        this.startScene = null;
         this.finishScene = null;
     }
 
     public void switchToLevelSelectScene() {
+
         if (this.selectScene == null) {
             this.selectScene = new LevelSelectScene(stage, this);
         }
+
         this.selectScene.unlockLevel();
         // Scene wechseln
         stage.setScene(this.selectScene.getScene());
         // Scene zurücksetzen
-        this.startScene = null;
+//        this.startScene = null;
         this.gameScene = null;
         this.finishScene = null;
     }
@@ -74,7 +76,7 @@ public class GUI {
         // Scene wechseln
         stage.setScene(this.finishScene.getScene());
         // Scene zurücksetzen
-        this.startScene = null;
+//        this.startScene = null;
         this.gameScene = null;
         this.selectScene = null;
     }
@@ -86,6 +88,10 @@ public class GUI {
 
     public int getHeight() {
         return height;
+    }
+
+    public StartScene getStartScene() {
+        return startScene;
     }
 
     public String getFilePath() {

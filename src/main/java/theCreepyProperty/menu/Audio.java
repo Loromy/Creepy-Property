@@ -11,13 +11,15 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import theCreepyProperty.Save.ReadWriteSettings;
 import theCreepyProperty.main.GUI;
+import theCreepyProperty.main.SoundPlayer;
 import theCreepyProperty.scenes.GameScene;
 
 public class Audio {
     private final GUI gui;
-    private final GameScene scene;
+    private final GameScene gameScene;
     private final Settings settings;
     private ReadWriteSettings readWriteSettings;
+    private SoundPlayer soundPlayer;
 
     private final Pane pMenuAudio = new Pane();
     private final VBox vBoxAudio = new VBox();
@@ -26,7 +28,9 @@ public class Audio {
     private final VBox vBoxAudioR = new VBox();
     private Label label1;
     private Slider slider1;
-    private Button button2;
+    private Label label2;
+    private Slider slider2;
+
     private Button button3;
     private Button button4;
     private Button button5;
@@ -34,18 +38,22 @@ public class Audio {
     private Button backButton;
 
     private boolean audio_on = false;
-    private float master = 3;
+    private int master = 50;
+    private int background = 50;
 
-    public Audio(GUI gui, GameScene scene, Settings settings) {
+    private final String soundButtonClick = "src/resources/sounds/button click.wav";
+
+    public Audio(GUI gui, GameScene gameScene, Settings settings) {
         this.gui = gui;
-        this.scene = scene;
+        this.gameScene = gameScene;
         this.settings = settings;
 
-        this.readWriteSettings = new ReadWriteSettings(this.scene.getGuiComponents());
+        this.readWriteSettings = new ReadWriteSettings(this.gameScene.getGuiComponents());
 
         this.label1 = new Label();
         this.slider1 = new Slider();
-        this.button2 = new Button();
+        this.label2 = new Label();
+        this.slider2 = new Slider();
         this.button3 = new Button();
         this.button4 = new Button();
         this.button5 = new Button();
@@ -57,13 +65,12 @@ public class Audio {
         // Button text
         this.backButton.setText("Back");
         this.label1.setText("Master: " + Math.round(this.master * 100f) / 100f);
-        this.button2.setText("");
+        this.label2.setText("Background: " + Math.round(this.master * 100f) / 100f);
         this.button3.setText("");
         this.button4.setText("");
         this.button5.setText("");
         this.button6.setText("");
 
-        this.button2.setDisable(true);
         this.button3.setDisable(true);
         this.button4.setDisable(true);
         this.button5.setDisable(true);
@@ -75,23 +82,39 @@ public class Audio {
         this.label1.setAlignment(Pos.BOTTOM_LEFT);
         this.label1.setId("text");
 
+        this.label2.setMaxWidth(Double.MAX_VALUE);
+        VBox.setVgrow(this.label2, Priority.ALWAYS);
+        this.label2.setAlignment(Pos.BOTTOM_LEFT);
+        this.label2.setId("text");
+
         // Slider
         this.slider1.setValue(this.master);
-        this.slider1.setMax(6);
+        this.slider1.setMax(100);
         this.slider1.setMin(1);
 
+        this.slider2.setValue(this.background);
+        this.slider2.setMax(100);
+        this.slider2.setMin(1);
+
         Platform.runLater(() -> {
-            double percent = (slider1.getValue() - slider1.getMin()) / (slider1.getMax() - slider1.getMin());
-            String style = String.format(
+            double percent1 = (slider1.getValue() - slider1.getMin()) / (slider1.getMax() - slider1.getMin());
+            String style1 = String.format(
                     "-fx-background-color: linear-gradient(to right, #454242 0%%, #509974 %.0f%%, #454242 %.0f%%, #454242 100%%);",
-                    percent * 100, percent * 100
+                    percent1 * 100, percent1 * 100
             );
-            slider1.lookup(".track").setStyle(style);
+            slider1.lookup(".track").setStyle(style1);
+
+            double percent2 = (slider2.getValue() - slider2.getMin()) / (slider2.getMax() - slider2.getMin());
+            String style2 = String.format(
+                    "-fx-background-color: linear-gradient(to right, #454242 0%%, #509974 %.0f%%, #454242 %.0f%%, #454242 100%%);",
+                    percent2 * 100, percent2 * 100
+            );
+            slider2.lookup(".track").setStyle(style2);
         });
 
         // getChildren
         this.vBoxAudioL.getChildren().addAll(label1, slider1, button3, button5);
-        this.vBoxAudioR.getChildren().addAll(button2, button4, button6);
+        this.vBoxAudioR.getChildren().addAll(label2, slider2, button4, button6);
         this.hBoxAudioLR.getChildren().addAll(vBoxAudioL, vBoxAudioR);
         this.vBoxAudio.getChildren().add(hBoxAudioLR);
         this.vBoxAudio.getChildren().add(backButton);
@@ -108,8 +131,8 @@ public class Audio {
 
         // Event-Listener für Wertänderungen
         backButton.setOnAction(e -> onBack());
-        slider1.valueProperty().addListener((obs, oldVal, newVal) -> onSlider1(oldVal, newVal));
-        button2.setOnAction(e -> onButton2());
+        slider1.valueProperty().addListener((obs, oldVal, newVal) -> onSlider1(newVal));
+        slider2.valueProperty().addListener((obs, oldVal, newVal) -> onSlider2(newVal));
         button3.setOnAction(e -> onButton3());
         button4.setOnAction(e -> onButton4());
         button5.setOnAction(e -> onButton5());
@@ -129,10 +152,15 @@ public class Audio {
     private void onBack() {
         triggerAudio();
         this.settings.getMenuSettings().setVisible(true);
+
+        soundPlayer = new SoundPlayer(soundButtonClick);
+        this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster()); // Standard 2
+        this.soundPlayer.play();
+
         System.out.println("[Audio]: Back ✔");
     }
 
-    private void onSlider1(Number oldVal, Number newVal) {
+    private void onSlider1(Number newVal) {
         // Style update
         double percent = (newVal.doubleValue() - slider1.getMin()) / (slider1.getMax() - slider1.getMin());
         String style = String.format(
@@ -144,19 +172,34 @@ public class Audio {
         }
 
         // sound anpassen
-        float value = newVal.floatValue();
-        this.master = Math.round(value * 10000f) / 10000f;
-
+        this.master = newVal.intValue();
 
         readWriteSettings.updateSetting("master",this.master);
 
-        this.label1.setText("Master: " + Math.round(this.master * 100f) / 100f);
+        this.label1.setText("Master: " + this.master + "%");
 
         //System.out.println("[Audio]: slider1 ✔");
     }
 
-    private void onButton2() {
-        System.out.println("[Audio]: button2 ✔");
+    private void onSlider2(Number newVal) {
+        // Style update
+        double percent = (newVal.doubleValue() - slider2.getMin()) / (slider2.getMax() - slider2.getMin());
+        String style = String.format(
+                "-fx-background-color: linear-gradient(to right, #454242 0%%, #509974 %.0f%%, #454242 %.0f%%, #454242 100%%);",
+                percent * 100, percent * 100
+        );
+        if (slider2.lookup(".track") != null) {
+            slider2.lookup(".track").setStyle(style);
+        }
+
+        // sound anpassen
+        this.background = newVal.intValue();
+
+        readWriteSettings.updateSetting("background",this.background);
+
+        this.label2.setText("Background: " + this.background + "%");
+
+        //System.out.println("[Audio]: slider1 ✔");
     }
 
     private void onButton3() {
@@ -184,37 +227,22 @@ public class Audio {
         return audio_on;
     }
 
-    public Slider getSlider1() {
-        return slider1;
-    }
-
-    public Button getButton2() {
-        return button2;
-    }
-
-    public Button getButton3() {
-        return button3;
-    }
-
-    public Button getButton4() {
-        return button4;
-    }
-
-    public Button getButton5() {
-        return button5;
-    }
-
-    public Button getButton6() {
-        return button6;
-    }
-
-    public float getMaster() {
+    public int getMaster() {
         return master;
     }
 
-    public void setMaster(float master) {
+    public int getBackground() {
+        return background;
+    }
+
+    public void setMaster(int master) {
         this.master = master;
         this.slider1.setValue(master);
+    }
+
+    public void setBackground(int background) {
+        this.background = background;
+        this.slider2.setValue(background);
     }
 
     // Setter Methoden

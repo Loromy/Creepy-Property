@@ -77,7 +77,10 @@ public class GameWin extends VBox{
             this.gameWin_on = true;
             this.nextButton.requestFocus();
             this.mapSelected = this.levelSelectScene.getMapSelected();
-            this.levelSelectScene.unlockNextLevel();
+
+            //todo spielzeit zwischen speichern
+
+            this.levelSelectScene.unlockNextLevel(this.gameScene.getTime_seconds());
             int map = this.mapSelected;
             if (++map > 9) {
                 this.nextButton.setText("Finish Game");
@@ -100,10 +103,13 @@ public class GameWin extends VBox{
 
     private void onBack() {
         System.out.println("[Game Win]: Back ✔");
+        this.gameScene.stopBackgroundMusic();
         this.gui.switchToLevelSelectScene();
     }
 
     private void onNext() {
+        this.gameScene.stopBackgroundMusic();
+
         int map = this.mapSelected;
         if (++map > 9) {
             this.gui.switchToFinishScene();

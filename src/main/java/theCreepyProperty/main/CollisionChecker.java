@@ -48,8 +48,8 @@ public class CollisionChecker {
             if (futurePlayer.intersects(item.getBoundsInLocal()) && mapCreate.getItemList().get(i).getPlayer_block_collision()) {
                 player.keys_eingesammelt++;
 
-                this.soundPlayer = new SoundPlayer("src/resources/sounds/itemCollect.wav");
-                this.soundPlayer.setVolume(this.scene.getMenu().getSettings().getAudio().getMaster()); // Standard 2
+                this.soundPlayer = new SoundPlayer("src/resources/sounds/key-collect.wav");
+                this.soundPlayer.setVolume(this.scene.getMenu().getSettings().getAudio().getMaster());
                 this.soundPlayer.play();
 
                 scene.pGameChildrenRemove(mapCreate.getItemList().get(i).getIItem()); // remove Item from Pane
@@ -71,10 +71,10 @@ public class CollisionChecker {
 
                 if (mapCreate.getDoorList().get(i).getDoorOpen()) {
                     this.soundPlayer = new SoundPlayer("src/resources/sounds/youWin.wav");
-                    this.soundPlayer.setVolume(this.scene.getMenu().getSettings().getAudio().getMaster()); // Standard 2
+                    this.soundPlayer.setVolume(this.scene.getMenu().getSettings().getAudio().getMaster());
                     this.soundPlayer.play();
                     this.soundPlayer = new SoundPlayer("src/resources/sounds/congratulations.wav");
-                    this.soundPlayer.setVolume(this.scene.getMenu().getSettings().getAudio().getMaster()); // Standard 2
+                    this.soundPlayer.setVolume(this.scene.getMenu().getSettings().getAudio().getMaster());
                     this.soundPlayer.play();
 
                     this.scene.getGameWin().triggerGameWin();

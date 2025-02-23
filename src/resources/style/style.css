@@ -173,8 +173,8 @@
 }
 
 #text {
-    -fx-font-size: 20px;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 4, 0, 4, 4);
+    -fx-font-size: 30px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.9), 3, 0, 3, 3);
 }
 
 

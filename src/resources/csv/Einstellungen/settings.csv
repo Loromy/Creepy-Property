@@ -1,5 +1,6 @@
 setting,value
-collision,0.0
-overlay,0.0
-anzeige,1.0
-master,2.9542
+collision,1
+overlay,1
+background,100
+anzeige,0
+master,50

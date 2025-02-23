@@ -24,8 +24,6 @@ public class Menu extends VBox {
     private final Button settingsButton;
     private final Button backButton;
 
-    private final String soundButtonClick = "src/resources/sounds/button click.wav";
-
     public Menu(GUI gui, GameScene scene) {
         this.gui = gui;
         this.scene = scene;
@@ -52,6 +50,9 @@ public class Menu extends VBox {
         this.pMenu.setPrefSize(gui.getWidth(), gui.getHeight());
         this.backgroundMenu.setPrefSize(gui.getWidth(), gui.getHeight());
         this.setMenuPosition(600, 500, 10);
+
+        //Soundplayer
+        soundPlayer = new SoundPlayer("src/resources/sounds/button click.wav");
 
         // Button actions
         this.resumeButton.setOnAction(e -> onResume());
@@ -88,8 +89,7 @@ public class Menu extends VBox {
 
     private void onResume() {
         System.out.println("[Menu]: Back to Game ✔");
-        soundPlayer = new SoundPlayer(soundButtonClick);
-        this.soundPlayer.setVolume(this.scene.getMenu().getSettings().getAudio().getMaster()); // Standard 2
+        this.soundPlayer.setVolume(this.scene.getMenu().getSettings().getAudio().getMaster());
         this.soundPlayer.play();
 
         this.triggerMenu();
@@ -97,8 +97,7 @@ public class Menu extends VBox {
 
     private void onSettings() {
         System.out.println("[Menu]: Open settings menu ✔");
-        soundPlayer = new SoundPlayer(soundButtonClick);
-        this.soundPlayer.setVolume(this.scene.getMenu().getSettings().getAudio().getMaster()); // Standard 2
+        this.soundPlayer.setVolume(this.scene.getMenu().getSettings().getAudio().getMaster());
         this.soundPlayer.play();
 
         this.pMenu.setVisible(false);
@@ -107,9 +106,12 @@ public class Menu extends VBox {
 
     private void onBack() {
         System.out.println("[Menu]: Start Menu ✔");
-        soundPlayer = new SoundPlayer(soundButtonClick);
-        this.soundPlayer.setVolume(this.scene.getMenu().getSettings().getAudio().getMaster()); // Standard 2
+        this.soundPlayer.setVolume(this.scene.getMenu().getSettings().getAudio().getMaster());
         this.soundPlayer.play();
+
+        this.gui.getSelectScene().setVolume(this.settings.getAudio().getMaster()); //selectScene audio volume update
+        this.gui.getStartScene().setVolume(this.settings.getAudio().getMaster()); //selectScene audio volume update
+        this.gui.getGameScene().stopBackgroundMusic();
 
         this.gui.switchToLevelSelectScene();
     }

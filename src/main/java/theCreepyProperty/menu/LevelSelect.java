@@ -12,7 +12,6 @@ import theCreepyProperty.scenes.LevelSelectScene;
 public class LevelSelect {
     private final GUI gui;
     private LevelSelectScene scene;
-    private ReadWriteSpielstand readWriteSpielstand;
 
     private final Pane backgroundLevelSelect = new Pane(); // Background
     private final Pane pLevelSelect = new Pane(); // Menu Items
@@ -41,8 +40,6 @@ public class LevelSelect {
         this.gui = gui;
         this.scene = scene;
 
-        this.readWriteSpielstand = new ReadWriteSpielstand();
-
         this.title = new Label();
         this.levelTime = new Label();
         this.bL1 = new Button();
@@ -68,7 +65,7 @@ public class LevelSelect {
         // Add menu items
         this.title.setText("Level Select");
         this.title.setId("name");
-        this.levelTime.setText("Level: 0 | Time: 00:00:00:00");
+        this.levelTime.setText("Level: - | Time: --:--:--:--");
         this.levelTime.setId("text");
         this.bL1.setText("Level 1");
         this.bL2.setText("Level 2");
@@ -153,6 +150,10 @@ public class LevelSelect {
     }
 
     // Getter Methoden
+    public  Label getLevelTime() {
+        return this.levelTime;
+    }
+
     public  Button getbL1() {
         return this.bL1;
     }

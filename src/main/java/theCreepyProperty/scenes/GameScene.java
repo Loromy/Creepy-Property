@@ -71,7 +71,8 @@ public class GameScene {
             "src/resources/sounds/background/random background noise/creepy-laugh.wav",
             "src/resources/sounds/background/random background noise/creepy-room-sound.wav",
             "src/resources/sounds/background/random background noise/creepy-whispering.wav",
-            "src/resources/sounds/background/random background noise/creepy-wind.wav"
+            "src/resources/sounds/background/random background noise/creepy-wind.wav",
+            "src/resources/sounds/background/random background noise/loud-thunder.wav"
     };
 
     public GameScene(Stage stage, GUI gui) {
@@ -89,7 +90,8 @@ public class GameScene {
 
         // Settings Set
         this.readWriteSettings.settingsRead("src/resources/csv/Einstellungen/settings.csv",this,this.guiComponents);
-
+        this.gui.getSelectScene().setVolume(this.menu.getSettings().getAudio().getMaster()); //selectScene audio volume update
+        this.gui.getStartScene().setVolume(this.menu.getSettings().getAudio().getMaster()); //selectScene audio volume update
     }
 
     private void createScene() {
@@ -140,13 +142,13 @@ public class GameScene {
         //timer Start
         startTimer();
 
-        // random noise
-        startRandomNoise();
-
         // play sound
         this.soundPlayer = new SoundPlayer("src/resources/sounds/background/background-creepy-sound.wav");
-        this.soundPlayer.setVolume(this.getMenu().getSettings().getAudio().getMaster());
+        this.soundPlayer.setVolume(this.getMenu().getSettings().getAudio().getBackground());
         this.soundPlayer.play();
+
+        // random noise
+        startRandomNoise();
     }
 
     private void startTimer() {
@@ -189,12 +191,16 @@ public class GameScene {
         int soundIndex = random.nextInt(randomSounds.length);
         String soundPath = randomSounds[soundIndex];
         SoundPlayer noisePlayer = new SoundPlayer(soundPath);
-        noisePlayer.setVolume((float) (this.getMenu().getSettings().getAudio().getMaster() * 0.5)); // Leiser als Hintergrundmusik
+        noisePlayer.setVolume((this.getMenu().getSettings().getAudio().getBackground())); // Leiser als Hintergrundmusik
         noisePlayer.play();
     }
 
     private int getRandomInterval() {
         return random.nextInt(25) + 5; // Zufälliges Intervall zwischen 5 und 30 Sekunden
+    }
+
+    public void stopBackgroundMusic() {
+        this.soundPlayer.stop();
     }
 
     public double getTime_seconds() {

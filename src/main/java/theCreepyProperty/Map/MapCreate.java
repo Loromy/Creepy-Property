@@ -68,18 +68,18 @@ public class MapCreate {
         }
     }
 
-    public void triggerCollisionRWSettings() {
+    public void triggerCollisionRWSettings(GameScene gameScene) {
         if (!collision_on) {
             for (int i = 0; i < this.scene.getMapCreate().getWallList().size(); i++) {
                 this.wallList.get(i).setPlayer_block_collision(true);
             }
-            this.scene.getMenu().getSettings().getButton5().setText("Collision [ON]");
+            gameScene.getMenu().getSettings().getButton5().setText("Collision [ON]");
             this.collision_on = true;
         } else {
             for (int i = 0; i < this.scene.getMapCreate().getWallList().size(); i++) {
                 this.wallList.get(i).setPlayer_block_collision(false);
             }
-            this.scene.getMenu().getSettings().getButton5().setText("Collision [OFF]");
+            gameScene.getMenu().getSettings().getButton5().setText("Collision [OFF]");
             this.collision_on = false;
         }
     }

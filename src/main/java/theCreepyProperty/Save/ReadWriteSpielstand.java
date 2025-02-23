@@ -8,16 +8,14 @@ import java.util.Map;
 
 public class ReadWriteSpielstand {
     private LevelSelectScene levelSelectScene;
-    //private GuiComponents guiComponents;
     private Map<Integer, Setting> settingsMap;
+    private final String filePath = "src/resources/csv/Save/spielstand.csv";
 
     public ReadWriteSpielstand() {
-        //this.guiComponents = guiComponents;
         this.settingsMap = new HashMap<>();
     }
 
     public void spielstandRead(String filePath, LevelSelectScene levelSelectScene) {
-        //this.guiComponents = guiComponents;
         this.levelSelectScene = levelSelectScene;
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
@@ -31,31 +29,28 @@ public class ReadWriteSpielstand {
                 }
 
                 String[] parts = line.split(",");
-                if (parts.length < 3) continue;
+                if (parts.length < 4) continue;
 
                 int level = Integer.parseInt(parts[0].trim());
                 boolean unlocked = Boolean.parseBoolean(parts[1].trim());
                 boolean completed = Boolean.parseBoolean(parts[2].trim());
+                double time = Double.parseDouble(parts[3].trim());
 
-                settingsMap.put(level, new Setting(unlocked, completed));
-                setSpielstand(level, unlocked, completed);
+                settingsMap.put(level, new Setting(unlocked, completed, time));
+                setSpielstand(level, unlocked, completed, time);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    // lesen
-    public void setSpielstand(int level, boolean unlocked, boolean completed) {
-        //this.levelSelectScene.getLevelMenu().setLevelFortschritt(level, unlocked, completed);
-
+    public void setSpielstand(int level, boolean unlocked, boolean completed, double time) {
         this.levelSelectScene.setLevelCompleted(level, completed);
         this.levelSelectScene.setLevelUnlocked(level, unlocked);
+        this.levelSelectScene.setLevelTime(level, time);
     }
 
-    // schreiben
-    public void updateSpielstand(int level, boolean unlocked, boolean completed) {
-        String filePath = "src/resources/csv/Save/spielstand.csv";
+    public void updateSpielstand(int level, boolean unlocked, boolean completed, double time) {
         Map<Integer, Setting> tempSettingsMap = new HashMap<>();
 
         // Datei einlesen und vorhandene Werte speichern
@@ -65,48 +60,50 @@ public class ReadWriteSpielstand {
 
             while ((line = br.readLine()) != null) {
                 if (isFirstLine) {
-                    isFirstLine = false; // Header speichern
+                    isFirstLine = false;
                     continue;
                 }
 
                 String[] parts = line.split(",");
-                if (parts.length < 3) continue;
+                if (parts.length < 4) continue;
 
                 int lvl = Integer.parseInt(parts[0].trim());
                 boolean isUnlocked = Boolean.parseBoolean(parts[1].trim());
                 boolean isCompleted = Boolean.parseBoolean(parts[2].trim());
+                double savedTime = Double.parseDouble(parts[3].trim());
 
-                tempSettingsMap.put(lvl, new Setting(isUnlocked, isCompleted));
+                tempSettingsMap.put(lvl, new Setting(isUnlocked, isCompleted, savedTime));
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        // Den gewünschten Wert aktualisieren
-        tempSettingsMap.put(level, new Setting(unlocked, completed));
+        // Neuen Wert setzen
+        tempSettingsMap.put(level, new Setting(unlocked, completed, time));
 
         // Datei mit aktualisierten Werten überschreiben
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
-            bw.write("Level,unlocked,completed"); // Header beibehalten
+            bw.write("Level,unlocked,completed,time"); // Header beibehalten
 
             for (Map.Entry<Integer, Setting> entry : tempSettingsMap.entrySet()) {
-                bw.write("\n" + entry.getKey() + "," + entry.getValue().unlocked + "," + entry.getValue().completed);
+                bw.write("\n" + entry.getKey() + "," + entry.getValue().unlocked + "," + entry.getValue().completed + "," + entry.getValue().time);
             }
 
-            System.out.println("[ReadSpielstand]: Einstellung für Level " + level + " aktualisiert.");
+            System.out.println("[ReadWriteSpielstand]: Einstellung für Level " + level + " aktualisiert.");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    // Eigene Klasse für die Level-Einstellungen
     private static class Setting {
         boolean unlocked;
         boolean completed;
+        double time;
 
-        public Setting(boolean unlocked, boolean completed) {
+        public Setting(boolean unlocked, boolean completed, double time) {
             this.unlocked = unlocked;
             this.completed = completed;
+            this.time = time;
         }
     }
 }

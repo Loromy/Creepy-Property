@@ -18,12 +18,18 @@ public class StartScene {
 
     private final String soundButtonClick = "src/resources/sounds/button click.wav";
 
+    private int volume = 50;
+
     public StartScene(Stage stage, GUI gui) {
         this.stage = stage;
         this.gui = gui;
 
         this.startMenu = new StartMenu(this.gui);
         createScene();
+
+        if (this.gui.getGameScene() != null) {
+            this.volume = this.gui.getGameScene().getMenu().getSettings().getAudio().getMaster();
+        }
     }
 
     private void createScene() {
@@ -39,7 +45,7 @@ public class StartScene {
             System.out.println("[Start Menu]: Spiel wird gestartet... ✔");
 
             soundPlayer = new SoundPlayer(soundButtonClick);
-            this.soundPlayer.setVolume(3); // Standard 2
+            this.soundPlayer.setVolume(volume);
             this.soundPlayer.play();
 
             gui.switchToLevelSelectScene();
@@ -48,7 +54,7 @@ public class StartScene {
             System.out.println("[Start Menu]: Quit ✔");
 
             soundPlayer = new SoundPlayer(soundButtonClick);
-            this.soundPlayer.setVolume(3); // Standard 2
+            this.soundPlayer.setVolume(volume);
             this.soundPlayer.play();
 
             System.exit(0);
@@ -58,5 +64,9 @@ public class StartScene {
     // Getter Methode
     public Scene getScene() {
         return this.startScene;
+    }
+
+    public void setVolume(int volume) {
+        this.volume = volume;
     }
 }
