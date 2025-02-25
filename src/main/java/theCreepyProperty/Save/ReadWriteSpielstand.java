@@ -89,7 +89,7 @@ public class ReadWriteSpielstand {
                 bw.write("\n" + entry.getKey() + "," + entry.getValue().unlocked + "," + entry.getValue().completed + "," + entry.getValue().time);
             }
 
-            System.out.println("[ReadWriteSpielstand]: Einstellung für Level " + level + " aktualisiert.");
+            System.out.println("✔ [ReadWriteSpielstand]: Einstellung für Level " + level + " aktualisiert");
         } catch (IOException e) {
             e.printStackTrace();
         }

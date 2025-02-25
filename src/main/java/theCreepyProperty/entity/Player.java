@@ -60,13 +60,13 @@ public class Player extends Entity{
 
         darknessOverlay = loadImage("file:src/resources/textures/overlay/darknessOverlay.png");
 
-        System.out.println("[Player Image]: Player images successfully loaded ✔ ️");
+        System.out.println("✔ [Player]: Image Player images successfully loaded");
     }
 
     private Image loadImage(String path) {
         Image image = new Image(path);
         if (image.isError()) {
-            System.err.println("[Error]: Failed to load image: " + path + " ️️✖");
+            System.err.println("✖ [Error]: Failed to load image: " + path);
             if (image.getException() != null) {
                 image.getException().printStackTrace();
             }
@@ -170,7 +170,7 @@ public class Player extends Entity{
         entity_world_Y = ((double) gui.getHeight() / 2) - ((entity_size_Y / 2 ) + 19);
         speed = 3;
         direction = "down";
-        System.out.println("[System]: Player defaultValues set ✔");
+        System.out.println("✔ [Player]: Player defaultValues set");
     }
 
     // Getter Methoden

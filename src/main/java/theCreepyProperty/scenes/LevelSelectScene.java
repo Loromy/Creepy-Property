@@ -4,9 +4,7 @@ import javafx.scene.Scene;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 import theCreepyProperty.Map.SetMap;
-import theCreepyProperty.Save.ReadWriteSettings;
 import theCreepyProperty.Save.ReadWriteSpielstand;
 import theCreepyProperty.main.GUI;
 import theCreepyProperty.main.SoundPlayer;
@@ -26,6 +24,7 @@ public class LevelSelectScene {
 
     private int mapSelected = 0;
 
+    private boolean levelTutorialCompleted = false;
     private boolean level1Completed = false;
     private boolean level2Completed = false;
     private boolean level3Completed = false;
@@ -36,6 +35,7 @@ public class LevelSelectScene {
     private boolean level8Completed = false;
     private boolean level9Completed = false;
 
+    private boolean isLevelTutorialUnlocked = false;
     private boolean level1Unlocked = false;
     private boolean level2Unlocked = false;
     private boolean level3Unlocked = false;
@@ -47,6 +47,7 @@ public class LevelSelectScene {
     private boolean level9Unlocked = false;
 
     private double thisLevelTime = 0.0;
+    private double level0Time = 0.0;
     private double level1Time = 0.0;
     private double level2Time = 0.0;
     private double level3Time = 0.0;
@@ -59,7 +60,7 @@ public class LevelSelectScene {
 
     private int volume = 50;
 
-    public LevelSelectScene(Stage stage, GUI gui) {
+    public LevelSelectScene(GUI gui) {
         this.gui = gui;
         //this.gameScene = gameScene;
 
@@ -89,10 +90,12 @@ public class LevelSelectScene {
 
         levelSelectScreen.getChildren().addAll(pLevelBlur,pLevelComponents);
         this.levelSelectScene = new Scene(levelSelectScreen, gui.getWidth(), gui.getHeight());
-        this.levelMenu.getStartButton().requestFocus();
 
         levelMenu.getbL1().setOnAction(e ->{
             setMap(1);
+            //this.levelMenu.getbL1().setId("selected-button");
+            this.levelMenu.selectButton(this.levelMenu.getbL1());
+
             levelMenu.getStartButton().setDisable(false);
             this.levelMenu.getStartButton().requestFocus();
 
@@ -104,6 +107,9 @@ public class LevelSelectScene {
 
         levelMenu.getbL2().setOnAction(e ->{
             setMap(2);
+
+            this.levelMenu.selectButton(this.levelMenu.getbL2());
+
             levelMenu.getStartButton().setDisable(false);
             this.levelMenu.getStartButton().requestFocus();
 
@@ -115,6 +121,9 @@ public class LevelSelectScene {
 
         levelMenu.getbL3().setOnAction(e ->{
             setMap(3);
+
+            this.levelMenu.selectButton(this.levelMenu.getbL3());
+
             levelMenu.getStartButton().setDisable(false);
             this.levelMenu.getStartButton().requestFocus();
 
@@ -126,6 +135,9 @@ public class LevelSelectScene {
 
         levelMenu.getbL4().setOnAction(e ->{
             setMap(4);
+
+            this.levelMenu.selectButton(this.levelMenu.getbL4());
+
             levelMenu.getStartButton().setDisable(false);
             this.levelMenu.getStartButton().requestFocus();
 
@@ -137,6 +149,9 @@ public class LevelSelectScene {
 
         levelMenu.getbL5().setOnAction(e ->{
             setMap(5);
+
+            this.levelMenu.selectButton(this.levelMenu.getbL5());
+
             levelMenu.getStartButton().setDisable(false);
             this.levelMenu.getStartButton().requestFocus();
 
@@ -148,6 +163,9 @@ public class LevelSelectScene {
 
         levelMenu.getbL6().setOnAction(e ->{
             setMap(6);
+
+            this.levelMenu.selectButton(this.levelMenu.getbL6());
+
             levelMenu.getStartButton().setDisable(false);
             this.levelMenu.getStartButton().requestFocus();
 
@@ -159,6 +177,9 @@ public class LevelSelectScene {
 
         levelMenu.getbL7().setOnAction(e ->{
             setMap(7);
+
+            this.levelMenu.selectButton(this.levelMenu.getbL7());
+
             levelMenu.getStartButton().setDisable(false);
             this.levelMenu.getStartButton().requestFocus();
 
@@ -170,6 +191,9 @@ public class LevelSelectScene {
 
         levelMenu.getbL8().setOnAction(e ->{
             setMap(8);
+
+            this.levelMenu.selectButton(this.levelMenu.getbL8());
+
             levelMenu.getStartButton().setDisable(false);
             this.levelMenu.getStartButton().requestFocus();
 
@@ -181,6 +205,9 @@ public class LevelSelectScene {
 
         levelMenu.getbL9().setOnAction(e ->{
             setMap(9);
+
+            this.levelMenu.selectButton(this.levelMenu.getbL9());
+
             levelMenu.getStartButton().setDisable(false);
             this.levelMenu.getStartButton().requestFocus();
 
@@ -190,16 +217,38 @@ public class LevelSelectScene {
             this.soundPlayer.play();
         });
 
-        levelMenu.getStartButton().setOnAction(e -> {
-            System.out.println("[LevelSelectScene]: Spiel wird gestartet... ✔");
+        levelMenu.getbTutorial().setOnAction(e ->{
+            setMap(0);
+
+            this.levelMenu.selectButton(this.levelMenu.getbTutorial());
+
+            levelMenu.getStartButton().setDisable(false);
+            this.levelMenu.getStartButton().requestFocus();
+
+            formatTime(0, level0Time);
 
             this.soundPlayer.setVolume(volume);
             this.soundPlayer.play();
 
+            System.out.println("Test------------------" + gui.getGameScene());
+        });
+
+
+
+        levelMenu.getStartButton().setOnAction(e -> {
+            System.out.println("✔ [LevelSelectScene]: Spiel wird gestartet...");
+
+            this.soundPlayer.setVolume(volume);
+            this.soundPlayer.play();
+
+            this.levelMenu.getStartButton().setDisable(true);
+            this.levelMenu.getLevelTime().setText("Highscore: --:--:--:--");
+            this.levelMenu.getLevel().setText("Level: -");
+
             this.gui.switchToGameScene();
         });
         levelMenu.getBackButton().setOnAction(e -> {
-            System.out.println("[LevelSelectScene]: Start Menu ✔");
+            System.out.println("✔ [LevelSelectScene]: Start Menu");
 
             this.soundPlayer.setVolume(volume);
             this.soundPlayer.play();
@@ -215,118 +264,135 @@ public class LevelSelectScene {
         int seconds = (int) (time_seconds % 60);
         int milliseconds = (int) ((time_seconds * 100) % 100); // Millisekunden berechnen
 
-        // Formatierte Zeit als HH:MM:SS.mmm anzeigen
+        // Formatierte Zeit als HH:MM:SS.mm anzeigen
         String formattedTime = String.format("%02d:%02d:%02d:%02d", hours, minutes, seconds, milliseconds);
-        this.levelMenu.getLevelTime().setText("Level: " + level + " | Time: " + formattedTime);
+        //this.levelMenu.getLevelTime().setText("Level: " + level + " | Time: " + formattedTime);
+        this.levelMenu.getLevelTime().setText("Highscore: " + formattedTime);
+        this.levelMenu.getLevel().setText("Level: " + level);
+        if(level == 0) {
+            this.levelMenu.getLevel().setText("Level: Tutorial");
+        }
     }
 
     public void setMap(int map) {
         this.mapSelected = map;
 
         switch (mapSelected) {
+            case 0:
+                System.out.println("✔ [LevelSelectScene]: 0 selected");
+                this.gui.setFilePath(this.setMap.getPath0());
+                this.mapSelected = 0;
+                break;
             case 1:
+                System.out.println("✔ [LevelSelectScene]: 1 selected");
                 this.gui.setFilePath(this.setMap.getPath1());
-                System.out.println("[LevelSelectScene]: 1 selected ✔");
                 this.mapSelected = 1;
                 break;
             case 2:
+                System.out.println("✔ [LevelSelectScene]: 2 selected");
                 this.gui.setFilePath(this.setMap.getPath2());
-                System.out.println("[LevelSelectScene]: 2 selected ✔");
                 this.mapSelected = 2;
                 break;
             case 3:
+                System.out.println("✔ [LevelSelectScene]: 3 selected");
                 this.gui.setFilePath(this.setMap.getPath3());
-                System.out.println("[LevelSelectScene]: 3 selected ✔");
                 this.mapSelected = 3;
                 break;
             case 4:
+                System.out.println("✔ [LevelSelectScene]: 4 selected");
                 this.gui.setFilePath(this.setMap.getPath4());
-                System.out.println("[LevelSelectScene]: 4 selected ✔");
                 this.mapSelected = 4;
                 break;
             case 5:
+                System.out.println("✔ [LevelSelectScene]: 5 selected");
                 this.gui.setFilePath(this.setMap.getPath5());
-                System.out.println("[LevelSelectScene]: 5 selected ✔");
                 this.mapSelected = 5;
                 break;
             case 6:
+                System.out.println("✔ [LevelSelectScene]: 6 selected");
                 this.gui.setFilePath(this.setMap.getPath6());
-                System.out.println("[LevelSelectScene]: 6 selected ✔");
                 this.mapSelected = 6;
                 break;
             case 7:
+                System.out.println("✔ [LevelSelectScene]: 7 selected");
                 this.gui.setFilePath(this.setMap.getPath7());
-                System.out.println("[LevelSelectScene]: 7 selected ✔");
                 this.mapSelected = 7;
                 break;
             case 8:
+                System.out.println("✔ [LevelSelectScene]: 8 selected");
                 this.gui.setFilePath(this.setMap.getPath8());
-                System.out.println("[LevelSelectScene]: 8 selected ✔");
                 this.mapSelected = 8;
                 break;
             case 9:
+                System.out.println("✔ [LevelSelectScene]: 9 selected");
                 this.gui.setFilePath(this.setMap.getPath9());
-                System.out.println("[LevelSelectScene]: 9 selected ✔");
                 this.mapSelected = 9;
                 break;
             default:
-                System.out.println("[LevelSelectScene]: Invalid map selection: " + map + " ✖");
+                System.out.println("✖ [LevelSelectScene]: Invalid map selection: " + map);
                 break;
         }
     }
 
     public void levelCompleted() {
+        if (levelTutorialCompleted) {
+            this.readWriteSpielstand.updateSpielstand(0, true, true, this.level0Time);
+            this.levelMenu.getbTutorial().setStyle("-fx-text-fill: #6b5727;");
+            this.levelMenu.getbTutorial().setText("Tutorial");
+        }
         if (level1Completed) {
-            this.readWriteSpielstand.updateSpielstand(1,true,true,this.level1Time);
-            this.levelMenu.getbL1().setStyle("-fx-text-fill: #11b30e;");
+            this.readWriteSpielstand.updateSpielstand(1, true, true, this.level1Time);
+            this.levelMenu.getbL1().setStyle("-fx-text-fill: #10540a;");
             this.levelMenu.getbL1().setText("Level 1 ✔");
         }
         if (level2Completed) {
-            this.readWriteSpielstand.updateSpielstand(2,true,true,this.level2Time);
-            this.levelMenu.getbL2().setStyle("-fx-text-fill: #11b30e;");
+            this.readWriteSpielstand.updateSpielstand(2, true, true, this.level2Time);
+            this.levelMenu.getbL2().setStyle("-fx-text-fill: #10540a;");
             this.levelMenu.getbL2().setText("Level 2 ✔");
         }
         if (level3Completed) {
-            this.readWriteSpielstand.updateSpielstand(3,true,true,this.level3Time);
-            this.levelMenu.getbL3().setStyle("-fx-text-fill: #11b30e;");
+            this.readWriteSpielstand.updateSpielstand(3, true, true, this.level3Time);
+            this.levelMenu.getbL3().setStyle("-fx-text-fill: #10540a;");
             this.levelMenu.getbL3().setText("Level 3 ✔");
         }
         if (level4Completed) {
-            this.readWriteSpielstand.updateSpielstand(4,true,true,this.level4Time);
-            this.levelMenu.getbL4().setStyle("-fx-text-fill: #11b30e;");
+            this.readWriteSpielstand.updateSpielstand(4, true, true, this.level4Time);
+            this.levelMenu.getbL4().setStyle("-fx-text-fill: #10540a;");
             this.levelMenu.getbL4().setText("Level 4 ✔");
         }
         if (level5Completed) {
-            this.readWriteSpielstand.updateSpielstand(5,true,true,this.level5Time);
-            this.levelMenu.getbL5().setStyle("-fx-text-fill: #11b30e;");
+            this.readWriteSpielstand.updateSpielstand(5, true, true, this.level5Time);
+            this.levelMenu.getbL5().setStyle("-fx-text-fill: #10540a;");
             this.levelMenu.getbL5().setText("Level 5 ✔");
         }
         if (level6Completed) {
-            this.readWriteSpielstand.updateSpielstand(6,true,true,this.level6Time);
-            this.levelMenu.getbL6().setStyle("-fx-text-fill: #11b30e;");
+            this.readWriteSpielstand.updateSpielstand(6, true, true, this.level6Time);
+            this.levelMenu.getbL6().setStyle("-fx-text-fill: #10540a;");
             this.levelMenu.getbL6().setText("Level 6 ✔");
         }
         if (level7Completed) {
-            this.readWriteSpielstand.updateSpielstand(7,true,true,this.level7Time);
-            this.levelMenu.getbL7().setStyle("-fx-text-fill: #11b30e;");
+            this.readWriteSpielstand.updateSpielstand(7, true, true, this.level7Time);
+            this.levelMenu.getbL7().setStyle("-fx-text-fill: #10540a;");
             this.levelMenu.getbL7().setText("Level 7 ✔");
         }
         if (level8Completed) {
-            this.readWriteSpielstand.updateSpielstand(8,true,true,this.level8Time);
-            this.levelMenu.getbL8().setStyle("-fx-text-fill: #11b30e;");
+            this.readWriteSpielstand.updateSpielstand(8, true, true, this.level8Time);
+            this.levelMenu.getbL8().setStyle("-fx-text-fill: #10540a;");
             this.levelMenu.getbL8().setText("Level 8 ✔");
         }
         if (level9Completed) {
-            this.readWriteSpielstand.updateSpielstand(9,true,true,this.level9Time);
-            this.levelMenu.getbL9().setStyle("-fx-text-fill: #11b30e;");
+            this.readWriteSpielstand.updateSpielstand(9, true, true, this.level9Time);
+            this.levelMenu.getbL9().setStyle("-fx-text-fill: #10540a;");
             this.levelMenu.getbL9().setText("Level 9 ✔");
         }
+
         outputCU();
     }
 
     private void outputCU() {
         System.out.println("\n[LevelSelectScene]: outputCU");
         System.out.println("----------------------------------------------------");
+        System.out.println("Level0 Unlocked: " + isLevelTutorialUnlocked + " | Level1 Completed: " + levelTutorialCompleted);
         System.out.println("Level1 Unlocked: " + level1Unlocked + " | Level1 Completed: " + level1Completed);
         System.out.println("Level2 Unlocked: " + level2Unlocked + " | Level2 Completed: " + level2Completed);
         System.out.println("Level3 Unlocked: " + level3Unlocked + " | Level3 Completed: " + level3Completed);
@@ -340,6 +406,10 @@ public class LevelSelectScene {
     }
 
     public void unlockLevel() {
+        if (isLevelTutorialUnlocked) {
+            levelMenu.getbTutorial().setDisable(false);
+            this.readWriteSpielstand.updateSpielstand(0,true,false,this.level0Time);
+        }
         if (level1Unlocked) {
             levelMenu.getbL1().setDisable(false);
             this.readWriteSpielstand.updateSpielstand(1,true,false,this.level1Time);
@@ -381,12 +451,15 @@ public class LevelSelectScene {
 
     public void unlockNextLevel(double time) {
         int nextMap = this.mapSelected;
-        System.out.println("____________________\nmapSelecte:" + this.mapSelected + " | thismap: " + nextMap);
         if(++nextMap <= 10) {
-            System.out.println("2____________________\nmapSelecte:" + this.mapSelected + " | thismap: " + nextMap);
             this.thisLevelTime = time;
 
             switch (this.mapSelected) {
+                case 0:
+                    if (this.thisLevelTime < level0Time || level0Time == 0.0) {
+                        setLevelTime(this.mapSelected, this.thisLevelTime);
+                    }
+                    break;
                 case 1:
                     if (this.thisLevelTime < level1Time || level1Time == 0.0) {
                         setLevelTime(this.mapSelected, this.thisLevelTime);
@@ -444,6 +517,9 @@ public class LevelSelectScene {
         boolean thisLevel = false;
 
         switch (level) {
+            case 0:
+                thisLevel = this.levelTutorialCompleted;
+                break;
             case 1:
                 thisLevel = this.level1Completed;
                 break;
@@ -472,7 +548,7 @@ public class LevelSelectScene {
                 thisLevel = this.level9Completed;
                 break;
             default:
-                System.out.println("[LevelSelectScene]: getLevelCompleted Invalid value: " + level + " ✖");
+                System.out.println("✖ [LevelSelectScene]: getLevelCompleted Invalid value: " + level);
                 break;
         }
         return thisLevel;
@@ -482,6 +558,9 @@ public class LevelSelectScene {
         boolean thisLevel = false;
 
         switch (level) {
+            case 0:
+                thisLevel = this.isLevelTutorialUnlocked;
+                break;
             case 1:
                 thisLevel = this.level1Unlocked;
                 break;
@@ -518,9 +597,12 @@ public class LevelSelectScene {
 
     public void setLevelCompleted(int level, boolean completed) {
         if (completed) {
-            System.out.println("[LevelSelectScene]: setLevelCompleted level: " + level + " Completed ✔");
+            System.out.println("✔ [LevelSelectScene]: setLevelCompleted level: " + level + " Completed");
         }
         switch (level) {
+            case 0:
+                this.levelTutorialCompleted = completed;
+                break;
             case 1:
                 this.level1Completed = completed;
                 break;
@@ -550,16 +632,19 @@ public class LevelSelectScene {
                 levelCompleted();
                 break;
             default:
-                System.out.println("[LevelSelectScene]: setLevelCompleted level: " + level + " does not exist ✖");
+                System.out.println("✖ [LevelSelectScene]: setLevelCompleted level: " + level + " does not exist");
                 break;
         }
     }
 
     public void setLevelUnlocked(int level, boolean unlocked) {
         if (unlocked) {
-            System.out.println("[LevelSelectScene]: setLevelUnlocked level: " + level + " unlocked ✔");
+            System.out.println("✔ [LevelSelectScene]: setLevelUnlocked level: " + level + " unlocked");
         }
         switch (level) {
+            case 0:
+                this.isLevelTutorialUnlocked = unlocked;
+                break;
             case 1:
                 this.level1Unlocked = unlocked;
                 break;
@@ -588,13 +673,16 @@ public class LevelSelectScene {
                 this.level9Unlocked = unlocked;
                 break;
             default:
-                System.out.println("[LevelSelectScene]: setLevelUnlocked level: " + level + " does not exist ✖");
+                System.out.println("✖ [LevelSelectScene]: setLevelUnlocked level: " + level + " does not exist");
                 break;
         }
     }
 
     public void setLevelTime(int level,double time) {
         switch (level) {
+            case 0:
+                this.level0Time = time;
+                break;
             case 1:
                 this.level1Time = time;
                 break;
@@ -623,7 +711,7 @@ public class LevelSelectScene {
                 this.level9Time = time;
                 break;
             default:
-                System.out.println("[LevelSelectScene]: setLevelTime level: " + level + " does not exist ✖");
+                System.out.println("✖ [LevelSelectScene]: setLevelTime level: " + level + " does not exist");
                 break;
         }
     }

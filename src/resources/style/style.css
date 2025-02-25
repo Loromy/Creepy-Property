@@ -6,9 +6,12 @@
 
 /* Allgemeine Button-Stile */
 .button {
-    -fx-background-color: linear-gradient(#525252 20%, #509974);
+    /*-fx-background-color: linear-gradient(#525252 20%, #509974);*/
+    -fx-background-color: linear-gradient(to bottom, #106e0a 10%, #7a9c78 50%, #2a7a25 90%);/* green */
+    /*-fx-background-color: linear-gradient(to bottom, #525252 10%, #dbdbdb 50%, #8c8c8c 90%); /* grau/silber */
     -fx-background-radius: 10px;
     -fx-text-fill: white;
+    -fx-text-padding: 2px;
     -fx-padding: 1px 1px;
     -fx-alignment: center;
     -fx-font-family: Creepster;
@@ -23,29 +26,77 @@
 }
 
 /* Button Hover-, Pressed- und Focused-Zustände */
-.button:hover {
-    -fx-background-color: linear-gradient(#8c8c8c 20%, #94d1b2);
+.button:hover, .button:focused{
+    /*-fx-background-color: linear-gradient(#8c8c8c 20%, #94d1b2);*/
+    /*-fx-background-color: linear-gradient(to bottom, #3f783b 20%, #adbdac 50%, #377534 80%);/* hell gold */
+    -fx-background-color: linear-gradient(to bottom, #006305 10%, #c5ebc7 50%, #006e05 90%);/* dunkel grün */
     -fx-border-color: white;
     -fx-border-width: 2px;
     -fx-border-radius: 10px;
+    -fx-text-padding: 2px;
 }
 
 .button:pressed {
-    -fx-background-color: linear-gradient(#525252 20%, #5a7065);
+    -fx-background-color: linear-gradient(#525252 20%, #035c2f);
+    -fx-border-color: darkGreen;
 }
 
-.button:focused {
-    -fx-background-color: linear-gradient(#8c8c8c 20%, #94d1b2);
+/* Selected Button */
+#selected-button {
+
     -fx-border-color: white;
+    -fx-background-radius: 10px;
     -fx-border-width: 2px;
     -fx-border-radius: 10px;
+    -fx-padding:1px 1px;
+    -fx-alignment: center;
+}
+
+#selected-button:hover, #selected-button:focused {
+    /*-fx-background-color: linear-gradient(to bottom, #006305 10%, #c5ebc7 50%, #006e05 90%);/* dunkel grün */
+    -fx-border-radius: 10px;
+    -fx-border-width: 2px;
+    -fx-border-color: white;
+}
+
+/* Tutorial Button */
+#tutorial-button {
+    /*-fx-background-color: linear-gradient(to bottom, #525252 20%, #dbdbdb 50%, #8c8c8c 80%);/* grau/silber */
+    /*-fx-background-color: linear-gradient(to bottom, #106e0a 20%, #7a9c78 50%, #2a7a25 80%);/* green */
+    -fx-background-color: linear-gradient(to bottom, #ae8625 10%, #f7ef8a 50%, #d2ac47 90%);/* gold */
+    -fx-background-radius: 10px;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+    -fx-padding:1px 1px;
+    -fx-alignment: center;
+}
+
+#tutorial-button:hover, #tutorial-button:focused {
+    -fx-border-radius: 10px;
+    -fx-border-width: 2px;
+    -fx-background-color: linear-gradient(to bottom, #b3954d 10%, #fff9ad 50%, #d6bb72 90%);/* hell gold*/
+    -fx-border-color: white;
+}
+
+#tutorial-button_selected {
+    -fx-background-color: linear-gradient(to bottom, #ae8625 10%, #f7ef8a 50%, #d2ac47 90%);/* gold */
+    -fx-border-radius: 10px;
+    -fx-border-width: 2px;
+    -fx-border-color: white;
+}
+
+#tutorial-button_selected:hover, #tutorial-button_selected:focused {
+    -fx-border-radius: 10px;
+    -fx-border-width: 2px;
+    -fx-background-color: linear-gradient(to bottom, #b3954d 10%, #fff9ad 50%, #d6bb72 90%);/* hell gold*/
+    -fx-border-color: white;
 }
 
 
 /* Quit-Button */
 #quit-button:hover, #quit-button:focused {
     -fx-text-fill: darkRed;
-    -fx-background-color: linear-gradient(#454242 20%, #d13636);
+    -fx-background-color: linear-gradient(to bottom, #454242 10%, #d13636 50%,  #454242 90%);
     -fx-border-color: darkRed;
     -fx-border-weight: 5px;
 }

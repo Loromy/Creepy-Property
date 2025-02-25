@@ -162,7 +162,7 @@ public class GameScene {
             int seconds = (int) (time_seconds % 60);
             int milliseconds = (int) ((time_seconds * 100) % 100); // Millisekunden berechnen
 
-            // Formatierte Zeit als HH:MM:SS.mmm anzeigen
+            // Formatierte Zeit als HH:MM:SS.mm anzeigen
             String formattedTime = String.format("%02d:%02d:%02d:%02d", hours, minutes, seconds, milliseconds);
             this.guiComponents.getL_time().setText("Time: " + formattedTime);
         }));

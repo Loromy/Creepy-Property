@@ -51,14 +51,14 @@ public class ReadWriteSettings {
             case "anzeige":
                 if (value == 0) {
                     this.guiComponents.setAnzeige_on(true);
-                    System.out.println("[ReedWriteSettings]: SettingsRead \"anzeige\" value: false ✔");
+                    System.out.println("✔ [ReedWriteSettings]: SettingsRead \"anzeige\" value: false");
                 }
                 else if (value == 1) {
                     this.guiComponents.setAnzeige_on(false);
-                    System.out.println("[ReedWriteSettings]: SettingsRead \"anzeige\" value: true ✔");
+                    System.out.println("✔ [ReedWriteSettings]: SettingsRead \"anzeige\" value: true");
                 }
                 else {
-                    System.out.println("[ReedWriteSettings]: SettingsRead \"anzeige\" wrong value: " + value + " does not exist ✖");
+                    System.out.println("✖ [ReedWriteSettings]: SettingsRead \"anzeige\" wrong value: " + value + " does not exist");
                 }
                 this.guiComponents.triggerAnzeigeRWSettings();
                 break;
@@ -66,14 +66,14 @@ public class ReadWriteSettings {
             case "overlay":
                 if (value == 0) {
                     this.gameScene.getPlayer().setOverlay_on(true);
-                    System.out.println("[ReedWriteSettings]: SettingsRead \"overlay\" value: false ✔");
+                    System.out.println("✔ [ReedWriteSettings]: SettingsRead \"overlay\" value: false");
                 }
                 else if (value == 1) {
                     this.gameScene.getPlayer().setOverlay_on(false);
-                    System.out.println("[ReedWriteSettings]: SettingsRead \"overlay\" value: true ️✔");
+                    System.out.println("✔ [ReedWriteSettings]: SettingsRead \"overlay\" value: true ️");
                 }
                 else {
-                    System.out.println("[ReedWriteSettings]: SettingsRead \"overlay\" wrong value: " + value + " does not exist ✖");
+                    System.out.println("✖ [ReedWriteSettings]: SettingsRead \"overlay\" wrong value: " + value + " does not exist");
                 }
                 this.gameScene.getPlayer().triggerOverlayRWSettings(this.gameScene);
                 break;
@@ -81,14 +81,14 @@ public class ReadWriteSettings {
             case "collision":
                 if (value == 0) {
                     this.gameScene.getMapCreate().setCollision_on(true);
-                    System.out.println("[ReedWriteSettings]: SettingsRead \"collision\" value: false ✔");
+                    System.out.println("✔ [ReedWriteSettings]: SettingsRead \"collision\" value: false");
                 }
                 else if (value == 1) {
                     this.gameScene.getMapCreate().setCollision_on(false);
-                    System.out.println("[ReedWriteSettings]: SettingsRead \"collision\" value: true ️✔");
+                    System.out.println("✔ [ReedWriteSettings]: SettingsRead \"collision\" value: true");
                 }
                 else {
-                    System.out.println("[ReedWriteSettings]: SettingsRead \"collision\" wrong value: " + value + " does not exist ✖");
+                    System.out.println("✖ [ReedWriteSettings]: SettingsRead \"collision\" wrong value: " + value + " does not exist");
                 }
                 this.gameScene.getMapCreate().triggerCollisionRWSettings(this.gameScene);
                 break;
@@ -96,25 +96,25 @@ public class ReadWriteSettings {
             case "master":
                 if (value >= 1 && value <= 100) {
                     this.gameScene.getMenu().getSettings().getAudio().setMaster(value);
-                    System.out.println("[ReedWriteSettings]: SettingsRead \"master\" value: " + value + " ✔");
+                    System.out.println("✔ [ReedWriteSettings]: SettingsRead \"master\" value: " + value);
                 }
                 else {
-                    System.out.println("[ReedWriteSettings]: SettingsRead \"master\" wrong value: " + value + " does not exist ✖");
+                    System.out.println("✖ [ReedWriteSettings]: SettingsRead \"master\" wrong value: " + value + " does not exist");
                 }
                 break;
 
             case "background":
                 if (value >= 1 && value <= 100) {
                     this.gameScene.getMenu().getSettings().getAudio().setBackground(value);
-                    System.out.println("[ReedWriteSettings]: SettingsRead \"background\" value: " + value + " ✔");
+                    System.out.println("✔ [ReedWriteSettings]: SettingsRead \"background\" value: " + value);
                 }
                 else {
-                    System.out.println("[ReedWriteSettings]: SettingsRead \"background\" wrong value: " + value + " does not exist ✖");
+                    System.out.println("✖ ReedWriteSettings]: SettingsRead \"background\" wrong value: " + value + " does not exist");
                 }
                 break;
 
             default:
-                System.out.println("[ReedWriteSettings]: SettingsRead wrong setting: " + setting + " does not exist ✖");
+                System.out.println("✖ [ReedWriteSettings]: SettingsRead wrong setting: " + setting + " does not exist");
                 break;
         }
     }

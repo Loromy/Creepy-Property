@@ -25,11 +25,12 @@ public class GUI {
 
         // StartScene initialisieren
         this.startScene = new StartScene(stage, this);
+        this.selectScene = new LevelSelectScene(this);
 
         // Standard-Scene auf StartScene setzen
         stage.setScene(startScene.getScene());
         stage.setTitle("The Creepy Property");
-        stage.setResizable(true);
+        stage.setResizable(false);
         stage.show();
     }
 
@@ -57,7 +58,7 @@ public class GUI {
     public void switchToLevelSelectScene() {
 
         if (this.selectScene == null) {
-            this.selectScene = new LevelSelectScene(stage, this);
+            this.selectScene = new LevelSelectScene(this);
         }
 
         this.selectScene.unlockLevel();

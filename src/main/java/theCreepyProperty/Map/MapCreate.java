@@ -39,7 +39,7 @@ public class MapCreate {
 
             if (this.levelData.getWalls().size()-1 == i) {
                 i++;
-                System.out.println("[MapCreator]: " + i + " Walls created ✔");
+                System.out.println("✔ [MapCreator]: " + i + " Walls created");
             }
         }
 
@@ -51,7 +51,7 @@ public class MapCreate {
             this.scene.pGameChildren(this.item.getIItem());
             if (this.levelData.getItems().size()-1 == i) {
                 i++;
-                System.out.println("[MapCreator]: " + i + " Items created ✔");
+                System.out.println("✔ [MapCreator]: " + i + " Items created");
             }
         }
 
@@ -63,7 +63,7 @@ public class MapCreate {
 
             if (this.levelData.getDoors().size()-1 == i) {
                 i++;
-                System.out.println("[MapCreator]: " + i + " Doors created ✔");
+                System.out.println("✔ [MapCreator]: " + i + " Doors created");
             }
         }
     }

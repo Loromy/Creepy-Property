@@ -42,7 +42,7 @@ public class StartScene {
         this.startScene = new Scene(startScreen, gui.getWidth(), gui.getHeight());
 
         startMenu.getStartButton().setOnAction(e -> {
-            System.out.println("[Start Menu]: Spiel wird gestartet... ✔");
+            System.out.println("✔ [StartScene]: Spiel wird gestartet...");
 
             soundPlayer = new SoundPlayer(soundButtonClick);
             this.soundPlayer.setVolume(volume);
@@ -51,7 +51,7 @@ public class StartScene {
             gui.switchToLevelSelectScene();
         });
         startMenu.getQuitButton().setOnAction(e -> {
-            System.out.println("[Start Menu]: Quit ✔");
+            System.out.println("✔ [Start Menu]: Quit");
 
             soundPlayer = new SoundPlayer(soundButtonClick);
             this.soundPlayer.setVolume(volume);

@@ -39,13 +39,13 @@ public class GameWin extends VBox{
 
         // Add menu items
         this.text = new Label("Congratulations");
-        this.text.setId("game-win-text"); // Spezifische ID für den GameOver-Text
+        this.text.setId("game-win-text");
 
         this.backButton = new Button("Back");
-        this.backButton.setId("game-win"); // Spezifische ID für den Retry-Button
+        this.backButton.setId("game-win");
 
         this.nextButton = new Button("Next");
-        this.nextButton.setId("game-win"); // Spezifische ID für den Retry-Button
+        this.nextButton.setId("game-win");
 
         // Add buttons to the VBox
         this.vBoxGameWin.getChildren().addAll(text, nextButton, backButton);
@@ -56,13 +56,6 @@ public class GameWin extends VBox{
         this.pGameWin.setPrefSize(gui.getWidth(), gui.getHeight()); // Set width and height for the overlay menu
         this.backgroundGameWin.setPrefSize(gui.getWidth(), gui.getHeight());
         this.setGameOverPosition(500, 300, 10);
-
-//        // disable next bei level9
-//        //todo finish scene anzeigen
-//        if (++this.mapSelected >= 9) {
-//            this.nextButton.setText("Finish Game");
-//            this.gui.switchToFinishScene();
-//        }
 
         // Button actions
         backButton.setOnAction(e -> onBack());
@@ -77,8 +70,6 @@ public class GameWin extends VBox{
             this.gameWin_on = true;
             this.nextButton.requestFocus();
             this.mapSelected = this.levelSelectScene.getMapSelected();
-
-            //todo spielzeit zwischen speichern
 
             this.levelSelectScene.unlockNextLevel(this.gameScene.getTime_seconds());
             int map = this.mapSelected;
@@ -102,9 +93,10 @@ public class GameWin extends VBox{
     }
 
     private void onBack() {
-        System.out.println("[Game Win]: Back ✔");
+        System.out.println("✔ [Game Win]: Back");
         this.gameScene.stopBackgroundMusic();
         this.gui.switchToLevelSelectScene();
+        this.levelSelectScene.getLevelMenu().getStartButton().setDisable(true);
     }
 
     private void onNext() {
@@ -113,9 +105,9 @@ public class GameWin extends VBox{
         int map = this.mapSelected;
         if (++map > 9) {
             this.gui.switchToFinishScene();
-            System.out.println("[GameWin]: onNext switch to Finish Scene ✔");
+            System.out.println("✔ [GameWin]: onNext switch to Finish Scene");
         } else {
-            System.out.println("[Game Win]: Next ✔");
+            System.out.println("✔ [Game Win]: Next");
             this.gui.switchToLevelSelectScene();
             this.setMap.setMapPlus1();
             this.gui.switchToGameScene();
