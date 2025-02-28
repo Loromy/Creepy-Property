@@ -18,6 +18,7 @@ import theCreepyProperty.Save.ReadWriteSpielstand;
 import theCreepyProperty.blocks.Door;
 import theCreepyProperty.blocks.Item;
 import theCreepyProperty.blocks.Wall;
+import theCreepyProperty.entity.Ghost;
 import theCreepyProperty.entity.Player;
 import theCreepyProperty.main.*;
 import theCreepyProperty.menu.Menu;
@@ -40,6 +41,7 @@ public class GameScene {
     private final Pane pGameWin = new Pane();
     private final Pane pGame = new Pane();
     private final Pane pWallsItems = new Pane();
+    private final Pane pGhosts = new Pane();
 
     // Game Scene Classes
     private KeyHandler keyHandler;
@@ -51,7 +53,9 @@ public class GameScene {
     private Wall wall;
     private Item item;
     private Door door;
+    private Ghost ghost;
     private final Player player;
+    //private final Ghost ghost;
     private final GameOver gameOver;
     private final GameWin gameWin;
     private final Menu menu;
@@ -99,7 +103,7 @@ public class GameScene {
         this.levelData = mapReader.readCsvFile(this.gui.getFilePath(), levelData);
 
         // Wände erstellen
-        this.mapCreate.createMap(this, levelData);
+        this.mapCreate.createMap(this.gui, this ,levelData);
 
         // GUI components
         this.guiComponents = new GuiComponents(this.gui, this.player,this);
@@ -113,6 +117,7 @@ public class GameScene {
 
         pGame.getChildren().add(new ImageView(new Image("file:src/resources/textures/flor/Flor.png")));
         pGame.getChildren().add(this.pWallsItems);
+        pGame.getChildren().add(this.pGhosts);
         pGame.getChildren().add(this.player.getSolidPlayerAria());
         pGame.getChildren().add(this.player.draw());
         pGame.getChildren().add(this.player.loadOverlay());
@@ -124,9 +129,13 @@ public class GameScene {
         // Game Over / Win Menüs hinzufügen
         pGameOver.getChildren().add(this.gameOver.getBackgroundGameOver());
         pGameOver.getChildren().add(this.gameOver.getPGameOver());
+        pGameOver.setVisible(false);
 
         pGameWin.getChildren().add(this.gameWin.getBackgroundGameWin());
         pGameWin.getChildren().add(this.gameWin.getPGameWin());
+        pGameWin.setVisible(false);
+        //pGameWin.setMouseTransparent(true);
+
 
         pMenu.getChildren().add(this.menu.getBackgroundMenu());
         pMenu.getChildren().add(this.menu.getpMenu());
@@ -134,7 +143,7 @@ public class GameScene {
         pMenu.getChildren().add(this.menu.getSettings().getAudio().getMenuAudio());
 
         // KeyHandler hinzufügen
-        keyHandler = new KeyHandler(this.player, this, this.menu, this.gameOver, this.gameWin);
+        keyHandler = new KeyHandler(this.player, this.ghost, this, this.gui.getSelectScene(), this.menu, this.gameOver, this.gameWin);
         keyHandler.addKeyListener(gameScene, this);
 
         this.pMenu.setVisible(false);
@@ -151,6 +160,7 @@ public class GameScene {
         startRandomNoise();
     }
 
+    // Timer
     private void startTimer() {
         time_seconds = 0.0; // Timer zurücksetzen
         timer = new Timeline(new KeyFrame(Duration.millis(10), event -> {
@@ -177,6 +187,7 @@ public class GameScene {
         }
     }
 
+    // random background noises
     private void startRandomNoise() {
         noiseTimer = new Timeline(new KeyFrame(Duration.seconds(getRandomInterval()), event -> {
             playRandomNoise();
@@ -199,24 +210,29 @@ public class GameScene {
         return random.nextInt(25) + 5; // Zufälliges Intervall zwischen 5 und 30 Sekunden
     }
 
+
     public void stopBackgroundMusic() {
         this.soundPlayer.stop();
     }
 
-    public double getTime_seconds() {
-        return time_seconds;
-    }
-
-    public void pGameChildren(Rectangle rectangle) {
+    public void pGameItemChildren(Rectangle rectangle) {
         this.pWallsItems.getChildren().add(rectangle);
     }
 
-    public void pGameChildren(ImageView image) {
+    public void pGameItemChildren(ImageView image) {
         this.pWallsItems.getChildren().add(image);
     }
 
-    public void pGameChildrenRemove(ImageView image) {
+    public void pGameItemChildrenRemove(ImageView image) {
         this.pWallsItems.getChildren().remove(image);
+    }
+
+    public void pGameGhostsChildren(Rectangle rectangle) {
+        this.pGhosts.getChildren().add(rectangle);
+    }
+
+    public void pGameGhostsChildren(ImageView image) {
+        this.pGhosts.getChildren().add(image);
     }
 
     // Getter Methoden
@@ -252,6 +268,10 @@ public class GameScene {
         return this.door;
     }
 
+    public Ghost getGhost() {
+        return this.ghost;
+    }
+
     public CollisionChecker getChecker() {
         return checker;
     }
@@ -270,6 +290,18 @@ public class GameScene {
 
     public Player getPlayer() {
         return this.player;
+    }
+
+    public double getTime_seconds() {
+        return time_seconds;
+    }
+
+    public Pane getPGameWin() {
+        return this.pGameWin;
+    }
+
+    public Pane getPGameOver() {
+        return this.pGameOver;
     }
 
     // Setter Methoden

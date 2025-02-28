@@ -1,6 +1,10 @@
 package theCreepyProperty.main;
 
+import javafx.scene.shape.Rectangle;
+import theCreepyProperty.Map.MapCreate;
+import theCreepyProperty.entity.Ghost;
 import theCreepyProperty.scenes.GameScene;
+import theCreepyProperty.scenes.LevelSelectScene;
 import theCreepyProperty.screens.GameOver;
 import theCreepyProperty.entity.Player;
 
@@ -12,10 +16,13 @@ import theCreepyProperty.screens.GameWin;
 
 public class KeyHandler {
     private final Player player;
-    private final GameScene scene;
+    private final Ghost ghost;
+    private final GameScene gameScene;
+    private final LevelSelectScene levelSelectScene;
     private final Menu menu;
     private final GameOver gameOver;
     private final GameWin gameWin;
+    private final MapCreate mapCreate;
 
     private boolean wPressed = false;
     private boolean aPressed = false;
@@ -26,12 +33,21 @@ public class KeyHandler {
     private boolean shiftPressed = false;
     private boolean escPressed = false;
 
-    public KeyHandler(Player player, GameScene scene, Menu menu, GameOver gameOver, GameWin gameWin) {
+    private double nextPlayerX;
+    private double nextPlayerY;
+
+    public KeyHandler(Player player, Ghost ghost, GameScene gameScene, LevelSelectScene levelSelectScene, Menu menu, GameOver gameOver, GameWin gameWin) {
         this.player = player;
-        this.scene = scene;
+        this.ghost = ghost;
+        this.gameScene = gameScene;
+        this.levelSelectScene = levelSelectScene;
         this.menu = menu;
         this.gameOver = gameOver;
         this.gameWin = gameWin;
+        this.mapCreate = gameScene.getMapCreate();
+
+        this.nextPlayerX = this.player.getPlayer_world_X();
+        this.nextPlayerY = this.player.getPlayer_world_Y();
     }
 
     public void addKeyListener(Scene scene, GameScene gameScene) {
@@ -80,7 +96,7 @@ public class KeyHandler {
 
                 handleMovement(deltaTime); // Bewegung aktualisieren
 
-                // **FPS-Berechnung**
+                // FPS-Berechnung
                 frameCount++;
                 if (now - lastFPSUpdate >= 1_000_000_000) { // Wenn 1 Sekunde vergangen ist
                     fps = frameCount;  // FPS speichern
@@ -120,24 +136,28 @@ public class KeyHandler {
 
             if (cPressed) {
                 System.out.println("[KeyHandler]: Position Player: x=" + this.player.getPlayer_world_X() + " y=" + this.player.getPlayer_world_Y());
-                System.out.println("Timer: " + scene.getTime_seconds());
+                System.out.println("Timer: " + gameScene.getTime_seconds());
                 this.cPressed = false;
             }
 
             if (ctrlPressed) {
                 this.player.setControlSpeed(5); // Control speed | standard speed + (value)
-                this.scene.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed()); // anzeigen von speed
+                this.gameScene.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed()); // anzeigen von speed
             } else if (shiftPressed) {
                 this.player.setShiftSpeed();
-                this.scene.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed()); // anzeigen von speed
+                this.gameScene.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed()); // anzeigen von speed
             } else {
                 this.player.setControlSpeed(0);
-                this.scene.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed()); // anzeigen von speed
+                this.gameScene.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed()); // anzeigen von speed
             }
 
             if (dx != 0 || dy != 0) {
                 move(dx, dy, deltaTime);
             }
+
+            // Ghosts
+            checkGhostCollision();
+
             animation(deltaTime);
         }
 
@@ -169,24 +189,43 @@ public class KeyHandler {
 
         // FPS-unabhängige Bewegung berechnen
         double speed = player.getSpeed() * deltaTime * 60; // Normale Geschwindigkeit für 60 FPS
-        double nextX = player.getPlayer_world_X() + dx * speed;
-        double nextY = player.getPlayer_world_Y() + dy * speed;
+        this.nextPlayerX = player.getPlayer_world_X() + dx * speed;
+        this.nextPlayerY = player.getPlayer_world_Y() + dy * speed;
 
         // X-Kollision prüfen
         player.collision_on = false;
-        this.scene.getChecker().checkCollision(player, nextX, player.getPlayer_world_Y());
+        this.gameScene.getChecker().checkCollision(player, this.nextPlayerX, player.getPlayer_world_Y());
         if (!player.getCollision_on()) {
-            player.setPlayer_world_X(nextX);
+            player.setPlayer_world_X(this.nextPlayerX);
         }
 
         // Y-Kollision prüfen
         player.collision_on = false;
-        this.scene.getChecker().checkCollision(player, player.getPlayer_world_X(), nextY);
+        this.gameScene.getChecker().checkCollision(player, player.getPlayer_world_X(), this.nextPlayerY);
         if (!player.getCollision_on()) {
-            player.setPlayer_world_Y(nextY);
+            player.setPlayer_world_Y(this.nextPlayerY);
         }
     }
 
+    private void checkGhostCollision() {
+        Rectangle futurePlayer = new Rectangle(this.nextPlayerX, this.nextPlayerY, player.entity_size_X, player.entity_size_Y);
+        //System.out.println("test---------" + this.nextPlayerX + ", " +  this.nextPlayerY + "," + player.entity_size_X + "," + player.entity_size_Y);
+        // Ghosts
+        for (Ghost ghost : mapCreate.getGhostList()) {
+            Rectangle ghostNew = ghost.getSolidAria();
+
+            if (futurePlayer.intersects(ghostNew.getBoundsInLocal())) {
+                SoundPlayer soundPlayer = new SoundPlayer("src/resources/sounds/death.wav");
+                soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster());
+                soundPlayer.play();
+
+                this.gameScene.getGameOver().triggerGameOver();
+
+                return;
+            }
+
+        }
+    }
 
     private void animation(double deltaTime) {
         if (this.wPressed || this.sPressed || this.aPressed || this.dPressed) {

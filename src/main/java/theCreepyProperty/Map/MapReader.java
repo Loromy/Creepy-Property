@@ -40,6 +40,10 @@ public class MapReader {
                     int height = Integer.parseInt(parts[4]);
                     String itemTexture = parts[5];
                     levelData.getDoors().add(new LevelData.LevelDataDoor(x, y, width, height, itemTexture));
+                } else if (type.equals("ghost")) {
+                    int width = Integer.parseInt(parts[3]);
+                    int height = Integer.parseInt(parts[4]);
+                    levelData.getGhosts().add(new LevelData.LevelDataGhost(x, y, width, height));
                 }
             }
         } catch (Exception e) {

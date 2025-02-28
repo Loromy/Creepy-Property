@@ -35,7 +35,7 @@ public class LevelSelectScene {
     private boolean level8Completed = false;
     private boolean level9Completed = false;
 
-    private boolean isLevelTutorialUnlocked = false;
+    private boolean levelTutorialUnlocked = false;
     private boolean level1Unlocked = false;
     private boolean level2Unlocked = false;
     private boolean level3Unlocked = false;
@@ -93,7 +93,7 @@ public class LevelSelectScene {
 
         levelMenu.getbL1().setOnAction(e ->{
             setMap(1);
-            //this.levelMenu.getbL1().setId("selected-button");
+
             this.levelMenu.selectButton(this.levelMenu.getbL1());
 
             levelMenu.getStartButton().setDisable(false);
@@ -229,8 +229,6 @@ public class LevelSelectScene {
 
             this.soundPlayer.setVolume(volume);
             this.soundPlayer.play();
-
-            System.out.println("Test------------------" + gui.getGameScene());
         });
 
 
@@ -386,13 +384,14 @@ public class LevelSelectScene {
             this.levelMenu.getbL9().setText("Level 9 ✔");
         }
 
-        outputCU();
+        // TODO Test
+        //outputCU();
     }
 
     private void outputCU() {
         System.out.println("\n[LevelSelectScene]: outputCU");
         System.out.println("----------------------------------------------------");
-        System.out.println("Level0 Unlocked: " + isLevelTutorialUnlocked + " | Level1 Completed: " + levelTutorialCompleted);
+        System.out.println("Level0 Unlocked: " + levelTutorialUnlocked + " | Level1 Completed: " + levelTutorialCompleted);
         System.out.println("Level1 Unlocked: " + level1Unlocked + " | Level1 Completed: " + level1Completed);
         System.out.println("Level2 Unlocked: " + level2Unlocked + " | Level2 Completed: " + level2Completed);
         System.out.println("Level3 Unlocked: " + level3Unlocked + " | Level3 Completed: " + level3Completed);
@@ -406,7 +405,7 @@ public class LevelSelectScene {
     }
 
     public void unlockLevel() {
-        if (isLevelTutorialUnlocked) {
+        if (levelTutorialUnlocked) {
             levelMenu.getbTutorial().setDisable(false);
             this.readWriteSpielstand.updateSpielstand(0,true,false,this.level0Time);
         }
@@ -513,88 +512,6 @@ public class LevelSelectScene {
     }
 
 
-    public boolean getLevelCompleted(int level) {
-        boolean thisLevel = false;
-
-        switch (level) {
-            case 0:
-                thisLevel = this.levelTutorialCompleted;
-                break;
-            case 1:
-                thisLevel = this.level1Completed;
-                break;
-            case 2:
-                thisLevel = this.level2Completed;
-                break;
-            case 3:
-                thisLevel = this.level3Completed;
-                break;
-            case 4:
-                thisLevel = this.level4Completed;
-                break;
-            case 5:
-                thisLevel = this.level5Completed;
-                break;
-            case 6:
-                thisLevel = this.level6Completed;
-                break;
-            case 7:
-                thisLevel = this.level7Completed;
-                break;
-            case 8:
-                thisLevel = this.level8Completed;
-                break;
-            case 9:
-                thisLevel = this.level9Completed;
-                break;
-            default:
-                System.out.println("✖ [LevelSelectScene]: getLevelCompleted Invalid value: " + level);
-                break;
-        }
-        return thisLevel;
-    }
-
-    public boolean getLevelUnlocked(int level) {
-        boolean thisLevel = false;
-
-        switch (level) {
-            case 0:
-                thisLevel = this.isLevelTutorialUnlocked;
-                break;
-            case 1:
-                thisLevel = this.level1Unlocked;
-                break;
-            case 2:
-                thisLevel = this.level2Unlocked;
-                break;
-            case 3:
-                thisLevel = this.level3Unlocked;
-                break;
-            case 4:
-                thisLevel = this.level4Unlocked;
-                break;
-            case 5:
-                thisLevel = this.level5Unlocked;
-                break;
-            case 6:
-                thisLevel = this.level6Unlocked;
-                break;
-            case 7:
-                thisLevel = this.level7Unlocked;
-                break;
-            case 8:
-                thisLevel = this.level8Unlocked;
-                break;
-            case 9:
-                thisLevel = this.level9Unlocked;
-                break;
-            default:
-                System.out.println("[LevelSelectScene]: getLevelCompleted Invalid value: " + level + " ✖");
-                break;
-        }
-        return thisLevel;
-    }
-
     public void setLevelCompleted(int level, boolean completed) {
         if (completed) {
             System.out.println("✔ [LevelSelectScene]: setLevelCompleted level: " + level + " Completed");
@@ -643,7 +560,7 @@ public class LevelSelectScene {
         }
         switch (level) {
             case 0:
-                this.isLevelTutorialUnlocked = unlocked;
+                this.levelTutorialUnlocked = unlocked;
                 break;
             case 1:
                 this.level1Unlocked = unlocked;
@@ -717,6 +634,88 @@ public class LevelSelectScene {
     }
 
     // Getter
+    public boolean getLevelCompleted(int level) {
+        boolean thisLevel = false;
+
+        switch (level) {
+            case 0:
+                thisLevel = this.levelTutorialCompleted;
+                break;
+            case 1:
+                thisLevel = this.level1Completed;
+                break;
+            case 2:
+                thisLevel = this.level2Completed;
+                break;
+            case 3:
+                thisLevel = this.level3Completed;
+                break;
+            case 4:
+                thisLevel = this.level4Completed;
+                break;
+            case 5:
+                thisLevel = this.level5Completed;
+                break;
+            case 6:
+                thisLevel = this.level6Completed;
+                break;
+            case 7:
+                thisLevel = this.level7Completed;
+                break;
+            case 8:
+                thisLevel = this.level8Completed;
+                break;
+            case 9:
+                thisLevel = this.level9Completed;
+                break;
+            default:
+                System.out.println("✖ [LevelSelectScene]: getLevelCompleted Invalid value: " + level);
+                break;
+        }
+        return thisLevel;
+    }
+
+    public boolean getLevelUnlocked(int level) {
+        boolean thisLevel = false;
+
+        switch (level) {
+            case 0:
+                thisLevel = this.levelTutorialUnlocked;
+                break;
+            case 1:
+                thisLevel = this.level1Unlocked;
+                break;
+            case 2:
+                thisLevel = this.level2Unlocked;
+                break;
+            case 3:
+                thisLevel = this.level3Unlocked;
+                break;
+            case 4:
+                thisLevel = this.level4Unlocked;
+                break;
+            case 5:
+                thisLevel = this.level5Unlocked;
+                break;
+            case 6:
+                thisLevel = this.level6Unlocked;
+                break;
+            case 7:
+                thisLevel = this.level7Unlocked;
+                break;
+            case 8:
+                thisLevel = this.level8Unlocked;
+                break;
+            case 9:
+                thisLevel = this.level9Unlocked;
+                break;
+            default:
+                System.out.println("[LevelSelectScene]: getLevelCompleted Invalid value: " + level + " ✖");
+                break;
+        }
+        return thisLevel;
+    }
+
     public LevelSelect getLevelMenu() {
         return levelMenu;
     }

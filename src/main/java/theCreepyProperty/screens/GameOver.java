@@ -6,38 +6,45 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import theCreepyProperty.Map.SetMap;
+import theCreepyProperty.entity.Ghost;
 import theCreepyProperty.main.GUI;
 import theCreepyProperty.scenes.GameScene;
+import theCreepyProperty.scenes.LevelSelectScene;
 
-public class GameOver extends VBox{
+public class GameOver {
     private GUI gui;
-    private GameScene scene;
+    private final GameScene gameScene;
+    private final LevelSelectScene levelSelectScene;
     private final Pane backgroundGameOver = new Pane(); // Background
     private final Pane pGameOver = new Pane(); // Menu Items
     private final VBox vBoxGameOver = new VBox();
     private final SetMap setMap;
 
     private boolean gameOver_on = false;
+    private int mapSelected = 0;
 
     private final Label text;
     private final Button retryButton;
     private final Button quitButton;
 
-    public GameOver(GUI gui, GameScene scene) {
+    public GameOver(GUI gui, GameScene gameScene) {
         this.gui = gui;
-        this.scene = scene;
+        this.gameScene = gameScene;
+        this.levelSelectScene = gui.getSelectScene();
         setMap = new SetMap(this.gui);
 
         //overlay
         this.backgroundGameOver.setStyle("-fx-background-color: rgba(255, 0, 0, 0.7);");
-        this.backgroundGameOver.setVisible(false);
-        this.pGameOver.setVisible(false);
+//        this.backgroundGameOver.setVisible(false);
+//        this.pGameOver.setVisible(false);
 
         // Add menu items
         this.text = new Label("Game Over");
         this.text.setId("game-over-text");
+
         this.retryButton = new Button("Retry");
         this.retryButton.setId("game-over");
+
         this.quitButton = new Button("Quit");
         this.quitButton.setId("game-over");
 
@@ -58,16 +65,22 @@ public class GameOver extends VBox{
 
     public void triggerGameOver(){
         if (!gameOver_on) {
-            this.scene.getpMenu().setVisible(true);
-            this.backgroundGameOver.setVisible(true);
-            this.pGameOver.setVisible(true);
-            this.scene.setBlur(15); //Menu blur
+//            this.backgroundGameOver.setVisible(true);
+//            this.pGameOver.setVisible(true);
+            this.gameScene.getPGameOver().setVisible(true);
+            this.gameScene.setBlur(15); //Menu blur
             this.gameOver_on = true;
             this.retryButton.requestFocus();
+            this.mapSelected = this.levelSelectScene.getMapSelected();
+
+            for(Ghost ghosts: this.gameScene.getMapCreate().getGhostList()) {
+                ghosts.getTimeline().stop();
+            }
         } else {
-            this.backgroundGameOver.setVisible(false);
-            this.pGameOver.setVisible(false);
-            this.scene.setBlur(0); //Menu blur
+//            this.backgroundGameOver.setVisible(false);
+//            this.pGameOver.setVisible(false);
+            this.gameScene.getPGameOver().setVisible(false);
+            this.gameScene.setBlur(0); //Menu blur
             this.gameOver_on = false;
         }
     }
@@ -81,17 +94,19 @@ public class GameOver extends VBox{
     }
 
     private void onRetry() {
-        System.out.println("[Game Over]: Retry ✔");
-        this.triggerGameOver();
+        System.out.println("✔ [Game Over]: Retry");
 
         this.gui.switchToLevelSelectScene();
         this.setMap.setThisMap();
         this.gui.switchToGameScene();
+
+        //this.triggerGameOver();
     }
 
     private void onQuit() {
-        System.out.println("[Game Over]: Quit ✔");
-        System.exit(0);
+        System.out.println("✔ [Game Over]: Quit");
+
+        this.gui.switchToLevelSelectScene();
     }
 
     // Getter Methoden

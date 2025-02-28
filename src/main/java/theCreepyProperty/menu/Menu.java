@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import theCreepyProperty.entity.Ghost;
 import theCreepyProperty.main.GUI;
 import theCreepyProperty.main.SoundPlayer;
 import theCreepyProperty.scenes.GameScene;
@@ -67,6 +68,10 @@ public class Menu extends VBox {
             this.pMenu.setVisible(true);
             this.scene.setBlur(15); //Menu blur
             this.menu_on = true;
+            for (Ghost ghost : this.scene.getMapCreate().getGhostList()) {
+                ghost.getTimeline().stop();
+            }
+
 
             this.resumeButton.requestFocus();
         } else {
@@ -75,6 +80,10 @@ public class Menu extends VBox {
             this.pMenu.setVisible(false);
             this.scene.setBlur(0); //Menu blur
             this.menu_on = false;
+
+            for (Ghost ghost : this.scene.getMapCreate().getGhostList()) {
+                ghost.getTimeline().play();
+            }
         }
     }
 

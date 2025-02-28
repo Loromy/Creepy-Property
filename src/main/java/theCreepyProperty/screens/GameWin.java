@@ -6,11 +6,12 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import theCreepyProperty.Map.SetMap;
+import theCreepyProperty.entity.Ghost;
 import theCreepyProperty.main.GUI;
 import theCreepyProperty.scenes.GameScene;
 import theCreepyProperty.scenes.LevelSelectScene;
 
-public class GameWin extends VBox{
+public class GameWin {
     private GUI gui;
     private final GameScene gameScene;
     private final LevelSelectScene levelSelectScene;
@@ -34,8 +35,8 @@ public class GameWin extends VBox{
 
         //overlay
         this.backgroundGameWin.setStyle("-fx-background-color: rgba(0, 255, 0, 0.5);");
-        this.backgroundGameWin.setVisible(false);
-        this.pGameWin.setVisible(false);
+//        this.backgroundGameWin.setVisible(false);
+//        this.pGameWin.setVisible(false);
 
         // Add menu items
         this.text = new Label("Congratulations");
@@ -55,7 +56,7 @@ public class GameWin extends VBox{
         // Set size and position
         this.pGameWin.setPrefSize(gui.getWidth(), gui.getHeight()); // Set width and height for the overlay menu
         this.backgroundGameWin.setPrefSize(gui.getWidth(), gui.getHeight());
-        this.setGameOverPosition(500, 300, 10);
+        this.setGameWinPosition(500, 300, 10);
 
         // Button actions
         backButton.setOnAction(e -> onBack());
@@ -64,27 +65,34 @@ public class GameWin extends VBox{
 
     public void triggerGameWin(){
         if (!gameWin_on) {
-            this.backgroundGameWin.setVisible(true);
-            this.pGameWin.setVisible(true);
+            //this.backgroundGameWin.setVisible(true);
+            //this.pGameWin.setVisible(true);
+            this.gameScene.getPGameWin().setVisible(true);
             this.gameScene.setBlur(15); //Menu blur
             this.gameWin_on = true;
             this.nextButton.requestFocus();
             this.mapSelected = this.levelSelectScene.getMapSelected();
 
             this.levelSelectScene.unlockNextLevel(this.gameScene.getTime_seconds());
+
+            for(Ghost ghosts: this.gameScene.getMapCreate().getGhostList()) {
+                ghosts.getTimeline().stop();
+            }
+
             int map = this.mapSelected;
             if (++map > 9) {
                 this.nextButton.setText("Finish Game");
             }
         } else {
-            this.backgroundGameWin.setVisible(false);
-            this.pGameWin.setVisible(false);
+            //this.backgroundGameWin.setVisible(false);
+            //this.pGameWin.setVisible(false);
+            this.gameScene.getPGameWin().setVisible(false);
             this.gameScene.setBlur(0); //Menu blur
             this.gameWin_on = false;
         }
     }
 
-    private void setGameOverPosition(double width, double height, int spacing) {
+    private void setGameWinPosition(double width, double height, int spacing) {
         this.vBoxGameWin.setPrefSize(width,height);
         this.vBoxGameWin.setLayoutX((gui.getWidth() - width) / 2);
         this.vBoxGameWin.setLayoutY((gui.getHeight() - height) / 2);

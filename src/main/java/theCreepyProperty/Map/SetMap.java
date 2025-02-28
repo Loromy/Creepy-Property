@@ -84,6 +84,11 @@ public class SetMap {
         this.levelSelectScene.setMapSelected(this.levelSelectScene.getMapSelected()); //todo
 
         switch (this.levelSelectScene.getMapSelected()) {
+            case 0:
+                this.gui.setFilePath(path0);
+                System.out.println("✔ [SetMap]: 0 selected");
+                this.levelSelectScene.setMapSelected(0);
+                break;
             case 1:
                 this.gui.setFilePath(path1);
                 System.out.println("✔ [SetMap]: 1 selected");

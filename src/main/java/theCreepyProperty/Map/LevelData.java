@@ -1,5 +1,7 @@
 package theCreepyProperty.Map;
 
+import theCreepyProperty.entity.Player;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,11 +9,13 @@ public class LevelData {
     private ArrayList<LevelDataWall> walls;
     private ArrayList<LevelDataItem> items;
     private ArrayList<LevelDataDoor> doors;
+    private ArrayList<LevelDataGhost> ghosts;
 
     public LevelData() {
         walls = new ArrayList<>();
         items = new ArrayList<>();
         doors = new ArrayList<>();
+        ghosts = new ArrayList<>();
     }
 
 
@@ -78,6 +82,23 @@ public class LevelData {
 
     }
 
+    public static class LevelDataGhost {
+        private final int x, y, width, height;
+
+        public LevelDataGhost(int x, int y, int width, int height) {
+            this.x = x;
+            this.y = y;
+            this.width = width;
+            this.height = height;
+        }
+
+        // Getter
+        public int getX() { return x; }
+        public int getY() { return y; }
+        public int getWidth() { return width; }
+        public int getHeight() { return height; }
+    }
+
     // Getter Methoden
     public ArrayList<LevelDataWall> getWalls() {
         return walls;
@@ -89,6 +110,10 @@ public class LevelData {
 
     public ArrayList<LevelDataDoor> getDoors() {
         return doors;
+    }
+
+    public ArrayList<LevelDataGhost> getGhosts() {
+        return ghosts;
     }
 
     // Setter Methoden

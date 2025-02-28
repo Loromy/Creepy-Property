@@ -7,8 +7,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import theCreepyProperty.scenes.GameScene;
 
-import java.awt.*;
-
 public class Player extends Entity{
     private final GUI gui;
     private double controlSpeed = 0; // speed if strg pressed
@@ -20,43 +18,43 @@ public class Player extends Entity{
     public Player(GUI gui)  {
         this.gui = gui;
         setDefaultValues();
-        this.solid_player_aria = new Rectangle();
-        this.solid_player_aria.setVisible(false); //Collision Block of player anzeigen
-        this.solid_player_aria.setX(entity_world_X);
-        this.solid_player_aria.setY(entity_world_Y);
-        this.solid_player_aria.setWidth(entity_size_X);
-        this.solid_player_aria.setHeight(entity_size_Y);
+        this.solid_aria = new Rectangle();
+        this.solid_aria.setVisible(false); //Collision Block of player anzeigen
+        this.solid_aria.setX(entity_world_X);
+        this.solid_aria.setY(entity_world_Y);
+        this.solid_aria.setWidth(entity_size_X);
+        this.solid_aria.setHeight(entity_size_Y);
 
-        this.i_player.xProperty().bind(solid_player_aria.xProperty().subtract(18));
-        this.i_player.yProperty().bind(solid_player_aria.yProperty().subtract(20));
-        this.i_player.fitWidthProperty().bind(solid_player_aria.widthProperty().add(36));
-        this.i_player.fitHeightProperty().bind(solid_player_aria.heightProperty().add(20));
+        this.i_player.xProperty().bind(solid_aria.xProperty().subtract(18));
+        this.i_player.yProperty().bind(solid_aria.yProperty().subtract(20));
+        this.i_player.fitWidthProperty().bind(solid_aria.widthProperty().add(36));
+        this.i_player.fitHeightProperty().bind(solid_aria.heightProperty().add(20));
 
-        this.i_darkness_overlay.xProperty().bind(solid_player_aria.xProperty().subtract(1000));
-        this.i_darkness_overlay.yProperty().bind(solid_player_aria.yProperty().subtract(610));
-        this.i_darkness_overlay.fitWidthProperty().bind(solid_player_aria.widthProperty().add(2000));
-        this.i_darkness_overlay.fitHeightProperty().bind(solid_player_aria.heightProperty().add(1200));
+        this.i_darkness_overlay.xProperty().bind(solid_aria.xProperty().subtract(1000));
+        this.i_darkness_overlay.yProperty().bind(solid_aria.yProperty().subtract(610));
+        this.i_darkness_overlay.fitWidthProperty().bind(solid_aria.widthProperty().add(2000));
+        this.i_darkness_overlay.fitHeightProperty().bind(solid_aria.heightProperty().add(1200));
 
         createPlayerImage();
     }
 
     public void createPlayerImage() {
-        up1 = loadImage("file:src/resources/player/up_1.png");
-        up2 = loadImage("file:src/resources/player/up_2.png");
-        up3 = loadImage("file:src/resources/player/up_3.png");
-        up4 = loadImage("file:src/resources/player/up_4.png");
-        down1 = loadImage("file:src/resources/player/down_1.png");
-        down2 = loadImage("file:src/resources/player/down_2.png");
-        down3 = loadImage("file:src/resources/player/down_3.png");
-        down4 = loadImage("file:src/resources/player/down_4.png");
-        left1 = loadImage("file:src/resources/player/left_1.png");
-        left2 = loadImage("file:src/resources/player/left_2.png");
-        left3 = loadImage("file:src/resources/player/left_3.png");
-        left4 = loadImage("file:src/resources/player/left_4.png");
-        right1 = loadImage("file:src/resources/player/right_1.png");
-        right2 = loadImage("file:src/resources/player/right_2.png");
-        right3 = loadImage("file:src/resources/player/right_3.png");
-        right4 = loadImage("file:src/resources/player/right_4.png");
+        up1 = loadImage("file:src/resources/textures/player/up_1.png");
+        up2 = loadImage("file:src/resources/textures/player/up_2.png");
+        up3 = loadImage("file:src/resources/textures/player/up_3.png");
+        up4 = loadImage("file:src/resources/textures/player/up_4.png");
+        down1 = loadImage("file:src/resources/textures/player/down_1.png");
+        down2 = loadImage("file:src/resources/textures/player/down_2.png");
+        down3 = loadImage("file:src/resources/textures/player/down_3.png");
+        down4 = loadImage("file:src/resources/textures/player/down_4.png");
+        left1 = loadImage("file:src/resources/textures/player/left_1.png");
+        left2 = loadImage("file:src/resources/textures/player/left_2.png");
+        left3 = loadImage("file:src/resources/textures/player/left_3.png");
+        left4 = loadImage("file:src/resources/textures/player/left_4.png");
+        right1 = loadImage("file:src/resources/textures/player/right_1.png");
+        right2 = loadImage("file:src/resources/textures/player/right_2.png");
+        right3 = loadImage("file:src/resources/textures/player/right_3.png");
+        right4 = loadImage("file:src/resources/textures/player/right_4.png");
 
         darknessOverlay = loadImage("file:src/resources/textures/overlay/darknessOverlay.png");
 
@@ -66,7 +64,7 @@ public class Player extends Entity{
     private Image loadImage(String path) {
         Image image = new Image(path);
         if (image.isError()) {
-            System.err.println("✖ [Error]: Failed to load image: " + path);
+            System.err.println("✖ [Player]: loadImage Failed to load image: " + path);
             if (image.getException() != null) {
                 image.getException().printStackTrace();
             }
@@ -138,12 +136,12 @@ public class Player extends Entity{
 
     public void setPlayer_world_X(double player_world_X){
         this.entity_world_X = player_world_X;
-        this.solid_player_aria.setX(player_world_X);
+        this.solid_aria.setX(player_world_X);
     }
 
     public void setPlayer_world_Y(double player_world_Y){
         this.entity_world_Y = player_world_Y;
-        this.solid_player_aria.setY(player_world_Y);
+        this.solid_aria.setY(player_world_Y);
     }
 
     public void setControlSpeed(double speed) {
@@ -195,6 +193,6 @@ public class Player extends Entity{
     }
 
     public Rectangle getSolidPlayerAria() {
-        return this.solid_player_aria;
+        return this.solid_aria;
     }
 }

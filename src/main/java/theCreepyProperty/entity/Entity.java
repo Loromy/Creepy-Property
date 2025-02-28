@@ -13,6 +13,6 @@ public class Entity {
     public String direction;
     public double sprite_counter = 0;
     public int sprite_num = 1;
-    public Rectangle solid_player_aria;
+    public Rectangle solid_aria;
     public boolean collision_on = false;
 }

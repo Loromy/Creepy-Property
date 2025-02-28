@@ -4,6 +4,8 @@ import theCreepyProperty.Save.ReadWriteSettings;
 import theCreepyProperty.blocks.Door;
 import theCreepyProperty.blocks.Item;
 import theCreepyProperty.blocks.Wall;
+import theCreepyProperty.entity.Ghost;
+import theCreepyProperty.main.GUI;
 import theCreepyProperty.scenes.GameScene;
 
 import java.util.ArrayList;
@@ -13,29 +15,34 @@ public class MapCreate {
     private Wall wall;
     private Item item;
     private Door door;
+    private Ghost ghost;
+    private GUI gui;
     private GameScene scene;
     private LevelData levelData;
 
     private final ArrayList<Wall> wallList = new ArrayList<>();
     private final ArrayList<Item> itemList = new ArrayList<>();
     private final ArrayList<Door> doorList = new ArrayList<>();
+    private final ArrayList<Ghost> ghostList = new ArrayList<>();
 
     private int netToCollectKeys = 0;
     private boolean collision_on = true;
 
-    public void createMap(GameScene scene, LevelData levelData){
+    public void createMap(GUI gui, GameScene scene, LevelData levelData){
 
+        this.gui = gui;
         this.scene = scene;
-        this.wall = scene.getWall();
-        this.item = scene.getItem();
-        this.door = scene.getDoor();
+        this.wall = this.scene.getWall();
+        this.item = this.scene.getItem();
+        this.door = this.scene.getDoor();
+        this.ghost = this.scene.getGhost();
         this.levelData = levelData;
 
         for (int i = 0; i < this.levelData.getWalls().size(); i++) {
 
             this.wall = new Wall(levelData.getWalls().get(i).getX(), levelData.getWalls().get(i).getY(), levelData.getWalls().get(i).getWidth(), levelData.getWalls().get(i).getHeight(), levelData.getWalls().get(i).getTexture());
             this.wallList.add(this.wall);
-            this.scene.pGameChildren(this.wall.getRWall());
+            this.scene.pGameItemChildren(this.wall.getRWall());
 
             if (this.levelData.getWalls().size()-1 == i) {
                 i++;
@@ -48,7 +55,7 @@ public class MapCreate {
 
             this.item = new Item(levelData.getItems().get(i).getX(), levelData.getItems().get(i).getY(), levelData.getItems().get(i).getWidth(), levelData.getItems().get(i).getHeight(), levelData.getItems().get(i).getTexture());
             this.itemList.add(this.item);
-            this.scene.pGameChildren(this.item.getIItem());
+            this.scene.pGameItemChildren(this.item.getIItem());
             if (this.levelData.getItems().size()-1 == i) {
                 i++;
                 System.out.println("✔ [MapCreator]: " + i + " Items created");
@@ -59,11 +66,24 @@ public class MapCreate {
 
             this.door = new Door(levelData.getDoors().get(i).getX(), levelData.getDoors().get(i).getY(), levelData.getDoors().get(i).getWidth(), levelData.getDoors().get(i).getHeight(), levelData.getDoors().get(i).getTexture());
             this.doorList.add(this.door);
-            this.scene.pGameChildren(this.door.getIDoor());
+            this.scene.pGameItemChildren(this.door.getIvDoor());
 
             if (this.levelData.getDoors().size()-1 == i) {
                 i++;
                 System.out.println("✔ [MapCreator]: " + i + " Doors created");
+            }
+        }
+
+        for (int i = 0; i < this.levelData.getGhosts().size(); i++) {
+
+            this.ghost = new Ghost(this.gui, levelData.getGhosts().get(i).getX(), levelData.getGhosts().get(i).getY(), levelData.getGhosts().get(i).getWidth(), levelData.getGhosts().get(i).getHeight());
+            this.ghostList.add(this.ghost);
+            this.scene.pGameGhostsChildren(this.ghost.getSolidAria());
+            this.scene.pGameGhostsChildren(this.ghost.draw());
+
+            if (this.levelData.getGhosts().size()-1 == i) {
+                i++;
+                System.out.println("✔ [MapCreator]: " + i + " Ghosts created");
             }
         }
     }
@@ -124,6 +144,10 @@ public class MapCreate {
 
     public ArrayList<Door> getDoorList() {
         return this.doorList;
+    }
+
+    public ArrayList<Ghost> getGhostList() {
+        return this.ghostList;
     }
 
     public void setCollision_on(boolean value) {

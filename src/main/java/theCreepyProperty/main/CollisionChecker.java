@@ -24,6 +24,7 @@ public class CollisionChecker {
     public void checkCollision(Player player, double nextX, double nextY) {
         Rectangle futurePlayer = new Rectangle(nextX, nextY, player.entity_size_X, player.entity_size_Y);
 
+        // guiComponents key background green
         if (keysToCollect <= this.mapCreate.getItemList().size()) {
             this.keysToCollect = this.mapCreate.getItemList().size();
             this.scene.getGuiComponents().getL_keys().setText("Keys: " + player.getKeyEingesammelt() + "/" + keysToCollect); // Gui component update
@@ -52,7 +53,7 @@ public class CollisionChecker {
                 this.soundPlayer.setVolume(this.scene.getMenu().getSettings().getAudio().getMaster());
                 this.soundPlayer.play();
 
-                scene.pGameChildrenRemove(mapCreate.getItemList().get(i).getIItem()); // remove Item from Pane
+                scene.pGameItemChildrenRemove(mapCreate.getItemList().get(i).getIItem()); // remove Item from Pane
                 mapCreate.getItemList().remove(i);
 
                 this.scene.getGuiComponents().getL_keys().setText("Keys: " + player.getKeyEingesammelt() + "/" + keysToCollect); // Gui component update
@@ -64,7 +65,7 @@ public class CollisionChecker {
 
         // Doors
         for (int i = 0; i < mapCreate.getDoorList().size(); i++) {
-            ImageView door = mapCreate.getDoorList().get(i).getIDoor();
+            ImageView door = mapCreate.getDoorList().get(i).getIvDoor();
 
             if (futurePlayer.intersects(door.getBoundsInLocal()) && mapCreate.getDoorList().get(i).getPlayer_block_collision()) {
                 player.collision_on = true;

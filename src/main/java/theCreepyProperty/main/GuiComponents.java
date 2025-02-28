@@ -37,15 +37,18 @@ public class GuiComponents {
 
         // HBox
         this.hBox_Level = new HBox();
-        this.hBox_Level.setLayoutX(((double) gui.getWidth() / 2) - 50);
+        //this.hBox_Level.setLayoutX(((double) gui.getWidth() / 2) - 50);
         this.hBox_Level.setId("gui-components-background-mitte");
+        this.hBox_Level.setStyle("-fx-alignment: center;");
+        this.hBox_Level.setPrefWidth(300);
+        this.hBox_Level.setLayoutX((double) gui.getWidth() / 2 - (this.hBox_Level.getPrefWidth() / 2));
 
         this.hBox_keys = new HBox();
         this.hBox_keys.setId("gui-components-background-keys");
 
         // VBox
         this.vBox_anzeige = new VBox();
-        this.vBox_anzeige.setLayoutY(100);
+        this.vBox_anzeige.setLayoutY(125);
         this.vBox_anzeige.setId("gui-components-background-links");
         this.vBox_anzeige.setVisible(false);
 
@@ -56,10 +59,14 @@ public class GuiComponents {
 
         // Label
         // Level
-        this.l_level = new Label("Level " + this.levelSelectScene.getMapSelected());
+        if (this.levelSelectScene.getMapSelected() == 0) {
+            this.l_level = new Label("Level Tutorial");
+        } else {
+            this.l_level = new Label("Level " + this.levelSelectScene.getMapSelected());
+        }
         this.l_level.setStyle("-fx-font-size: 40px; -fx-alignment: center;");
         this.l_level.setId("gui-components");
-        this.hBox_Level.getChildren().add(getL_level());
+        this.hBox_Level.getChildren().add(l_level);
 
         // Anzeige
         this.l_speed = new Label("Speed: " + player.getSpeed());

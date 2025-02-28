@@ -47,7 +47,7 @@ public class SoundPlayer {
             // Lautstärke setzen
             gainControl.setValue(gain);
 
-            System.out.println("[SoundPlayer]: Lautstärke gesetzt auf: " + volume + "% (" + gain + " dB)");
+            System.out.println("\uD83D\uDD6A [SoundPlayer]: Lautstärke gesetzt auf: " + volume + "% (" + gain + " dB)");
         }
     }
 }

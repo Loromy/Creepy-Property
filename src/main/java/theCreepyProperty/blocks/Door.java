@@ -32,7 +32,7 @@ public class Door extends Object {
     }
 
     // Getter Methoden
-    public ImageView getIDoor() {
+    public ImageView getIvDoor() {
         return ivDoor;
     }
 
