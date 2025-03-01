@@ -117,7 +117,7 @@ public class Settings implements PasswordHandler {
         this.menu.getpMenu().setVisible(true); //Start Menu
 
         soundPlayer = new SoundPlayer(soundButtonClick);
-        this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster()); // Standard 2
+        this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster(),"button click"); // Standard 2
         this.soundPlayer.play();
 
         this.menu.triggerFocus();
@@ -132,7 +132,7 @@ public class Settings implements PasswordHandler {
         System.out.println("[Settings]: button1 ✔");
 
         soundPlayer = new SoundPlayer(soundButtonClick);
-        this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster()); // Standard 2
+        this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster(),"button click");
         this.soundPlayer.play();
     }
 
@@ -140,7 +140,7 @@ public class Settings implements PasswordHandler {
         System.out.println("[Settings]: button2 ✔");
 
         soundPlayer = new SoundPlayer(soundButtonClick);
-        this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster()); // Standard 2
+        this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster(),"button click");
         this.soundPlayer.play();
     }
 
@@ -150,7 +150,7 @@ public class Settings implements PasswordHandler {
         System.out.println("[Settings]: button3 ✔");
 
         soundPlayer = new SoundPlayer(soundButtonClick);
-        this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster()); // Standard 2
+        this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster(),"button click");
         this.soundPlayer.play();
     }
 
@@ -159,7 +159,7 @@ public class Settings implements PasswordHandler {
         System.out.println("[Settings]: button4 ✔");
 
         soundPlayer = new SoundPlayer(soundButtonClick);
-        this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster()); // Standard 2
+        this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster(),"button click");
         this.soundPlayer.play();
     }
 
@@ -168,7 +168,7 @@ public class Settings implements PasswordHandler {
         System.out.println("[Settings]: button5 ✔");
 
         soundPlayer = new SoundPlayer(soundButtonClick);
-        this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster()); // Standard 2
+        this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster(),"button click");
         this.soundPlayer.play();
     }
 
@@ -177,7 +177,7 @@ public class Settings implements PasswordHandler {
         System.out.println("[Settings]: button6 ✔");
 
         soundPlayer = new SoundPlayer(soundButtonClick);
-        this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster()); // Standard 2
+        this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster(),"button click");
         this.soundPlayer.play();
     }
 

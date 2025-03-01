@@ -72,6 +72,7 @@ public class GameOver {
             this.gameOver_on = true;
             this.retryButton.requestFocus();
             this.mapSelected = this.levelSelectScene.getMapSelected();
+            this.gameScene.getPlayer().stopGhostSound();
 
             for(Ghost ghosts: this.gameScene.getMapCreate().getGhostList()) {
                 ghosts.getTimeline().stop();

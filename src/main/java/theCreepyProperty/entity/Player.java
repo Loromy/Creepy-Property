@@ -5,15 +5,22 @@ import theCreepyProperty.Save.ReadWriteSettings;
 import theCreepyProperty.main.GUI;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import theCreepyProperty.main.SoundPlayer;
 import theCreepyProperty.scenes.GameScene;
+
+import javax.sound.sampled.LineEvent;
+import java.util.ArrayList;
 
 public class Player extends Entity{
     private final GUI gui;
     private double controlSpeed = 0; // speed if strg pressed
     private final ImageView i_player = new ImageView();
     private final ImageView i_darkness_overlay = new ImageView();
+    private SoundPlayer soundPlayer = new SoundPlayer("src/resources/sounds/heartbeat.wav");
 
     private boolean overlay_on = true;
+    private boolean ghostSoundIsPlaying = false;
+    private double distance;
 
     public Player(GUI gui)  {
         this.gui = gui;
@@ -106,6 +113,42 @@ public class Player extends Entity{
             case 4 -> img4;
             default -> img1;
         };
+    }
+
+    public void checkForNearbyGhosts(ArrayList<Ghost> ghosts) {
+        for (int i = 0 ; i < ghosts.size() ; i++) {
+            this.distance = 1000;
+            this.distance = Math.sqrt(Math.pow(ghosts.get(i).getGhost_world_X() - this.entity_world_X, 2) + Math.pow(ghosts.get(i).getGhost_world_Y() - this.entity_world_Y, 2));
+
+
+
+            if (this.distance <= 200) {
+                playGhostSound();
+                break;
+            }
+        }
+    }
+
+    private void playGhostSound() {
+        if (!this.ghostSoundIsPlaying && !this.gui.getGameScene().getMenu().getMenu_on() && !this.gui.getGameScene().getGameWin().getGameWin_On() && !this.gui.getGameScene().getGameOver().getGameOver_On()) {
+            this.ghostSoundIsPlaying = true;
+
+
+            this.soundPlayer.setVolume(this.gui.getGameScene().getMenu().getSettings().getAudio().getMaster(),"heartbeat");
+
+            // Listener registrieren, um das Ende des Sounds zu erkennen
+            this.soundPlayer.getClip().addLineListener(event -> {
+                if (event.getType() == LineEvent.Type.STOP) {
+                    this.ghostSoundIsPlaying = false; // Reset, wenn der Sound endet
+                }
+            });
+            this.soundPlayer.stop();
+            this.soundPlayer.play();
+        }
+    }
+
+    public void stopGhostSound() {
+        this.soundPlayer.stop();
     }
 
     public void triggerOverlayRWSettings(GameScene gameScene) {

@@ -21,3 +21,7 @@ item,903,426,40,40,file:src/resources/textures/items/Key.png
 item,52,234,40,40,file:src/resources/textures/items/Key.png
 item,279,420,40,40,file:src/resources/textures/items/Key.png
 door,830,5,50,50,file:src/resources/textures/items/door.png
+ghost,267,548,50,50,
+ghost,600,26,50,50,
+ghost,934,198,50,50,
+ghost,925,517,50,50,

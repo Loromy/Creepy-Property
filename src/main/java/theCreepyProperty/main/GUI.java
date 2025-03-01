@@ -66,6 +66,10 @@ public class GUI {
         stage.setScene(this.selectScene.getScene());
         // Scene zurücksetzen
 //        this.startScene = null;
+        if (this.gameScene != null) {
+            this.gameScene.stopTimer();
+        }
+
         this.gameScene = null;
         this.finishScene = null;
     }

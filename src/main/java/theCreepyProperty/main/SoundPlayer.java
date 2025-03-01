@@ -1,5 +1,6 @@
 package theCreepyProperty.main;
 
+import javax.sound.midi.MidiFileFormat;
 import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
@@ -31,7 +32,7 @@ public class SoundPlayer {
         }
     }
 
-    public void setVolume(int volume) {
+    public void setVolume(int volume ,String fileName) {
         if (clip != null) {
             FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
 
@@ -47,7 +48,11 @@ public class SoundPlayer {
             // Lautstärke setzen
             gainControl.setValue(gain);
 
-            System.out.println("\uD83D\uDD6A [SoundPlayer]: Lautstärke gesetzt auf: " + volume + "% (" + gain + " dB)");
+            System.out.println("\uD83D\uDD6A [SoundPlayer]: Lautstärke von: [" + fileName + "] auf : " + volume + "% (" + gain + " dB) gesetzt");
         }
+    }
+
+    public Clip getClip() {
+        return this.clip;
     }
 }

@@ -12,7 +12,7 @@ import theCreepyProperty.scenes.GameScene;
 
 public class Menu extends VBox {
     private GUI gui;
-    private GameScene scene;
+    private GameScene gameScene;
     private final Pane backgroundMenu = new Pane(); // Background
     private final Pane pMenu = new Pane(); // Menu Items
     private final VBox vBoxMenu = new VBox();
@@ -25,10 +25,10 @@ public class Menu extends VBox {
     private final Button settingsButton;
     private final Button backButton;
 
-    public Menu(GUI gui, GameScene scene) {
+    public Menu(GUI gui, GameScene gameScene) {
         this.gui = gui;
-        this.scene = scene;
-        settings = new Settings(this.gui, this.scene,this);
+        this.gameScene = gameScene;
+        settings = new Settings(this.gui, this.gameScene,this);
 
         //overlay
         backgroundMenu.setStyle("-fx-background-color: rgba(0, 0, 0, 0.1);");
@@ -63,25 +63,26 @@ public class Menu extends VBox {
 
     public void triggerMenu(){
         if (!menu_on) {
-            this.scene.getpMenu().setVisible(true);
+            this.gameScene.getpMenu().setVisible(true);
             this.backgroundMenu.setVisible(true);
             this.pMenu.setVisible(true);
-            this.scene.setBlur(15); //Menu blur
+            this.gameScene.setBlur(15); //Menu blur
             this.menu_on = true;
-            for (Ghost ghost : this.scene.getMapCreate().getGhostList()) {
+            this.gameScene.getPlayer().stopGhostSound();
+            for (Ghost ghost : this.gameScene.getMapCreate().getGhostList()) {
                 ghost.getTimeline().stop();
             }
 
 
             this.resumeButton.requestFocus();
         } else {
-            this.scene.getpMenu().setVisible(false);
+            this.gameScene.getpMenu().setVisible(false);
             this.backgroundMenu.setVisible(false);
             this.pMenu.setVisible(false);
-            this.scene.setBlur(0); //Menu blur
+            this.gameScene.setBlur(0); //Menu blur
             this.menu_on = false;
 
-            for (Ghost ghost : this.scene.getMapCreate().getGhostList()) {
+            for (Ghost ghost : this.gameScene.getMapCreate().getGhostList()) {
                 ghost.getTimeline().play();
             }
         }
@@ -98,7 +99,7 @@ public class Menu extends VBox {
 
     private void onResume() {
         System.out.println("[Menu]: Back to Game ✔");
-        this.soundPlayer.setVolume(this.scene.getMenu().getSettings().getAudio().getMaster());
+        this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster(),"button click");
         this.soundPlayer.play();
 
         this.triggerMenu();
@@ -106,7 +107,7 @@ public class Menu extends VBox {
 
     private void onSettings() {
         System.out.println("[Menu]: Open settings menu ✔");
-        this.soundPlayer.setVolume(this.scene.getMenu().getSettings().getAudio().getMaster());
+        this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster(),"button click");
         this.soundPlayer.play();
 
         this.pMenu.setVisible(false);
@@ -115,7 +116,7 @@ public class Menu extends VBox {
 
     private void onBack() {
         System.out.println("[Menu]: Start Menu ✔");
-        this.soundPlayer.setVolume(this.scene.getMenu().getSettings().getAudio().getMaster());
+        this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster(),"button click");
         this.soundPlayer.play();
 
         this.gui.getSelectScene().setVolume(this.settings.getAudio().getMaster()); //selectScene audio volume update

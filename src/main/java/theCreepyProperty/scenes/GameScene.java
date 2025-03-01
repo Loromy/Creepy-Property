@@ -25,6 +25,7 @@ import theCreepyProperty.menu.Menu;
 import theCreepyProperty.screens.GameOver;
 import theCreepyProperty.screens.GameWin;
 
+import javax.sound.sampled.LineEvent;
 import java.util.Random;
 
 public class GameScene {
@@ -63,6 +64,8 @@ public class GameScene {
     private final CollisionChecker checker;
 
     private Timeline timer;
+    private Timeline ghostTimer;
+//    private Timeline backgroundTimer;
     private double time_seconds = 0.0;
 
     private Timeline noiseTimer;
@@ -76,7 +79,9 @@ public class GameScene {
             "src/resources/sounds/background/random background noise/creepy-room-sound.wav",
             "src/resources/sounds/background/random background noise/creepy-whispering.wav",
             "src/resources/sounds/background/random background noise/creepy-wind.wav",
-            "src/resources/sounds/background/random background noise/loud-thunder.wav"
+            "src/resources/sounds/background/random background noise/loud-thunder.wav",
+            "src/resources/sounds/background/random background noise/creepy-ambient.wav",
+            "src/resources/sounds/background/random background noise/creepy-vocal-ambience.wav"
     };
 
     public GameScene(Stage stage, GUI gui) {
@@ -143,7 +148,7 @@ public class GameScene {
         pMenu.getChildren().add(this.menu.getSettings().getAudio().getMenuAudio());
 
         // KeyHandler hinzufügen
-        keyHandler = new KeyHandler(this.player, this.ghost, this, this.gui.getSelectScene(), this.menu, this.gameOver, this.gameWin);
+        keyHandler = new KeyHandler(this.player, this, this.gui.getSelectScene(), this.menu, this.gameOver, this.gameWin);
         keyHandler.addKeyListener(gameScene, this);
 
         this.pMenu.setVisible(false);
@@ -153,7 +158,7 @@ public class GameScene {
 
         // play sound
         this.soundPlayer = new SoundPlayer("src/resources/sounds/background/background-creepy-sound.wav");
-        this.soundPlayer.setVolume(this.getMenu().getSettings().getAudio().getBackground());
+        this.soundPlayer.setVolume(this.getMenu().getSettings().getAudio().getBackground(),"background-creepy-sound");
         this.soundPlayer.play();
 
         // random noise
@@ -163,7 +168,7 @@ public class GameScene {
     // Timer
     private void startTimer() {
         time_seconds = 0.0; // Timer zurücksetzen
-        timer = new Timeline(new KeyFrame(Duration.millis(10), event -> {
+        timer = new Timeline(new KeyFrame(Duration.millis(10), event -> { // alle 10ms prüfen
             time_seconds += 0.01;
 
             // Berechnung der Zeitkomponenten
@@ -177,13 +182,38 @@ public class GameScene {
             this.guiComponents.getL_time().setText("Time: " + formattedTime);
         }));
 
+        ghostTimer = new Timeline(new KeyFrame(Duration.millis(100), event -> { // alle 500ms prüfen
+            player.checkForNearbyGhosts(this.mapCreate.getGhostList());
+        }));
+
+//        backgroundTimer = new Timeline(new KeyFrame(Duration.millis(1000), event -> { // alle 1s prüfen //TODO musik funktioniert nicht!!!!!!!!!!!!!
+//            this.soundPlayer = new SoundPlayer("src/resources/sounds/background/background-creepy-sound.wav");
+//
+//            // Listener registrieren, um das Ende des Sounds zu erkennen
+//            this.soundPlayer.getClip().addLineListener(event2 -> {
+//                if (event2.getType() == LineEvent.Type.STOP) {
+//                    this.soundPlayer.setVolume(this.getMenu().getSettings().getAudio().getBackground(),"background-creepy-sound");
+//                    this.soundPlayer.play();
+//                }
+//            });
+//        }));
+
+
         timer.setCycleCount(Timeline.INDEFINITE);
         timer.play();
+        ghostTimer.setCycleCount(Timeline.INDEFINITE);
+        ghostTimer.play();
+//        backgroundTimer.setCycleCount(Timeline.INDEFINITE);
+//        backgroundTimer.play();
+
     }
 
-    private void stopTimer() {
+    public void stopTimer() {
         if (timer != null) {
             timer.stop();
+        }
+        if (ghostTimer != null) {
+            ghostTimer.stop();
         }
     }
 
@@ -202,7 +232,12 @@ public class GameScene {
         int soundIndex = random.nextInt(randomSounds.length);
         String soundPath = randomSounds[soundIndex];
         SoundPlayer noisePlayer = new SoundPlayer(soundPath);
-        noisePlayer.setVolume((this.getMenu().getSettings().getAudio().getBackground())); // Leiser als Hintergrundmusik
+
+        // scours cut to just name
+        String fileNameWithExtension = soundPath.substring(soundPath.lastIndexOf("/") + 1);
+        String soundName = fileNameWithExtension.substring(0, fileNameWithExtension.lastIndexOf("."));
+
+        noisePlayer.setVolume(this.getMenu().getSettings().getAudio().getBackground(),soundName);
         noisePlayer.play();
     }
 
@@ -213,6 +248,7 @@ public class GameScene {
 
     public void stopBackgroundMusic() {
         this.soundPlayer.stop();
+        this.noiseTimer.stop();
     }
 
     public void pGameItemChildren(Rectangle rectangle) {

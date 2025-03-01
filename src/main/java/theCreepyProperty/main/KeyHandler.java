@@ -16,13 +16,13 @@ import theCreepyProperty.screens.GameWin;
 
 public class KeyHandler {
     private final Player player;
-    private final Ghost ghost;
     private final GameScene gameScene;
     private final LevelSelectScene levelSelectScene;
     private final Menu menu;
     private final GameOver gameOver;
     private final GameWin gameWin;
     private final MapCreate mapCreate;
+    private SoundPlayer soundPlayer;
 
     private boolean wPressed = false;
     private boolean aPressed = false;
@@ -36,9 +36,8 @@ public class KeyHandler {
     private double nextPlayerX;
     private double nextPlayerY;
 
-    public KeyHandler(Player player, Ghost ghost, GameScene gameScene, LevelSelectScene levelSelectScene, Menu menu, GameOver gameOver, GameWin gameWin) {
+    public KeyHandler(Player player, GameScene gameScene, LevelSelectScene levelSelectScene, Menu menu, GameOver gameOver, GameWin gameWin) {
         this.player = player;
-        this.ghost = ghost;
         this.gameScene = gameScene;
         this.levelSelectScene = levelSelectScene;
         this.menu = menu;
@@ -156,14 +155,14 @@ public class KeyHandler {
             }
 
             // Ghosts
-            checkGhostCollision();
+            checkGhostCollision(deltaTime);
 
             animation(deltaTime);
         }
 
         if (escPressed) {
             this.escPressed = false;
-            if (!menu.getSettings().getSettingOn() && !menu.getSettings().getAudio().getAudioOn()) {
+            if (!menu.getSettings().getSettingOn() && !menu.getSettings().getAudio().getAudioOn() && !this.gameScene.getGameWin().getGameWin_On() && !this.gameScene.getGameOver().getGameOver_On()) {
                 this.menu.triggerMenu();
             }
             else if (menu.getSettings().getSettingOn() && !menu.getSettings().getAudio().getAudioOn()){ // Settings aktive
@@ -207,7 +206,7 @@ public class KeyHandler {
         }
     }
 
-    private void checkGhostCollision() {
+    private void checkGhostCollision(double deltaTime) {
         Rectangle futurePlayer = new Rectangle(this.nextPlayerX, this.nextPlayerY, player.entity_size_X, player.entity_size_Y);
         //System.out.println("test---------" + this.nextPlayerX + ", " +  this.nextPlayerY + "," + player.entity_size_X + "," + player.entity_size_Y);
         // Ghosts
@@ -215,15 +214,34 @@ public class KeyHandler {
             Rectangle ghostNew = ghost.getSolidAria();
 
             if (futurePlayer.intersects(ghostNew.getBoundsInLocal())) {
-                SoundPlayer soundPlayer = new SoundPlayer("src/resources/sounds/death.wav");
-                soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster());
-                soundPlayer.play();
+                this.soundPlayer = new SoundPlayer("src/resources/sounds/stabbed.wav");
+                this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster(),"stabbed");
+                this.soundPlayer.play();
+                this.soundPlayer = new SoundPlayer("src/resources/sounds/ouch.wav");
+                this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster(),"ouch");
+                this.soundPlayer.play();
 
                 this.gameScene.getGameOver().triggerGameOver();
 
                 return;
             }
 
+        }
+
+        for (Ghost ghost : this.gameScene.getMapCreate().getGhostList()) {
+            //player.sprite_counter++;
+            ghost.sprite_counter += deltaTime * 60;
+
+            // Sprite-Wechsel abhängig von der Spieler-Geschwindigkeit
+            int frameSpeed = Math.max(4, 14 - (int) ghost.getSpeed());
+
+            if (ghost.sprite_counter > frameSpeed) {
+                ghost.sprite_num = (ghost.sprite_num % 4) + 1; // Zyklus: 1 → 2 → 3 → 4 → 1
+                ghost.sprite_counter = 0;
+
+            }
+            //System.out.println("[KeyHandler]: Ghost counter: " + ghost.sprite_counter + " | num: " + ghost.sprite_num);
+            ghost.setDirection("down");
         }
     }
 

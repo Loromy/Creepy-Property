@@ -154,7 +154,7 @@ public class Audio {
         this.settings.getMenuSettings().setVisible(true);
 
         soundPlayer = new SoundPlayer(soundButtonClick);
-        this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster()); // Standard 2
+        this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster(),"button click"); // Standard 2
         this.soundPlayer.play();
 
         System.out.println("[Audio]: Back ✔");

@@ -5,45 +5,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87a96b04-91ba-4fe6-93a4-31fd9b49747e" name="Changes" comment="V0.3.6&#10;- buton textur update">
-      <change afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/entity/Ghost.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/textures/ghost/Ghost.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/sounds/background/background-creepy-sound.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/sounds/background/random background noise/creepy-ambient.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/sounds/background/random background noise/creepy-vocal-ambience.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/sounds/heartbeat.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/sounds/ouch.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/sounds/stabbed.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/textures/ghost/down_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/textures/ghost/down_3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/textures/ghost/down_4.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/LevelData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/LevelData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/MapCreate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/MapCreate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/MapReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/MapReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/SetMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/SetMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/blocks/Door.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/blocks/Door.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/entity/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/entity/Ghost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/entity/Ghost.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/entity/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/CollisionChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/CollisionChecker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/GuiComponents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/GuiComponents.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/GUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/KeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/KeyHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/SoundPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/SoundPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/menu/Audio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/menu/Audio.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/menu/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/menu/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/menu/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/menu/Settings.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/scenes/GameScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/scenes/GameScene.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/scenes/LevelSelectScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/scenes/LevelSelectScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/scenes/StartScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/scenes/StartScene.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/screens/GameOver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/screens/GameOver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/screens/GameWin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/screens/GameWin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/csv/Einstellungen/settings.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/Einstellungen/settings.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/csv/Save/spielstand.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/Save/spielstand.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/csv/maps/map0.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/maps/map0.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/csv/maps/map1.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/maps/map1.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/player/down_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/textures/player/down_1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/player/down_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/textures/player/down_2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/player/down_3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/textures/player/down_3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/player/down_4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/textures/player/down_4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/player/left_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/textures/player/left_1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/player/left_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/textures/player/left_2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/player/left_3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/textures/player/left_3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/player/left_4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/textures/player/left_4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/player/right_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/textures/player/right_1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/player/right_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/textures/player/right_2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/player/right_3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/textures/player/right_3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/player/right_4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/textures/player/right_4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/player/up_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/textures/player/up_1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/player/up_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/textures/player/up_2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/player/up_3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/textures/player/up_3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/player/up_4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/textures/player/up_4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/csv/maps/map2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/maps/map2.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/csv/maps/map3.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/maps/map3.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/csv/maps/map4.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/maps/map4.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/textures/ghost/Ghost.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/textures/ghost/down_1.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +62,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/Loromy/the-creepy-property.git&quot;,
-    &quot;accountId&quot;: &quot;868421d7-2bc7-4c91-9637-d2a47af301c4&quot;
+    &quot;accountId&quot;: &quot;84b08c22-0b9f-49c9-8f7d-8949e2e20942&quot;
   }
 }</component>
   <component name="ProjectColorInfo">{
@@ -81,29 +73,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Lucas/Documents/GitHub/the-creepy-property/src/resources/fonts",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Lucas/Documents/GitHub/the-creepy-property/src/resources/sounds/background&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Lucas\Documents\GitHub\the-creepy-property\src\resources\sounds\background" />
       <recent name="C:\Users\Lucas\Documents\GitHub\the-creepy-property\src\resources\fonts" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Lucas\Documents\GitHub\the-creepy-property\src\resources\sounds\background\random background noise" />
+      <recent name="C:\Users\Lucas\Documents\GitHub\the-creepy-property\src\resources\sounds" />
       <recent name="C:\Users\Lucas\Documents\GitHub\the-creepy-property\src\resources\textures\ghost" />
       <recent name="C:\Users\Lucas\Documents\GitHub\the-creepy-property\src\resources\textures" />
       <recent name="C:\Users\Lucas\Documents\GitHub\the-creepy-property\src\resources\fonts" />
-      <recent name="C:\Users\Lucas\Documents\GitHub\the-creepy-property\src\resources\sounds\background" />
-      <recent name="C:\Users\Lucas\Documents\GitHub\the-creepy-property\src\resources\sounds\background\random background noise" />
     </key>
   </component>
   <component name="RunManager">

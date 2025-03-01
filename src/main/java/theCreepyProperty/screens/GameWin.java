@@ -72,6 +72,7 @@ public class GameWin {
             this.gameWin_on = true;
             this.nextButton.requestFocus();
             this.mapSelected = this.levelSelectScene.getMapSelected();
+            this.gameScene.getPlayer().stopGhostSound();
 
             this.levelSelectScene.unlockNextLevel(this.gameScene.getTime_seconds());
 
