@@ -7,8 +7,10 @@ import java.io.IOException;
 
 public class SoundPlayer {
     private Clip clip;
+    private String filePath = "";
 
     public SoundPlayer(String filePath) {
+        this.filePath = filePath;
         try {
             File audioFile = new File(filePath);
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
@@ -32,7 +34,7 @@ public class SoundPlayer {
         }
     }
 
-    public void setVolume(int volume ,String fileName) {
+    public void setVolume(int volume) {
         if (clip != null) {
             FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
 
@@ -48,7 +50,10 @@ public class SoundPlayer {
             // Lautstärke setzen
             gainControl.setValue(gain);
 
-            System.out.println("\uD83D\uDD6A [SoundPlayer]: Lautstärke von: [" + fileName + "] auf : " + volume + "% (" + gain + " dB) gesetzt");
+            String fileNameWithExtension = this.filePath.substring(this.filePath.lastIndexOf("/") + 1);
+            String soundName = fileNameWithExtension.substring(0, fileNameWithExtension.lastIndexOf("."));
+
+            System.out.println("\uD83D\uDD6A [SoundPlayer]: Lautstärke von: [" + soundName + "] auf : " + volume + "% (" + gain + " dB) gesetzt");
         }
     }
 

@@ -68,7 +68,7 @@ public class GameScene {
 //    private Timeline backgroundTimer;
     private double time_seconds = 0.0;
 
-    private Timeline noiseTimer;
+    private Timeline randomNoiseTime;
     private final Random random = new Random();
 
     // Liste von zufälligen Hintergrundgeräuschen
@@ -156,10 +156,19 @@ public class GameScene {
         //timer Start
         startTimer();
 
-        // play sound
+        // play sound in loop
         this.soundPlayer = new SoundPlayer("src/resources/sounds/background/background-creepy-sound.wav");
-        this.soundPlayer.setVolume(this.getMenu().getSettings().getAudio().getBackground(),"background-creepy-sound");
+        this.soundPlayer.setVolume(this.getMenu().getSettings().getAudio().getBackground());
+
+        // Hintergrundmusik in Dauerschleife abspielen
+        this.soundPlayer.getClip().addLineListener(event -> {
+            if (event.getType() == LineEvent.Type.STOP) {
+                this.soundPlayer.setVolume(this.getMenu().getSettings().getAudio().getBackground());
+                this.soundPlayer.play(); // Musik neu starten
+            }
+        });
         this.soundPlayer.play();
+
 
         // random noise
         startRandomNoise();
@@ -186,26 +195,10 @@ public class GameScene {
             player.checkForNearbyGhosts(this.mapCreate.getGhostList());
         }));
 
-//        backgroundTimer = new Timeline(new KeyFrame(Duration.millis(1000), event -> { // alle 1s prüfen //TODO musik funktioniert nicht!!!!!!!!!!!!!
-//            this.soundPlayer = new SoundPlayer("src/resources/sounds/background/background-creepy-sound.wav");
-//
-//            // Listener registrieren, um das Ende des Sounds zu erkennen
-//            this.soundPlayer.getClip().addLineListener(event2 -> {
-//                if (event2.getType() == LineEvent.Type.STOP) {
-//                    this.soundPlayer.setVolume(this.getMenu().getSettings().getAudio().getBackground(),"background-creepy-sound");
-//                    this.soundPlayer.play();
-//                }
-//            });
-//        }));
-
-
         timer.setCycleCount(Timeline.INDEFINITE);
         timer.play();
         ghostTimer.setCycleCount(Timeline.INDEFINITE);
         ghostTimer.play();
-//        backgroundTimer.setCycleCount(Timeline.INDEFINITE);
-//        backgroundTimer.play();
-
     }
 
     public void stopTimer() {
@@ -215,17 +208,26 @@ public class GameScene {
         if (ghostTimer != null) {
             ghostTimer.stop();
         }
+        if (randomNoiseTime != null) {
+            randomNoiseTime.stop();
+        }
     }
 
     // random background noises
     private void startRandomNoise() {
-        noiseTimer = new Timeline(new KeyFrame(Duration.seconds(getRandomInterval()), event -> {
+        nextNoise();
+    }
+
+    private void nextNoise() {
+        double interval = getRandomInterval();
+
+        this.randomNoiseTime = new Timeline(new KeyFrame(Duration.seconds(interval), event -> {
             playRandomNoise();
-            noiseTimer.getKeyFrames().setAll(new KeyFrame(Duration.seconds(getRandomInterval()), e -> playRandomNoise()));
-            noiseTimer.play();
+            nextNoise();
         }));
-        noiseTimer.setCycleCount(Timeline.INDEFINITE);
-        noiseTimer.play();
+
+        this.randomNoiseTime.setCycleCount(1);
+        this.randomNoiseTime.play();
     }
 
     private void playRandomNoise() {
@@ -233,22 +235,21 @@ public class GameScene {
         String soundPath = randomSounds[soundIndex];
         SoundPlayer noisePlayer = new SoundPlayer(soundPath);
 
-        // scours cut to just name
-        String fileNameWithExtension = soundPath.substring(soundPath.lastIndexOf("/") + 1);
-        String soundName = fileNameWithExtension.substring(0, fileNameWithExtension.lastIndexOf("."));
-
-        noisePlayer.setVolume(this.getMenu().getSettings().getAudio().getBackground(),soundName);
+        noisePlayer.setVolume(this.getMenu().getSettings().getAudio().getBackground());
         noisePlayer.play();
     }
 
     private int getRandomInterval() {
-        return random.nextInt(25) + 5; // Zufälliges Intervall zwischen 5 und 30 Sekunden
+        int noise = random.nextInt(25) + 5;
+
+        System.out.println("[GameScene]: getRandomInterval() next RandomSoundNoise in: " + noise + "s");
+        return noise; // Zufälliges Intervall zwischen 5 und 30 Sekunden
     }
 
 
     public void stopBackgroundMusic() {
         this.soundPlayer.stop();
-        this.noiseTimer.stop();
+        this.randomNoiseTime.stop();
     }
 
     public void pGameItemChildren(Rectangle rectangle) {
@@ -338,6 +339,10 @@ public class GameScene {
 
     public Pane getPGameOver() {
         return this.pGameOver;
+    }
+
+    public Timeline getTimer() {
+        return timer;
     }
 
     // Setter Methoden

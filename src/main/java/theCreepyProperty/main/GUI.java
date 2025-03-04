@@ -1,6 +1,7 @@
 package theCreepyProperty.main;
 
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import theCreepyProperty.menu.Settings;
 import theCreepyProperty.scenes.FinishScene;
@@ -30,6 +31,7 @@ public class GUI {
         // Standard-Scene auf StartScene setzen
         stage.setScene(startScene.getScene());
         stage.setTitle("The Creepy Property");
+        stage.getIcons().add(new Image("file:src/resources/textures/icon/icon.png"));
         stage.setResizable(false);
         stage.show();
     }

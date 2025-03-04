@@ -169,7 +169,7 @@ public class FinishScene {
     }
 
     private BackgroundImage getBackgroundImage() {
-        Image image = new Image("file:src/resources/background/finish Scene Background.png");
+        Image image = new Image("file:src/resources/textures/background/finish Scene Background.png");
 
         // Setze das Hintergrundbild
         BackgroundImage backgroundImage = new BackgroundImage(

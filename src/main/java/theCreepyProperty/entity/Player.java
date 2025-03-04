@@ -115,14 +115,13 @@ public class Player extends Entity{
         };
     }
 
+    // play sound if Ghost in 100px distance
     public void checkForNearbyGhosts(ArrayList<Ghost> ghosts) {
         for (int i = 0 ; i < ghosts.size() ; i++) {
             this.distance = 1000;
             this.distance = Math.sqrt(Math.pow(ghosts.get(i).getGhost_world_X() - this.entity_world_X, 2) + Math.pow(ghosts.get(i).getGhost_world_Y() - this.entity_world_Y, 2));
 
-
-
-            if (this.distance <= 200) {
+            if (this.distance <= 120) {
                 playGhostSound();
                 break;
             }
@@ -134,7 +133,7 @@ public class Player extends Entity{
             this.ghostSoundIsPlaying = true;
 
 
-            this.soundPlayer.setVolume(this.gui.getGameScene().getMenu().getSettings().getAudio().getMaster(),"heartbeat");
+            this.soundPlayer.setVolume(this.gui.getGameScene().getMenu().getSettings().getAudio().getMaster());
 
             // Listener registrieren, um das Ende des Sounds zu erkennen
             this.soundPlayer.getClip().addLineListener(event -> {

@@ -37,7 +37,7 @@
 }
 
 .button:pressed {
-    -fx-background-color: linear-gradient(#525252 20%, #035c2f);
+    -fx-background-color: linear-gradient(to bottom, #525252 10%, #dbdbdb 50%, #8c8c8c 90%); /* grau/silber */
     -fx-border-color: darkGreen;
 }
 
@@ -96,19 +96,19 @@
 /* Quit-Button */
 #quit-button:hover, #quit-button:focused {
     -fx-text-fill: darkRed;
-    -fx-background-color: linear-gradient(to bottom, #454242 10%, #d13636 50%,  #454242 90%);
+    -fx-background-color: linear-gradient(to bottom, #850303 10%, #ff8787 50%, #a60000 90%);/* red */
     -fx-border-color: darkRed;
     -fx-border-weight: 5px;
 }
 
 #quit-button:pressed {
-    -fx-background-color: linear-gradient(#454242 20%, #b80e02);
+   -fx-background-color: linear-gradient(to bottom, #690000 10%, #ffa1a1 50%, #8f0000 90%);/* darkRed */
 }
 
 
 /* Game Over Button */
 #game-over {
-    -fx-background-color: linear-gradient(#edf7f2 20%, #ff0000);
+    -fx-background-color: linear-gradient(to bottom, #850303 10%, #ff6363 50%, #a60000 90%);/* red */
     -fx-background-radius: 10px;
     -fx-text-fill: white;
     -fx-padding: 1px 1px;
@@ -122,18 +122,25 @@
     -fx-pref-height: 50px;
 }
 
-#game-over:hover {
-    -fx-background-color: linear-gradient(#edf7f2 20%, #b50000);
+#game-over:hover, #game-over:focused{
+    -fx-background-color: linear-gradient(to bottom, #690000 10%, #ffa1a1 50%, #8f0000 90%);/* darkRed */
 }
 
 #game-over:pressed {
-    -fx-background-color: linear-gradient(#edf7f2 20%, #2b2b2b);
+    -fx-background-color: linear-gradient(to bottom, #525252 10%, #dbdbdb 50%, #8c8c8c 90%); /* grau/silber */
+}
+
+#game-over-text {
+    -fx-text-fill: linear-gradient(#edf7f2 20%, #ff0000);
+    -fx-font-size: 60px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(255, 0, 0, 0.5), 5, 0, 5, 5);
 }
 
 
 /* Game Win Button */
 #game-win {
-    -fx-background-color: linear-gradient(#edf7f2 20%, #18a300);
+    -fx-background-color: linear-gradient(to bottom, #117300 10%, #7dffbe 50%, #18a300 90%);/* lightGreen */
     -fx-background-radius: 10px;
 
     -fx-text-fill: white;
@@ -151,19 +158,22 @@
     -fx-min-height: 50px;
 }
 
-#game-win:hover {
-    -fx-background-color: linear-gradient(#edf7f2 20%, #18a300);
+#game-win:hover, #game-win:focused{
+    -fx-background-color: linear-gradient(to bottom, #0e5c00 10%, #b5ffda 50%, #138200 90%);/* lightGreen */
 }
 
-/*
+
 #game-win:pressed {
-    -fx-background-color: linear-gradient(#edf7f2 20%, #18a300);
+    -fx-background-color: linear-gradient(to bottom, #525252 10%, #dbdbdb 50%, #8c8c8c 90%); /* grau/silber */
 
-}*/
+}
 
-#game-win:focused {
-    -fx-background-color: linear-gradient(#edf7f2 20%, #18a300);
 
+#game-win-text {
+    -fx-text-fill: linear-gradient(#edf7f2 20%, #18a300);
+    -fx-font-size: 60px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(0, 255, 0, 0.5), 5, 0, 5, 5);
 }
 
 
@@ -207,20 +217,6 @@
 /* Spezifische Textelemente */
 #name {
     -fx-font-size: 60px;
-}
-
-#game-over-text {
-    -fx-text-fill: linear-gradient(#edf7f2 20%, #ff0000);
-    -fx-font-size: 60px;
-    -fx-font-weight: bold;
-    -fx-effect: dropshadow(gaussian, rgba(255, 0, 0, 0.5), 5, 0, 5, 5);
-}
-
-#game-win-text {
-    -fx-text-fill: linear-gradient(#edf7f2 20%, #18a300);
-    -fx-font-size: 60px;
-    -fx-font-weight: bold;
-    -fx-effect: dropshadow(gaussian, rgba(0, 255, 0, 0.5), 5, 0, 5, 5);
 }
 
 #text {

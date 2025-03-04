@@ -45,7 +45,7 @@ public class StartScene {
             System.out.println("✔ [StartScene]: Spiel wird gestartet...");
 
             soundPlayer = new SoundPlayer(soundButtonClick);
-            this.soundPlayer.setVolume(volume,"button click");
+            this.soundPlayer.setVolume(volume);
             this.soundPlayer.play();
 
             gui.switchToLevelSelectScene();
@@ -54,7 +54,7 @@ public class StartScene {
             System.out.println("✔ [Start Menu]: Quit");
 
             soundPlayer = new SoundPlayer(soundButtonClick);
-            this.soundPlayer.setVolume(volume,"button click");
+            this.soundPlayer.setVolume(volume);
             this.soundPlayer.play();
 
             System.exit(0);

@@ -66,11 +66,13 @@ public class Menu extends VBox {
             this.gameScene.getpMenu().setVisible(true);
             this.backgroundMenu.setVisible(true);
             this.pMenu.setVisible(true);
-            this.gameScene.setBlur(15); //Menu blur
+            this.gameScene.setBlur(15);
             this.menu_on = true;
             this.gameScene.getPlayer().stopGhostSound();
+
+            this.gameScene.getTimer().stop();
             for (Ghost ghost : this.gameScene.getMapCreate().getGhostList()) {
-                ghost.getTimeline().stop();
+                ghost.getTimeline().stop(); // Ghost stop moving
             }
 
 
@@ -79,11 +81,12 @@ public class Menu extends VBox {
             this.gameScene.getpMenu().setVisible(false);
             this.backgroundMenu.setVisible(false);
             this.pMenu.setVisible(false);
-            this.gameScene.setBlur(0); //Menu blur
+            this.gameScene.setBlur(0);
             this.menu_on = false;
 
+            this.gameScene.getTimer().play();
             for (Ghost ghost : this.gameScene.getMapCreate().getGhostList()) {
-                ghost.getTimeline().play();
+                ghost.getTimeline().play(); // Ghost start moving
             }
         }
     }
@@ -99,7 +102,7 @@ public class Menu extends VBox {
 
     private void onResume() {
         System.out.println("[Menu]: Back to Game ✔");
-        this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster(),"button click");
+        this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster());
         this.soundPlayer.play();
 
         this.triggerMenu();
@@ -107,7 +110,7 @@ public class Menu extends VBox {
 
     private void onSettings() {
         System.out.println("[Menu]: Open settings menu ✔");
-        this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster(),"button click");
+        this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster());
         this.soundPlayer.play();
 
         this.pMenu.setVisible(false);
@@ -116,7 +119,7 @@ public class Menu extends VBox {
 
     private void onBack() {
         System.out.println("[Menu]: Start Menu ✔");
-        this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster(),"button click");
+        this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster());
         this.soundPlayer.play();
 
         this.gui.getSelectScene().setVolume(this.settings.getAudio().getMaster()); //selectScene audio volume update

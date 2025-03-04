@@ -215,10 +215,10 @@ public class KeyHandler {
 
             if (futurePlayer.intersects(ghostNew.getBoundsInLocal())) {
                 this.soundPlayer = new SoundPlayer("src/resources/sounds/stabbed.wav");
-                this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster(),"stabbed");
+                this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster());
                 this.soundPlayer.play();
                 this.soundPlayer = new SoundPlayer("src/resources/sounds/ouch.wav");
-                this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster(),"ouch");
+                this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster());
                 this.soundPlayer.play();
 
                 this.gameScene.getGameOver().triggerGameOver();

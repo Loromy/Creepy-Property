@@ -25,7 +25,7 @@ public class GameOver {
 
     private final Label text;
     private final Button retryButton;
-    private final Button quitButton;
+    private final Button backButton;
 
     public GameOver(GUI gui, GameScene gameScene) {
         this.gui = gui;
@@ -45,11 +45,11 @@ public class GameOver {
         this.retryButton = new Button("Retry");
         this.retryButton.setId("game-over");
 
-        this.quitButton = new Button("Quit");
-        this.quitButton.setId("game-over");
+        this.backButton = new Button("Back");
+        this.backButton.setId("game-over");
 
         // Add buttons to the VBox
-        this.vBoxGameOver.getChildren().addAll(text, retryButton, quitButton);
+        this.vBoxGameOver.getChildren().addAll(text, retryButton, backButton);
         this.vBoxGameOver.setId("background");
         this.pGameOver.getChildren().add(vBoxGameOver);
 
@@ -60,7 +60,7 @@ public class GameOver {
 
         // Button actions
         retryButton.setOnAction(e -> onRetry());
-        quitButton.setOnAction(e -> onQuit());
+        backButton.setOnAction(e -> onBack());
     }
 
     public void triggerGameOver(){
@@ -104,8 +104,8 @@ public class GameOver {
         //this.triggerGameOver();
     }
 
-    private void onQuit() {
-        System.out.println("✔ [Game Over]: Quit");
+    private void onBack() {
+        System.out.println("✔ [Game Over]: back");
 
         this.gui.switchToLevelSelectScene();
     }

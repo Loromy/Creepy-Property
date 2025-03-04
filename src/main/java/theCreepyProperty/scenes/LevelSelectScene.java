@@ -101,7 +101,7 @@ public class LevelSelectScene {
 
             formatTime(1,level1Time);
 
-            this.soundPlayer.setVolume(volume,"button click");
+            this.soundPlayer.setVolume(volume);
             this.soundPlayer.play();
         });
 
@@ -115,7 +115,7 @@ public class LevelSelectScene {
 
             formatTime(2,level2Time);
 
-            this.soundPlayer.setVolume(volume,"button click");
+            this.soundPlayer.setVolume(volume);
             this.soundPlayer.play();
         });
 
@@ -129,7 +129,7 @@ public class LevelSelectScene {
 
             formatTime(3,level3Time);
 
-            this.soundPlayer.setVolume(volume,"button click");
+            this.soundPlayer.setVolume(volume);
             this.soundPlayer.play();
         });
 
@@ -143,7 +143,7 @@ public class LevelSelectScene {
 
             formatTime(4,level4Time);
 
-            this.soundPlayer.setVolume(volume,"button click");
+            this.soundPlayer.setVolume(volume);
             this.soundPlayer.play();
         });
 
@@ -157,7 +157,7 @@ public class LevelSelectScene {
 
             formatTime(5,level5Time);
 
-            this.soundPlayer.setVolume(volume,"button click");
+            this.soundPlayer.setVolume(volume);
             this.soundPlayer.play();
         });
 
@@ -171,7 +171,7 @@ public class LevelSelectScene {
 
             formatTime(6,level6Time);
 
-            this.soundPlayer.setVolume(volume,"button click");
+            this.soundPlayer.setVolume(volume);
             this.soundPlayer.play();
         });
 
@@ -185,7 +185,7 @@ public class LevelSelectScene {
 
             formatTime(7,level7Time);
 
-            this.soundPlayer.setVolume(volume,"button click");
+            this.soundPlayer.setVolume(volume);
             this.soundPlayer.play();
         });
 
@@ -199,7 +199,7 @@ public class LevelSelectScene {
 
             formatTime(8,level8Time);
 
-            this.soundPlayer.setVolume(volume,"button click");
+            this.soundPlayer.setVolume(volume);
             this.soundPlayer.play();
         });
 
@@ -213,7 +213,7 @@ public class LevelSelectScene {
 
             formatTime(9,level9Time);
 
-            this.soundPlayer.setVolume(volume,"button click");
+            this.soundPlayer.setVolume(volume);
             this.soundPlayer.play();
         });
 
@@ -227,7 +227,7 @@ public class LevelSelectScene {
 
             formatTime(0, level0Time);
 
-            this.soundPlayer.setVolume(volume,"button click");
+            this.soundPlayer.setVolume(volume);
             this.soundPlayer.play();
         });
 
@@ -236,7 +236,7 @@ public class LevelSelectScene {
         levelMenu.getStartButton().setOnAction(e -> {
             System.out.println("✔ [LevelSelectScene]: Spiel wird gestartet...");
 
-            this.soundPlayer.setVolume(volume,"button click");
+            this.soundPlayer.setVolume(volume);
             this.soundPlayer.play();
 
             this.levelMenu.getStartButton().setDisable(true);
@@ -248,7 +248,7 @@ public class LevelSelectScene {
         levelMenu.getBackButton().setOnAction(e -> {
             System.out.println("✔ [LevelSelectScene]: Start Menu");
 
-            this.soundPlayer.setVolume(volume,"button click");
+            this.soundPlayer.setVolume(volume);
             this.soundPlayer.play();
 
             this.gui.switchToStartScene();
