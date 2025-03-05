@@ -74,9 +74,9 @@ public class CollisionChecker {
                     this.soundPlayer = new SoundPlayer("src/resources/sounds/youWin.wav");
                     this.soundPlayer.setVolume(this.scene.getMenu().getSettings().getAudio().getMaster());
                     this.soundPlayer.play();
-                    this.soundPlayer = new SoundPlayer("src/resources/sounds/congratulations.wav");
-                    this.soundPlayer.setVolume(this.scene.getMenu().getSettings().getAudio().getMaster());
-                    this.soundPlayer.play();
+//                    this.soundPlayer = new SoundPlayer("src/resources/sounds/congratulations.wav");
+//                    this.soundPlayer.setVolume(this.scene.getMenu().getSettings().getAudio().getMaster());
+//                    this.soundPlayer.play();
 
                     this.scene.getGameWin().triggerGameWin();
                 }

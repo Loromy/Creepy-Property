@@ -58,7 +58,7 @@ public class ReadWriteSettings {
                     System.out.println("✔ [ReedWriteSettings]: SettingsRead \"anzeige\" value: true");
                 }
                 else {
-                    System.out.println("✖ [ReedWriteSettings]: SettingsRead \"anzeige\" wrong value: " + value + " does not exist");
+                    System.err.println("✖ [ReedWriteSettings]: SettingsRead \"anzeige\" wrong value: " + value + " does not exist");
                 }
                 this.guiComponents.triggerAnzeigeRWSettings();
                 break;
@@ -73,7 +73,7 @@ public class ReadWriteSettings {
                     System.out.println("✔ [ReedWriteSettings]: SettingsRead \"overlay\" value: true ️");
                 }
                 else {
-                    System.out.println("✖ [ReedWriteSettings]: SettingsRead \"overlay\" wrong value: " + value + " does not exist");
+                    System.err.println("✖ [ReedWriteSettings]: SettingsRead \"overlay\" wrong value: " + value + " does not exist");
                 }
                 this.gameScene.getPlayer().triggerOverlayRWSettings(this.gameScene);
                 break;
@@ -88,7 +88,7 @@ public class ReadWriteSettings {
                     System.out.println("✔ [ReedWriteSettings]: SettingsRead \"collision\" value: true");
                 }
                 else {
-                    System.out.println("✖ [ReedWriteSettings]: SettingsRead \"collision\" wrong value: " + value + " does not exist");
+                    System.err.println("✖ [ReedWriteSettings]: SettingsRead \"collision\" wrong value: " + value + " does not exist");
                 }
                 this.gameScene.getMapCreate().triggerCollisionRWSettings(this.gameScene);
                 break;
@@ -99,7 +99,7 @@ public class ReadWriteSettings {
                     System.out.println("✔ [ReedWriteSettings]: SettingsRead \"master\" value: " + value);
                 }
                 else {
-                    System.out.println("✖ [ReedWriteSettings]: SettingsRead \"master\" wrong value: " + value + " does not exist");
+                    System.err.println("✖ [ReedWriteSettings]: SettingsRead \"master\" wrong value: " + value + " does not exist");
                 }
                 break;
 
@@ -109,12 +109,12 @@ public class ReadWriteSettings {
                     System.out.println("✔ [ReedWriteSettings]: SettingsRead \"background\" value: " + value);
                 }
                 else {
-                    System.out.println("✖ ReedWriteSettings]: SettingsRead \"background\" wrong value: " + value + " does not exist");
+                    System.err.println("✖ ReedWriteSettings]: SettingsRead \"background\" wrong value: " + value + " does not exist");
                 }
                 break;
 
             default:
-                System.out.println("✖ [ReedWriteSettings]: SettingsRead wrong setting: " + setting + " does not exist");
+                System.err.println("✖ [ReedWriteSettings]: SettingsRead wrong setting: " + setting + " does not exist");
                 break;
         }
     }

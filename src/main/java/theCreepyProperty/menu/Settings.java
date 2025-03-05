@@ -5,13 +5,12 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import theCreepyProperty.DeveloperMode.PasswordHandler;
 import theCreepyProperty.Save.ReadWriteSettings;
 import theCreepyProperty.main.GUI;
 import theCreepyProperty.main.SoundPlayer;
 import theCreepyProperty.scenes.GameScene;
 
-public class Settings implements PasswordHandler {
+public class Settings{
     private final GUI gui;
     private final GameScene gameScene;
     private final Menu menu;
@@ -36,6 +35,8 @@ public class Settings implements PasswordHandler {
 
     private final String soundButtonClick = "src/resources/sounds/button click.wav";
 
+    private final boolean DEVMODE = false; // Here you can activate developer options
+
     public Settings(GUI gui, GameScene gameScene, Menu menu)  {
         this.gui = gui;
         this.gameScene = gameScene;
@@ -57,22 +58,17 @@ public class Settings implements PasswordHandler {
 
         // Button text
         this.backButton.setText("Back");
-        //this.button1.setText("Game Over Screen");
-//        this.button1.setText("button1");
-//        this.button2.setText("Audio Menu");
-//        this.button3.setText("DevMode [OFF]");
-//        this.button4.setText("Anzeige [OFF]");
-//        this.button5.setText("button5"); //No usage
-//        this.button6.setText("button6");
         this.button1.setText("Audio Menu");
-        this.button2.setText("");
+        this.button2.setText("----------");
         this.button3.setText("Overlay [ON]");
         this.button4.setText("Anzeige [OFF]");
-        this.button5.setText("Collision [ON]"); //No usage
+        this.button5.setText("Collision [ON]");
         this.button6.setText("End-Scene");
 
         //this.button1.setStyle("-fx-text-fill: darkRed;");
         this.button2.setDisable(true);
+        this.button3.setDisable(true);
+        this.button5.setDisable(true);
 
         // getChildren
         this.vBoxSettingsL.getChildren().addAll(button1, button3, button5); // Buttons Left
@@ -99,6 +95,18 @@ public class Settings implements PasswordHandler {
         button4.setOnAction(e -> onButton4());
         button5.setOnAction(e -> onButton5());
         button6.setOnAction(e -> onButton6());
+
+        devMode();
+    }
+
+    public void devMode() {
+        if (DEVMODE) {
+            this.button3.setDisable(false);
+            this.button5.setDisable(false);
+        } else {
+            this.button3.setText("Disabled");
+            this.button5.setText("Disabled");
+        }
     }
 
     public void triggerSettings(){
@@ -112,7 +120,7 @@ public class Settings implements PasswordHandler {
     }
 
     private void onBack() {
-        System.out.println("[Settings]: Back ✔");
+        System.out.println("✔ [Settings]: Back");
         triggerSettings(); // Settings
         this.menu.getpMenu().setVisible(true); //Start Menu
 
@@ -123,13 +131,10 @@ public class Settings implements PasswordHandler {
         this.menu.triggerFocus();
     }
 
-//        this.gameScene.getGameOver().triggerGameOver();
-//        this.backButton.requestFocus();
-
     private void onButton1() {
         this.pMenuSettings.setVisible(false);
         this.audio.triggerAudio();
-        System.out.println("[Settings]: button1 ✔");
+        System.out.println("✔ [Settings]: button1");
 
         soundPlayer = new SoundPlayer(soundButtonClick);
         this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster());
@@ -137,7 +142,7 @@ public class Settings implements PasswordHandler {
     }
 
     private void onButton2() {
-        System.out.println("[Settings]: button2 ✔");
+        System.out.println("✔ [Settings]: button2");
 
         soundPlayer = new SoundPlayer(soundButtonClick);
         this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster());
@@ -147,7 +152,7 @@ public class Settings implements PasswordHandler {
     private void onButton3() {
 //        new DevMode(this).show(this.gameScene);
         this.gameScene.getPlayer().triggerOverlay(this.readWriteSettings);
-        System.out.println("[Settings]: button3 ✔");
+        System.out.println("✔ [Settings]: button3");
 
         soundPlayer = new SoundPlayer(soundButtonClick);
         this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster());
@@ -156,7 +161,7 @@ public class Settings implements PasswordHandler {
 
     private void onButton4() {
         this.gameScene.getGuiComponents().triggerAnzeige(this.readWriteSettings);
-        System.out.println("[Settings]: button4 ✔");
+        System.out.println("✔ [Settings]: button4");
 
         soundPlayer = new SoundPlayer(soundButtonClick);
         this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster());
@@ -165,7 +170,7 @@ public class Settings implements PasswordHandler {
 
     private void onButton5() {
         this.gameScene.getMapCreate().triggerCollision(this.readWriteSettings);
-        System.out.println("[Settings]: button5 ✔");
+        System.out.println("✔ [Settings]: button5");
 
         soundPlayer = new SoundPlayer(soundButtonClick);
         this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster());
@@ -174,7 +179,7 @@ public class Settings implements PasswordHandler {
 
     private void onButton6() {
         this.gui.switchToFinishScene();
-        System.out.println("[Settings]: button6 ✔");
+        System.out.println("✔ [Settings]: button6");
 
         soundPlayer = new SoundPlayer(soundButtonClick);
         this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster());
@@ -233,11 +238,5 @@ public class Settings implements PasswordHandler {
         vBoxSettings.setLayoutY((gui.getHeight() - (double) 300) / 2);
         vBoxSettings.setSpacing(10);
         vBoxSettings.setAlignment(Pos.CENTER);
-    }
-
-    @Override
-    public void handlePassword(String password) {
-        System.out.println("Eingegebenes Passwort: " + password);
-        // Hier kannst du z. B. eine Passwort-Validierung oder Weiterverarbeitung machen
     }
 }

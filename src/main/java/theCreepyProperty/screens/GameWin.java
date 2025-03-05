@@ -35,8 +35,6 @@ public class GameWin {
 
         //overlay
         this.backgroundGameWin.setStyle("-fx-background-color: rgba(0, 255, 0, 0.5);");
-//        this.backgroundGameWin.setVisible(false);
-//        this.pGameWin.setVisible(false);
 
         // Add menu items
         this.text = new Label("Congratulations");
@@ -65,8 +63,6 @@ public class GameWin {
 
     public void triggerGameWin(){
         if (!gameWin_on) {
-            //this.backgroundGameWin.setVisible(true);
-            //this.pGameWin.setVisible(true);
             this.gameScene.getPGameWin().setVisible(true);
             this.gameScene.setBlur(15); //Menu blur
             this.gameWin_on = true;
@@ -85,8 +81,6 @@ public class GameWin {
                 this.nextButton.setText("Finish Game");
             }
         } else {
-            //this.backgroundGameWin.setVisible(false);
-            //this.pGameWin.setVisible(false);
             this.gameScene.getPGameWin().setVisible(false);
             this.gameScene.setBlur(0); //Menu blur
             this.gameWin_on = false;

@@ -75,7 +75,7 @@ public class SetMap {
                 this.levelSelectScene.setMapSelected(9);
                 break;
             default:
-                System.out.println("✖ [SetMap Error]: Invalid map level: " + level + " does not exist");
+                System.err.println("✖ [SetMap Error]: Invalid map level: " + level + " does not exist");
                 break;
         }
     }
@@ -135,7 +135,7 @@ public class SetMap {
                 this.levelSelectScene.setMapSelected(9);
                 break;
             default:
-                System.out.println("✖ [SetMap Error]: Invalid map level: " + this.levelSelectScene.getMapSelected() + " does not exist");
+                System.err.println("✖ [SetMap Error]: Invalid map level: " + this.levelSelectScene.getMapSelected() + " does not exist");
                 break;
         }
     }

@@ -2,6 +2,7 @@ package theCreepyProperty.main;
 
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import theCreepyProperty.menu.Settings;
 import theCreepyProperty.scenes.FinishScene;
@@ -78,7 +79,7 @@ public class GUI {
 
     public void switchToFinishScene() {
         if (this.finishScene == null) {
-            this.finishScene = new FinishScene(stage, this);
+            this.finishScene = new FinishScene(this);
         }
         // Scene wechseln
         stage.setScene(this.finishScene.getScene());

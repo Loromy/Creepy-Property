@@ -115,6 +115,7 @@ public class Menu extends VBox {
 
         this.pMenu.setVisible(false);
         this.settings.triggerSettings();
+        this.settings.devMode();
     }
 
     private void onBack() {

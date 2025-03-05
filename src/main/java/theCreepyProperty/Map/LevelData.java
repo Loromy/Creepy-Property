@@ -1,9 +1,6 @@
 package theCreepyProperty.Map;
 
-import theCreepyProperty.entity.Player;
-
 import java.util.ArrayList;
-import java.util.List;
 
 public class LevelData {
     private ArrayList<LevelDataWall> walls;
@@ -18,8 +15,7 @@ public class LevelData {
         ghosts = new ArrayList<>();
     }
 
-
-    // Inner classes für Walls und Items
+    // --------------- WALL ---------------
     public class LevelDataWall {
         private final int x, y, width, height;
         private final String texture;
@@ -32,17 +28,17 @@ public class LevelData {
             this.texture = texture;
         }
 
-        // Getter
         public int getX() { return x; }
         public int getY() { return y; }
         public int getWidth() { return width; }
         public int getHeight() { return height; }
-        public String getTexture() {return texture; }
+        public String getTexture() { return texture; }
     }
 
-    public static class LevelDataItem {
-        private final String texture;
+    // --------------- ITEM ---------------
+    public class LevelDataItem {
         private final int x, y, width, height;
+        private final String texture;
 
         public LevelDataItem(int x, int y, int width, int height, String texture) {
             this.x = x;
@@ -52,18 +48,17 @@ public class LevelData {
             this.texture = texture;
         }
 
-        // Getter
         public int getX() { return x; }
         public int getY() { return y; }
         public int getWidth() { return width; }
         public int getHeight() { return height; }
         public String getTexture() { return texture; }
-
     }
 
-    public static class LevelDataDoor {
-        private final String texture;
+    // --------------- DOOR ---------------
+    public class LevelDataDoor {
         private final int x, y, width, height;
+        private final String texture;
 
         public LevelDataDoor(int x, int y, int width, int height, String texture) {
             this.x = x;
@@ -73,16 +68,15 @@ public class LevelData {
             this.texture = texture;
         }
 
-        // Getter
         public int getX() { return x; }
         public int getY() { return y; }
         public int getWidth() { return width; }
         public int getHeight() { return height; }
         public String getTexture() { return texture; }
-
     }
 
-    public static class LevelDataGhost {
+    // --------------- GHOST ---------------
+    public class LevelDataGhost {
         private final int x, y, width, height;
 
         public LevelDataGhost(int x, int y, int width, int height) {
@@ -92,41 +86,20 @@ public class LevelData {
             this.height = height;
         }
 
-        // Getter
         public int getX() { return x; }
         public int getY() { return y; }
         public int getWidth() { return width; }
         public int getHeight() { return height; }
     }
 
-    // Getter Methoden
-    public ArrayList<LevelDataWall> getWalls() {
-        return walls;
-    }
+    // --------------- GETTER ---------------
+    public ArrayList<LevelDataWall> getWalls() { return walls; }
+    public ArrayList<LevelDataItem> getItems() { return items; }
+    public ArrayList<LevelDataDoor> getDoors() { return doors; }
+    public ArrayList<LevelDataGhost> getGhosts() { return ghosts; }
 
-    public ArrayList<LevelDataItem> getItems() {
-        return items;
-    }
-
-    public ArrayList<LevelDataDoor> getDoors() {
-        return doors;
-    }
-
-    public ArrayList<LevelDataGhost> getGhosts() {
-        return ghosts;
-    }
-
-    // Setter Methoden
-    public void setItems(ArrayList<LevelDataItem> items) {
-        this.items = items;
-    }
-
-    public void setWalls(ArrayList<LevelDataWall> walls) {
-        this.walls = walls;
-    }
-
-    public void setDoors(ArrayList<LevelDataDoor> doors) {
-        this.doors = doors;
-    }
+    // --------------- SETTER ---------------
+    public void setItems(ArrayList<LevelDataItem> items) { this.items = items; }
+    public void setWalls(ArrayList<LevelDataWall> walls) { this.walls = walls; }
+    public void setDoors(ArrayList<LevelDataDoor> doors) { this.doors = doors; }
 }
-

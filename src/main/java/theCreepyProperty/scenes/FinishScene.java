@@ -5,15 +5,14 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.control.Label;
-import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 
 import javafx.util.Duration;
 import theCreepyProperty.main.GUI;
 import theCreepyProperty.main.SoundPlayer;
+
+import javax.sound.sampled.LineEvent;
 
 public class FinishScene {
     private GUI gui;
@@ -52,7 +51,7 @@ public class FinishScene {
     private int width = 600;
     private int height = 1200;
 
-    public FinishScene(Stage stage, GUI gui) {
+    public FinishScene(GUI gui) {
         this.gui = gui;
 
         this.l_creepyProperty = new Label("Creepy Property\n\n\n");
@@ -112,10 +111,16 @@ public class FinishScene {
         this.textDisplay.getStylesheets().add(("file:src/resources/style/style.css"));
         this.slidDown.getStylesheets().add(("file:src/resources/style/style.css"));
 
-//        // play sound
-//        this.soundPlayer = new SoundPlayer("src/resources/sounds/background/background-atmosphere.wav");
-//        this.soundPlayer.setVolume(3); // Standard 2
-//        this.soundPlayer.play();
+        // play sound in loop
+        this.soundPlayer = new SoundPlayer("src/resources/sounds/background/finish music-.wav");
+
+        // Hintergrundmusik in Dauerschleife abspielen
+        this.soundPlayer.getClip().loop(javax.sound.sampled.Clip.LOOP_CONTINUOUSLY);
+        this.soundPlayer.setVolume(this.gui.getGameScene().getMenu().getSettings().getAudio().getBackground());
+        this.soundPlayer.play();
+
+
+        this.gui.getGameScene().stopBackgroundMusic();
 
         //this.root.getChildren().add(new ImageView(new Image("file:src/resources/background/finish Scene Background.png")));
         BackgroundImage backgroundImage = getBackgroundImage();
@@ -211,6 +216,7 @@ public class FinishScene {
     }
 
     private void onButtonBack() {
+        this.soundPlayer.stop();
         this.gui.switchToLevelSelectScene();
     }
 

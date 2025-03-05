@@ -53,7 +53,7 @@ public class SoundPlayer {
             String fileNameWithExtension = this.filePath.substring(this.filePath.lastIndexOf("/") + 1);
             String soundName = fileNameWithExtension.substring(0, fileNameWithExtension.lastIndexOf("."));
 
-            System.out.println("\uD83D\uDD6A [SoundPlayer]: Lautstärke von: [" + soundName + "] auf : " + volume + "% (" + gain + " dB) gesetzt");
+            System.out.println("\uD83D\uDD6A [SoundPlayer]: Lautstärke von: [" + soundName + "] auf : " + volume + "% (" + gain + " dB) gesetzt.");
         }
     }
 

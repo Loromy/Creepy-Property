@@ -4,6 +4,7 @@ import javafx.scene.Scene;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import theCreepyProperty.Map.SetMap;
 import theCreepyProperty.Save.ReadWriteSpielstand;
 import theCreepyProperty.main.GUI;
@@ -327,7 +328,7 @@ public class LevelSelectScene {
                 this.mapSelected = 9;
                 break;
             default:
-                System.out.println("✖ [LevelSelectScene]: Invalid map selection: " + map);
+                System.err.println("✖ [LevelSelectScene]: Invalid map selection: " + map);
                 break;
         }
     }
@@ -507,7 +508,9 @@ public class LevelSelectScene {
             }
 
             setLevelCompleted(this.mapSelected, true);
-            setLevelUnlocked(++this.mapSelected, true);
+            if (++this.mapSelected < 10) {
+                setLevelUnlocked(++this.mapSelected, true);
+            }
         }
     }
 
@@ -549,7 +552,7 @@ public class LevelSelectScene {
                 levelCompleted();
                 break;
             default:
-                System.out.println("✖ [LevelSelectScene]: setLevelCompleted level: " + level + " does not exist");
+                System.err.println("✖ [LevelSelectScene]: setLevelCompleted level: " + level + " does not exist");
                 break;
         }
     }
@@ -590,7 +593,7 @@ public class LevelSelectScene {
                 this.level9Unlocked = unlocked;
                 break;
             default:
-                System.out.println("✖ [LevelSelectScene]: setLevelUnlocked level: " + level + " does not exist");
+                System.err.println("✖ [LevelSelectScene]: setLevelUnlocked level: " + level + " does not exist");
                 break;
         }
     }
@@ -628,7 +631,7 @@ public class LevelSelectScene {
                 this.level9Time = time;
                 break;
             default:
-                System.out.println("✖ [LevelSelectScene]: setLevelTime level: " + level + " does not exist");
+                System.err.println("✖ [LevelSelectScene]: setLevelTime level: " + level + " does not exist");
                 break;
         }
     }
@@ -669,7 +672,7 @@ public class LevelSelectScene {
                 thisLevel = this.level9Completed;
                 break;
             default:
-                System.out.println("✖ [LevelSelectScene]: getLevelCompleted Invalid value: " + level);
+                System.err.println("✖ [LevelSelectScene]: getLevelCompleted Invalid value: " + level);
                 break;
         }
         return thisLevel;
@@ -710,7 +713,7 @@ public class LevelSelectScene {
                 thisLevel = this.level9Unlocked;
                 break;
             default:
-                System.out.println("[LevelSelectScene]: getLevelCompleted Invalid value: " + level + " ✖");
+                System.err.println("✖ [LevelSelectScene]: getLevelCompleted Invalid value: " + level);
                 break;
         }
         return thisLevel;

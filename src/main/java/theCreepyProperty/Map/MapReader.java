@@ -6,9 +6,11 @@ import java.io.FileReader;
 public class MapReader {
     LevelData levelData;
 
-    public LevelData readCsvFile(String filePath, LevelData levelData) {
+    public MapReader(LevelData levelData) {
         this.levelData = levelData;
+    }
 
+    public LevelData readCsvFile(String filePath) {
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             boolean isFirstLine = true;
@@ -19,7 +21,6 @@ public class MapReader {
                     continue;
                 }
 
-                // Zeile in Teile aufspalten
                 String[] parts = line.split(",");
                 String type = parts[0];
                 int x = Integer.parseInt(parts[1]);
@@ -34,16 +35,16 @@ public class MapReader {
                     int width = Integer.parseInt(parts[3]);
                     int height = Integer.parseInt(parts[4]);
                     String itemTexture = parts[5];
-                    levelData.getItems().add(new LevelData.LevelDataItem(x, y, width, height, itemTexture));
+                    levelData.getItems().add(levelData.new LevelDataItem(x, y, width, height, itemTexture));
                 } else if (type.equals("door")) {
                     int width = Integer.parseInt(parts[3]);
                     int height = Integer.parseInt(parts[4]);
                     String itemTexture = parts[5];
-                    levelData.getDoors().add(new LevelData.LevelDataDoor(x, y, width, height, itemTexture));
+                    levelData.getDoors().add(levelData.new LevelDataDoor(x, y, width, height, itemTexture));
                 } else if (type.equals("ghost")) {
                     int width = Integer.parseInt(parts[3]);
                     int height = Integer.parseInt(parts[4]);
-                    levelData.getGhosts().add(new LevelData.LevelDataGhost(x, y, width, height));
+                    levelData.getGhosts().add(levelData.new LevelDataGhost(x, y, width, height));
                 }
             }
         } catch (Exception e) {

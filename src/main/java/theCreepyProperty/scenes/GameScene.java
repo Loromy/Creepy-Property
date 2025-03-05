@@ -47,7 +47,7 @@ public class GameScene {
     // Game Scene Classes
     private KeyHandler keyHandler;
     private LevelData levelData = new LevelData();
-    private final MapReader mapReader = new MapReader();
+    private final MapReader mapReader = new MapReader(this.levelData);
     private final MapCreate mapCreate = new MapCreate();
     private ReadWriteSettings readWriteSettings;
     private ReadWriteSpielstand readWriteSpielstand;
@@ -64,8 +64,10 @@ public class GameScene {
     private final CollisionChecker checker;
 
     private Timeline timer;
+    private boolean isMusicStopped = false;
+
     private Timeline ghostTimer;
-//    private Timeline backgroundTimer;
+
     private double time_seconds = 0.0;
 
     private Timeline randomNoiseTime;
@@ -105,7 +107,7 @@ public class GameScene {
 
     private void createScene() {
         // CSV-Datei lesen
-        this.levelData = mapReader.readCsvFile(this.gui.getFilePath(), levelData);
+        this.levelData = mapReader.readCsvFile(this.gui.getFilePath());
 
         // Wände erstellen
         this.mapCreate.createMap(this.gui, this ,levelData);
@@ -158,11 +160,10 @@ public class GameScene {
 
         // play sound in loop
         this.soundPlayer = new SoundPlayer("src/resources/sounds/background/background-creepy-sound.wav");
-        this.soundPlayer.setVolume(this.getMenu().getSettings().getAudio().getBackground());
 
         // Hintergrundmusik in Dauerschleife abspielen
         this.soundPlayer.getClip().addLineListener(event -> {
-            if (event.getType() == LineEvent.Type.STOP) {
+            if (event.getType() == LineEvent.Type.STOP && !isMusicStopped) {
                 this.soundPlayer.setVolume(this.getMenu().getSettings().getAudio().getBackground());
                 this.soundPlayer.play(); // Musik neu starten
             }
@@ -248,8 +249,11 @@ public class GameScene {
 
 
     public void stopBackgroundMusic() {
+        isMusicStopped = true;
         this.soundPlayer.stop();
-        this.randomNoiseTime.stop();
+        if (this.randomNoiseTime != null) {
+            this.randomNoiseTime.stop();
+        }
     }
 
     public void pGameItemChildren(Rectangle rectangle) {
