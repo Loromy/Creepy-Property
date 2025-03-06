@@ -13,6 +13,7 @@ import javafx.util.Duration;
 import theCreepyProperty.Map.LevelData;
 import theCreepyProperty.Map.MapCreate;
 import theCreepyProperty.Map.MapReader;
+import theCreepyProperty.Map.TutorialMapInfo;
 import theCreepyProperty.Save.ReadWriteSettings;
 import theCreepyProperty.Save.ReadWriteSpielstand;
 import theCreepyProperty.blocks.Door;
@@ -26,12 +27,14 @@ import theCreepyProperty.screens.GameOver;
 import theCreepyProperty.screens.GameWin;
 
 import javax.sound.sampled.LineEvent;
+import javax.swing.*;
 import java.util.Random;
 
 public class GameScene {
 
     private final Stage stage;
     private final GUI gui;
+    private final TutorialMapInfo tutorialMapInfo;
     private Scene gameScene;
     private SoundPlayer soundPlayer;
 
@@ -43,6 +46,7 @@ public class GameScene {
     private final Pane pGame = new Pane();
     private final Pane pWallsItems = new Pane();
     private final Pane pGhosts = new Pane();
+    private final Pane pTutorialMapInfo = new Pane();
 
     // Game Scene Classes
     private KeyHandler keyHandler;
@@ -56,7 +60,6 @@ public class GameScene {
     private Door door;
     private Ghost ghost;
     private final Player player;
-    //private final Ghost ghost;
     private final GameOver gameOver;
     private final GameWin gameWin;
     private final Menu menu;
@@ -91,6 +94,7 @@ public class GameScene {
         this.gui = gui;
 
         this.player = new Player(this.gui);
+        this.tutorialMapInfo = new TutorialMapInfo(this.gui, this);
         this.gameOver = new GameOver(this.gui, this);
         this.gameWin = new GameWin(this.gui, this);
         this.menu = new Menu(this.gui, this);
@@ -128,6 +132,7 @@ public class GameScene {
         pGame.getChildren().add(this.player.getSolidPlayerAria());
         pGame.getChildren().add(this.player.draw());
         pGame.getChildren().add(this.player.loadOverlay());
+        pGame.getChildren().add(this.pTutorialMapInfo);
         pGame.getChildren().add(this.guiComponents.gethBox_Level());
         pGame.getChildren().add(this.guiComponents.getvBox_anzeige());
         pGame.getChildren().add(this.guiComponents.gethBox_keys());
@@ -243,7 +248,7 @@ public class GameScene {
     private int getRandomInterval() {
         int noise = random.nextInt(25) + 5;
 
-        System.out.println("[GameScene]: getRandomInterval() next RandomSoundNoise in: " + noise + "s");
+        System.out.println("▶ [GameScene]: getRandomInterval() next RandomSoundNoise in: " + noise + "s");
         return noise; // Zufälliges Intervall zwischen 5 und 30 Sekunden
     }
 
@@ -276,9 +281,17 @@ public class GameScene {
         this.pGhosts.getChildren().add(image);
     }
 
+    public void pTutorialMapinfoChildren(Pane pane) {
+        this.pTutorialMapInfo.getChildren().add(pane);
+    }
+
     // Getter Methoden
     public GuiComponents getGuiComponents() {
         return guiComponents;
+    }
+
+    public TutorialMapInfo getTutorialMapInfo() {
+        return this.tutorialMapInfo;
     }
 
     public Menu getMenu() {

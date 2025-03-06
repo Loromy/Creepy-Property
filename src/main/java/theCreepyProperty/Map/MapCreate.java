@@ -17,7 +17,7 @@ public class MapCreate {
     private Door door;
     private Ghost ghost;
     private GUI gui;
-    private GameScene scene;
+    private GameScene gameScene;
     private LevelData levelData;
 
     private final ArrayList<Wall> wallList = new ArrayList<>();
@@ -31,18 +31,18 @@ public class MapCreate {
     public void createMap(GUI gui, GameScene scene, LevelData levelData){
 
         this.gui = gui;
-        this.scene = scene;
-        this.wall = this.scene.getWall();
-        this.item = this.scene.getItem();
-        this.door = this.scene.getDoor();
-        this.ghost = this.scene.getGhost();
+        this.gameScene = scene;
+        this.wall = this.gameScene.getWall();
+        this.item = this.gameScene.getItem();
+        this.door = this.gameScene.getDoor();
+        this.ghost = this.gameScene.getGhost();
         this.levelData = levelData;
 
         for (int i = 0; i < this.levelData.getWalls().size(); i++) {
 
             this.wall = new Wall(levelData.getWalls().get(i).getX(), levelData.getWalls().get(i).getY(), levelData.getWalls().get(i).getWidth(), levelData.getWalls().get(i).getHeight(), levelData.getWalls().get(i).getTexture());
             this.wallList.add(this.wall);
-            this.scene.pGameItemChildren(this.wall.getRWall());
+            this.gameScene.pGameItemChildren(this.wall.getRWall());
 
             if (this.levelData.getWalls().size()-1 == i) {
                 i++;
@@ -55,7 +55,7 @@ public class MapCreate {
 
             this.item = new Item(levelData.getItems().get(i).getX(), levelData.getItems().get(i).getY(), levelData.getItems().get(i).getWidth(), levelData.getItems().get(i).getHeight(), levelData.getItems().get(i).getTexture());
             this.itemList.add(this.item);
-            this.scene.pGameItemChildren(this.item.getIItem());
+            this.gameScene.pGameItemChildren(this.item.getIItem());
             if (this.levelData.getItems().size()-1 == i) {
                 i++;
                 System.out.println("✔ [MapCreator]: " + i + " Items created");
@@ -66,7 +66,7 @@ public class MapCreate {
 
             this.door = new Door(levelData.getDoors().get(i).getX(), levelData.getDoors().get(i).getY(), levelData.getDoors().get(i).getWidth(), levelData.getDoors().get(i).getHeight(), levelData.getDoors().get(i).getTexture());
             this.doorList.add(this.door);
-            this.scene.pGameItemChildren(this.door.getIvDoor());
+            this.gameScene.pGameItemChildren(this.door.getIvDoor());
 
             if (this.levelData.getDoors().size()-1 == i) {
                 i++;
@@ -78,8 +78,8 @@ public class MapCreate {
 
             this.ghost = new Ghost(this.gui, levelData.getGhosts().get(i).getX(), levelData.getGhosts().get(i).getY(), levelData.getGhosts().get(i).getWidth(), levelData.getGhosts().get(i).getHeight());
             this.ghostList.add(this.ghost);
-            this.scene.pGameGhostsChildren(this.ghost.getSolidAria());
-            this.scene.pGameGhostsChildren(this.ghost.draw());
+            this.gameScene.pGameGhostsChildren(this.ghost.getSolidAria());
+            this.gameScene.pGameGhostsChildren(this.ghost.draw());
 
             if (this.levelData.getGhosts().size()-1 == i) {
                 i++;
@@ -90,13 +90,13 @@ public class MapCreate {
 
     public void triggerCollisionRWSettings(GameScene gameScene) {
         if (!collision_on) {
-            for (int i = 0; i < this.scene.getMapCreate().getWallList().size(); i++) {
+            for (int i = 0; i < this.gameScene.getMapCreate().getWallList().size(); i++) {
                 this.wallList.get(i).setPlayer_block_collision(true);
             }
             gameScene.getMenu().getSettings().getButton5().setText("Collision [ON]");
             this.collision_on = true;
         } else {
-            for (int i = 0; i < this.scene.getMapCreate().getWallList().size(); i++) {
+            for (int i = 0; i < this.gameScene.getMapCreate().getWallList().size(); i++) {
                 this.wallList.get(i).setPlayer_block_collision(false);
             }
             gameScene.getMenu().getSettings().getButton5().setText("Collision [OFF]");
@@ -104,19 +104,23 @@ public class MapCreate {
         }
     }
 
-    public void triggerCollision(ReadWriteSettings readWriteSettings) {
+    public void triggerCollision(ReadWriteSettings readWriteSettings, GameScene gameScene) {
         if (!collision_on) {
-            for (int i = 0; i < this.scene.getMapCreate().getWallList().size(); i++) {
+            for (int i = 0; i < gameScene.getMapCreate().getWallList().size(); i++) {
                 this.wallList.get(i).setPlayer_block_collision(true);
             }
-            this.scene.getMenu().getSettings().getButton5().setText("Collision [ON]");
+            if(gameScene.getMenu() != null) {
+                gameScene.getMenu().getSettings().getButton5().setText("Collision [ON]");
+            }
             readWriteSettings.updateSetting("collision", 1);
             this.collision_on = true;
         } else {
-            for (int i = 0; i < this.scene.getMapCreate().getWallList().size(); i++) {
+            for (int i = 0; i < gameScene.getMapCreate().getWallList().size(); i++) {
                 this.wallList.get(i).setPlayer_block_collision(false);
             }
-            this.scene.getMenu().getSettings().getButton5().setText("Collision [OFF]");
+            if(gameScene.getMenu() != null) {
+                gameScene.getMenu().getSettings().getButton5().setText("Collision [OFF]");
+            }
             readWriteSettings.updateSetting("collision", 0);
             this.collision_on = false;
         }

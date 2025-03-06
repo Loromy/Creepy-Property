@@ -162,15 +162,19 @@ public class Player extends Entity{
         }
     }
 
-    public void triggerOverlay(ReadWriteSettings readWriteSettings) {
+    public void triggerOverlay(ReadWriteSettings readWriteSettings, GameScene gameScene) {
         if (!overlay_on) {
             this.i_darkness_overlay.setImage(darknessOverlay);
-            this.gui.getGameScene().getMenu().getSettings().getButton3().setText("Overlay [ON]");
+            if(gameScene.getMenu() != null) {
+                gameScene.getMenu().getSettings().getButton3().setText("Overlay [ON]");
+            }
             readWriteSettings.updateSetting("overlay", 1);
             this.overlay_on = true;
         } else {
             this.i_darkness_overlay.setImage(null);
-            this.gui.getGameScene().getMenu().getSettings().getButton3().setText("Overlay [OFF]");
+            if(gameScene.getMenu() != null) {
+                gameScene.getMenu().getSettings().getButton3().setText("Overlay [OFF]");
+            }
             readWriteSettings.updateSetting("overlay", 0);
             this.overlay_on = false;
         }

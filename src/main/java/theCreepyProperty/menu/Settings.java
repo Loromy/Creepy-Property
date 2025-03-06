@@ -96,6 +96,7 @@ public class Settings{
         button5.setOnAction(e -> onButton5());
         button6.setOnAction(e -> onButton6());
 
+        System.out.println("gamescene: " + this.gameScene.getPlayer());
         devMode();
     }
 
@@ -106,6 +107,10 @@ public class Settings{
         } else {
             this.button3.setText("Disabled");
             this.button5.setText("Disabled");
+            this.gameScene.getPlayer().setOverlay_on(false);
+            this.gameScene.getPlayer().triggerOverlay(this.readWriteSettings,this.gameScene);
+            this.gameScene.getMapCreate().setCollision_on(false);
+            this.gameScene.getMapCreate().triggerCollision(this.readWriteSettings,this.gameScene);
         }
     }
 
@@ -134,7 +139,7 @@ public class Settings{
     private void onButton1() {
         this.pMenuSettings.setVisible(false);
         this.audio.triggerAudio();
-        System.out.println("✔ [Settings]: button1");
+        System.out.println("✔ [Settings]: button1 Audio");
 
         soundPlayer = new SoundPlayer(soundButtonClick);
         this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster());
@@ -150,9 +155,8 @@ public class Settings{
     }
 
     private void onButton3() {
-//        new DevMode(this).show(this.gameScene);
-        this.gameScene.getPlayer().triggerOverlay(this.readWriteSettings);
-        System.out.println("✔ [Settings]: button3");
+        this.gameScene.getPlayer().triggerOverlay(this.readWriteSettings, this.gameScene);
+        System.out.println("✔ [Settings]: button3 Overlay");
 
         soundPlayer = new SoundPlayer(soundButtonClick);
         this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster());
@@ -161,7 +165,7 @@ public class Settings{
 
     private void onButton4() {
         this.gameScene.getGuiComponents().triggerAnzeige(this.readWriteSettings);
-        System.out.println("✔ [Settings]: button4");
+        System.out.println("✔ [Settings]: button4 Anzeige");
 
         soundPlayer = new SoundPlayer(soundButtonClick);
         this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster());
@@ -169,8 +173,8 @@ public class Settings{
     }
 
     private void onButton5() {
-        this.gameScene.getMapCreate().triggerCollision(this.readWriteSettings);
-        System.out.println("✔ [Settings]: button5");
+        this.gameScene.getMapCreate().triggerCollision(this.readWriteSettings,this.gameScene);
+        System.out.println("✔ [Settings]: button5 Collision");
 
         soundPlayer = new SoundPlayer(soundButtonClick);
         this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster());
@@ -179,7 +183,7 @@ public class Settings{
 
     private void onButton6() {
         this.gui.switchToFinishScene();
-        System.out.println("✔ [Settings]: button6");
+        System.out.println("✔ [Settings]: button6 FinishScene");
 
         soundPlayer = new SoundPlayer(soundButtonClick);
         this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster());

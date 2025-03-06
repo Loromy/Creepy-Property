@@ -6,19 +6,19 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import theCreepyProperty.Map.SetMap;
+import theCreepyProperty.Map.TutorialMapInfo;
 import theCreepyProperty.Save.ReadWriteSpielstand;
 import theCreepyProperty.main.GUI;
 import theCreepyProperty.main.SoundPlayer;
 import theCreepyProperty.menu.LevelSelect;
 
 public class LevelSelectScene {
-    private GUI gui;
-    //private final GameScene gameScene;
-    private Scene levelSelectScene;
+    private final GUI gui;
     private final LevelSelect levelMenu;
     private final ReadWriteSpielstand readWriteSpielstand;
     private final SoundPlayer soundPlayer;
 
+    private Scene levelSelectScene;
     private final Pane pLevelBlur = new Pane();
     private final Pane pLevelComponents = new Pane();
     private final SetMap setMap;
@@ -63,7 +63,6 @@ public class LevelSelectScene {
 
     public LevelSelectScene(GUI gui) {
         this.gui = gui;
-        //this.gameScene = gameScene;
 
         soundPlayer = new SoundPlayer("src/resources/sounds/button click.wav");
 
@@ -280,6 +279,7 @@ public class LevelSelectScene {
             case 0:
                 System.out.println("✔ [LevelSelectScene]: 0 selected");
                 this.gui.setFilePath(this.setMap.getPath0());
+                System.out.println("[LevelSelectScene]:_____________________________________________________________________________________________");
                 this.mapSelected = 0;
                 break;
             case 1:
