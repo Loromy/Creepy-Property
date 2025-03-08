@@ -229,7 +229,6 @@ public class KeyHandler {
         }
 
         for (Ghost ghost : this.gameScene.getMapCreate().getGhostList()) {
-            //player.sprite_counter++;
             ghost.sprite_counter += deltaTime * 60;
 
             // Sprite-Wechsel abhängig von der Spieler-Geschwindigkeit
@@ -240,14 +239,12 @@ public class KeyHandler {
                 ghost.sprite_counter = 0;
 
             }
-            //System.out.println("[KeyHandler]: Ghost counter: " + ghost.sprite_counter + " | num: " + ghost.sprite_num);
             ghost.setDirection("down");
         }
     }
 
     private void animation(double deltaTime) {
         if (this.wPressed || this.sPressed || this.aPressed || this.dPressed) {
-            //player.sprite_counter++;
             player.sprite_counter += deltaTime * 60;
 
             // Sprite-Wechsel abhängig von der Spieler-Geschwindigkeit
@@ -257,6 +254,9 @@ public class KeyHandler {
                 player.sprite_num = (player.sprite_num % 4) + 1; // Zyklus: 1 → 2 → 3 → 4 → 1
                 player.sprite_counter = 0;
             }
+        } else {
+            player.sprite_num = 1;
+            this.player.draw();
         }
     }
 }

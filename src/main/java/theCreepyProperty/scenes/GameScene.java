@@ -27,14 +27,13 @@ import theCreepyProperty.screens.GameOver;
 import theCreepyProperty.screens.GameWin;
 
 import javax.sound.sampled.LineEvent;
-import javax.swing.*;
 import java.util.Random;
 
 public class GameScene {
 
     private final Stage stage;
     private final GUI gui;
-    private final TutorialMapInfo tutorialMapInfo;
+    private TutorialMapInfo tutorialMapInfo;
     private Scene gameScene;
     private SoundPlayer soundPlayer;
 
@@ -46,7 +45,8 @@ public class GameScene {
     private final Pane pGame = new Pane();
     private final Pane pWallsItems = new Pane();
     private final Pane pGhosts = new Pane();
-    private final Pane pTutorialMapInfo = new Pane();
+    private final Pane pTutorialMapInfoOver = new Pane();
+    private final Pane pTutorialMapInfoUnder = new Pane();
 
     // Game Scene Classes
     private KeyHandler keyHandler;
@@ -94,7 +94,6 @@ public class GameScene {
         this.gui = gui;
 
         this.player = new Player(this.gui);
-        this.tutorialMapInfo = new TutorialMapInfo(this.gui, this);
         this.gameOver = new GameOver(this.gui, this);
         this.gameWin = new GameWin(this.gui, this);
         this.menu = new Menu(this.gui, this);
@@ -119,6 +118,11 @@ public class GameScene {
         // GUI components
         this.guiComponents = new GuiComponents(this.gui, this.player,this);
 
+        // Tutorial map Overlay
+        if (this.gui.getSelectScene().getMapSelected() == 0) {
+            this.tutorialMapInfo = new TutorialMapInfo(this.gui, this);
+        }
+
         root.getChildren().addAll(pGame, pGameOver, pGameWin, pMenu);
         gameScene = new Scene(root, gui.getWidth(), gui.getHeight());
 
@@ -128,11 +132,12 @@ public class GameScene {
 
         pGame.getChildren().add(new ImageView(new Image("file:src/resources/textures/flor/Flor.png")));
         pGame.getChildren().add(this.pWallsItems);
+        pGame.getChildren().add(this.pTutorialMapInfoUnder);
         pGame.getChildren().add(this.pGhosts);
         pGame.getChildren().add(this.player.getSolidPlayerAria());
         pGame.getChildren().add(this.player.draw());
         pGame.getChildren().add(this.player.loadOverlay());
-        pGame.getChildren().add(this.pTutorialMapInfo);
+        pGame.getChildren().add(this.pTutorialMapInfoOver);
         pGame.getChildren().add(this.guiComponents.gethBox_Level());
         pGame.getChildren().add(this.guiComponents.getvBox_anzeige());
         pGame.getChildren().add(this.guiComponents.gethBox_keys());
@@ -281,8 +286,12 @@ public class GameScene {
         this.pGhosts.getChildren().add(image);
     }
 
-    public void pTutorialMapinfoChildren(Pane pane) {
-        this.pTutorialMapInfo.getChildren().add(pane);
+    public void pTutorialMapinfoOverChildren(Pane pane) {
+        this.pTutorialMapInfoOver.getChildren().add(pane);
+    }
+
+    public void pTutorialMapInfoUnderChildren(Pane pane) {
+        this.pTutorialMapInfoUnder.getChildren().add(pane);
     }
 
     // Getter Methoden

@@ -4,9 +4,7 @@ import javafx.scene.Scene;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import theCreepyProperty.Map.SetMap;
-import theCreepyProperty.Map.TutorialMapInfo;
 import theCreepyProperty.Save.ReadWriteSpielstand;
 import theCreepyProperty.main.GUI;
 import theCreepyProperty.main.SoundPlayer;
@@ -244,6 +242,10 @@ public class LevelSelectScene {
             this.levelMenu.getLevel().setText("Level: -");
 
             this.gui.switchToGameScene();
+
+//            if (this.mapSelected == 0) {
+//                this.gui.getGameScene().getTutorialMapInfo().trigger();
+//            }todo
         });
         levelMenu.getBackButton().setOnAction(e -> {
             System.out.println("✔ [LevelSelectScene]: Start Menu");
@@ -264,7 +266,6 @@ public class LevelSelectScene {
 
         // Formatierte Zeit als HH:MM:SS.mm anzeigen
         String formattedTime = String.format("%02d:%02d:%02d:%02d", hours, minutes, seconds, milliseconds);
-        //this.levelMenu.getLevelTime().setText("Level: " + level + " | Time: " + formattedTime);
         this.levelMenu.getLevelTime().setText("Highscore: " + formattedTime);
         this.levelMenu.getLevel().setText("Level: " + level);
         if(level == 0) {
@@ -279,7 +280,6 @@ public class LevelSelectScene {
             case 0:
                 System.out.println("✔ [LevelSelectScene]: 0 selected");
                 this.gui.setFilePath(this.setMap.getPath0());
-                System.out.println("[LevelSelectScene]:_____________________________________________________________________________________________");
                 this.mapSelected = 0;
                 break;
             case 1:

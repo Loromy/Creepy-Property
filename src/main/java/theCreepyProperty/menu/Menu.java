@@ -25,6 +25,8 @@ public class Menu extends VBox {
     private final Button settingsButton;
     private final Button backButton;
 
+    private boolean ghostCanMoves = true;
+
     public Menu(GUI gui, GameScene gameScene) {
         this.gui = gui;
         this.gameScene = gameScene;
@@ -85,8 +87,10 @@ public class Menu extends VBox {
             this.menu_on = false;
 
             this.gameScene.getTimer().play();
-            for (Ghost ghost : this.gameScene.getMapCreate().getGhostList()) {
-                ghost.getTimeline().play(); // Ghost start moving
+            if (ghostCanMoves) {
+                for (Ghost ghost : this.gameScene.getMapCreate().getGhostList()) {
+                    ghost.getTimeline().play(); // Ghost start moving
+                }
             }
         }
     }
@@ -149,5 +153,9 @@ public class Menu extends VBox {
 
     public Settings getSettings() {
         return this.settings;
+    }
+
+    public void setGhostCanMoves(boolean value) {
+        this.ghostCanMoves = value;
     }
 }

@@ -46,14 +46,14 @@ public class Ghost extends Entity{
 
         createGhostImage();
 
-        setNewTarget();//todo
+        setNewTarget();
+
         this.timeline = new Timeline(new KeyFrame(Duration.millis(16), e -> moveRectangle(this.solid_aria)));
         this.timeline.setCycleCount(Timeline.INDEFINITE);
         this.timeline.play();
     }
 
     public void createGhostImage() {
-        //TODO
         down1 = loadImage("file:src/resources/textures/ghost/down_1.png");
         down2 = loadImage("file:src/resources/textures/ghost/down_2.png");
         down3 = loadImage("file:src/resources/textures/ghost/down_3.png");

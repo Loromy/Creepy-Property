@@ -16,11 +16,10 @@ public class Player extends Entity{
     private double controlSpeed = 0; // speed if strg pressed
     private final ImageView i_player = new ImageView();
     private final ImageView i_darkness_overlay = new ImageView();
-    private SoundPlayer soundPlayer = new SoundPlayer("src/resources/sounds/heartbeat.wav");
+    private final SoundPlayer soundPlayer = new SoundPlayer("src/resources/sounds/heartbeat.wav");
 
     private boolean overlay_on = true;
     private boolean ghostSoundIsPlaying = false;
-    private double distance;
 
     public Player(GUI gui)  {
         this.gui = gui;
@@ -115,13 +114,12 @@ public class Player extends Entity{
         };
     }
 
-    // play sound if Ghost in 100px distance
+    // play sound if Ghost in 120px distance
     public void checkForNearbyGhosts(ArrayList<Ghost> ghosts) {
-        for (int i = 0 ; i < ghosts.size() ; i++) {
-            this.distance = 1000;
-            this.distance = Math.sqrt(Math.pow(ghosts.get(i).getGhost_world_X() - this.entity_world_X, 2) + Math.pow(ghosts.get(i).getGhost_world_Y() - this.entity_world_Y, 2));
+        for (Ghost ghost : ghosts) {
+            double distance = Math.sqrt(Math.pow(ghost.getSolidAria().getX() - this.entity_world_X, 2) + Math.pow(ghost.getSolidAria().getY() - this.entity_world_Y, 2));
 
-            if (this.distance <= 120) {
+            if (distance <= 120) {
                 playGhostSound();
                 break;
             }

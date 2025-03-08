@@ -35,7 +35,7 @@ public class Settings{
 
     private final String soundButtonClick = "src/resources/sounds/button click.wav";
 
-    private final boolean DEVMODE = false; // Here you can activate developer options
+    private final boolean DEVMODE = true; // Here you can activate developer options
 
     public Settings(GUI gui, GameScene gameScene, Menu menu)  {
         this.gui = gui;

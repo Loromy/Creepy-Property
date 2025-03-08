@@ -5,16 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87a96b04-91ba-4fe6-93a4-31fd9b49747e" name="Changes" comment="V0.3.8&#10;- ghost sound heartbeat if in distance 200px">
-      <change afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/TutorialMapInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/textures/overlay/Info.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/textures/overlay/InfoSteuerung.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/textures/overlay/ghostDistance.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/MapCreate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/MapCreate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/TutorialMapInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/TutorialMapInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/entity/Ghost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/entity/Ghost.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/entity/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/KeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/KeyHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/menu/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/menu/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/menu/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/menu/Settings.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/scenes/GameScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/scenes/GameScene.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/scenes/LevelSelectScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/scenes/LevelSelectScene.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/csv/Einstellungen/settings.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/Einstellungen/settings.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/csv/Save/spielstand.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/Save/spielstand.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/csv/maps/map0.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/maps/map0.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/csv/maps/map5.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/maps/map5.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/style/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/style/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +48,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/Loromy/the-creepy-property.git&quot;,
-    &quot;accountId&quot;: &quot;868421d7-2bc7-4c91-9637-d2a47af301c4&quot;
+    &quot;accountId&quot;: &quot;84b08c22-0b9f-49c9-8f7d-8949e2e20942&quot;
   }
 }</component>
   <component name="ProjectColorInfo">{
@@ -61,12 +68,13 @@
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Lucas/Documents/GitHub/the-creepy-property/src/resources/sounds/background&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Lucas/Documents/GitHub/the-creepy-property/src/resources/textures/overlay&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Lucas\Documents\GitHub\the-creepy-property\src\resources\textures\overlay" />
       <recent name="C:\Users\Lucas\Documents\GitHub\the-creepy-property\src\resources\sounds\background" />
       <recent name="C:\Users\Lucas\Documents\GitHub\the-creepy-property\src\resources\fonts" />
     </key>

@@ -224,6 +224,11 @@
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.9), 3, 0, 3, 3);
 }
 
+#info {
+    -fx-font-size: 15px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.9), 2, 0.2, 2, 2);
+}
+
 
 /* Hintergrundfarbe für verschiedene UI-Komponenten */
 #background {
@@ -254,6 +259,13 @@
     -fx-background-color: rgba(3, 59, 1, 0.8);
     -fx-background-radius: 0px 15px 15px 0px;
     -fx-padding: 5px 10px 5px 2px;
+}
+
+/*Tutorial Info*/
+#tutorial-info-bubble-background {
+    -fx-background-color: rgba(214, 111, 0, 0.7);
+    -fx-background-radius: 10px;
+    -fx-padding: 2px 7px 2px 7px;
 }
 
 /* Abschluss-Szene */
