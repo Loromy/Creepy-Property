@@ -92,8 +92,11 @@ public class CollisionChecker {
             if (player.keys_eingesammelt >= this.mapCreate.getNetToCollectKeys() && !this.isPlayed) {
                 this.isPlayed = true;
                 this.scene.getGuiComponents().gethBox_keys().setStyle("-fx-background-color: rgba(3, 59, 1, 0.8);");
+
                 this.soundPlayer = new SoundPlayer("src/resources/sounds/doorOpen.wav");
+                this.soundPlayer.setVolume(this.scene.getMenu().getSettings().getAudio().getMaster());
                 this.soundPlayer.play();
+
                 this.mapCreate.getDoorList().get(i).openDoor();
             }
         }

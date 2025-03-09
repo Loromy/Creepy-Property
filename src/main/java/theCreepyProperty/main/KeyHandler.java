@@ -157,6 +157,9 @@ public class KeyHandler {
                 this.player.setControlSpeed(5); // Sprint-Geschwindigkeit
                 sprintTime -= deltaTime; // Sprintzeit abbauen
                 if (sprintTime < 0) sprintTime = 0; // Keine negativen Werte zulassen
+            } else if (shiftPressed) {
+                this.player.setShiftSpeed();
+                this.gameScene.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed());
             } else {
                 this.player.setControlSpeed(0);
 

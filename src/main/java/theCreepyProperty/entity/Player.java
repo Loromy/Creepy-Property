@@ -1,14 +1,11 @@
 package theCreepyProperty.entity;
 
 import javafx.scene.shape.Rectangle;
-import theCreepyProperty.Save.ReadWriteSettings;
 import theCreepyProperty.checker.ImageCheck;
 import theCreepyProperty.main.GUI;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import theCreepyProperty.main.SoundPlayer;
-import theCreepyProperty.scenes.GameScene;
-
 import javax.sound.sampled.LineEvent;
 import java.util.ArrayList;
 
@@ -96,6 +93,7 @@ public class Player extends Entity{
 
     public ImageView loadOverlay() {
         this.i_darkness_overlay.setImage(darknessOverlay);
+        //this.i_darkness_overlay.setImage(null);
         return i_darkness_overlay;
     }
 
@@ -141,36 +139,6 @@ public class Player extends Entity{
 
     public void stopGhostSound() {
         this.soundPlayer.stop();
-    }
-
-    public void triggerOverlayRWSettings(GameScene gameScene) {
-        if (!overlay_on) {
-            this.i_darkness_overlay.setImage(darknessOverlay);
-            gameScene.getMenu().getSettings().getButton3().setText("Overlay [ON]");
-            this.overlay_on = true;
-        } else {
-            this.i_darkness_overlay.setImage(null);
-            gameScene.getMenu().getSettings().getButton3().setText("Overlay [OFF]");
-            this.overlay_on = false;
-        }
-    }
-
-    public void triggerOverlay(ReadWriteSettings readWriteSettings, GameScene gameScene) {
-        if (!overlay_on) {
-            this.i_darkness_overlay.setImage(darknessOverlay);
-            if(gameScene.getMenu() != null) {
-                gameScene.getMenu().getSettings().getButton3().setText("Overlay [ON]");
-            }
-            readWriteSettings.updateSetting("overlay", 1);
-            this.overlay_on = true;
-        } else {
-            this.i_darkness_overlay.setImage(null);
-            if(gameScene.getMenu() != null) {
-                gameScene.getMenu().getSettings().getButton3().setText("Overlay [OFF]");
-            }
-            readWriteSettings.updateSetting("overlay", 0);
-            this.overlay_on = false;
-        }
     }
 
     public void setPlayer_world_X(double player_world_X){

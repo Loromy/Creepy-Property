@@ -1,5 +1,6 @@
 package theCreepyProperty.main;
 
+import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -11,7 +12,9 @@ import theCreepyProperty.scenes.LevelSelectScene;
 import theCreepyProperty.scenes.StartScene;
 import theCreepyProperty.scenes.GameScene;
 
-public class GUI {
+import static javafx.application.Application.launch;
+
+public class GUI extends Application {
 
     private final int width = 1000; // Breite des Fensters
     private final int height = 600; // Höhe des Fensters
@@ -125,5 +128,9 @@ public class GUI {
     // Setter Methoden
     public void setFilePath(String filePath) {
         this.filePath = filePath;
+    }
+
+    public static void startGui(){
+        launch();
     }
 }

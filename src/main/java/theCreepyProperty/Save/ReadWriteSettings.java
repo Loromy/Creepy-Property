@@ -76,7 +76,6 @@ public class ReadWriteSettings {
                 else {
                     System.err.println("✖ [ReedWriteSettings]: SettingsRead \"overlay\" wrong value: " + value + " does not exist");
                 }
-                this.gameScene.getPlayer().triggerOverlayRWSettings(this.gameScene);
                 break;
 
             case "collision":
@@ -91,7 +90,6 @@ public class ReadWriteSettings {
                 else {
                     System.err.println("✖ [ReedWriteSettings]: SettingsRead \"collision\" wrong value: " + value + " does not exist");
                 }
-                this.gameScene.getMapCreate().triggerCollisionRWSettings(this.gameScene);
                 break;
 
             case "master":
@@ -159,7 +157,6 @@ public class ReadWriteSettings {
                 bw.write("\n" + entry.getKey() + "," + entry.getValue());
             }
 
-            //System.out.println("[ReadWriteSettings]: Einstellung \"" + setting + "\" auf " + newValue + " aktualisiert.");
         } catch (IOException e) {
             e.printStackTrace();
         }

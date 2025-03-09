@@ -29,8 +29,6 @@ public class Door extends Object {
     }
 
     public void openDoor() {
-
-
         this.ivDoor.setImage(new Image(new ImageCheck().checkImage("Door","file:src/resources/textures/items/DoorOpen.png")));
         this.doorOpen = true;
     }

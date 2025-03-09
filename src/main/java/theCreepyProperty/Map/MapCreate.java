@@ -92,44 +92,6 @@ public class MapCreate {
         }
     }
 
-    public void triggerCollisionRWSettings(GameScene gameScene) {
-        if (!collision_on) {
-            for (int i = 0; i < this.gameScene.getMapCreate().getWallList().size(); i++) {
-                this.wallList.get(i).setPlayer_block_collision(true);
-            }
-            gameScene.getMenu().getSettings().getButton5().setText("Collision [ON]");
-            this.collision_on = true;
-        } else {
-            for (int i = 0; i < this.gameScene.getMapCreate().getWallList().size(); i++) {
-                this.wallList.get(i).setPlayer_block_collision(false);
-            }
-            gameScene.getMenu().getSettings().getButton5().setText("Collision [OFF]");
-            this.collision_on = false;
-        }
-    }
-
-    public void triggerCollision(ReadWriteSettings readWriteSettings, GameScene gameScene) {
-        if (!collision_on) {
-            for (int i = 0; i < gameScene.getMapCreate().getWallList().size(); i++) {
-                this.wallList.get(i).setPlayer_block_collision(true);
-            }
-            if(gameScene.getMenu() != null) {
-                gameScene.getMenu().getSettings().getButton5().setText("Collision [ON]");
-            }
-            readWriteSettings.updateSetting("collision", 1);
-            this.collision_on = true;
-        } else {
-            for (int i = 0; i < gameScene.getMapCreate().getWallList().size(); i++) {
-                this.wallList.get(i).setPlayer_block_collision(false);
-            }
-            if(gameScene.getMenu() != null) {
-                gameScene.getMenu().getSettings().getButton5().setText("Collision [OFF]");
-            }
-            readWriteSettings.updateSetting("collision", 0);
-            this.collision_on = false;
-        }
-    }
-
     public Wall getWall() {
         return this.wall;
     }

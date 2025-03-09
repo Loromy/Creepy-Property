@@ -21,14 +21,10 @@ public class Settings{
     private final Pane pMenuSettings = new Pane();
     private final VBox vBoxSettings = new VBox();
     private final HBox hBoxSettingsLR = new HBox();
-    private final VBox vBoxSettingsL = new VBox();
-    private final VBox vBoxSettingsR = new VBox();
+    private final VBox vBoxSettingsM = new VBox();
     private Button button1;
     private Button button2;
     private Button button3;
-    private Button button4;
-    private Button button5;
-    private Button button6;
 
     private Button backButton;
     private boolean settings_on = false;
@@ -50,9 +46,6 @@ public class Settings{
         this.button1 = new Button();
         this.button2 = new Button();
         this.button3 = new Button();
-        this.button4 = new Button();
-        this.button5 = new Button();
-        this.button6 = new Button();
         this.backButton = new Button();
 
         pMenuSettings.setVisible(false);
@@ -60,21 +53,12 @@ public class Settings{
         // Button text
         this.backButton.setText("Back");
         this.button1.setText("Audio Menu");
-        this.button2.setText("----------");
-        this.button3.setText("Overlay [ON]");
-        this.button4.setText("Anzeige [OFF]");
-        this.button5.setText("Collision [ON]");
-        this.button6.setText("End-Scene");
-
-        //this.button1.setStyle("-fx-text-fill: darkRed;");
-        this.button2.setDisable(true);
-        this.button3.setDisable(true);
-        this.button5.setDisable(true);
+        this.button2.setText("Anzeige [OFF]");
+        this.button3.setText("End-Scene");
 
         // getChildren
-        this.vBoxSettingsL.getChildren().addAll(button1, button3, button5); // Buttons Left
-        this.vBoxSettingsR.getChildren().addAll(button2, button4, button6); // Buttons Right
-        this.hBoxSettingsLR.getChildren().addAll(vBoxSettingsL, vBoxSettingsR); // hBox für buttons Left/Right
+        this.vBoxSettingsM.getChildren().addAll(button1, button2, button3); // Buttons Left
+        this.hBoxSettingsLR.getChildren().addAll(vBoxSettingsM /*, vBoxSettingsR*/); // hBox für buttons Left/Right
         this.vBoxSettings.getChildren().add(hBoxSettingsLR);
         this.vBoxSettings.getChildren().add(backButton); // Button back
         this.vBoxSettings.setId("background");
@@ -85,33 +69,13 @@ public class Settings{
         this.hBoxSettingsLR.setSpacing(20);
         this.hBoxSettingsLR.setAlignment(Pos.CENTER);
         setMenuSettingsPosition(vBoxSettings); //630
-        setMenuSettingsPositionLR(vBoxSettingsL);
-        setMenuSettingsPositionLR(vBoxSettingsR);
+        setMenuSettingsPositionLR(vBoxSettingsM);
 
         // Button action
         backButton.setOnAction(e -> onBack());
         button1.setOnAction(e -> onButton1());
         button2.setOnAction(e -> onButton2());
         button3.setOnAction(e -> onButton3());
-        button4.setOnAction(e -> onButton4());
-        button5.setOnAction(e -> onButton5());
-        button6.setOnAction(e -> onButton6());
-
-        devMode();
-    }
-
-    public void devMode() {
-        if (DEVMODE) {
-            this.button3.setDisable(false);
-            this.button5.setDisable(false);
-        } else {
-            this.button3.setText("Disabled");
-            this.button5.setText("Disabled");
-            this.gameScene.getPlayer().setOverlay_on(false);
-            this.gameScene.getPlayer().triggerOverlay(this.readWriteSettings,this.gameScene);
-            this.gameScene.getMapCreate().setCollision_on(false);
-            this.gameScene.getMapCreate().triggerCollision(this.readWriteSettings,this.gameScene);
-        }
     }
 
     public void triggerSettings(){
@@ -147,7 +111,8 @@ public class Settings{
     }
 
     private void onButton2() {
-        System.out.println("✔ [Settings]: button2");
+        this.gameScene.getGuiComponents().triggerAnzeige(this.readWriteSettings);
+        System.out.println("✔ [Settings]: button2 Anzeige");
 
         soundPlayer = new SoundPlayer(soundButtonClick);
         this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster());
@@ -155,35 +120,8 @@ public class Settings{
     }
 
     private void onButton3() {
-        this.gameScene.getPlayer().triggerOverlay(this.readWriteSettings, this.gameScene);
-        System.out.println("✔ [Settings]: button3 Overlay");
-
-        soundPlayer = new SoundPlayer(soundButtonClick);
-        this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster());
-        this.soundPlayer.play();
-    }
-
-    private void onButton4() {
-        this.gameScene.getGuiComponents().triggerAnzeige(this.readWriteSettings);
-        System.out.println("✔ [Settings]: button4 Anzeige");
-
-        soundPlayer = new SoundPlayer(soundButtonClick);
-        this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster());
-        this.soundPlayer.play();
-    }
-
-    private void onButton5() {
-        this.gameScene.getMapCreate().triggerCollision(this.readWriteSettings,this.gameScene);
-        System.out.println("✔ [Settings]: button5 Collision");
-
-        soundPlayer = new SoundPlayer(soundButtonClick);
-        this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster());
-        this.soundPlayer.play();
-    }
-
-    private void onButton6() {
         this.gui.switchToFinishScene();
-        System.out.println("✔ [Settings]: button6 FinishScene");
+        System.out.println("✔ [Settings]: button3 FinishScene");
 
         soundPlayer = new SoundPlayer(soundButtonClick);
         this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster());
@@ -199,28 +137,8 @@ public class Settings{
         return settings_on;
     }
 
-    public Button getButton1() {
-        return button1;
-    }
-
     public Button getButton2() {
         return button2;
-    }
-
-    public Button getButton3() {
-        return button3;
-    }
-
-    public Button getButton4() {
-        return button4;
-    }
-
-    public Button getButton5() {
-        return button5;
-    }
-
-    public Button getButton6() {
-        return button6;
     }
 
     public Audio getAudio() {
