@@ -19,6 +19,7 @@ import theCreepyProperty.Save.ReadWriteSpielstand;
 import theCreepyProperty.blocks.Door;
 import theCreepyProperty.blocks.Item;
 import theCreepyProperty.blocks.Wall;
+import theCreepyProperty.checker.ImageCheck;
 import theCreepyProperty.entity.Ghost;
 import theCreepyProperty.entity.Player;
 import theCreepyProperty.main.*;
@@ -90,6 +91,7 @@ public class GameScene {
     };
 
     public GameScene(Stage stage, GUI gui) {
+        System.out.println(".............................GameScene..............................");
         this.stage = stage;
         this.gui = gui;
 
@@ -130,7 +132,7 @@ public class GameScene {
         gameScene.getStylesheets().add(("file:src/resources/style/style.css"));
         pGame.getStylesheets().add(("file:src/resources/style/style.css"));
 
-        pGame.getChildren().add(new ImageView(new Image("file:src/resources/textures/flor/Flor.png")));
+        pGame.getChildren().add(new ImageView(new Image(new ImageCheck().checkImage("GameScene","file:src/resources/textures/flor/Flor.png"))));
         pGame.getChildren().add(this.pWallsItems);
         pGame.getChildren().add(this.pTutorialMapInfoUnder);
         pGame.getChildren().add(this.pGhosts);
@@ -142,6 +144,7 @@ public class GameScene {
         pGame.getChildren().add(this.guiComponents.getvBox_anzeige());
         pGame.getChildren().add(this.guiComponents.gethBox_keys());
         pGame.getChildren().add(this.guiComponents.getvBox_Time());
+        pGame.getChildren().add(this.guiComponents.getvBox_sprint());
 
         // Game Over / Win Menüs hinzufügen
         pGameOver.getChildren().add(this.gameOver.getBackgroundGameOver());
@@ -188,6 +191,7 @@ public class GameScene {
     // Timer
     private void startTimer() {
         time_seconds = 0.0; // Timer zurücksetzen
+        time_seconds = this.gui.getSelectScene().getTimePlaying();
         timer = new Timeline(new KeyFrame(Duration.millis(10), event -> { // alle 10ms prüfen
             time_seconds += 0.01;
 
@@ -200,6 +204,7 @@ public class GameScene {
             // Formatierte Zeit als HH:MM:SS.mm anzeigen
             String formattedTime = String.format("%02d:%02d:%02d:%02d", hours, minutes, seconds, milliseconds);
             this.guiComponents.getL_time().setText("Time: " + formattedTime);
+            this.gui.getSelectScene().setTimePlaying(time_seconds);
         }));
 
         ghostTimer = new Timeline(new KeyFrame(Duration.millis(100), event -> { // alle 500ms prüfen

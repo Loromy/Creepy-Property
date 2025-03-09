@@ -18,6 +18,7 @@ public class StartMenu {
     private final Button quitButton;
 
     public StartMenu(GUI gui) {
+        System.out.println(".............................StartMenu..............................");
         this.gui = gui;
 
         // Lade das Bild

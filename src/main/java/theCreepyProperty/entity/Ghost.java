@@ -6,6 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
+import theCreepyProperty.checker.ImageCheck;
 import theCreepyProperty.main.GUI;
 import theCreepyProperty.main.SoundPlayer;
 
@@ -20,6 +21,7 @@ public class Ghost extends Entity{
     private double zielPosition_X = 0, zielPosition_Y = 0;
 
     public Ghost(GUI gui, int x, int y, int width, int height)  {
+        System.out.println(".............................Ghost..............................");
         this.gui = gui;
 
         setDefaultValues();
@@ -66,14 +68,7 @@ public class Ghost extends Entity{
     }
 
     private Image loadImage(String path) {
-        Image image = new Image(path);
-        if (image.isError()) {
-            System.err.println("✖ [Ghost]: loadImage Failed to load image: " + path);
-            if (image.getException() != null) {
-                image.getException().printStackTrace();
-            }
-        }
-        return image;
+        return new Image(new ImageCheck().checkImage("Ghost",path));
     }
 
     public ImageView draw() {

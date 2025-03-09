@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import theCreepyProperty.checker.ImageCheck;
 import theCreepyProperty.main.GUI;
 import theCreepyProperty.scenes.LevelSelectScene;
 
@@ -39,6 +40,7 @@ public class LevelSelect {
     private final Button backButton;
 
     public LevelSelect(GUI gui, LevelSelectScene scene) {
+        System.out.println(".............................LevelSelect..............................");
         this.gui = gui;
         this.scene = scene;
 
@@ -149,7 +151,7 @@ public class LevelSelect {
     }
 
     private BackgroundImage getBackgroundImage() {
-        Image image = new Image("file:src/resources/textures/background/Creepy Property background.png");
+        Image image = new Image(new ImageCheck().checkImage("LevelSelect","file:src/resources/textures/background/Creepy Property background.png"));
 
         // Setze das Hintergrundbild
         BackgroundImage backgroundImage = new BackgroundImage(

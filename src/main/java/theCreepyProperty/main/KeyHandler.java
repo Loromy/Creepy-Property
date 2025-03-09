@@ -36,7 +36,15 @@ public class KeyHandler {
     private double nextPlayerX;
     private double nextPlayerY;
 
+
+    private double sprintTime = 5.0; // Die maximale Sprintzeit (z.B. 10 Sekunden)
+    private double maxSprintTime = sprintTime; // Die maximale Sprintzeit, die regeneriert werden kann (z.B. 10 Sekunden)
+    private double sprintRegenerationSpeed = 0.5; // Regenerationsrate der Sprintzeit, wenn der Sprint nicht aktiv ist
+    private double sprintIncreaseRate = 0.1; // Geschwindigkeit der Sprintsteigerung (z.B. 0.1 pro Sekunde)
+    private double cooldownTime = 0.0; // Cooldown-Zeit für den Sprint (1 Sekunde)
+
     public KeyHandler(Player player, GameScene gameScene, LevelSelectScene levelSelectScene, Menu menu, GameOver gameOver, GameWin gameWin) {
+        System.out.println(".............................KeyHandler..............................");
         this.player = player;
         this.gameScene = gameScene;
         this.levelSelectScene = levelSelectScene;
@@ -110,12 +118,12 @@ public class KeyHandler {
         timer.start();
     }
 
-    // Funktion für die Bewegungssteuerung basierend auf den gedrückten Tasten
     private void handleMovement(double deltaTime) {
         if (!this.menu.getMenu_on() && !this.gameOver.getGameOver_On() && !this.gameWin.getGameWin_On()) {
             double dx = 0;
             double dy = 0;
 
+            // Tasteneingaben verarbeiten
             if (wPressed) {
                 dy -= 1;
                 this.player.setDirection("up");
@@ -139,43 +147,73 @@ public class KeyHandler {
                 this.cPressed = false;
             }
 
-            if (ctrlPressed) {
-                this.player.setControlSpeed(5); // Control speed | standard speed + (value)
-                this.gameScene.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed()); // anzeigen von speed
-            } else if (shiftPressed) {
-                this.player.setShiftSpeed();
-                this.gameScene.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed()); // anzeigen von speed
-            } else {
-                this.player.setControlSpeed(0);
-                this.gameScene.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed()); // anzeigen von speed
+            // Wenn der Cooldown aktiv ist, kannst du nicht sprinten
+            if (cooldownTime > 0) {
+                cooldownTime -= deltaTime; // Cooldown ablaufen lassen
             }
 
+            // Sprinten: Wenn STRG gedrückt und noch Sprintzeit übrig ist und der Cooldown abgelaufen ist
+            if (ctrlPressed && sprintTime > 0 && cooldownTime <= 0) {
+                this.player.setControlSpeed(5); // Sprint-Geschwindigkeit
+                sprintTime -= deltaTime; // Sprintzeit abbauen
+                if (sprintTime < 0) sprintTime = 0; // Keine negativen Werte zulassen
+            } else {
+                this.player.setControlSpeed(0);
+
+                // Sprint regeneriert sich langsam, wenn die Taste losgelassen wird und kein Cooldown aktiv ist
+                if (!ctrlPressed && cooldownTime <= 0) {
+                    sprintTime += deltaTime * sprintRegenerationSpeed; // Regeneration der Sprintzeit
+
+                    // Steigert die Sprintzeit langsam, wenn sie nicht am Maximum ist
+                    if (sprintTime < maxSprintTime) {
+                        sprintTime += deltaTime * sprintIncreaseRate; // Sprintzeit langsam erhöhen
+                    }
+
+                    // Sicherstellen, dass die Sprintzeit nicht über das Maximum hinausgeht
+                    if (sprintTime > maxSprintTime) sprintTime = maxSprintTime; // Maximale Sprintzeit (10 Sekunden)
+                }
+            }
+
+            // Wenn der Sprint aufgebraucht ist, setze den Cooldown
+            if (sprintTime <= 0 && cooldownTime <= 0) {
+                cooldownTime = 1.0; // Setze den Cooldown auf 1 Sekunde
+            }
+
+            // Geschwindigkeit in GUI anzeigen
+            this.gameScene.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed());
+
+            // Sprint-Anzeige aktualisieren
+            int sprintBarLength = (int) (sprintTime / maxSprintTime * (maxSprintTime * 2));
+            String sprintBar = "sprint " + "|".repeat(sprintBarLength);
+            this.gameScene.getGuiComponents().getL_sprint().setText(sprintBar);
+
+            // Bewegung der Spielfigur
             if (dx != 0 || dy != 0) {
                 move(dx, dy, deltaTime);
             }
 
-            // Ghosts
+            // Kollisionen mit Geistern prüfen
             checkGhostCollision(deltaTime);
-
             animation(deltaTime);
         }
 
+        // Escape-Taste für das Menü
         if (escPressed) {
             this.escPressed = false;
             if (!menu.getSettings().getSettingOn() && !menu.getSettings().getAudio().getAudioOn() && !this.gameScene.getGameWin().getGameWin_On() && !this.gameScene.getGameOver().getGameOver_On()) {
                 this.menu.triggerMenu();
             }
-            else if (menu.getSettings().getSettingOn() && !menu.getSettings().getAudio().getAudioOn()){ // Settings aktive
+            else if (menu.getSettings().getSettingOn() && !menu.getSettings().getAudio().getAudioOn()){
                 this.menu.getSettings().triggerSettings();
                 this.menu.getpMenu().setVisible(true);
             }
-            else if(menu.getSettings().getSettingOn() && menu.getSettings().getAudio().getAudioOn() ) { // Audio Aktive
+            else if (menu.getSettings().getSettingOn() && menu.getSettings().getAudio().getAudioOn() ) {
                 this.menu.getSettings().getAudio().triggerAudio();
                 this.menu.getSettings().getMenuSettings().setVisible(true);
             }
         }
-
     }
+
 
     // Bewegung basierend auf Geschwindigkeit- und Bewegungsrichtung
     private void move(double dx, double dy, double deltaTime) {

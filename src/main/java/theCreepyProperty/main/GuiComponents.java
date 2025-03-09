@@ -6,6 +6,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import theCreepyProperty.Save.ReadWriteSettings;
+import theCreepyProperty.checker.ImageCheck;
 import theCreepyProperty.entity.Player;
 import theCreepyProperty.scenes.GameScene;
 import theCreepyProperty.scenes.LevelSelectScene;
@@ -17,6 +18,7 @@ public class GuiComponents {
     private final GameScene gameScene;
 
     private final Label l_speed ;
+    private final Label l_sprint;
     private final Label l_keys;
     private final Label l_fps;
     private final Label l_level;
@@ -25,11 +27,13 @@ public class GuiComponents {
     private HBox hBox_Level;
     private VBox vBox_anzeige;
     private VBox vBox_Time;
+    private VBox vBox_sprint;
     private ImageView i_keys;
 
     private boolean anzeige_on = false;
 
     public GuiComponents(GUI gui, Player player, GameScene gameScene){
+        System.out.println(".............................GuiComponents..............................");
         this.gui = gui;
         this.player = player;
         this.levelSelectScene = gui.getSelectScene();
@@ -37,7 +41,6 @@ public class GuiComponents {
 
         // HBox
         this.hBox_Level = new HBox();
-        //this.hBox_Level.setLayoutX(((double) gui.getWidth() / 2) - 50);
         this.hBox_Level.setId("gui-components-background-mitte");
         this.hBox_Level.setStyle("-fx-alignment: center;");
         this.hBox_Level.setPrefWidth(300);
@@ -46,16 +49,20 @@ public class GuiComponents {
         this.hBox_keys = new HBox();
         this.hBox_keys.setId("gui-components-background-keys");
 
-        // VBox
-        this.vBox_anzeige = new VBox();
-        this.vBox_anzeige.setLayoutY(125);
-        this.vBox_anzeige.setId("gui-components-background-links");
-        this.vBox_anzeige.setVisible(false);
-
         this.vBox_Time = new VBox();
         this.vBox_Time.setLayoutY(60);
         this.vBox_Time.setMinSize(110,20);
         this.vBox_Time.setId("gui-components-background-links");
+
+        // VBox
+        this.vBox_sprint = new VBox();
+        this.vBox_sprint.setLayoutY(100);
+        this.vBox_sprint.setId("gui-components-background-links");
+
+        this.vBox_anzeige = new VBox();
+        this.vBox_anzeige.setLayoutY(140);
+        this.vBox_anzeige.setId("gui-components-background-links");
+        this.vBox_anzeige.setVisible(false);
 
         // Label
         // Level
@@ -67,6 +74,24 @@ public class GuiComponents {
         this.l_level.setStyle("-fx-font-size: 40px; -fx-alignment: center;");
         this.l_level.setId("gui-components");
         this.hBox_Level.getChildren().add(l_level);
+
+        // Keys Display
+        for (int i = 0; i < this.gameScene.getMapCreate().getItemList().size(); i++) {
+            this.i_keys = new ImageView(new Image(new ImageCheck().checkImage("GuiComponents","file:src/resources/textures/items/Key_blank.png")));
+            this.i_keys.setFitWidth(40);
+            this.i_keys.setFitHeight(40);
+            hBox_keys.getChildren().add(this.i_keys);
+        }
+
+        // Time
+        this.l_time = new Label("Time: 0.00s");
+        this.l_time.setId("gui-components");
+        this.vBox_Time.getChildren().add(l_time);
+
+        // Sprint
+        this.l_sprint = new Label("Sprint: test");
+        this.l_sprint.setId("gui-components");
+        this.vBox_sprint.getChildren().add(l_sprint);
 
         // Anzeige
         this.l_speed = new Label("Speed: " + player.getSpeed());
@@ -80,19 +105,6 @@ public class GuiComponents {
         this.l_keys = new Label("Keys: " + player.getKeyEingesammelt());
         this.l_keys.setId("gui-components");
         this.vBox_anzeige.getChildren().add(l_keys);
-
-        // Time
-        this.l_time = new Label("Time: 0.00s");
-        this.l_time.setId("gui-components");
-        this.vBox_Time.getChildren().add(l_time);
-
-        // Keys Display
-        for (int i = 0; i < this.gameScene.getMapCreate().getItemList().size(); i++) {
-            this.i_keys = new ImageView(new Image("file:src/resources/textures/items/Key_blank.png"));
-            this.i_keys.setFitWidth(40);
-            this.i_keys.setFitHeight(40);
-            hBox_keys.getChildren().add(this.i_keys);
-        }
     }
 
     public void collectKey(int keysToCollected) {
@@ -103,14 +115,14 @@ public class GuiComponents {
         }
 
         for (int v = 0; v < collectedKeys ;v++) {
-            this.i_keys = new ImageView(new Image("file:src/resources/textures/items/Key.png"));
+            this.i_keys = new ImageView(new Image(new ImageCheck().checkImage("GuiComponents","file:src/resources/textures/items/Key.png")));
             this.i_keys.setFitWidth(40);
             this.i_keys.setFitHeight(40);
             hBox_keys.getChildren().add(this.i_keys);
         }
 
         for (int n = 0; n < keysToCollected - collectedKeys ; n++) {
-            this.i_keys = new ImageView(new Image("file:src/resources/textures/items/Key_blank.png"));
+            this.i_keys = new ImageView(new Image(new ImageCheck().checkImage("GuiComponents","file:src/resources/textures/items/Key_blank.png")));
             this.i_keys.setFitWidth(40);
             this.i_keys.setFitHeight(40);
             hBox_keys.getChildren().add(this.i_keys);
@@ -155,6 +167,10 @@ public class GuiComponents {
         return l_speed;
     }
 
+    public Label getL_sprint() {
+        return l_sprint;
+    }
+
     public Label getL_keys() {
         return l_keys;
     }
@@ -181,6 +197,10 @@ public class GuiComponents {
 
     public VBox getvBox_Time() {
         return vBox_Time;
+    }
+
+    public VBox getvBox_sprint() {
+        return vBox_sprint;
     }
 
     public boolean getAnzeige_on() {

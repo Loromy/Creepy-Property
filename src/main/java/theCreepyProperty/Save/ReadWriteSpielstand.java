@@ -12,6 +12,7 @@ public class ReadWriteSpielstand {
     private final String filePath = "src/resources/csv/Save/spielstand.csv";
 
     public ReadWriteSpielstand() {
+        System.out.println(".............................ReadWriteSpielstand..............................");
         this.settingsMap = new HashMap<>();
     }
 

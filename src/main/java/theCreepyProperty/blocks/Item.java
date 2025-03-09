@@ -7,6 +7,7 @@ public class Item extends Object {
     private ImageView ivItem = new ImageView();
 
     public Item(int x, int y, int width, int height, String texture) {
+        System.out.println(".............................Item..............................");
         // Parameterwerte setzen und Wand erstellen
         this.positionX = x;
         this.positionY = y;

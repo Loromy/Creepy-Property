@@ -52,6 +52,7 @@ public class FinishScene {
     private int height = 1200;
 
     public FinishScene(GUI gui) {
+        System.out.println(".............................FinishScene..............................");
         this.gui = gui;
 
         this.l_creepyProperty = new Label("Creepy Property\n\n\n");

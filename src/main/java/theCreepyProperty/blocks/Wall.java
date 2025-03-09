@@ -7,6 +7,7 @@ public class Wall extends Object {
     private Rectangle rWall;
 
     public Wall(int x, int y, int width, int height, String texture) {
+        System.out.println(".............................Wall..............................");
         // Parameterwerte setzen und Wand erstellen
         this.positionX = x;
         this.positionY = y;

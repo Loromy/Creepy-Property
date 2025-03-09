@@ -13,6 +13,7 @@ public class ReadWriteSettings {
     private Map<String, Integer> settingsMap;
 
     public ReadWriteSettings(GuiComponents guiComponents) {
+        System.out.println(".............................ReadWriteSettings..............................");
         this.guiComponents = guiComponents;
         this.settingsMap = new HashMap<>();
     }

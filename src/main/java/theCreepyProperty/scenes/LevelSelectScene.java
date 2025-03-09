@@ -22,6 +22,7 @@ public class LevelSelectScene {
     private final SetMap setMap;
 
     private int mapSelected = 0;
+    private double timePlaying = 0;
 
     private boolean levelTutorialCompleted = false;
     private boolean level1Completed = false;
@@ -60,6 +61,7 @@ public class LevelSelectScene {
     private int volume = 50;
 
     public LevelSelectScene(GUI gui) {
+        System.out.println(".............................LevelSelectScene..............................");
         this.gui = gui;
 
         soundPlayer = new SoundPlayer("src/resources/sounds/button click.wav");
@@ -91,6 +93,7 @@ public class LevelSelectScene {
 
         levelMenu.getbL1().setOnAction(e ->{
             setMap(1);
+            this.timePlaying = 0;
 
             this.levelMenu.selectButton(this.levelMenu.getbL1());
 
@@ -105,6 +108,7 @@ public class LevelSelectScene {
 
         levelMenu.getbL2().setOnAction(e ->{
             setMap(2);
+            this.timePlaying = 0;
 
             this.levelMenu.selectButton(this.levelMenu.getbL2());
 
@@ -119,6 +123,7 @@ public class LevelSelectScene {
 
         levelMenu.getbL3().setOnAction(e ->{
             setMap(3);
+            this.timePlaying = 0;
 
             this.levelMenu.selectButton(this.levelMenu.getbL3());
 
@@ -133,6 +138,7 @@ public class LevelSelectScene {
 
         levelMenu.getbL4().setOnAction(e ->{
             setMap(4);
+            this.timePlaying = 0;
 
             this.levelMenu.selectButton(this.levelMenu.getbL4());
 
@@ -147,6 +153,7 @@ public class LevelSelectScene {
 
         levelMenu.getbL5().setOnAction(e ->{
             setMap(5);
+            this.timePlaying = 0;
 
             this.levelMenu.selectButton(this.levelMenu.getbL5());
 
@@ -161,6 +168,7 @@ public class LevelSelectScene {
 
         levelMenu.getbL6().setOnAction(e ->{
             setMap(6);
+            this.timePlaying = 0;
 
             this.levelMenu.selectButton(this.levelMenu.getbL6());
 
@@ -175,6 +183,7 @@ public class LevelSelectScene {
 
         levelMenu.getbL7().setOnAction(e ->{
             setMap(7);
+            this.timePlaying = 0;
 
             this.levelMenu.selectButton(this.levelMenu.getbL7());
 
@@ -189,6 +198,7 @@ public class LevelSelectScene {
 
         levelMenu.getbL8().setOnAction(e ->{
             setMap(8);
+            this.timePlaying = 0;
 
             this.levelMenu.selectButton(this.levelMenu.getbL8());
 
@@ -203,6 +213,7 @@ public class LevelSelectScene {
 
         levelMenu.getbL9().setOnAction(e ->{
             setMap(9);
+            this.timePlaying = 0;
 
             this.levelMenu.selectButton(this.levelMenu.getbL9());
 
@@ -217,6 +228,7 @@ public class LevelSelectScene {
 
         levelMenu.getbTutorial().setOnAction(e ->{
             setMap(0);
+            this.timePlaying = 0;
 
             this.levelMenu.selectButton(this.levelMenu.getbTutorial());
 
@@ -731,6 +743,10 @@ public class LevelSelectScene {
         return this.mapSelected;
     }
 
+    public double getTimePlaying() {
+        return this.timePlaying;
+    }
+
     // Setter
     public void setMapSelected(int map) {
         this.mapSelected = map;
@@ -742,5 +758,9 @@ public class LevelSelectScene {
 
     public void setVolume(int volume) {
         this.volume = volume;
+    }
+
+    public void setTimePlaying(double time) {
+        this.timePlaying = time;
     }
 }

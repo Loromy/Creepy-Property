@@ -44,6 +44,7 @@ public class Audio {
     private final String soundButtonClick = "src/resources/sounds/button click.wav";
 
     public Audio(GUI gui, GameScene gameScene, Settings settings) {
+        System.out.println(".............................Audio..............................");
         this.gui = gui;
         this.gameScene = gameScene;
         this.settings = settings;

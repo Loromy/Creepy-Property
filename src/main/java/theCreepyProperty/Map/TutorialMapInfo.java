@@ -19,6 +19,7 @@ public class TutorialMapInfo {
 
 
     public TutorialMapInfo(GUI gui, GameScene gameScene) {
+        System.out.println(".............................TutorialMapInfo..............................");
         this.gui = gui;
         this.gameScene = gameScene;
 

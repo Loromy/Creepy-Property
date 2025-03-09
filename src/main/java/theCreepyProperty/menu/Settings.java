@@ -38,6 +38,7 @@ public class Settings{
     private final boolean DEVMODE = true; // Here you can activate developer options
 
     public Settings(GUI gui, GameScene gameScene, Menu menu)  {
+        System.out.println(".............................Settings..............................");
         this.gui = gui;
         this.gameScene = gameScene;
         this.menu = menu;
@@ -96,7 +97,6 @@ public class Settings{
         button5.setOnAction(e -> onButton5());
         button6.setOnAction(e -> onButton6());
 
-        System.out.println("gamescene: " + this.gameScene.getPlayer());
         devMode();
     }
 

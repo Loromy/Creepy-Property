@@ -28,6 +28,7 @@ public class GameOver {
     private final Button backButton;
 
     public GameOver(GUI gui, GameScene gameScene) {
+        System.out.println(".............................GameOver..............................");
         this.gui = gui;
         this.gameScene = gameScene;
         this.levelSelectScene = gui.getSelectScene();

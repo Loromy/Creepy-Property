@@ -2,6 +2,7 @@ package theCreepyProperty.entity;
 
 import javafx.scene.shape.Rectangle;
 import theCreepyProperty.Save.ReadWriteSettings;
+import theCreepyProperty.checker.ImageCheck;
 import theCreepyProperty.main.GUI;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -22,6 +23,7 @@ public class Player extends Entity{
     private boolean ghostSoundIsPlaying = false;
 
     public Player(GUI gui)  {
+        System.out.println(".............................Player..............................");
         this.gui = gui;
         setDefaultValues();
         this.solid_aria = new Rectangle();
@@ -68,14 +70,7 @@ public class Player extends Entity{
     }
 
     private Image loadImage(String path) {
-        Image image = new Image(path);
-        if (image.isError()) {
-            System.err.println("✖ [Player]: loadImage Failed to load image: " + path);
-            if (image.getException() != null) {
-                image.getException().printStackTrace();
-            }
-        }
-        return image;
+        return new Image(new ImageCheck().checkImage("Player",path));
     }
 
     public ImageView draw() {

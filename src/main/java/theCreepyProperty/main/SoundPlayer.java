@@ -10,6 +10,7 @@ public class SoundPlayer {
     private String filePath = "";
 
     public SoundPlayer(String filePath) {
+        System.out.println(".............................SoundPayer..............................");
         this.filePath = filePath;
         try {
             File audioFile = new File(filePath);

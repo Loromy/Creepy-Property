@@ -28,6 +28,10 @@ public class MapCreate {
     private int netToCollectKeys = 0;
     private boolean collision_on = true;
 
+    public MapCreate() {
+        System.out.println(".............................MapCreate..............................");
+    }
+
     public void createMap(GUI gui, GameScene scene, LevelData levelData){
 
         this.gui = gui;

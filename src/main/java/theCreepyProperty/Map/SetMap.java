@@ -20,6 +20,7 @@ public class SetMap {
 
 
     public SetMap(GUI gui) {
+        System.out.println(".............................SetMap..............................");
         this.gui = gui;
         this.levelSelectScene = gui.getSelectScene();
     }

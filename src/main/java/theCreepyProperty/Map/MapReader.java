@@ -7,6 +7,7 @@ public class MapReader {
     LevelData levelData;
 
     public MapReader(LevelData levelData) {
+        System.out.println(".............................MapReader..............................");
         this.levelData = levelData;
     }
 

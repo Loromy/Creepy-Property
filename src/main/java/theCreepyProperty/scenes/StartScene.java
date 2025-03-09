@@ -21,6 +21,7 @@ public class StartScene {
     private int volume = 50;
 
     public StartScene(Stage stage, GUI gui) {
+        System.out.println(".............................StartScene..............................");
         this.stage = stage;
         this.gui = gui;
 

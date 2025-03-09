@@ -28,6 +28,7 @@ public class Menu extends VBox {
     private boolean ghostCanMoves = true;
 
     public Menu(GUI gui, GameScene gameScene) {
+        System.out.println(".............................Menu..............................");
         this.gui = gui;
         this.gameScene = gameScene;
         settings = new Settings(this.gui, this.gameScene,this);
@@ -105,7 +106,7 @@ public class Menu extends VBox {
     }
 
     private void onResume() {
-        System.out.println("[Menu]: Back to Game ✔");
+        System.out.println("✔ [Menu]: Back to Game");
         this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster());
         this.soundPlayer.play();
 
@@ -113,7 +114,7 @@ public class Menu extends VBox {
     }
 
     private void onSettings() {
-        System.out.println("[Menu]: Open settings menu ✔");
+        System.out.println("✔ [Menu]: Open settings menu");
         this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster());
         this.soundPlayer.play();
 
@@ -123,7 +124,7 @@ public class Menu extends VBox {
     }
 
     private void onBack() {
-        System.out.println("[Menu]: Start Menu ✔");
+        System.out.println("✔ [Menu]: Start Menu");
         this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster());
         this.soundPlayer.play();
 

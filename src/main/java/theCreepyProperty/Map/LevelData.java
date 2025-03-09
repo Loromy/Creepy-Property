@@ -1,5 +1,7 @@
 package theCreepyProperty.Map;
 
+import theCreepyProperty.checker.ImageCheck;
+
 import java.util.ArrayList;
 
 public class LevelData {
@@ -9,6 +11,7 @@ public class LevelData {
     private ArrayList<LevelDataGhost> ghosts;
 
     public LevelData() {
+        System.out.println(".............................LevelData..............................");
         walls = new ArrayList<>();
         items = new ArrayList<>();
         doors = new ArrayList<>();
@@ -45,7 +48,7 @@ public class LevelData {
             this.y = y;
             this.width = width;
             this.height = height;
-            this.texture = texture;
+            this.texture = new ImageCheck().checkImage("LevelDate",texture);
         }
 
         public int getX() { return x; }
@@ -65,7 +68,7 @@ public class LevelData {
             this.y = y;
             this.width = width;
             this.height = height;
-            this.texture = texture;
+            this.texture = new ImageCheck().checkImage("LevelDate",texture);
         }
 
         public int getX() { return x; }

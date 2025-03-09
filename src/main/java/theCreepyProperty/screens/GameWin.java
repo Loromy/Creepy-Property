@@ -28,6 +28,7 @@ public class GameWin {
     private final Button nextButton;
 
     public GameWin(GUI gui, GameScene gameScene) {
+        System.out.println(".............................GameWin..............................");
         this.gui = gui;
         this.gameScene = gameScene;
         this.levelSelectScene = this.gui.getSelectScene();

@@ -2,6 +2,7 @@ package theCreepyProperty.blocks;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import theCreepyProperty.checker.ImageCheck;
 
 public class Door extends Object {
     private ImageView ivDoor = new ImageView();
@@ -9,6 +10,7 @@ public class Door extends Object {
     private Boolean doorOpen = false;
 
     public Door(int x, int y, int width, int height, String texture) {
+        System.out.println(".............................Door..............................");
         // Parameterwerte setzen und Wand erstellen
         this.positionX = x;
         this.positionY = y;
@@ -27,7 +29,9 @@ public class Door extends Object {
     }
 
     public void openDoor() {
-        this.ivDoor.setImage(new Image("file:src/resources/textures/items/DoorOpen.png"));
+
+
+        this.ivDoor.setImage(new Image(new ImageCheck().checkImage("Door","file:src/resources/textures/items/DoorOpen.png")));
         this.doorOpen = true;
     }
 

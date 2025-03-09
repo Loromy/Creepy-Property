@@ -17,6 +17,7 @@ public class CollisionChecker {
     private int keysToCollect = 0;
 
     public CollisionChecker(GameScene scene) {
+        System.out.println(".............................CollisionChecker..............................");
         this.scene = scene;
         this.mapCreate = scene.getMapCreate();
     }
