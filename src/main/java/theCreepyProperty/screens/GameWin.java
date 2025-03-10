@@ -71,7 +71,7 @@ public class GameWin {
             this.mapSelected = this.levelSelectScene.getMapSelected();
             this.gameScene.getPlayer().stopGhostSound();
 
-            this.levelSelectScene.unlockNextLevel(this.gameScene.getTime_seconds());
+            this.levelSelectScene.setLevelTime(this.gameScene.getTime_seconds());
 
             for(Ghost ghosts: this.gameScene.getMapCreate().getGhostList()) {
                 ghosts.getTimeline().stop();

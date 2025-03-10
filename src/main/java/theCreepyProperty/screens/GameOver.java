@@ -35,7 +35,7 @@ public class GameOver {
         setMap = new SetMap(this.gui);
 
         //overlay
-        this.backgroundGameOver.setStyle("-fx-background-color: rgba(255, 0, 0, 0.7);");
+        this.backgroundGameOver.setStyle("-fx-background-color: rgba(255, 0, 0, 0.3);");
 //        this.backgroundGameOver.setVisible(false);
 //        this.pGameOver.setVisible(false);
 
@@ -51,7 +51,7 @@ public class GameOver {
 
         // Add buttons to the VBox
         this.vBoxGameOver.getChildren().addAll(text, retryButton, backButton);
-        this.vBoxGameOver.setId("background");
+        this.vBoxGameOver.setId("background-over");
         this.pGameOver.getChildren().add(vBoxGameOver);
 
         // Set size and position

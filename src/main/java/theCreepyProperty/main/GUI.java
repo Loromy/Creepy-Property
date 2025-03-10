@@ -92,6 +92,10 @@ public class GUI extends Application {
         stage.setScene(this.finishScene.getScene());
         // Scene zurücksetzen
 //        this.startScene = null;
+        if (this.gameScene != null) {
+            this.gameScene.stopTimer();
+        }
+
         this.gameScene = null;
         this.selectScene = null;
     }

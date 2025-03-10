@@ -26,7 +26,6 @@ public class MapCreate {
     private final ArrayList<Ghost> ghostList = new ArrayList<>();
 
     private int netToCollectKeys = 0;
-    private boolean collision_on = true;
 
     public MapCreate() {
         System.out.println(".............................MapCreate..............................");
@@ -118,9 +117,5 @@ public class MapCreate {
 
     public ArrayList<Ghost> getGhostList() {
         return this.ghostList;
-    }
-
-    public void setCollision_on(boolean value) {
-        this.collision_on = value;
     }
 }

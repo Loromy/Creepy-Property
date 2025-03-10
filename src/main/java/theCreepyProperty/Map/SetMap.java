@@ -29,7 +29,7 @@ public class SetMap {
         this.levelSelectScene.setMapSelected(this.levelSelectScene.getMapSelected()); //todo
 
         int level = this.levelSelectScene.getMapSelected();
-        switch (level) {
+        switch (++level) {
             case 1:
                 this.gui.setFilePath(path1);
                 System.out.println("✔ [SetMap]: 1 selected");

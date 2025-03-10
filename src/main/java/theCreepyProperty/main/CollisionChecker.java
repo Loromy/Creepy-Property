@@ -38,7 +38,7 @@ public class CollisionChecker {
             Rectangle wall = mapCreate.getWallList().get(i).getRWall();
 
             if (futurePlayer.intersects(wall.getBoundsInLocal()) && mapCreate.getWallList().get(i).getPlayer_block_collision()) {
-                player.collision_on = true;
+                player.collision_on = true; //TODO deactivate Collision false
                 return;
             }
         }

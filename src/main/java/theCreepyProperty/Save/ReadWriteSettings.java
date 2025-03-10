@@ -64,34 +64,6 @@ public class ReadWriteSettings {
                 this.guiComponents.triggerAnzeigeRWSettings();
                 break;
 
-            case "overlay":
-                if (value == 0) {
-                    this.gameScene.getPlayer().setOverlay_on(true);
-                    System.out.println("✔ [ReedWriteSettings]: SettingsRead \"overlay\" value: false");
-                }
-                else if (value == 1) {
-                    this.gameScene.getPlayer().setOverlay_on(false);
-                    System.out.println("✔ [ReedWriteSettings]: SettingsRead \"overlay\" value: true ️");
-                }
-                else {
-                    System.err.println("✖ [ReedWriteSettings]: SettingsRead \"overlay\" wrong value: " + value + " does not exist");
-                }
-                break;
-
-            case "collision":
-                if (value == 0) {
-                    this.gameScene.getMapCreate().setCollision_on(true);
-                    System.out.println("✔ [ReedWriteSettings]: SettingsRead \"collision\" value: false");
-                }
-                else if (value == 1) {
-                    this.gameScene.getMapCreate().setCollision_on(false);
-                    System.out.println("✔ [ReedWriteSettings]: SettingsRead \"collision\" value: true");
-                }
-                else {
-                    System.err.println("✖ [ReedWriteSettings]: SettingsRead \"collision\" wrong value: " + value + " does not exist");
-                }
-                break;
-
             case "master":
                 if (value >= 1 && value <= 100) {
                     this.gameScene.getMenu().getSettings().getAudio().setMaster(value);

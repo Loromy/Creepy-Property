@@ -232,7 +232,13 @@
 
 /* Hintergrundfarbe für verschiedene UI-Komponenten */
 #background {
-    -fx-background-color: rgba(3, 59, 1, 0.3);
+    -fx-background-color: rgba(3, 59, 1, 0.5);
+    -fx-background-radius: 15px;
+    -fx-padding: 25px;
+}
+
+#background-over {
+    -fx-background-color: rgba(0, 0, 0, 0.7);
     -fx-background-radius: 15px;
     -fx-padding: 25px;
 }

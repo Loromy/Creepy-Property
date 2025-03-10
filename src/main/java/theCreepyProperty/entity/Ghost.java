@@ -14,7 +14,7 @@ public class Ghost extends Entity{
     private final GUI gui;
     private double speed = 0; // speed if strg pressed
     private final ImageView i_ghost = new ImageView();
-    private SoundPlayer soundPlayer;
+    //TODO ??brauch ich das noch?? private SoundPlayer soundPlayer;
 
     private Timeline timeline;
 
@@ -30,9 +30,6 @@ public class Ghost extends Entity{
         this.entity_world_Y = y;
         this.entity_size_X = width;
         this.entity_size_Y = height;
-
-//        this.i_ghost.setX(x);
-//        this.i_ghost.setY(y);
 
         this.solid_aria = new Rectangle();
         this.solid_aria.setVisible(false); //Collision Block of Ghost anzeigen
@@ -52,7 +49,7 @@ public class Ghost extends Entity{
 
         this.timeline = new Timeline(new KeyFrame(Duration.millis(16), e -> moveRectangle(this.solid_aria)));
         this.timeline.setCycleCount(Timeline.INDEFINITE);
-        this.timeline.play();
+        this.timeline.play(); //todo Ghosts stop Moving
     }
 
     public void createGhostImage() {

@@ -461,9 +461,9 @@ public class LevelSelectScene {
         levelCompleted();
     }
 
-    public void unlockNextLevel(double time) {
-        int nextMap = this.mapSelected;
-        if(++nextMap <= 10) {
+    public void setLevelTime(double time) {
+        int nextMap = this.mapSelected + 1;
+        if(nextMap <= 10) {
             this.thisLevelTime = time;
 
             switch (this.mapSelected) {
@@ -520,8 +520,8 @@ public class LevelSelectScene {
             }
 
             setLevelCompleted(this.mapSelected, true);
-            if (++this.mapSelected < 10) {
-                setLevelUnlocked(++this.mapSelected, true);
+            if (++nextMap < 10) {
+                setLevelUnlocked(--nextMap, true);
             }
         }
     }

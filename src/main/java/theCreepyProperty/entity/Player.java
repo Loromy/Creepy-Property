@@ -16,7 +16,6 @@ public class Player extends Entity{
     private final ImageView i_darkness_overlay = new ImageView();
     private final SoundPlayer soundPlayer = new SoundPlayer("src/resources/sounds/heartbeat.wav");
 
-    private boolean overlay_on = true;
     private boolean ghostSoundIsPlaying = false;
 
     public Player(GUI gui)  {
@@ -93,7 +92,7 @@ public class Player extends Entity{
 
     public ImageView loadOverlay() {
         this.i_darkness_overlay.setImage(darknessOverlay);
-        //this.i_darkness_overlay.setImage(null);
+        //this.i_darkness_overlay.setImage(null); //TODO Overlay ausblenden
         return i_darkness_overlay;
     }
 
@@ -157,10 +156,6 @@ public class Player extends Entity{
 
     public void setShiftSpeed() {
         this.controlSpeed = (this.speed - 2) * (-1);
-    }
-
-    public void setOverlay_on(boolean value) {
-        this.overlay_on = value;
     }
 
     public void setDirection(String direction) {

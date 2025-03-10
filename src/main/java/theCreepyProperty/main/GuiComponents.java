@@ -132,11 +132,11 @@ public class GuiComponents {
     public void triggerAnzeigeRWSettings() {
         if (!anzeige_on) {
             this.vBox_anzeige.setVisible(true);
-            gameScene.getMenu().getSettings().getButton2().setText("Anzeige [ON]");
+            gameScene.getMenu().getSettings().getB_Anzeige().setText("Anzeige [ON]");
             this.anzeige_on = true;
         } else {
             this.vBox_anzeige.setVisible(false);
-            gameScene.getMenu().getSettings().getButton2().setText("Anzeige [OFF]");
+            gameScene.getMenu().getSettings().getB_Anzeige().setText("Anzeige [OFF]");
             this.anzeige_on = false;
         }
     }
@@ -144,12 +144,12 @@ public class GuiComponents {
     public void triggerAnzeige(ReadWriteSettings readWriteSettings) {
         if (!anzeige_on) {
             this.vBox_anzeige.setVisible(true);
-            gameScene.getMenu().getSettings().getButton2().setText("Anzeige [ON]");
+            gameScene.getMenu().getSettings().getB_Anzeige().setText("Anzeige [ON]");
             readWriteSettings.updateSetting("anzeige", 1);
             this.anzeige_on = true;
         } else {
             this.vBox_anzeige.setVisible(false);
-            gameScene.getMenu().getSettings().getButton2().setText("Anzeige [OFF]");
+            gameScene.getMenu().getSettings().getB_Anzeige().setText("Anzeige [OFF]");
             readWriteSettings.updateSetting("anzeige", 0);
             this.anzeige_on = false;
         }
