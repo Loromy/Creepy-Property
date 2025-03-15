@@ -38,10 +38,10 @@ public class Ghost extends Entity{
         this.solid_aria.setWidth(entity_size_X);
         this.solid_aria.setHeight(entity_size_Y);
 
-        this.i_ghost.xProperty().bind(solid_aria.xProperty());
-        this.i_ghost.yProperty().bind(solid_aria.yProperty());
-        this.i_ghost.fitWidthProperty().bind(solid_aria.widthProperty());
-        this.i_ghost.fitHeightProperty().bind(solid_aria.heightProperty());
+        this.i_ghost.xProperty().bind(solid_aria.xProperty().subtract(6));
+        this.i_ghost.yProperty().bind(solid_aria.yProperty().subtract(2));
+        this.i_ghost.fitWidthProperty().bind(solid_aria.widthProperty().add(12));
+        this.i_ghost.fitHeightProperty().bind(solid_aria.heightProperty().add(3));
 
         createGhostImage();
 
@@ -49,7 +49,7 @@ public class Ghost extends Entity{
 
         this.timeline = new Timeline(new KeyFrame(Duration.millis(16), e -> moveRectangle(this.solid_aria)));
         this.timeline.setCycleCount(Timeline.INDEFINITE);
-        this.timeline.play(); //todo Ghosts stop Moving
+        //this.timeline.play(); //todo Ghosts stop Moving
     }
 
     public void createGhostImage() {
@@ -150,8 +150,8 @@ public class Ghost extends Entity{
     }
 
     public void setDefaultValues() {
-        entity_size_X = 32;
-        entity_size_Y = 32;
+        entity_size_X = 20;
+        entity_size_Y = 29;
         entity_world_X = -100;
         entity_world_Y = -100;
         speed = 1;

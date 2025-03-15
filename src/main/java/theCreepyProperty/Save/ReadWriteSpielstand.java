@@ -30,28 +30,30 @@ public class ReadWriteSpielstand {
                 }
 
                 String[] parts = line.split(",");
-                if (parts.length < 4) continue;
+                if (parts.length < 5) continue;
 
                 int level = Integer.parseInt(parts[0].trim());
                 boolean unlocked = Boolean.parseBoolean(parts[1].trim());
                 boolean completed = Boolean.parseBoolean(parts[2].trim());
                 double time = Double.parseDouble(parts[3].trim());
+                int deaths = Integer.parseInt(parts[4].trim());
 
-                settingsMap.put(level, new Setting(unlocked, completed, time));
-                setSpielstand(level, unlocked, completed, time);
+                settingsMap.put(level, new Setting(unlocked, completed, time, deaths));
+                setSpielstand(level, unlocked, completed, time, deaths);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void setSpielstand(int level, boolean unlocked, boolean completed, double time) {
+    public void setSpielstand(int level, boolean unlocked, boolean completed, double time, int deaths) {
         this.levelSelectScene.setLevelCompleted(level, completed);
         this.levelSelectScene.setLevelUnlocked(level, unlocked);
         this.levelSelectScene.setLevelTime(level, time);
+        this.levelSelectScene.setLevelDeaths(level, deaths); // Neue Methode für Todeszahlen
     }
 
-    public void updateSpielstand(int level, boolean unlocked, boolean completed, double time) {
+    public void updateSpielstand(int level, boolean unlocked, boolean completed, double time, int deaths) {
         Map<Integer, Setting> tempSettingsMap = new HashMap<>();
 
         // Datei einlesen und vorhandene Werte speichern
@@ -66,28 +68,30 @@ public class ReadWriteSpielstand {
                 }
 
                 String[] parts = line.split(",");
-                if (parts.length < 4) continue;
+                if (parts.length < 5) continue;
 
                 int lvl = Integer.parseInt(parts[0].trim());
                 boolean isUnlocked = Boolean.parseBoolean(parts[1].trim());
                 boolean isCompleted = Boolean.parseBoolean(parts[2].trim());
                 double savedTime = Double.parseDouble(parts[3].trim());
+                int savedDeaths = Integer.parseInt(parts[4].trim());
 
-                tempSettingsMap.put(lvl, new Setting(isUnlocked, isCompleted, savedTime));
+                tempSettingsMap.put(lvl, new Setting(isUnlocked, isCompleted, savedTime, savedDeaths));
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         // Neuen Wert setzen
-        tempSettingsMap.put(level, new Setting(unlocked, completed, time));
+        tempSettingsMap.put(level, new Setting(unlocked, completed, time, deaths));
 
         // Datei mit aktualisierten Werten überschreiben
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
-            bw.write("Level,unlocked,completed,time"); // Header beibehalten
+            bw.write("Level,unlocked,completed,time,deaths"); // Header beibehalten
 
             for (Map.Entry<Integer, Setting> entry : tempSettingsMap.entrySet()) {
-                bw.write("\n" + entry.getKey() + "," + entry.getValue().unlocked + "," + entry.getValue().completed + "," + entry.getValue().time);
+                bw.write("\n" + entry.getKey() + "," + entry.getValue().unlocked + "," + entry.getValue().completed + ","
+                        + entry.getValue().time + "," + entry.getValue().deaths);
             }
 
             System.out.println("✔ [ReadWriteSpielstand]: Einstellung für Level " + level + " aktualisiert");
@@ -100,11 +104,13 @@ public class ReadWriteSpielstand {
         boolean unlocked;
         boolean completed;
         double time;
+        int deaths;
 
-        public Setting(boolean unlocked, boolean completed, double time) {
+        public Setting(boolean unlocked, boolean completed, double time, int deaths) {
             this.unlocked = unlocked;
             this.completed = completed;
             this.time = time;
+            this.deaths = deaths;
         }
     }
 
@@ -124,5 +130,4 @@ public class ReadWriteSpielstand {
         System.gc();
         System.out.println("✔ [ReadWriteSpielstand]: Speicherbereinigung durchgeführt.");
     }
-
 }

@@ -58,7 +58,19 @@ public class LevelSelectScene {
     private double level8Time = 0.0;
     private double level9Time = 0.0;
 
-    private int volume = 50;
+    private int thisLevelDeaths = 0;
+    private int level0Deaths = 0;
+    private int level1Deaths = 0;
+    private int level2Deaths = 0;
+    private int level3Deaths = 0;
+    private int level4Deaths = 0;
+    private int level5Deaths = 0;
+    private int level6Deaths = 0;
+    private int level7Deaths = 0;
+    private int level8Deaths = 0;
+    private int level9Deaths = 0;
+
+    private int volume = 50; //todo aus datei lesen
 
     public LevelSelectScene(GUI gui) {
         System.out.println(".............................LevelSelectScene..............................");
@@ -253,11 +265,9 @@ public class LevelSelectScene {
             this.levelMenu.getLevelTime().setText("Highscore: --:--:--:--");
             this.levelMenu.getLevel().setText("Level: -");
 
-            this.gui.switchToGameScene();
+            this.levelMenu.selectButton(null);
 
-//            if (this.mapSelected == 0) {
-//                this.gui.getGameScene().getTutorialMapInfo().trigger();
-//            }todo
+            this.gui.switchToGameScene();
         });
         levelMenu.getBackButton().setOnAction(e -> {
             System.out.println("✔ [LevelSelectScene]: Start Menu");
@@ -277,8 +287,8 @@ public class LevelSelectScene {
         int milliseconds = (int) ((time_seconds * 100) % 100); // Millisekunden berechnen
 
         // Formatierte Zeit als HH:MM:SS.mm anzeigen
-        String formattedTime = String.format("%02d : %02d : %02d : %02d", hours, minutes, seconds, milliseconds);
-        this.levelMenu.getLevelTime().setText("Highscore: " + formattedTime);
+        String formattedTime = String.format("%02dh : %02dm : %02ds : %02dms", hours, minutes, seconds, milliseconds);
+        this.levelMenu.getLevelTime().setText("Highscore: " + formattedTime + " || " + this.getLevelDeaths(level) + " : Deaths");
         this.levelMenu.getLevel().setText("Level: " + level);
         if(level == 0) {
             this.levelMenu.getLevel().setText("Level: Tutorial");
@@ -347,59 +357,61 @@ public class LevelSelectScene {
 
     public void levelCompleted() {
         if (levelTutorialCompleted) {
-            this.readWriteSpielstand.updateSpielstand(0, true, true, this.level0Time);
+            System.out.println("levelCompleted: " + this.levelTutorialCompleted + " deaths: " + this.level0Deaths);
+            this.readWriteSpielstand.updateSpielstand(0, true, true, this.level0Time, this.level0Deaths);
             this.levelMenu.getbTutorial().setStyle("-fx-text-fill: #6b5727;");
             this.levelMenu.getbTutorial().setText("Tutorial");
         }
         if (level1Completed) {
-            this.readWriteSpielstand.updateSpielstand(1, true, true, this.level1Time);
+            this.readWriteSpielstand.updateSpielstand(1, true, true, this.level1Time, this.level1Deaths);
             this.levelMenu.getbL1().setStyle("-fx-text-fill: #10540a;");
             this.levelMenu.getbL1().setText("Level 1 ✔");
         }
         if (level2Completed) {
-            this.readWriteSpielstand.updateSpielstand(2, true, true, this.level2Time);
+            this.readWriteSpielstand.updateSpielstand(2, true, true, this.level2Time, this.level2Deaths);
             this.levelMenu.getbL2().setStyle("-fx-text-fill: #10540a;");
             this.levelMenu.getbL2().setText("Level 2 ✔");
         }
         if (level3Completed) {
-            this.readWriteSpielstand.updateSpielstand(3, true, true, this.level3Time);
+            this.readWriteSpielstand.updateSpielstand(3, true, true, this.level3Time, this.level3Deaths);
             this.levelMenu.getbL3().setStyle("-fx-text-fill: #10540a;");
             this.levelMenu.getbL3().setText("Level 3 ✔");
         }
         if (level4Completed) {
-            this.readWriteSpielstand.updateSpielstand(4, true, true, this.level4Time);
+            this.readWriteSpielstand.updateSpielstand(4, true, true, this.level4Time, this.level4Deaths);
             this.levelMenu.getbL4().setStyle("-fx-text-fill: #10540a;");
             this.levelMenu.getbL4().setText("Level 4 ✔");
         }
         if (level5Completed) {
-            this.readWriteSpielstand.updateSpielstand(5, true, true, this.level5Time);
+            this.readWriteSpielstand.updateSpielstand(5, true, true, this.level5Time, this.level5Deaths);
             this.levelMenu.getbL5().setStyle("-fx-text-fill: #10540a;");
             this.levelMenu.getbL5().setText("Level 5 ✔");
         }
         if (level6Completed) {
-            this.readWriteSpielstand.updateSpielstand(6, true, true, this.level6Time);
+            this.readWriteSpielstand.updateSpielstand(6, true, true, this.level6Time, this.level6Deaths);
             this.levelMenu.getbL6().setStyle("-fx-text-fill: #10540a;");
             this.levelMenu.getbL6().setText("Level 6 ✔");
         }
         if (level7Completed) {
-            this.readWriteSpielstand.updateSpielstand(7, true, true, this.level7Time);
+            this.readWriteSpielstand.updateSpielstand(7, true, true, this.level7Time, this.level7Deaths);
             this.levelMenu.getbL7().setStyle("-fx-text-fill: #10540a;");
             this.levelMenu.getbL7().setText("Level 7 ✔");
         }
         if (level8Completed) {
-            this.readWriteSpielstand.updateSpielstand(8, true, true, this.level8Time);
+            this.readWriteSpielstand.updateSpielstand(8, true, true, this.level8Time, this.level8Deaths);
             this.levelMenu.getbL8().setStyle("-fx-text-fill: #10540a;");
             this.levelMenu.getbL8().setText("Level 8 ✔");
         }
         if (level9Completed) {
-            this.readWriteSpielstand.updateSpielstand(9, true, true, this.level9Time);
+            this.readWriteSpielstand.updateSpielstand(9, true, true, this.level9Time, this.level9Deaths);
             this.levelMenu.getbL9().setStyle("-fx-text-fill: #10540a;");
             this.levelMenu.getbL9().setText("Level 9 ✔");
         }
 
         // TODO Test
-        //outputCU();
+        // outputCU();
     }
+
 
     private void outputCU() {
         System.out.println("\n[LevelSelectScene]: outputCU");
@@ -420,56 +432,58 @@ public class LevelSelectScene {
     public void unlockLevel() {
         if (levelTutorialUnlocked) {
             levelMenu.getbTutorial().setDisable(false);
-            this.readWriteSpielstand.updateSpielstand(0,true,false,this.level0Time);
+            this.readWriteSpielstand.updateSpielstand(0, true, false, this.level0Time, this.level0Deaths);
         }
         if (level1Unlocked) {
             levelMenu.getbL1().setDisable(false);
-            this.readWriteSpielstand.updateSpielstand(1,true,false,this.level1Time);
+            this.readWriteSpielstand.updateSpielstand(1, true, false, this.level1Time, this.level1Deaths);
         }
         if (level2Unlocked) {
             levelMenu.getbL2().setDisable(false);
-            this.readWriteSpielstand.updateSpielstand(2,true,false,this.level2Time);
+            this.readWriteSpielstand.updateSpielstand(2, true, false, this.level2Time, this.level2Deaths);
         }
         if (level3Unlocked) {
             levelMenu.getbL3().setDisable(false);
-            this.readWriteSpielstand.updateSpielstand(3,true,false,this.level3Time);
+            this.readWriteSpielstand.updateSpielstand(3, true, false, this.level3Time, this.level3Deaths);
         }
         if (level4Unlocked) {
             levelMenu.getbL4().setDisable(false);
-            this.readWriteSpielstand.updateSpielstand(4,true,false,this.level4Time);
+            this.readWriteSpielstand.updateSpielstand(4, true, false, this.level4Time, this.level4Deaths);
         }
         if (level5Unlocked) {
             levelMenu.getbL5().setDisable(false);
-            this.readWriteSpielstand.updateSpielstand(5,true,false,this.level5Time);
+            this.readWriteSpielstand.updateSpielstand(5, true, false, this.level5Time, this.level5Deaths);
         }
         if (level6Unlocked) {
             levelMenu.getbL6().setDisable(false);
-            this.readWriteSpielstand.updateSpielstand(6,true,false,this.level6Time);
+            this.readWriteSpielstand.updateSpielstand(6, true, false, this.level6Time, this.level6Deaths);
         }
         if (level7Unlocked) {
             levelMenu.getbL7().setDisable(false);
-            this.readWriteSpielstand.updateSpielstand(7,true,false,this.level7Time);
+            this.readWriteSpielstand.updateSpielstand(7, true, false, this.level7Time, this.level7Deaths);
         }
         if (level8Unlocked) {
             levelMenu.getbL8().setDisable(false);
-            this.readWriteSpielstand.updateSpielstand(8,true,false,this.level8Time);
+            this.readWriteSpielstand.updateSpielstand(8, true, false, this.level8Time, this.level8Deaths);
         }
         if (level9Unlocked) {
             levelMenu.getbL9().setDisable(false);
-            this.readWriteSpielstand.updateSpielstand(9,true,false,this.level9Time);
+            this.readWriteSpielstand.updateSpielstand(9, true, false, this.level9Time, this.level9Deaths);
         }
         levelCompleted();
     }
 
-    public void setLevelTime(double time) {
+
+    public void setThisLevelTime(double time) {
         int nextMap = this.mapSelected + 1;
-        if(nextMap <= 10) {
+//        if(nextMap <= 10) {
             this.thisLevelTime = time;
 
             switch (this.mapSelected) {
                 case 0:
                     if (this.thisLevelTime < level0Time || level0Time == 0.0) {
                         setLevelTime(this.mapSelected, this.thisLevelTime);
+                        setLevelDeaths(this.mapSelected, this.thisLevelDeaths);
                     }
                     break;
                 case 1:
@@ -520,10 +534,10 @@ public class LevelSelectScene {
             }
 
             setLevelCompleted(this.mapSelected, true);
-            if (++nextMap < 10) {
-                setLevelUnlocked(--nextMap, true);
+            if (nextMap < 10) {
+                setLevelUnlocked(nextMap, true);
             }
-        }
+        //}
     }
 
 
@@ -561,12 +575,12 @@ public class LevelSelectScene {
                 break;
             case 9:
                 this.level9Completed = completed;
-                levelCompleted();
                 break;
             default:
                 System.err.println("✖ [LevelSelectScene]: setLevelCompleted level: " + level + " does not exist");
                 break;
         }
+        levelCompleted();
     }
 
     public void setLevelUnlocked(int level, boolean unlocked) {
@@ -610,7 +624,7 @@ public class LevelSelectScene {
         }
     }
 
-    public void setLevelTime(int level,double time) {
+    public void setLevelTime(int level, double time) {
         switch (level) {
             case 0:
                 this.level0Time = time;
@@ -644,6 +658,44 @@ public class LevelSelectScene {
                 break;
             default:
                 System.err.println("✖ [LevelSelectScene]: setLevelTime level: " + level + " does not exist");
+                break;
+        }
+    }
+
+    public void setLevelDeaths(int level, int deaths) {
+        switch (level) {
+            case 0:
+                this.level0Deaths = deaths;
+                break;
+            case 1:
+                this.level1Deaths = deaths;
+                break;
+            case 2:
+                this.level2Deaths = deaths;
+                break;
+            case 3:
+                this.level3Deaths = deaths;
+                break;
+            case 4:
+                this.level4Deaths = deaths;
+                break;
+            case 5:
+                this.level5Deaths = deaths;
+                break;
+            case 6:
+                this.level6Deaths = deaths;
+                break;
+            case 7:
+                this.level7Deaths = deaths;
+                break;
+            case 8:
+                this.level8Deaths = deaths;
+                break;
+            case 9:
+                this.level9Deaths = deaths;
+                break;
+            default:
+                System.err.println("✖ [LevelSelectScene]: setLevelDeaths level: " + level + " does not exist");
                 break;
         }
     }
@@ -731,9 +783,52 @@ public class LevelSelectScene {
         return thisLevel;
     }
 
+    public int getLevelDeaths(int level) {
+        int thisLevel = 0;
+
+        switch (level) {
+            case 0:
+                thisLevel = this.level0Deaths;
+                break;
+            case 1:
+                thisLevel = this.level1Deaths;
+                break;
+            case 2:
+                thisLevel = this.level2Deaths;
+                break;
+            case 3:
+                thisLevel = this.level3Deaths;
+                break;
+            case 4:
+                thisLevel = this.level4Deaths;
+                break;
+            case 5:
+                thisLevel = this.level5Deaths;
+                break;
+            case 6:
+                thisLevel = this.level6Deaths;
+                break;
+            case 7:
+                thisLevel = this.level7Deaths;
+                break;
+            case 8:
+                thisLevel = this.level8Deaths;
+                break;
+            case 9:
+                thisLevel = this.level9Deaths;
+                break;
+            default:
+                System.err.println("✖ [LevelSelectScene]: getLevelCompleted Invalid value: " + level);
+                break;
+        }
+        return thisLevel;
+    }
+
+
     public LevelSelect getLevelMenu() {
         return levelMenu;
     }
+
 
     public Scene getScene() {
         return this.levelSelectScene;
@@ -745,6 +840,14 @@ public class LevelSelectScene {
 
     public double getTimePlaying() {
         return this.timePlaying;
+    }
+
+    public double getThisLevelTime() {
+        return this.thisLevelTime;
+    }
+
+    public int getThisLevelDeaths() {
+        return this.thisLevelDeaths;
     }
 
     // Setter
@@ -762,5 +865,13 @@ public class LevelSelectScene {
 
     public void setTimePlaying(double time) {
         this.timePlaying = time;
+    }
+
+    public void setThisLevelDeaths(int deaths) {
+        this.thisLevelDeaths = deaths;
+    }
+
+    public void setThisLevelDeathsPlusOne() {
+        this.thisLevelDeaths++;
     }
 }

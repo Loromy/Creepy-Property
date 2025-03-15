@@ -84,12 +84,10 @@ public class LevelSelect {
         this.bL7.setText("Level 7");
         this.bL8.setText("Level 8");
         this.bL9.setText("Level 9");
-        this.levelTime.setText("Highscore: -- : -- : -- : --");
+        this.levelTime.setText("Highscore: --h : --m : --s : --ms || - : Deaths");
         this.levelTime.setId("text");
         this.startButton.setText("Play");
-        //this.startButton.setStyle("-fx-pref-width: 200px; -fx-min-width: 200px;");
         this.backButton.setText("Back");
-        //this.backButton.setStyle("-fx-pref-width: 200px; -fx-min-width: 200px;");
 
         // disable
         this.bL1.setDisable(true);
@@ -165,6 +163,20 @@ public class LevelSelect {
     }
 
     public void selectButton(Button buttonToSelect) {
+        if (buttonToSelect != null) {
+            resetButtonId();
+
+            if (buttonToSelect == bTutorial) {
+                buttonToSelect.setId("tutorial-button_selected");
+            } else {
+                buttonToSelect.setId("selected-button");
+            }
+        } else {
+            resetButtonId();
+        }
+    }
+
+    private void resetButtonId() {
         this.bTutorial.setId("tutorial-button");
         this.bL1.setId("");
         this.bL2.setId("");
@@ -175,12 +187,6 @@ public class LevelSelect {
         this.bL7.setId("");
         this.bL8.setId("");
         this.bL9.setId("");
-
-        if (buttonToSelect == bTutorial) {
-            buttonToSelect.setId("tutorial-button_selected");
-        } else {
-            buttonToSelect.setId("selected-button");
-        }
     }
 
     // Getter Methoden

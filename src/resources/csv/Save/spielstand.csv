@@ -1,5 +1,6 @@
-Level,unlocked,completed,time
-0,true,true,4.579999999999947
-1,true,true,72.80000000000034
-2,true,false,0.0
-9,true,false,0.0
+Level,unlocked,completed,time,deaths
+0,true,true,2.3299999999999943,1
+1,true,true,4.519999999999948,0
+2,true,true,5.189999999999934,0
+3,true,true,6.3299999999999095,0
+4,true,false,0.0,0

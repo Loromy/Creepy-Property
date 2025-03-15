@@ -24,6 +24,7 @@ public class GameWin {
     private int mapSelected = 0;
 
     private Label text;
+    private Label time;
     private Button backButton;
     private Button nextButton;
 
@@ -41,6 +42,9 @@ public class GameWin {
         this.text = new Label("Congratulations");
         this.text.setId("game-win-text");
 
+        this.time = new Label("Time: --h : --m : --s : --ms || - : Deaths");
+        this.time.setId("game-win-text-small");
+
         this.backButton = new Button("Back");
         this.backButton.setId("game-win");
 
@@ -48,7 +52,7 @@ public class GameWin {
         this.nextButton.setId("game-win");
 
         // Add buttons to the VBox
-        this.vBoxGameWin.getChildren().addAll(text, nextButton, backButton);
+        this.vBoxGameWin.getChildren().addAll(text, time, nextButton, backButton);
         this.vBoxGameWin.setId("background");
         this.pGameWin.getChildren().add(vBoxGameWin);
 
@@ -71,7 +75,9 @@ public class GameWin {
             this.mapSelected = this.levelSelectScene.getMapSelected();
             this.gameScene.getPlayer().stopGhostSound();
 
-            this.levelSelectScene.setLevelTime(this.gameScene.getTime_seconds());
+            this.levelSelectScene.setThisLevelTime(this.gameScene.getTime_seconds());
+
+            showThisTime();
 
             for(Ghost ghosts: this.gameScene.getMapCreate().getGhostList()) {
                 ghosts.getTimeline().stop();
@@ -88,6 +94,19 @@ public class GameWin {
         }
     }
 
+    private void showThisTime() {
+        double time_seconds = this.levelSelectScene.getThisLevelTime();
+        // Berechnung der Zeitkomponenten
+        int hours = (int) (time_seconds / 3600);
+        int minutes = (int) ((time_seconds % 3600) / 60);
+        int seconds = (int) (time_seconds % 60);
+        int milliseconds = (int) ((time_seconds * 100) % 100); // Millisekunden berechnen
+
+        // Formatierte Zeit als HH:MM:SS.mm anzeigen
+        String formattedTime = String.format("%02dh : %02dm : %02ds : %02dms", hours, minutes, seconds, milliseconds);
+        this.time.setText("Time: " + formattedTime + " || " + this.levelSelectScene.getThisLevelDeaths() + " : Deaths");
+    }
+
     private void setGameWinPosition(double width, double height, int spacing) {
         this.vBoxGameWin.setPrefSize(width,height);
         this.vBoxGameWin.setLayoutX((gui.getWidth() - width) / 2);
@@ -99,14 +118,15 @@ public class GameWin {
     private void onBack() {
         System.out.println("✔ [Game Win]: Back");
         this.gameScene.stopBackgroundMusic();
-        this.gui.switchToLevelSelectScene();
         this.levelSelectScene.getLevelMenu().getStartButton().setDisable(true);
+        this.gui.switchToLevelSelectScene();
     }
 
     private void onNext() {
         this.gameScene.stopBackgroundMusic();
 
         this.levelSelectScene.setTimePlaying(0);
+        this.levelSelectScene.setThisLevelDeaths(0);
 
         int map = this.mapSelected;
         if (++map > 9) {

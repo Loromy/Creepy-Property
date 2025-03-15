@@ -29,6 +29,7 @@ public class Player extends Entity{
         this.solid_aria.setWidth(entity_size_X);
         this.solid_aria.setHeight(entity_size_Y);
 
+        // player Image auf 48x48px zoom und collision rechteck mittig-unten
         this.i_player.xProperty().bind(solid_aria.xProperty().subtract(18));
         this.i_player.yProperty().bind(solid_aria.yProperty().subtract(20));
         this.i_player.fitWidthProperty().bind(solid_aria.widthProperty().add(36));
@@ -91,8 +92,8 @@ public class Player extends Entity{
     }
 
     public ImageView loadOverlay() {
-        this.i_darkness_overlay.setImage(darknessOverlay);
-        //this.i_darkness_overlay.setImage(null); //TODO Overlay ausblenden
+        //this.i_darkness_overlay.setImage(darknessOverlay);
+        this.i_darkness_overlay.setImage(null); //TODO Overlay ausblenden
         return i_darkness_overlay;
     }
 

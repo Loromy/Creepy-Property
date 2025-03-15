@@ -66,8 +66,6 @@ public class GameOver {
 
     public void triggerGameOver(){
         if (!gameOver_on) {
-//            this.backgroundGameOver.setVisible(true);
-//            this.pGameOver.setVisible(true);
             this.gameScene.getPGameOver().setVisible(true);
             this.gameScene.setBlur(15); //Menu blur
             this.gameOver_on = true;
@@ -75,12 +73,12 @@ public class GameOver {
             this.mapSelected = this.levelSelectScene.getMapSelected();
             this.gameScene.getPlayer().stopGhostSound();
 
+            this.levelSelectScene.setThisLevelDeathsPlusOne();
+
             for(Ghost ghosts: this.gameScene.getMapCreate().getGhostList()) {
                 ghosts.getTimeline().stop();
             }
         } else {
-//            this.backgroundGameOver.setVisible(false);
-//            this.pGameOver.setVisible(false);
             this.gameScene.getPGameOver().setVisible(false);
             this.gameScene.setBlur(0); //Menu blur
             this.gameOver_on = false;
