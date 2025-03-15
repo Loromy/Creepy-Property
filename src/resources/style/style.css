@@ -233,7 +233,7 @@
 
 #info {
     -fx-font-size: 15px;
-    -fx-text-fill: white;
+    -fx-text-fill: gray;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.9), 2, 0.2, 2, 2);
 }
 

@@ -1,5 +1,6 @@
 package theCreepyProperty.entity;
 
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import theCreepyProperty.checker.ImageCheck;
 import theCreepyProperty.main.GUI;
@@ -22,23 +23,24 @@ public class Player extends Entity{
         System.out.println(".............................Player..............................");
         this.gui = gui;
         setDefaultValues();
-        this.solid_aria = new Rectangle();
-        this.solid_aria.setVisible(false); //Collision Block of player anzeigen
-        this.solid_aria.setX(entity_world_X);
-        this.solid_aria.setY(entity_world_Y);
-        this.solid_aria.setWidth(entity_size_X);
-        this.solid_aria.setHeight(entity_size_Y);
+        this.solid_area = new Rectangle();
+        this.solid_area.setFill(Color.MAGENTA);
+        this.solid_area.setVisible(false);
+        this.solid_area.setX(entity_world_X);
+        this.solid_area.setY(entity_world_Y);
+        this.solid_area.setWidth(entity_size_X);
+        this.solid_area.setHeight(entity_size_Y);
 
         // player Image auf 48x48px zoom und collision rechteck mittig-unten
-        this.i_player.xProperty().bind(solid_aria.xProperty().subtract(18));
-        this.i_player.yProperty().bind(solid_aria.yProperty().subtract(20));
-        this.i_player.fitWidthProperty().bind(solid_aria.widthProperty().add(36));
-        this.i_player.fitHeightProperty().bind(solid_aria.heightProperty().add(20));
+        this.i_player.xProperty().bind(solid_area.xProperty().subtract(18));
+        this.i_player.yProperty().bind(solid_area.yProperty().subtract(20));
+        this.i_player.fitWidthProperty().bind(solid_area.widthProperty().add(36));
+        this.i_player.fitHeightProperty().bind(solid_area.heightProperty().add(20));
 
-        this.i_darkness_overlay.xProperty().bind(solid_aria.xProperty().subtract(1000));
-        this.i_darkness_overlay.yProperty().bind(solid_aria.yProperty().subtract(610));
-        this.i_darkness_overlay.fitWidthProperty().bind(solid_aria.widthProperty().add(2000));
-        this.i_darkness_overlay.fitHeightProperty().bind(solid_aria.heightProperty().add(1200));
+        this.i_darkness_overlay.xProperty().bind(solid_area.xProperty().subtract(1000));
+        this.i_darkness_overlay.yProperty().bind(solid_area.yProperty().subtract(610));
+        this.i_darkness_overlay.fitWidthProperty().bind(solid_area.widthProperty().add(2000));
+        this.i_darkness_overlay.fitHeightProperty().bind(solid_area.heightProperty().add(1200));
 
         createPlayerImage();
     }
@@ -61,7 +63,7 @@ public class Player extends Entity{
         right3 = loadImage("file:src/resources/textures/player/right_3.png");
         right4 = loadImage("file:src/resources/textures/player/right_4.png");
 
-        darknessOverlay = loadImage("file:src/resources/textures/overlay/darknessOverlay.png");
+        overlay = loadImage("file:src/resources/textures/overlay/darknessOverlay.png");
 
         System.out.println("✔ [Player]: Image Player images successfully loaded");
     }
@@ -92,8 +94,8 @@ public class Player extends Entity{
     }
 
     public ImageView loadOverlay() {
-        //this.i_darkness_overlay.setImage(darknessOverlay);
-        this.i_darkness_overlay.setImage(null); //TODO Overlay ausblenden
+        this.i_darkness_overlay.setImage(overlay);
+        //this.i_darkness_overlay.setImage(null); //TODO Overlay ausblenden
         return i_darkness_overlay;
     }
 
@@ -109,8 +111,17 @@ public class Player extends Entity{
 
     // play sound if Ghost in 120px distance
     public void checkForNearbyGhosts(ArrayList<Ghost> ghosts) {
+        // Berechne den Mittelpunkt der Entity (angenommen, Entity hat eine Breite und Höhe)
+        double entityCenterX = this.entity_world_X + this.entity_size_X / 2;
+        double entityCenterY = this.entity_world_Y + this.entity_size_Y / 2;
+
         for (Ghost ghost : ghosts) {
-            double distance = Math.sqrt(Math.pow(ghost.getSolidAria().getX() - this.entity_world_X, 2) + Math.pow(ghost.getSolidAria().getY() - this.entity_world_Y, 2));
+            // Berechne den Mittelpunkt des Geistes (angenommen, Ghost hat eine Breite und Höhe)
+            double ghostCenterX = ghost.getSolidAria().getX() + ghost.getSolidAria().getWidth() / 2;
+            double ghostCenterY = ghost.getSolidAria().getY() + ghost.getSolidAria().getHeight() / 2;
+
+            // Berechne die Distanz zwischen den Mittelpunkten
+            double distance = Math.sqrt(Math.pow(ghostCenterX - entityCenterX, 2) + Math.pow(ghostCenterY - entityCenterY, 2));
 
             if (distance <= 120) {
                 playGhostSound();
@@ -118,6 +129,7 @@ public class Player extends Entity{
             }
         }
     }
+
 
     private void playGhostSound() {
         if (!this.ghostSoundIsPlaying && !this.gui.getGameScene().getMenu().getMenu_on() && !this.gui.getGameScene().getGameWin().getGameWin_On() && !this.gui.getGameScene().getGameOver().getGameOver_On()) {
@@ -143,12 +155,12 @@ public class Player extends Entity{
 
     public void setPlayer_world_X(double player_world_X){
         this.entity_world_X = player_world_X;
-        this.solid_aria.setX(player_world_X);
+        this.solid_area.setX(player_world_X);
     }
 
     public void setPlayer_world_Y(double player_world_Y){
         this.entity_world_Y = player_world_Y;
-        this.solid_aria.setY(player_world_Y);
+        this.solid_area.setY(player_world_Y);
     }
 
     public void setControlSpeed(double speed) {
@@ -174,6 +186,16 @@ public class Player extends Entity{
         System.out.println("✔ [Player]: Player defaultValues set");
     }
 
+    public void showCollisionBox(boolean show) {
+        if (show) {
+            this.solid_area.setVisible(true);
+            this.i_player.setOpacity(0.5);
+        } else {
+            this.solid_area.setVisible(false);
+            this.i_player.setOpacity(1);
+        }
+    }
+
     // Getter Methoden
     public double getPlayer_world_X(){
         return entity_world_X;
@@ -196,7 +218,7 @@ public class Player extends Entity{
     }
 
     public Rectangle getSolidPlayerAria() {
-        return this.solid_aria;
+        return this.solid_area;
     }
 
     public void deletePlayer() {
@@ -225,9 +247,9 @@ public class Player extends Entity{
         }
 
         // SolidArea löschen
-        if (this.solid_aria != null) {
-            this.solid_aria.setVisible(false);  // Sichtbarkeit zurücksetzen
-            this.solid_aria = null;
+        if (this.solid_area != null) {
+            this.solid_area.setVisible(false);  // Sichtbarkeit zurücksetzen
+            this.solid_area = null;
         }
 
         // Variablen zurücksetzen
@@ -251,7 +273,7 @@ public class Player extends Entity{
         right2 = null;
         right3 = null;
         right4 = null;
-        darknessOverlay = null;
+        overlay = null;
 
         // Abstand zu Geistern und andere Checks zurücksetzen
         this.direction = null;

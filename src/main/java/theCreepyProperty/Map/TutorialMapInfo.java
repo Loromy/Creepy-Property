@@ -102,7 +102,7 @@ public class TutorialMapInfo {
         i_position(info,740,10,250,150);
 
         ImageView ghostDistance = new ImageView(new Image("file:src/resources/textures/overlay/ghostDistance.png"));
-        i_position(ghostDistance,-5,295,200,200);
+        i_position(ghostDistance,-105,195,400,400);
 
 
 

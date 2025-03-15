@@ -14,7 +14,7 @@ public class Wall extends Object {
         this.width = width;
         this.height = height;
         this.texture = texture;
-        this.player_block_collision = false; //todo wall collision deaktivieren
+        //this.player_block_collision = false; //todo wall collision deaktivieren
         createWall();
     }
 

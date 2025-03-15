@@ -82,6 +82,7 @@ public class MapCreate {
             this.ghost = new Ghost(this.gui, levelData.getGhosts().get(i).getX(), levelData.getGhosts().get(i).getY(), levelData.getGhosts().get(i).getWidth(), levelData.getGhosts().get(i).getHeight());
             this.ghostList.add(this.ghost);
             this.gameScene.pGameGhostsChildren(this.ghost.getSolidAria());
+            this.gameScene.pGameGhostsChildren(this.ghost.loadGhostOverlay());
             this.gameScene.pGameGhostsChildren(this.ghost.draw());
 
             if (this.levelData.getGhosts().size()-1 == i) {

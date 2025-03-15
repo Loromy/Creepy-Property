@@ -4,17 +4,17 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import theCreepyProperty.checker.ImageCheck;
 import theCreepyProperty.main.GUI;
-import theCreepyProperty.main.SoundPlayer;
 
 public class Ghost extends Entity{
     private final GUI gui;
     private double speed = 0; // speed if strg pressed
     private final ImageView i_ghost = new ImageView();
-    //TODO ??brauch ich das noch?? private SoundPlayer soundPlayer;
+    private ImageView i_ghost_overlay = new ImageView();
 
     private Timeline timeline;
 
@@ -31,25 +31,32 @@ public class Ghost extends Entity{
         this.entity_size_X = width;
         this.entity_size_Y = height;
 
-        this.solid_aria = new Rectangle();
-        this.solid_aria.setVisible(false); //Collision Block of Ghost anzeigen
-        this.solid_aria.setX(entity_world_X);
-        this.solid_aria.setY(entity_world_Y);
-        this.solid_aria.setWidth(entity_size_X);
-        this.solid_aria.setHeight(entity_size_Y);
+        this.solid_area = new Rectangle();
+        this.solid_area.setFill(Color.MAGENTA);
+        this.solid_area.setVisible(false); //Collision Block of Ghost anzeigen
+        this.solid_area.setX(entity_world_X+12);
+        this.solid_area.setY(entity_world_Y+8);
+        this.solid_area.setWidth(entity_size_X-24);
+        this.solid_area.setHeight(entity_size_Y-12);
 
-        this.i_ghost.xProperty().bind(solid_aria.xProperty().subtract(6));
-        this.i_ghost.yProperty().bind(solid_aria.yProperty().subtract(2));
-        this.i_ghost.fitWidthProperty().bind(solid_aria.widthProperty().add(12));
-        this.i_ghost.fitHeightProperty().bind(solid_aria.heightProperty().add(3));
+        this.i_ghost.xProperty().bind(solid_area.xProperty().subtract(12));
+        this.i_ghost.yProperty().bind(solid_area.yProperty().subtract(8));
+        this.i_ghost.fitWidthProperty().bind(solid_area.widthProperty().add(24));
+        this.i_ghost.fitHeightProperty().bind(solid_area.heightProperty().add(12));
+
+        this.i_ghost_overlay.xProperty().bind(solid_area.xProperty().subtract(200 - (solid_area.getWidth()/2)));
+        this.i_ghost_overlay.yProperty().bind(solid_area.yProperty().subtract(200 - (solid_area.getHeight()/2)));
+        this.i_ghost_overlay.fitWidthProperty().bind(solid_area.widthProperty().add(400 - solid_area.getWidth()));
+        this.i_ghost_overlay.fitHeightProperty().bind(solid_area.heightProperty().add(400 - solid_area.getHeight()));
+        this.i_ghost_overlay.setVisible(false);
 
         createGhostImage();
 
         setNewTarget();
 
-        this.timeline = new Timeline(new KeyFrame(Duration.millis(16), e -> moveRectangle(this.solid_aria)));
+        this.timeline = new Timeline(new KeyFrame(Duration.millis(16), e -> moveRectangle(this.solid_area)));
         this.timeline.setCycleCount(Timeline.INDEFINITE);
-        //this.timeline.play(); //todo Ghosts stop Moving
+        this.timeline.play(); //todo Ghosts stop Moving
     }
 
     public void createGhostImage() {
@@ -59,7 +66,7 @@ public class Ghost extends Entity{
         down4 = loadImage("file:src/resources/textures/ghost/down_4.png");
 
 
-        darknessOverlay = loadImage("file:src/resources/textures/overlay/darknessOverlay.png");
+        overlay = loadImage("file:src/resources/textures/overlay/ghostDistance.png");
 
         System.out.println("✔ [Ghost]: Image Ghost images successfully loaded");
     }
@@ -78,6 +85,11 @@ public class Ghost extends Entity{
         }
         this.i_ghost.setImage(playerImage);
         return i_ghost;
+    }
+
+    public ImageView loadGhostOverlay() {
+        this.i_ghost_overlay.setImage(overlay);
+        return i_ghost_overlay;
     }
 
     private Image switchSprite(Image img1, Image img2, Image img3, Image img4) {
@@ -132,12 +144,12 @@ public class Ghost extends Entity{
 
     public void setGhost_world_X(double player_world_X){
         this.entity_world_X = player_world_X;
-        this.solid_aria.setX(player_world_X);
+        this.solid_area.setX(player_world_X);
     }
 
     public void setGhost_world_Y(double player_world_Y){
         this.entity_world_Y = player_world_Y;
-        this.solid_aria.setY(player_world_Y);
+        this.solid_area.setY(player_world_Y);
     }
 
     public void setSpeed(double speed) {
@@ -159,6 +171,20 @@ public class Ghost extends Entity{
         System.out.println("✔ [Ghost]: Ghost defaultValues set");
     }
 
+    public void showCollisionBox(boolean show) {
+        if (show) {
+            this.solid_area.setVisible(true);
+            this.i_ghost.setOpacity(0.5);
+            this.i_ghost_overlay.setVisible(true);
+
+        } else {
+            this.solid_area.setVisible(false);
+            this.i_ghost.setOpacity(1);
+            this.i_ghost_overlay.setVisible(false);
+
+        }
+    }
+
     // Getter Methoden
     public double getGhost_world_X(){
         return entity_world_X;
@@ -173,7 +199,7 @@ public class Ghost extends Entity{
     }
 
     public Rectangle getSolidAria() {
-        return this.solid_aria;
+        return this.solid_area;
     }
 
     public Timeline getTimeline() {

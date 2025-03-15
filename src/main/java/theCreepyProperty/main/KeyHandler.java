@@ -31,6 +31,8 @@ public class KeyHandler {
     private boolean sPressed = false;
     private boolean dPressed = false;
     private boolean cPressed = false;
+    private boolean bPressed = false;
+    private boolean lastState_bPressed = true;
     private boolean ctrlPressed = false;
     private boolean shiftPressed = false;
     private boolean escPressed = false;
@@ -69,6 +71,7 @@ public class KeyHandler {
                 case A -> aPressed = true;
                 case D -> dPressed = true;
                 case C -> cPressed = true;
+                case B -> bPressed = true;
                 case CONTROL -> ctrlPressed = true;
                 case SHIFT -> shiftPressed = true;
                 case ESCAPE -> escPressed = true;
@@ -85,6 +88,7 @@ public class KeyHandler {
                 case A -> aPressed = false;
                 case D -> dPressed = false;
                 case C -> cPressed = false;
+                case B -> bPressed = false;
                 case CONTROL -> ctrlPressed = false;
                 case SHIFT -> shiftPressed = false;
                 case ESCAPE -> escPressed = false;
@@ -149,6 +153,39 @@ public class KeyHandler {
                 System.out.println("Timer: " + gameScene.getTime_seconds());
                 this.cPressed = false;
             }
+
+            // Annahme: bPressed ist eine Boolean-Variable, die true oder false sein kann.
+
+            if (bPressed) {
+                if (lastState_bPressed) {
+                    // Toggle 1: Sichtbarkeit ein- oder ausschalten
+                    this.player.showCollisionBox(true);
+
+                    for (Ghost ghost : this.gameScene.getMapCreate().getGhostList()) {
+                        ghost.showCollisionBox(true);
+                    }
+                    System.out.println("✔ [KeyHandler]: Collision Box toggled [+]");
+
+                    // Markiere das Toggeln als abgeschlossen
+                    lastState_bPressed = false;
+
+                    bPressed = false;
+                } else {
+                    // Toggle 2: Sichtbarkeit wieder zurücksetzen
+                    this.player.showCollisionBox(false);
+                    for (Ghost ghost : this.gameScene.getMapCreate().getGhostList()) {
+                        ghost.showCollisionBox(false);
+                    }
+                    System.out.println("✔ [KeyHandler]: Collision Box reset [-]");
+
+                    // Reset toggled
+                    lastState_bPressed = true;
+
+                    bPressed = false;
+                }
+            }
+
+
 
             // Wenn der Cooldown aktiv ist, kannst du nicht sprinten
             if (cooldownTime > 0) {
