@@ -22,7 +22,7 @@ public class LevelSelectScene {
     private final SetMap setMap;
 
     private int mapSelected = 0;
-    private double timePlaying = 0;
+    private double timePlaying = 0; // zwischen speichern von time beim sterben.
 
     private boolean levelTutorialCompleted = false;
     private boolean level1Completed = false;
@@ -277,7 +277,7 @@ public class LevelSelectScene {
         int milliseconds = (int) ((time_seconds * 100) % 100); // Millisekunden berechnen
 
         // Formatierte Zeit als HH:MM:SS.mm anzeigen
-        String formattedTime = String.format("%02d:%02d:%02d:%02d", hours, minutes, seconds, milliseconds);
+        String formattedTime = String.format("%02d : %02d : %02d : %02d", hours, minutes, seconds, milliseconds);
         this.levelMenu.getLevelTime().setText("Highscore: " + formattedTime);
         this.levelMenu.getLevel().setText("Level: " + level);
         if(level == 0) {

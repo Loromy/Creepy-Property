@@ -101,4 +101,24 @@ public class CollisionChecker {
             }
         }
     }
+
+    public void deleteCollisionChecker() {
+        System.out.println("⚠ [CollisionChecker]: Alle Referenzen werden gelöscht...");
+
+        // Entferne den SoundPlayer, falls er existiert
+        if (this.soundPlayer != null) {
+            this.soundPlayer.stop();
+            this.soundPlayer = null;
+        }
+
+        // Setze keysToCollect zurück
+        this.keysToCollect = 0;
+
+        // Setze den Status von isPlayed zurück
+        this.isPlayed = false;
+
+        // Führe Garbage Collection aus
+        System.gc();
+        System.out.println("✔ [CollisionChecker]: Speicherbereinigung durchgeführt.");
+    }
 }

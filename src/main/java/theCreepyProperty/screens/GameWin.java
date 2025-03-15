@@ -13,19 +13,19 @@ import theCreepyProperty.scenes.LevelSelectScene;
 
 public class GameWin {
     private GUI gui;
-    private final GameScene gameScene;
-    private final LevelSelectScene levelSelectScene;
-    private final Pane backgroundGameWin = new Pane(); // Background
-    private final Pane pGameWin = new Pane(); // Menu Items
-    private final VBox vBoxGameWin = new VBox();
-    private final SetMap setMap;
+    private GameScene gameScene;
+    private LevelSelectScene levelSelectScene;
+    private Pane backgroundGameWin = new Pane(); // Background
+    private Pane pGameWin = new Pane(); // Menu Items
+    private VBox vBoxGameWin = new VBox();
+    private SetMap setMap;
 
     private boolean gameWin_on = false;
     private int mapSelected = 0;
 
-    private final Label text;
-    private final Button backButton;
-    private final Button nextButton;
+    private Label text;
+    private Button backButton;
+    private Button nextButton;
 
     public GameWin(GUI gui, GameScene gameScene) {
         System.out.println(".............................GameWin..............................");
@@ -106,15 +106,16 @@ public class GameWin {
     private void onNext() {
         this.gameScene.stopBackgroundMusic();
 
+        this.levelSelectScene.setTimePlaying(0);
+
         int map = this.mapSelected;
         if (++map > 9) {
             this.gui.switchToFinishScene();
             System.out.println("✔ [GameWin]: onNext switch to Finish Scene");
         } else {
             System.out.println("✔ [Game Win]: Next");
-            this.gui.switchToLevelSelectScene();
             this.setMap.setMapPlus1();
-            this.gui.switchToGameScene();
+            this.gui.reloadGameScene();
         }
     }
 
@@ -129,5 +130,63 @@ public class GameWin {
 
     public Pane getBackgroundGameWin() {
         return backgroundGameWin;
+    }
+
+    public void deleteGameWin() {
+        System.out.println("⚠ [Game Win]: Alle Referenzen werden gelöscht...");
+
+        // GUI Referenz löschen (Wird extern verwaltet)
+        if (this.gui != null) {
+            this.gui = null;
+        }
+
+        // GameScene und LevelSelectScene löschen
+        if (this.gameScene != null) {
+            this.gameScene = null;
+        }
+
+        if (this.levelSelectScene != null) {
+            this.levelSelectScene = null;
+        }
+
+        // SetMap löschen
+        if (this.setMap != null) {
+            this.setMap.deleteSetMap(); // Falls deleteSetMap() existiert
+            this.setMap = null;
+        }
+
+        // UI-Elemente löschen
+        if (this.text != null) {
+            this.text = null;
+        }
+
+        if (this.backButton != null) {
+            this.backButton = null;
+        }
+
+        if (this.nextButton != null) {
+            this.nextButton = null;
+        }
+
+        // Pane-Elemente löschen
+        if (this.pGameWin != null) {
+            this.pGameWin = null;
+        }
+
+        if (this.backgroundGameWin != null) {
+            this.backgroundGameWin = null;
+        }
+
+        if (this.vBoxGameWin != null) {
+            this.vBoxGameWin = null;
+        }
+
+        // Statusvariablen zurücksetzen
+        this.gameWin_on = false;
+        this.mapSelected = 0;
+
+        // Garbage Collector anstoßen
+        System.gc();
+        System.out.println("✔ [Game Win]: Speicherbereinigung durchgeführt.");
     }
 }

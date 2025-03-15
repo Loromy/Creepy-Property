@@ -105,4 +105,41 @@ public class LevelData {
     public void setItems(ArrayList<LevelDataItem> items) { this.items = items; }
     public void setWalls(ArrayList<LevelDataWall> walls) { this.walls = walls; }
     public void setDoors(ArrayList<LevelDataDoor> doors) { this.doors = doors; }
+
+    public void clear() {
+        this.walls.clear();
+        this.items.clear();
+        this.doors.clear();
+        this.ghosts.clear();
+    }
+
+    public void deleteLevelData() {
+        System.out.println("⚠ [LevelData]: Alle Referenzen werden gelöscht...");
+
+        // Löschen der Listen mit LevelData-Elementen
+        if (this.walls != null) {
+            this.walls.clear();
+            this.walls = null;
+        }
+
+        if (this.items != null) {
+            this.items.clear();
+            this.items = null;
+        }
+
+        if (this.doors != null) {
+            this.doors.clear();
+            this.doors = null;
+        }
+
+        if (this.ghosts != null) {
+            this.ghosts.clear();
+            this.ghosts = null;
+        }
+
+        // Garbage Collector anstoßen
+        System.gc();
+
+        System.out.println("✔ [LevelData]: Speicherbereinigung durchgeführt.");
+    }
 }

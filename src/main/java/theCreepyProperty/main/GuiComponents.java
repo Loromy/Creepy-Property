@@ -17,12 +17,12 @@ public class GuiComponents {
     private final LevelSelectScene levelSelectScene;
     private final GameScene gameScene;
 
-    private final Label l_speed ;
-    private final Label l_sprint;
-    private final Label l_keys;
-    private final Label l_fps;
-    private final Label l_level;
-    private final Label l_time;
+    private Label l_speed ;
+    private Label l_sprint;
+    private Label l_keys;
+    private Label l_fps;
+    private Label l_level;
+    private Label l_time;
     private HBox hBox_keys;
     private HBox hBox_Level;
     private VBox vBox_anzeige;
@@ -51,7 +51,7 @@ public class GuiComponents {
 
         this.vBox_Time = new VBox();
         this.vBox_Time.setLayoutY(60);
-        this.vBox_Time.setMinSize(110,20);
+        this.vBox_Time.setMinSize(130,20);
         this.vBox_Time.setId("gui-components-background-links");
 
         // VBox
@@ -84,12 +84,12 @@ public class GuiComponents {
         }
 
         // Time
-        this.l_time = new Label("Time: 0.00s");
+        this.l_time = new Label("Time: -- : -- : -- : --");
         this.l_time.setId("gui-components");
         this.vBox_Time.getChildren().add(l_time);
 
         // Sprint
-        this.l_sprint = new Label("Sprint: test");
+        this.l_sprint = new Label("Sprint: ");
         this.l_sprint.setId("gui-components");
         this.vBox_sprint.getChildren().add(l_sprint);
 
@@ -210,4 +210,72 @@ public class GuiComponents {
     public void setAnzeige_on(boolean value) {
         this.anzeige_on = value;
     }
+
+    public void deleteGuiComponents() {
+        System.out.println("⚠ [GuiComponents]: Alle Referenzen werden gelöscht...");
+
+        // Entferne HBox, VBox und Label Objekte
+        if (this.hBox_Level != null) {
+            this.hBox_Level.getChildren().clear();
+            this.hBox_Level = null;
+        }
+
+        if (this.hBox_keys != null) {
+            this.hBox_keys.getChildren().clear();
+            this.hBox_keys = null;
+        }
+
+        if (this.vBox_Time != null) {
+            this.vBox_Time.getChildren().clear();
+            this.vBox_Time = null;
+        }
+
+        if (this.vBox_sprint != null) {
+            this.vBox_sprint.getChildren().clear();
+            this.vBox_sprint = null;
+        }
+
+        if (this.vBox_anzeige != null) {
+            this.vBox_anzeige.getChildren().clear();
+            this.vBox_anzeige = null;
+        }
+
+        // Entferne alle Labels
+        if (this.l_level != null) {
+            this.l_level = null;
+        }
+
+        if (this.l_speed != null) {
+            this.l_speed = null;
+        }
+
+        if (this.l_sprint != null) {
+            this.l_sprint = null;
+        }
+
+        if (this.l_keys != null) {
+            this.l_keys = null;
+        }
+
+        if (this.l_fps != null) {
+            this.l_fps = null;
+        }
+
+        if (this.l_time != null) {
+            this.l_time = null;
+        }
+
+        // Entferne ImageViews
+        if (this.i_keys != null) {
+            this.i_keys = null;
+        }
+
+        // Setze den Status für die Anzeige zurück
+        this.anzeige_on = false;
+
+        // Führe Garbage Collection aus
+        System.gc();
+        System.out.println("✔ [GuiComponents]: Speicherbereinigung durchgeführt.");
+    }
+
 }

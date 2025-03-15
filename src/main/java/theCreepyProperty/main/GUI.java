@@ -20,7 +20,7 @@ public class GUI extends Application {
     private final int height = 600; // Höhe des Fensters
     private String filePath = "";
 
-    private ImageCheck imageCheck = new ImageCheck();
+    private final ImageCheck imageCheck = new ImageCheck();
 
     private Stage stage;           // Haupt-Stage
     private StartScene startScene; // Start-Szene
@@ -47,18 +47,21 @@ public class GUI extends Application {
     public void switchToStartScene() {
         if (this.startScene == null) {
             this.startScene = new StartScene(stage, this);
+            this.gameScene.deleteGameScene();
         }
         // Scene wechseln
         stage.setScene(this.startScene.getScene());
-        // Scene zurücksetzen
         this.gameScene = null;
-//        this.selectScene = null;
     }
 
     public void switchToGameScene() {
         if (this.gameScene == null) {
             this.gameScene = new GameScene(stage, this);
         }
+        if (this.finishScene != null) {
+            this.finishScene.deleteFinishScene();
+        }
+
         // Scene wechseln
         stage.setScene(this.gameScene.getScene());
         // Scene zurücksetzen
@@ -75,9 +78,12 @@ public class GUI extends Application {
         // Scene wechseln
         stage.setScene(this.selectScene.getScene());
         // Scene zurücksetzen
-//        this.startScene = null;
         if (this.gameScene != null) {
             this.gameScene.stopTimer();
+            this.gameScene.deleteGameScene();
+        }
+        if (this.finishScene != null) {
+            this.finishScene.deleteFinishScene();
         }
 
         this.gameScene = null;
@@ -94,10 +100,16 @@ public class GUI extends Application {
 //        this.startScene = null;
         if (this.gameScene != null) {
             this.gameScene.stopTimer();
+            this.gameScene.deleteGameScene();
         }
 
         this.gameScene = null;
         this.selectScene = null;
+    }
+
+    public void reloadGameScene() {
+        switchToLevelSelectScene();
+        switchToGameScene();
     }
 
     // Getter Methoden

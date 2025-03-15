@@ -4,27 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="87a96b04-91ba-4fe6-93a4-31fd9b49747e" name="Changes" comment="V0.3.11.3&#10;- Timer zwischenspeichern&#10;- image tester">
+    <list default="true" id="87a96b04-91ba-4fe6-93a4-31fd9b49747e" name="Changes" comment="V0.3.11.5&#10;- map update&#10;- next map fix v1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/LevelData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/LevelData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/MapCreate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/MapCreate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/MapReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/MapReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/SetMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/SetMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/TutorialMapInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/TutorialMapInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Save/ReadWriteSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Save/ReadWriteSettings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/entity/Ghost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/entity/Ghost.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Save/ReadWriteSpielstand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Save/ReadWriteSpielstand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/entity/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/CollisionChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/CollisionChecker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/GUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/GuiComponents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/GuiComponents.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/KeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/KeyHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/menu/LevelSelect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/menu/LevelSelect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/menu/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/menu/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/menu/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/menu/Settings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/scenes/FinishScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/scenes/FinishScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/scenes/GameScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/scenes/GameScene.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/scenes/LevelSelectScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/scenes/LevelSelectScene.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/screens/GameOver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/screens/GameOver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/screens/GameWin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/screens/GameWin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/csv/Einstellungen/settings.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/Einstellungen/settings.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/csv/Save/spielstand.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/Save/spielstand.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/csv/maps/map1.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/maps/map1.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/csv/maps/map2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/maps/map2.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/csv/maps/map3.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/maps/map3.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/csv/maps/map4.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/maps/map4.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/csv/maps/map5.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/maps/map5.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/style/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/style/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -271,7 +274,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741534668786</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="V0.3.11.5&#10;- map update&#10;- next map fix v1">
+      <option name="closed" value="true" />
+      <created>1741596621011</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1741596621011</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -305,7 +316,8 @@
     <MESSAGE value="V0.3.9&#10;- button style update&#10;- Soundplayer ausgaben update&#10;- icon add" />
     <MESSAGE value="V0.3.11.2&#10;- Tutorial Level finish&#10;- level 5&#10;- player reset player animation" />
     <MESSAGE value="V0.3.11.3&#10;- Timer zwischenspeichern&#10;- image tester" />
-    <option name="LAST_COMMIT_MESSAGE" value="V0.3.11.3&#10;- Timer zwischenspeichern&#10;- image tester" />
+    <MESSAGE value="V0.3.11.5&#10;- map update&#10;- next map fix v1" />
+    <option name="LAST_COMMIT_MESSAGE" value="V0.3.11.5&#10;- map update&#10;- next map fix v1" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

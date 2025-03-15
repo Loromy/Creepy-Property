@@ -107,4 +107,22 @@ public class ReadWriteSpielstand {
             this.time = time;
         }
     }
+
+    public void deleteReadWriteSpielstand() {
+        System.out.println("⚠ [ReadWriteSpielstand]: Alle Referenzen werden gelöscht...");
+
+        // Setze alle relevanten Instanzen auf null
+        this.levelSelectScene = null;
+
+        // Lösche die gespeicherten Einstellungen
+        if (this.settingsMap != null) {
+            this.settingsMap.clear();  // Entferne alle Einträge aus dem Map
+            this.settingsMap = null;   // Setze die Map auf null
+        }
+
+        // Führe Garbage Collection aus
+        System.gc();
+        System.out.println("✔ [ReadWriteSpielstand]: Speicherbereinigung durchgeführt.");
+    }
+
 }

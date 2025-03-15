@@ -20,10 +20,10 @@ public class MapCreate {
     private GameScene gameScene;
     private LevelData levelData;
 
-    private final ArrayList<Wall> wallList = new ArrayList<>();
-    private final ArrayList<Item> itemList = new ArrayList<>();
-    private final ArrayList<Door> doorList = new ArrayList<>();
-    private final ArrayList<Ghost> ghostList = new ArrayList<>();
+    private ArrayList<Wall> wallList = new ArrayList<>();
+    private ArrayList<Item> itemList = new ArrayList<>();
+    private ArrayList<Door> doorList = new ArrayList<>();
+    private ArrayList<Ghost> ghostList = new ArrayList<>();
 
     private int netToCollectKeys = 0;
 
@@ -118,4 +118,70 @@ public class MapCreate {
     public ArrayList<Ghost> getGhostList() {
         return this.ghostList;
     }
+
+    public void deleteMapCreate() {
+        System.out.println("⚠ [MapCreate]: Alle Referenzen werden gelöscht...");
+
+        // Löschen der GUI und GameScene Referenzen
+        if (this.gui != null) {
+            this.gui = null; // GUI auf null setzen
+        }
+
+        if (this.gameScene != null) {
+            this.gameScene = null;
+        }
+
+        // Löschen der einzelnen Objekte wie Wall, Item, Door, Ghost
+        if (this.wall != null) {
+            this.wall = null;
+        }
+
+        if (this.item != null) {
+            this.item = null;
+        }
+
+        if (this.door != null) {
+            this.door = null;
+        }
+
+        if (this.ghost != null) {
+            this.ghost = null;
+        }
+
+        // Löschen der Listen
+        if (this.wallList != null) {
+            this.wallList.clear(); // Liste der Wände leeren
+            this.wallList = null; // Liste auf null setzen
+        }
+
+        if (this.itemList != null) {
+            this.itemList.clear(); // Liste der Items leeren
+            this.itemList = null; // Liste auf null setzen
+        }
+
+        if (this.doorList != null) {
+            this.doorList.clear(); // Liste der Türen leeren
+            this.doorList = null; // Liste auf null setzen
+        }
+
+        if (this.ghostList != null) {
+            this.ghostList.clear(); // Liste der Geister leeren
+            this.ghostList = null; // Liste auf null setzen
+        }
+
+        // Zurücksetzen von Statusvariablen
+        this.netToCollectKeys = 0;
+
+        // Falls es eine LevelData-Instanz gibt, könnte man auch hier eine delete-Methode aufrufen, falls erforderlich:
+        if (this.levelData != null) {this.levelData.deleteLevelData();
+            this.levelData.deleteLevelData();
+            this.levelData = null;
+        }
+
+        // Garbage Collector anstoßen
+        System.gc();
+
+        System.out.println("✔ [MapCreate]: Speicherbereinigung durchgeführt.");
+    }
+
 }

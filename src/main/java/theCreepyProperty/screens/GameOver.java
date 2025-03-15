@@ -13,19 +13,19 @@ import theCreepyProperty.scenes.LevelSelectScene;
 
 public class GameOver {
     private GUI gui;
-    private final GameScene gameScene;
-    private final LevelSelectScene levelSelectScene;
-    private final Pane backgroundGameOver = new Pane(); // Background
-    private final Pane pGameOver = new Pane(); // Menu Items
-    private final VBox vBoxGameOver = new VBox();
-    private final SetMap setMap;
+    private GameScene gameScene;
+    private LevelSelectScene levelSelectScene;
+    private Pane backgroundGameOver = new Pane(); // Background
+    private Pane pGameOver = new Pane(); // Menu Items
+    private VBox vBoxGameOver = new VBox();
+    private SetMap setMap;
 
     private boolean gameOver_on = false;
     private int mapSelected = 0;
 
-    private final Label text;
-    private final Button retryButton;
-    private final Button backButton;
+    private Label text;
+    private Button retryButton;
+    private Button backButton;
 
     public GameOver(GUI gui, GameScene gameScene) {
         System.out.println(".............................GameOver..............................");
@@ -98,9 +98,8 @@ public class GameOver {
     private void onRetry() {
         System.out.println("✔ [Game Over]: Retry");
 
-        this.gui.switchToLevelSelectScene();
-        this.setMap.setThisMap();
-        this.gui.switchToGameScene();
+        this.gui.reloadGameScene();
+        //this.setMap.setThisMap();
 
         //this.triggerGameOver();
     }
@@ -122,5 +121,63 @@ public class GameOver {
 
     public Pane getBackgroundGameOver() {
         return backgroundGameOver;
+    }
+
+    public void deleteGameOver() {
+        System.out.println("⚠ [Game Over]: Alle Referenzen werden gelöscht...");
+
+        // GUI Referenz löschen (Wird extern verwaltet)
+        if (this.gui != null) {
+            this.gui = null;
+        }
+
+        // GameScene und LevelSelectScene löschen
+        if (this.gameScene != null) {
+            this.gameScene = null;
+        }
+
+        if (this.levelSelectScene != null) {
+            this.levelSelectScene = null;
+        }
+
+        // UI-Elemente löschen
+        if (this.text != null) {
+            this.text = null;
+        }
+
+        if (this.retryButton != null) {
+            this.retryButton = null;
+        }
+
+        if (this.backButton != null) {
+            this.backButton = null;
+        }
+
+        // Pane-Elemente löschen
+        if (this.pGameOver != null) {
+            this.pGameOver = null;
+        }
+
+        if (this.backgroundGameOver != null) {
+            this.backgroundGameOver = null;
+        }
+
+        if (this.vBoxGameOver != null) {
+            this.vBoxGameOver = null;
+        }
+
+        // SetMap löschen
+        if (this.setMap != null) {
+            this.setMap.deleteSetMap();
+            this.setMap = null;
+        }
+
+        // Statusvariablen zurücksetzen
+        this.gameOver_on = false;
+        this.mapSelected = 0;
+
+        // Garbage Collector anstoßen
+        System.gc();
+        System.out.println("✔ [Game Over]: Speicherbereinigung durchgeführt.");
     }
 }

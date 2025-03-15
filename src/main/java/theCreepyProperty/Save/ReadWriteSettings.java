@@ -134,4 +134,22 @@ public class ReadWriteSettings {
         }
     }
 
+    public void deleteReadWriteSettings() {
+        System.out.println("⚠ [ReadWriteSettings]: Alle Referenzen werden gelöscht...");
+
+        // Setze alle Referenzen auf null
+        this.gameScene = null;
+        this.guiComponents = null;
+
+        // Setze das Map zurück
+        if (this.settingsMap != null) {
+            this.settingsMap.clear();  // Lösche alle Einträge aus dem Map
+            this.settingsMap = null;   // Setze die Map auf null
+        }
+
+        // Führe Garbage Collection aus
+        System.gc();
+        System.out.println("✔ [ReadWriteSettings]: Speicherbereinigung durchgeführt.");
+    }
+
 }

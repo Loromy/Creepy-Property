@@ -12,17 +12,17 @@ import theCreepyProperty.main.SoundPlayer;
 import theCreepyProperty.scenes.GameScene;
 
 public class Settings{
-    private final GUI gui;
-    private final GameScene gameScene;
-    private final Menu menu;
-    private final Audio audio;
-    private final ReadWriteSettings readWriteSettings;
+    private GUI gui;
+    private GameScene gameScene;
+    private Menu menu;
+    private Audio audio;
+    private ReadWriteSettings readWriteSettings;
     private SoundPlayer soundPlayer;
 
-    private final Pane pMenuSettings = new Pane();
-    private final VBox vBoxSettings = new VBox();
-    private final VBox vBoxSettingsBox = new VBox();
-    private final VBox vBoxSettingsButtons = new VBox();
+    private Pane pMenuSettings = new Pane();
+    private VBox vBoxSettings = new VBox();
+    private VBox vBoxSettingsBox = new VBox();
+    private VBox vBoxSettingsButtons = new VBox();
     private Button b_Audio;
     private Button b_Anzeige;
     private Button b_EndScene;
@@ -169,4 +169,84 @@ public class Settings{
         vBoxSettings.setSpacing(10);
         vBoxSettings.setAlignment(Pos.CENTER);
     }
+
+    public void deleteSettings() {
+        System.out.println("⚠ [Settings]: Alle Referenzen werden gelöscht...");
+
+        // GUI Referenzen löschen (Wird extern verwaltet)
+        if (this.gui != null) {
+            this.gui = null;
+        }
+
+        // GameScene löschen
+        if (this.gameScene != null) {
+            this.gameScene = null;
+        }
+
+        // Menu löschen
+        if (this.menu != null) {
+            this.menu = null;
+        }
+
+        // SoundPlayer löschen
+        if (this.soundPlayer != null) {
+            this.soundPlayer = null;
+        }
+
+        // Audio löschen
+        if (this.audio != null) {
+            this.audio = null;
+        }
+
+        // ReadWriteSettings löschen
+        if (this.readWriteSettings != null) {
+            this.readWriteSettings = null;
+        }
+
+        // UI-Elemente löschen
+        if (this.l_Settings != null) {
+            this.l_Settings = null;
+        }
+
+        if (this.b_Audio != null) {
+            this.b_Audio = null;
+        }
+
+        if (this.b_Anzeige != null) {
+            this.b_Anzeige = null;
+        }
+
+        if (this.b_EndScene != null) {
+            this.b_EndScene = null;
+        }
+
+        if (this.b_Back != null) {
+            this.b_Back = null;
+        }
+
+        // Pane-Elemente löschen
+        if (this.pMenuSettings != null) {
+            this.pMenuSettings = null;
+        }
+
+        if (this.vBoxSettings != null) {
+            this.vBoxSettings = null;
+        }
+
+        if (this.vBoxSettingsBox != null) {
+            this.vBoxSettingsBox = null;
+        }
+
+        if (this.vBoxSettingsButtons != null) {
+            this.vBoxSettingsButtons = null;
+        }
+
+        // Statusvariablen zurücksetzen
+        this.settings_on = false;
+
+        // Garbage Collector anstoßen
+        System.gc();
+        System.out.println("✔ [Settings]: Speicherbereinigung durchgeführt.");
+    }
+
 }

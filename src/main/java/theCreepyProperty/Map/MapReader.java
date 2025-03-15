@@ -54,4 +54,19 @@ public class MapReader {
 
         return levelData;
     }
+
+    public void deleteMapReader() {
+        System.out.println("⚠ [MapReader]: Alle Referenzen werden gelöscht...");
+
+        // Setze die LevelData Referenz auf null
+        if (this.levelData != null) {
+            this.levelData.clear();
+            this.levelData = null;
+        }
+
+        // Führe Garbage Collection aus
+        System.gc();
+        System.out.println("✔ [MapReader]: Speicherbereinigung durchgeführt.");
+    }
+
 }

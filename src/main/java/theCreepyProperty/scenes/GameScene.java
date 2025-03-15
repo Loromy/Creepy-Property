@@ -28,44 +28,45 @@ import theCreepyProperty.screens.GameOver;
 import theCreepyProperty.screens.GameWin;
 
 import javax.sound.sampled.LineEvent;
+import java.util.Arrays;
 import java.util.Random;
 
 public class GameScene {
 
-    private final Stage stage;
-    private final GUI gui;
+    private Stage stage;
+    private GUI gui;
     private TutorialMapInfo tutorialMapInfo;
     private Scene gameScene;
     private SoundPlayer soundPlayer;
 
     // Game Scene Pane
-    private final Pane root = new Pane();
-    private final Pane pMenu = new Pane();
-    private final Pane pGameOver = new Pane();
-    private final Pane pGameWin = new Pane();
-    private final Pane pGame = new Pane();
-    private final Pane pWallsItems = new Pane();
-    private final Pane pGhosts = new Pane();
-    private final Pane pTutorialMapInfoOver = new Pane();
-    private final Pane pTutorialMapInfoUnder = new Pane();
+    private Pane root = new Pane();
+    private Pane pMenu = new Pane();
+    private Pane pGameOver = new Pane();
+    private Pane pGameWin = new Pane();
+    private Pane pGame = new Pane();
+    private Pane pWallsItems = new Pane();
+    private Pane pGhosts = new Pane();
+    private Pane pTutorialMapInfoOver = new Pane();
+    private Pane pTutorialMapInfoUnder = new Pane();
 
     // Game Scene Classes
     private KeyHandler keyHandler;
     private LevelData levelData = new LevelData();
-    private final MapReader mapReader = new MapReader(this.levelData);
-    private final MapCreate mapCreate = new MapCreate();
+    private MapReader mapReader = new MapReader(this.levelData);
+    private MapCreate mapCreate = new MapCreate();
     private ReadWriteSettings readWriteSettings;
     private ReadWriteSpielstand readWriteSpielstand;
     private Wall wall;
     private Item item;
     private Door door;
     private Ghost ghost;
-    private final Player player;
-    private final GameOver gameOver;
-    private final GameWin gameWin;
-    private final Menu menu;
+    private Player player;
+    private GameOver gameOver;
+    private GameWin gameWin;
+    private Menu menu;
     private GuiComponents guiComponents;
-    private final CollisionChecker checker;
+    private CollisionChecker checker;
 
     private Timeline timer;
     private boolean isMusicStopped = false;
@@ -163,6 +164,7 @@ public class GameScene {
         pMenu.getChildren().add(this.menu.getSettings().getAudio().getMenuAudio());
 
         // KeyHandler hinzufügen
+        System.out.println("--------------------------------------------------------------------------------------------------------------" + menu);
         keyHandler = new KeyHandler(this.player, this, this.gui.getSelectScene(), this.menu, this.gameOver, this.gameWin);
         keyHandler.addKeyListener(gameScene, this);
 
@@ -202,7 +204,7 @@ public class GameScene {
             int milliseconds = (int) ((time_seconds * 100) % 100); // Millisekunden berechnen
 
             // Formatierte Zeit als HH:MM:SS.mm anzeigen
-            String formattedTime = String.format("%02d:%02d:%02d:%02d", hours, minutes, seconds, milliseconds);
+            String formattedTime = String.format("%02d : %02d : %02d : %02d", hours, minutes, seconds, milliseconds);
             this.guiComponents.getL_time().setText("Time: " + formattedTime);
             this.gui.getSelectScene().setTimePlaying(time_seconds);
         }));
@@ -271,6 +273,7 @@ public class GameScene {
         }
     }
 
+    // getChildren
     public void pGameItemChildren(Rectangle rectangle) {
         this.pWallsItems.getChildren().add(rectangle);
     }
@@ -379,5 +382,113 @@ public class GameScene {
     // Setter Methoden
     public void setBlur(int strange) {
         pGame.setEffect(new GaussianBlur(strange));
+    }
+
+    public void deleteGameScene() {
+        // Alle Objekte auf null setzen und delete-Methode aufrufen
+        if (this.keyHandler != null) {
+            this.keyHandler.deleteKeyHandler();
+            this.keyHandler = null;
+        }
+
+        if (this.gameOver != null) {
+            this.gameOver.deleteGameOver();
+            this.gameOver = null;
+        }
+
+        if (this.gameWin != null) {
+            this.gameWin.deleteGameWin();
+            this.gameWin = null;
+        }
+
+        if (this.menu != null) {
+            this.menu.deleteMenu();
+            this.menu = null;
+        }
+
+        if (this.player != null) {
+            this.player.deletePlayer();
+            this.player = null;
+        }
+
+        if (this.guiComponents != null) {
+            this.guiComponents.deleteGuiComponents();
+            this.guiComponents = null;
+        }
+
+        if (this.checker != null) {
+            this.checker.deleteCollisionChecker();
+            this.checker = null;
+        }
+
+        if (this.readWriteSettings != null) {
+            this.readWriteSettings.deleteReadWriteSettings();
+            this.readWriteSettings = null;
+        }
+
+        if (this.readWriteSpielstand != null) {
+            this.readWriteSpielstand.deleteReadWriteSpielstand();
+            this.readWriteSpielstand = null;
+        }
+
+        if (this.mapReader != null) {
+            this.mapReader.deleteMapReader();
+            this.mapReader = null;
+        }
+
+        if (this.mapCreate != null) {
+            this.mapCreate.deleteMapCreate();
+            this.mapCreate = null;
+        }
+
+        if (this.tutorialMapInfo != null) {
+            this.tutorialMapInfo.deleteTutorialMapInfo();
+            this.tutorialMapInfo = null;
+        }
+
+        if (this.soundPlayer != null) {
+            this.soundPlayer.stop();
+            this.soundPlayer = null;
+        }
+
+        // Weitere Referenzen auf null setzen
+        this.stage = null;
+        this.gui = null;
+        this.gameScene = null;
+
+        // Game Scene Pane
+        this.root = null;
+        this.pMenu = null;
+        this.pGameOver = null;
+        this.pGameWin = null;
+        this.pGame = null;
+        this.pWallsItems = null;
+        this.pGhosts = null;
+        this.pTutorialMapInfoOver = null;
+        this.pTutorialMapInfoUnder = null;
+
+        // Weitere Variablen
+        this.levelData = null;
+        this.wall = null;
+        this.item = null;
+        this.door = null;
+        this.ghost = null;
+
+        this.timer = null;
+        this.ghostTimer = null;
+        this.randomNoiseTime = null;
+
+        // Primitive Datentypen zurücksetzen
+        this.isMusicStopped = false;
+        this.time_seconds = 0.0;
+
+        // Falls es Listen oder Maps gibt, zuerst leeren
+        if (this.randomSounds != null) {
+            Arrays.fill(this.randomSounds, null); // Array-Inhalt löschen
+        }
+
+        // Garbage Collector anstoßen
+        System.gc();
+        System.out.println("✔ [GameScene]: Speicherbereinigung durchgeführt.");
     }
 }

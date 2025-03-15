@@ -226,6 +226,7 @@
 
 #info {
     -fx-font-size: 15px;
+    -fx-text-fill: white;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.9), 2, 0.2, 2, 2);
 }
 
@@ -268,7 +269,7 @@
 }
 
 /*Tutorial Info*/
-#tutorial-info-bubble-background {
+#tutorial-info-feld-background {
     -fx-background-color: rgba(214, 111, 0, 0.7);
     -fx-background-radius: 10px;
     -fx-padding: 2px 7px 2px 7px;

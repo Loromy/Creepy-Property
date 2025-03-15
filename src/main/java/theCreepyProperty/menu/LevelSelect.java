@@ -84,7 +84,7 @@ public class LevelSelect {
         this.bL7.setText("Level 7");
         this.bL8.setText("Level 8");
         this.bL9.setText("Level 9");
-        this.levelTime.setText("Highscore: __:__:__:__");
+        this.levelTime.setText("Highscore: -- : -- : -- : --");
         this.levelTime.setId("text");
         this.startButton.setText("Play");
         //this.startButton.setStyle("-fx-pref-width: 200px; -fx-min-width: 200px;");

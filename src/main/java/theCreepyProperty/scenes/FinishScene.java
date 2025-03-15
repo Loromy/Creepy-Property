@@ -19,34 +19,34 @@ public class FinishScene {
     private Scene finishScene;
     private SoundPlayer soundPlayer;
 
-    private final Pane root = new Pane();
-    private final VBox textDisplay = new VBox();
-    private final VBox slidDown = new VBox();
+    private Pane root = new Pane();
+    private VBox textDisplay = new VBox();
+    private VBox slidDown = new VBox();
 
-    private final VBox vBox_Text = new VBox();
-    private final VBox vBox_Butten = new VBox();
+    private VBox vBox_Text = new VBox();
+    private VBox vBox_Butten = new VBox();
 
-    private final VBox ueberschrift = new VBox();
-    private final VBox vBox_entwickler = new VBox();
-    private final VBox vBox_audio = new VBox();
-    private final VBox vBox_bilder = new VBox();
+    private VBox ueberschrift = new VBox();
+    private VBox vBox_entwickler = new VBox();
+    private VBox vBox_audio = new VBox();
+    private VBox vBox_bilder = new VBox();
 
-    private final Label l_creepyProperty;
-    private final Label l_danke;
-    private final Label l_entwickler;
-    private final Label eName;
-    private final Label l_audio;
-    private final Label aName;
-    private final Label l_bilder;
-    private final Label bildPlayer;
-    private final Label bildPlayerLink;
-    private final Label bildStart;
-    private final Label bildStartLink;
+    private Label l_creepyProperty;
+    private Label l_danke;
+    private Label l_entwickler;
+    private Label eName;
+    private Label l_audio;
+    private Label aName;
+    private Label l_bilder;
+    private Label bildPlayer;
+    private Label bildPlayerLink;
+    private Label bildStart;
+    private Label bildStartLink;
 
-    private final Label l_slidDown_CreepyProperty;
-    private final Label l_slidDown_danke;
+    private Label l_slidDown_CreepyProperty;
+    private Label l_slidDown_danke;
 
-    private final Button back;
+    private Button back;
 
     private int width = 600;
     private int height = 1200;
@@ -224,4 +224,66 @@ public class FinishScene {
     public Scene getScene() {
         return finishScene;
     }
+
+    public void deleteFinishScene() {
+        System.out.println("⚠ [FinishScene]: Alle Referenzen werden gelöscht...");
+
+        // Stoppe die Hintergrundmusik
+        if (this.soundPlayer != null) {
+            this.soundPlayer.stop();
+            this.soundPlayer = null;
+        }
+
+        // Lösche alle UI-Komponenten aus dem root-Pane
+        if (this.root != null) {
+            this.root.getChildren().clear();
+        }
+
+        // Setze alle Label-Referenzen auf null
+        this.l_creepyProperty = null;
+        this.l_danke = null;
+        this.l_entwickler = null;
+        this.eName = null;
+        this.l_audio = null;
+        this.aName = null;
+        this.l_bilder = null;
+        this.bildPlayer = null;
+        this.bildPlayerLink = null;
+        this.bildStart = null;
+        this.bildStartLink = null;
+        this.l_slidDown_CreepyProperty = null;
+        this.l_slidDown_danke = null;
+
+        // Setze die Button-Referenz auf null
+        this.back = null;
+
+        // Lösche alle VBox-Referenzen
+        this.textDisplay.getChildren().clear();
+        this.slidDown.getChildren().clear();
+        this.vBox_Text.getChildren().clear();
+        this.vBox_Butten.getChildren().clear();
+        this.ueberschrift.getChildren().clear();
+        this.vBox_entwickler.getChildren().clear();
+        this.vBox_audio.getChildren().clear();
+        this.vBox_bilder.getChildren().clear();
+
+        this.textDisplay = null;
+        this.slidDown = null;
+        this.vBox_Text = null;
+        this.vBox_Butten = null;
+        this.ueberschrift = null;
+        this.vBox_entwickler = null;
+        this.vBox_audio = null;
+        this.vBox_bilder = null;
+
+        // Setze die Szene und GUI auf null
+        this.finishScene = null;
+        this.gui = null;
+
+        // Speicherbereinigung anstoßen
+        System.gc();
+
+        System.out.println("✔ [FinishScene]: Speicherbereinigung durchgeführt.");
+    }
+
 }

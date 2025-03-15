@@ -15,14 +15,16 @@ import theCreepyProperty.menu.Menu;
 import theCreepyProperty.screens.GameWin;
 
 public class KeyHandler {
-    private final Player player;
-    private final GameScene gameScene;
-    private final LevelSelectScene levelSelectScene;
-    private final Menu menu;
-    private final GameOver gameOver;
-    private final GameWin gameWin;
-    private final MapCreate mapCreate;
+    private Player player;
+    private GameScene gameScene;
+    private LevelSelectScene levelSelectScene;
+    private Menu menu;
+    private GameOver gameOver;
+    private GameWin gameWin;
+    private MapCreate mapCreate;
     private SoundPlayer soundPlayer;
+
+    private AnimationTimer timer;
 
     private boolean wPressed = false;
     private boolean aPressed = false;
@@ -89,14 +91,15 @@ public class KeyHandler {
             }
         });
 
+
         // FPS-unabhängige Bewegungsberechnung mit AnimationTimer
-        AnimationTimer timer = new AnimationTimer() {
+        this.timer  = new AnimationTimer()  {
             private long lastTime = System.nanoTime();
             private long lastFPSUpdate = System.nanoTime();
             private int frameCount = 0;
             private double fps = 0;
 
-            @Override
+            //@Override
             public void handle(long now) {
                 double deltaTime = (now - lastTime) / 1_000_000_000.0; // Delta-Zeit in Sekunden
                 lastTime = now;
@@ -187,7 +190,7 @@ public class KeyHandler {
 
             // Sprint-Anzeige aktualisieren
             int sprintBarLength = (int) (sprintTime / maxSprintTime * (maxSprintTime * 2));
-            String sprintBar = "sprint " + "|".repeat(sprintBarLength);
+            String sprintBar = "sprint: " + "|".repeat(sprintBarLength);
             this.gameScene.getGuiComponents().getL_sprint().setText(sprintBar);
 
             // Bewegung der Spielfigur
@@ -300,4 +303,55 @@ public class KeyHandler {
             this.player.draw();
         }
     }
+
+    public void deleteKeyHandler() {
+        if (this.timer != null) {
+            this.timer.stop();
+            this.timer = null;
+        }
+
+        // Event-Handler von der Szene entfernen (falls nötig)
+        if (this.gameScene != null && this.gameScene.getScene() != null) {
+            this.gameScene.getScene().setOnKeyPressed(null);
+            this.gameScene.getScene().setOnKeyReleased(null);
+        }
+
+        // SoundPlayer stoppen (falls aktiv)
+        if (this.soundPlayer != null) {
+            this.soundPlayer.stop();
+        }
+
+        // Alle Objekte auf null setzen
+        this.player = null;
+        this.gameScene = null;
+        this.levelSelectScene = null;
+        this.menu = null;
+        this.gameOver = null;
+        this.gameWin = null;
+        this.mapCreate = null;
+        this.soundPlayer = null;
+
+        // Boolean-Werte zurücksetzen
+        this.wPressed = false;
+        this.aPressed = false;
+        this.sPressed = false;
+        this.dPressed = false;
+        this.cPressed = false;
+        this.ctrlPressed = false;
+        this.shiftPressed = false;
+        this.escPressed = false;
+
+        // Numerische Werte zurücksetzen
+        this.nextPlayerX = 0.0;
+        this.nextPlayerY = 0.0;
+        this.sprintTime = 0.0;
+        this.maxSprintTime = 0.0;
+        this.sprintRegenerationSpeed = 0.0;
+        this.sprintIncreaseRate = 0.0;
+        this.cooldownTime = 0.0;
+
+        // Garbage Collector anstoßen (optional)
+        System.gc();
+    }
+
 }

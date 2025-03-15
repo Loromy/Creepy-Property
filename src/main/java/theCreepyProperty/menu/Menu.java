@@ -13,17 +13,17 @@ import theCreepyProperty.scenes.GameScene;
 public class Menu extends VBox {
     private GUI gui;
     private GameScene gameScene;
-    private final Pane backgroundMenu = new Pane(); // Background
-    private final Pane pMenu = new Pane(); // Menu Items
-    private final VBox vBoxMenu = new VBox();
-    private final Settings settings;
+    private Pane backgroundMenu = new Pane(); // Background
+    private Pane pMenu = new Pane(); // Menu Items
+    private VBox vBoxMenu = new VBox();
+    private Settings settings;
     private boolean menu_on = false;
     private SoundPlayer soundPlayer;
 
-    private final Label name;
-    private final Button resumeButton;
-    private final Button settingsButton;
-    private final Button backButton;
+    private Label name;
+    private Button resumeButton;
+    private Button settingsButton;
+    private Button backButton;
 
     private boolean ghostCanMoves = true;
 
@@ -158,4 +158,68 @@ public class Menu extends VBox {
     public void setGhostCanMoves(boolean value) {
         this.ghostCanMoves = value;
     }
+
+    public void deleteMenu() {
+        System.out.println("⚠ [Menu]: Alle Referenzen werden gelöscht...");
+
+        // GUI Referenz löschen (Wird extern verwaltet)
+        if (this.gui != null) {
+            this.gui = null;
+        }
+
+        // GameScene löschen
+        if (this.gameScene != null) {
+            this.gameScene = null;
+        }
+
+        // SoundPlayer löschen
+        if (this.soundPlayer != null) {
+            this.soundPlayer = null;
+        }
+
+        // UI-Elemente löschen
+        if (this.name != null) {
+            this.name = null;
+        }
+
+        if (this.resumeButton != null) {
+            this.resumeButton = null;
+        }
+
+        if (this.settingsButton != null) {
+            this.settingsButton = null;
+        }
+
+        if (this.backButton != null) {
+            this.backButton = null;
+        }
+
+        // Pane-Elemente löschen
+        if (this.pMenu != null) {
+            this.pMenu = null;
+        }
+
+        if (this.backgroundMenu != null) {
+            this.backgroundMenu = null;
+        }
+
+        if (this.vBoxMenu != null) {
+            this.vBoxMenu = null;
+        }
+
+        // Settings löschen
+        if (this.settings != null) {
+            this.settings.deleteSettings();
+            this.settings = null;
+        }
+
+        // Statusvariablen zurücksetzen
+        this.menu_on = false;
+        this.ghostCanMoves = true;
+
+        // Garbage Collector anstoßen
+        System.gc();
+        System.out.println("✔ [Menu]: Speicherbereinigung durchgeführt.");
+    }
+
 }

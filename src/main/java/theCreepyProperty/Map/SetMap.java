@@ -4,20 +4,19 @@ import theCreepyProperty.main.GUI;
 import theCreepyProperty.scenes.LevelSelectScene;
 
 public class SetMap {
-    private final GUI gui;
-    private final LevelSelectScene levelSelectScene;
+    private GUI gui;
+    private LevelSelectScene levelSelectScene;
 
-    private final String path0 = "src/resources/csv/maps/map0.csv";
-    private final String path1 = "src/resources/csv/maps/map1.csv";
-    private final String path2 = "src/resources/csv/maps/map2.csv";
-    private final String path3 = "src/resources/csv/maps/map3.csv";
-    private final String path4 = "src/resources/csv/maps/map4.csv";
-    private final String path5 = "src/resources/csv/maps/map5.csv";
-    private final String path6 = "src/resources/csv/maps/map6.csv";
-    private final String path7 = "src/resources/csv/maps/map7.csv";
-    private final String path8 = "src/resources/csv/maps/map8.csv";
-    private final String path9 = "src/resources/csv/maps/map9.csv";
-
+    private String path0 = "src/resources/csv/maps/map0.csv";
+    private String path1 = "src/resources/csv/maps/map1.csv";
+    private String path2 = "src/resources/csv/maps/map2.csv";
+    private String path3 = "src/resources/csv/maps/map3.csv";
+    private String path4 = "src/resources/csv/maps/map4.csv";
+    private String path5 = "src/resources/csv/maps/map5.csv";
+    private String path6 = "src/resources/csv/maps/map6.csv";
+    private String path7 = "src/resources/csv/maps/map7.csv";
+    private String path8 = "src/resources/csv/maps/map8.csv";
+    private String path9 = "src/resources/csv/maps/map9.csv";
 
     public SetMap(GUI gui) {
         System.out.println(".............................SetMap..............................");
@@ -181,4 +180,35 @@ public class SetMap {
     public String getPath9() {
         return this.path9;
     }
+
+    public void deleteSetMap() {
+        System.out.println("⚠ [SetMap]: Alle Referenzen werden gelöscht...");
+
+        // GUI Referenz löschen (Wird extern verwaltet)
+        if (this.gui != null) {
+            this.gui = null;
+        }
+
+        // LevelSelectScene Referenz löschen
+        if (this.levelSelectScene != null) {
+            this.levelSelectScene = null;
+        }
+
+        // Alle Pfad-Variablen auf null setzen
+        this.path0 = null;
+        this.path1 = null;
+        this.path2 = null;
+        this.path3 = null;
+        this.path4 = null;
+        this.path5 = null;
+        this.path6 = null;
+        this.path7 = null;
+        this.path8 = null;
+        this.path9 = null;
+
+        // System.gc() aufrufen um Speicherbereinigung zu erzwingen
+        System.gc();
+        System.out.println("✔ [SetMap]: Speicherbereinigung durchgeführt.");
+    }
+
 }

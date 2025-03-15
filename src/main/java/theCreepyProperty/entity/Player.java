@@ -10,11 +10,11 @@ import javax.sound.sampled.LineEvent;
 import java.util.ArrayList;
 
 public class Player extends Entity{
-    private final GUI gui;
+    private GUI gui;
     private double controlSpeed = 0; // speed if strg pressed
-    private final ImageView i_player = new ImageView();
-    private final ImageView i_darkness_overlay = new ImageView();
-    private final SoundPlayer soundPlayer = new SoundPlayer("src/resources/sounds/heartbeat.wav");
+    private ImageView i_player = new ImageView();
+    private ImageView i_darkness_overlay = new ImageView();
+    private SoundPlayer soundPlayer = new SoundPlayer("src/resources/sounds/heartbeat.wav");
 
     private boolean ghostSoundIsPlaying = false;
 
@@ -197,4 +197,70 @@ public class Player extends Entity{
     public Rectangle getSolidPlayerAria() {
         return this.solid_aria;
     }
+
+    public void deletePlayer() {
+        System.out.println("⚠ [Player]: Alle Referenzen werden gelöscht...");
+
+        // GUI Referenzen löschen
+        if (this.gui != null) {
+            this.gui = null;
+        }
+
+        // SoundPlayer löschen
+        if (this.soundPlayer != null) {
+            this.soundPlayer.stop();  // sicherstellen, dass der Sound gestoppt wird
+            this.soundPlayer = null;
+        }
+
+        // ImageViews auf null setzen
+        if (this.i_player != null) {
+            this.i_player.setImage(null);
+            this.i_player = null;
+        }
+
+        if (this.i_darkness_overlay != null) {
+            this.i_darkness_overlay.setImage(null);
+            this.i_darkness_overlay = null;
+        }
+
+        // SolidArea löschen
+        if (this.solid_aria != null) {
+            this.solid_aria.setVisible(false);  // Sichtbarkeit zurücksetzen
+            this.solid_aria = null;
+        }
+
+        // Variablen zurücksetzen
+        this.controlSpeed = 0;
+        this.ghostSoundIsPlaying = false;
+
+        // Bild-Dateien entfernen
+        up1 = null;
+        up2 = null;
+        up3 = null;
+        up4 = null;
+        down1 = null;
+        down2 = null;
+        down3 = null;
+        down4 = null;
+        left1 = null;
+        left2 = null;
+        left3 = null;
+        left4 = null;
+        right1 = null;
+        right2 = null;
+        right3 = null;
+        right4 = null;
+        darknessOverlay = null;
+
+        // Abstand zu Geistern und andere Checks zurücksetzen
+        this.direction = null;
+
+        // Spieler-Kollisionsstatus zurücksetzen
+        this.collision_on = false;
+
+        // Garbage Collector anstoßen
+        System.gc();
+        System.out.println("✔ [Player]: Speicherbereinigung durchgeführt.");
+    }
+
 }
