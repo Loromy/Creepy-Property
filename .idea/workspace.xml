@@ -4,18 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="87a96b04-91ba-4fe6-93a4-31fd9b49747e" name="Changes" comment="V0.4.3&#10;- Collision box anzeige">
-      <change afterPath="$PROJECT_DIR$/src/resources/textures/items/Barrier.png" afterDir="false" />
+    <list default="true" id="87a96b04-91ba-4fe6-93a4-31fd9b49747e" name="Changes" comment="V0.4.4&#10;- Deaths anzeigen in Gui&#10;- barrier in Tutorial level">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/TutorialMapInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/TutorialMapInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/entity/Ghost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/entity/Ghost.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/GuiComponents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/GuiComponents.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/CollisionChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/CollisionChecker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/KeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/KeyHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/scenes/GameScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/scenes/GameScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/scenes/LevelSelectScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/scenes/LevelSelectScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/screens/GameWin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/screens/GameWin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/csv/Save/spielstand.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/Save/spielstand.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/csv/maps/map0.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/maps/map0.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/style/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/style/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -285,7 +280,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742076009352</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="V0.4.4&#10;- Deaths anzeigen in Gui&#10;- barrier in Tutorial level">
+      <option name="closed" value="true" />
+      <created>1742133694179</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1742133694179</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -322,7 +325,8 @@
     <MESSAGE value="V0.3.11.5&#10;- map update&#10;- next map fix v1" />
     <MESSAGE value="V0.4.2&#10;- deaths counter" />
     <MESSAGE value="V0.4.3&#10;- Collision box anzeige" />
-    <option name="LAST_COMMIT_MESSAGE" value="V0.4.3&#10;- Collision box anzeige" />
+    <MESSAGE value="V0.4.4&#10;- Deaths anzeigen in Gui&#10;- barrier in Tutorial level" />
+    <option name="LAST_COMMIT_MESSAGE" value="V0.4.4&#10;- Deaths anzeigen in Gui&#10;- barrier in Tutorial level" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

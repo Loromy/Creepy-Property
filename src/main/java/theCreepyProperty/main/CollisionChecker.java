@@ -87,6 +87,20 @@ public class CollisionChecker {
         }
     }
 
+    public boolean isCollidingWithWall(Player player, double nextX, double nextY, int indexWall) {
+        boolean colliding = false;
+
+        Rectangle futurePlayer = new Rectangle(nextX, nextY, player.entity_size_X, player.entity_size_Y);
+
+        Rectangle wall = mapCreate.getWallList().get(indexWall).getRWall();
+
+        if (futurePlayer.intersects(wall.getBoundsInLocal()) && mapCreate.getWallList().get(indexWall).getPlayer_block_collision()) {
+            colliding = true;
+        }
+
+        return colliding;
+    }
+
     private void openDoorsInLevel(Player player) {
         for (int i = 0; i < mapCreate.getDoorList().size(); i++) {
             if (player.keys_eingesammelt >= this.mapCreate.getNetToCollectKeys() && !this.isPlayed) {

@@ -282,6 +282,12 @@
     -fx-padding: 2px 7px 2px 7px;
 }
 
+#tutorial-info-feld-background-error {
+    -fx-background-color: rgba(176, 0, 0, 0.7);
+    -fx-background-radius: 10px;
+    -fx-padding: 2px 7px 2px 7px;
+}
+
 /* Abschluss-Szene */
 #finishScene {
     -fx-font-family: Creepster;

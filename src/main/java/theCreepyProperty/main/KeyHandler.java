@@ -285,11 +285,21 @@ public class KeyHandler {
         if (!player.getCollision_on()) {
             player.setPlayer_world_Y(this.nextPlayerY);
         }
+
+        if (this.levelSelectScene.getMapSelected() == 0) {
+            boolean collidingX = this.gameScene.getChecker().isCollidingWithWall(this.player, this.nextPlayerX, player.getPlayer_world_Y(), 9);
+            boolean collidingY = this.gameScene.getChecker().isCollidingWithWall(this.player, player.getPlayer_world_X(), this.nextPlayerY, 9);
+
+            if(collidingX || collidingY) {
+                this.gameScene.getTutorialMapInfo().setCollisionVisible(true);
+            } else {
+                this.gameScene.getTutorialMapInfo().setCollisionVisible(false);
+            }
+        }
     }
 
     private void checkGhostCollision(double deltaTime) {
         Rectangle futurePlayer = new Rectangle(this.nextPlayerX, this.nextPlayerY, player.entity_size_X, player.entity_size_Y);
-        //System.out.println("test---------" + this.nextPlayerX + ", " +  this.nextPlayerY + "," + player.entity_size_X + "," + player.entity_size_Y);
         // Ghosts
         for (Ghost ghost : mapCreate.getGhostList()) {
             Rectangle ghostNew = ghost.getSolidAria();
