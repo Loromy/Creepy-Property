@@ -320,7 +320,7 @@ public class KeyHandler {
                 ghost.sprite_counter = 0;
 
             }
-            ghost.setDirection("down");
+            ghost.draw();
         }
     }
 
@@ -374,6 +374,8 @@ public class KeyHandler {
         this.sPressed = false;
         this.dPressed = false;
         this.cPressed = false;
+        this.bPressed = false;
+        this.lastState_bPressed = true;
         this.ctrlPressed = false;
         this.shiftPressed = false;
         this.escPressed = false;

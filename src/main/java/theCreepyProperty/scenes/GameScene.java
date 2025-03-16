@@ -145,6 +145,7 @@ public class GameScene {
         pGame.getChildren().add(this.guiComponents.getvBox_anzeige());
         pGame.getChildren().add(this.guiComponents.gethBox_keys());
         pGame.getChildren().add(this.guiComponents.getvBox_Time());
+        pGame.getChildren().add(this.guiComponents.getvBox_Deaths());
         pGame.getChildren().add(this.guiComponents.getvBox_sprint());
 
         // Game Over / Win Menüs hinzufügen

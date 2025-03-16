@@ -23,10 +23,12 @@ public class GuiComponents {
     private Label l_fps;
     private Label l_level;
     private Label l_time;
+    private Label l_deaths;
     private HBox hBox_keys;
     private HBox hBox_Level;
     private VBox vBox_anzeige;
     private VBox vBox_Time;
+    private VBox vBox_Deaths;
     private VBox vBox_sprint;
     private ImageView i_keys;
 
@@ -54,13 +56,18 @@ public class GuiComponents {
         this.vBox_Time.setMinSize(130,20);
         this.vBox_Time.setId("gui-components-background-links");
 
+        this.vBox_Deaths = new VBox();
+        this.vBox_Deaths.setLayoutY(100);
+        this.vBox_Deaths.setMinSize(80,20);
+        this.vBox_Deaths.setId("gui-components-background-links");
+
         // VBox
         this.vBox_sprint = new VBox();
-        this.vBox_sprint.setLayoutY(100);
+        this.vBox_sprint.setLayoutY(140);
         this.vBox_sprint.setId("gui-components-background-links");
 
         this.vBox_anzeige = new VBox();
-        this.vBox_anzeige.setLayoutY(140);
+        this.vBox_anzeige.setLayoutY(180);
         this.vBox_anzeige.setId("gui-components-background-links");
         this.vBox_anzeige.setVisible(false);
 
@@ -88,6 +95,10 @@ public class GuiComponents {
         this.l_time.setId("gui-components");
         this.vBox_Time.getChildren().add(l_time);
 
+        this.l_deaths = new Label("Deaths: " + formatedDeathCounter());
+        this.l_deaths.setId("gui-components");
+        this.vBox_Deaths.getChildren().add(l_deaths);
+
         // Sprint
         this.l_sprint = new Label("Sprint: ");
         this.l_sprint.setId("gui-components");
@@ -105,6 +116,21 @@ public class GuiComponents {
         this.l_keys = new Label("Keys: " + player.getKeyEingesammelt());
         this.l_keys.setId("gui-components");
         this.vBox_anzeige.getChildren().add(l_keys);
+    }
+
+    private String formatedDeathCounter() {
+        String formatedDeaths = "000";
+        int deaths = this.levelSelectScene.getThisLevelDeaths();
+
+        if (deaths < 10) {
+            formatedDeaths = "00" + deaths;
+        } else if (deaths < 100) {
+            formatedDeaths = "0" + deaths;
+        } else {
+            formatedDeaths = "" + deaths;
+        }
+
+        return formatedDeaths;
     }
 
     public void collectKey(int keysToCollected) {
@@ -199,6 +225,10 @@ public class GuiComponents {
         return vBox_Time;
     }
 
+    public VBox getvBox_Deaths() {
+        return vBox_Deaths;
+    }
+
     public VBox getvBox_sprint() {
         return vBox_sprint;
     }
@@ -228,6 +258,11 @@ public class GuiComponents {
         if (this.vBox_Time != null) {
             this.vBox_Time.getChildren().clear();
             this.vBox_Time = null;
+        }
+
+        if (this.vBox_Deaths != null) {
+            this.vBox_Deaths.getChildren().clear();
+            this.vBox_Deaths = null;
         }
 
         if (this.vBox_sprint != null) {
@@ -263,6 +298,10 @@ public class GuiComponents {
 
         if (this.l_time != null) {
             this.l_time = null;
+        }
+
+        if (this.l_deaths != null) {
+            this.l_deaths = null;
         }
 
         // Entferne ImageViews

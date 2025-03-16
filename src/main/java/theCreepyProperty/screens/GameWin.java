@@ -180,6 +180,10 @@ public class GameWin {
             this.text = null;
         }
 
+        if (this.time != null) {
+            this.time = null;
+        }
+
         if (this.backButton != null) {
             this.backButton = null;
         }

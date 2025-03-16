@@ -106,6 +106,7 @@ public class LevelSelectScene {
         levelMenu.getbL1().setOnAction(e ->{
             setMap(1);
             this.timePlaying = 0;
+            this.thisLevelDeaths = 0;
 
             this.levelMenu.selectButton(this.levelMenu.getbL1());
 
@@ -121,6 +122,7 @@ public class LevelSelectScene {
         levelMenu.getbL2().setOnAction(e ->{
             setMap(2);
             this.timePlaying = 0;
+            this.thisLevelDeaths = 0;
 
             this.levelMenu.selectButton(this.levelMenu.getbL2());
 
@@ -136,6 +138,7 @@ public class LevelSelectScene {
         levelMenu.getbL3().setOnAction(e ->{
             setMap(3);
             this.timePlaying = 0;
+            this.thisLevelDeaths = 0;
 
             this.levelMenu.selectButton(this.levelMenu.getbL3());
 
@@ -151,6 +154,7 @@ public class LevelSelectScene {
         levelMenu.getbL4().setOnAction(e ->{
             setMap(4);
             this.timePlaying = 0;
+            this.thisLevelDeaths = 0;
 
             this.levelMenu.selectButton(this.levelMenu.getbL4());
 
@@ -166,6 +170,7 @@ public class LevelSelectScene {
         levelMenu.getbL5().setOnAction(e ->{
             setMap(5);
             this.timePlaying = 0;
+            this.thisLevelDeaths = 0;
 
             this.levelMenu.selectButton(this.levelMenu.getbL5());
 
@@ -181,6 +186,7 @@ public class LevelSelectScene {
         levelMenu.getbL6().setOnAction(e ->{
             setMap(6);
             this.timePlaying = 0;
+            this.thisLevelDeaths = 0;
 
             this.levelMenu.selectButton(this.levelMenu.getbL6());
 
@@ -196,6 +202,7 @@ public class LevelSelectScene {
         levelMenu.getbL7().setOnAction(e ->{
             setMap(7);
             this.timePlaying = 0;
+            this.thisLevelDeaths = 0;
 
             this.levelMenu.selectButton(this.levelMenu.getbL7());
 
@@ -211,6 +218,7 @@ public class LevelSelectScene {
         levelMenu.getbL8().setOnAction(e ->{
             setMap(8);
             this.timePlaying = 0;
+            this.thisLevelDeaths = 0;
 
             this.levelMenu.selectButton(this.levelMenu.getbL8());
 
@@ -226,6 +234,7 @@ public class LevelSelectScene {
         levelMenu.getbL9().setOnAction(e ->{
             setMap(9);
             this.timePlaying = 0;
+            this.thisLevelDeaths = 0;
 
             this.levelMenu.selectButton(this.levelMenu.getbL9());
 
@@ -241,6 +250,7 @@ public class LevelSelectScene {
         levelMenu.getbTutorial().setOnAction(e ->{
             setMap(0);
             this.timePlaying = 0;
+            this.thisLevelDeaths = 0;
 
             this.levelMenu.selectButton(this.levelMenu.getbTutorial());
 
@@ -482,53 +492,52 @@ public class LevelSelectScene {
             switch (this.mapSelected) {
                 case 0:
                     if (this.thisLevelTime < level0Time || level0Time == 0.0) {
-                        setLevelTime(this.mapSelected, this.thisLevelTime);
-                        setLevelDeaths(this.mapSelected, this.thisLevelDeaths);
+                        setTimeAndDeaths();
                     }
                     break;
                 case 1:
                     if (this.thisLevelTime < level1Time || level1Time == 0.0) {
-                        setLevelTime(this.mapSelected, this.thisLevelTime);
+                        setTimeAndDeaths();
                     }
                     break;
                 case 2:
                     if (this.thisLevelTime < level2Time || level2Time == 0.0) {
-                        setLevelTime(this.mapSelected, this.thisLevelTime);
+                        setTimeAndDeaths();
                     }
                     break;
                 case 3:
                     if (this.thisLevelTime < level3Time || level3Time == 0.0) {
-                        setLevelTime(this.mapSelected, this.thisLevelTime);
+                        setTimeAndDeaths();
                     }
                     break;
                 case 4:
                     if (this.thisLevelTime < level4Time || level4Time == 0.0) {
-                        setLevelTime(this.mapSelected, this.thisLevelTime);
+                        setTimeAndDeaths();
                     }
                     break;
                 case 5:
                     if (this.thisLevelTime < level5Time || level5Time == 0.0) {
-                        setLevelTime(this.mapSelected, this.thisLevelTime);
+                        setTimeAndDeaths();
                     }
                     break;
                 case 6:
                     if (this.thisLevelTime < level6Time || level6Time == 0.0) {
-                        setLevelTime(this.mapSelected, this.thisLevelTime);
+                        setTimeAndDeaths();
                     }
                     break;
                 case 7:
                     if (this.thisLevelTime < level7Time || level7Time == 0.0) {
-                        setLevelTime(this.mapSelected, this.thisLevelTime);
+                        setTimeAndDeaths();
                     }
                     break;
                 case 8:
                     if (this.thisLevelTime < level8Time || level8Time == 0.0) {
-                        setLevelTime(this.mapSelected, this.thisLevelTime);
+                        setTimeAndDeaths();
                     }
                     break;
                 case 9:
                     if (this.thisLevelTime < level9Time || level9Time == 0.0) {
-                        setLevelTime(this.mapSelected, this.thisLevelTime);
+                        setTimeAndDeaths();
                     }
                     break;
             }
@@ -538,6 +547,11 @@ public class LevelSelectScene {
                 setLevelUnlocked(nextMap, true);
             }
         //}
+    }
+
+    private void setTimeAndDeaths() {
+        setLevelTime(this.mapSelected, this.thisLevelTime);
+        setLevelDeaths(this.mapSelected, this.thisLevelDeaths);
     }
 
 
@@ -702,126 +716,126 @@ public class LevelSelectScene {
 
     // Getter
     public boolean getLevelCompleted(int level) {
-        boolean thisLevel = false;
+        boolean thisLevelComleted = false;
 
         switch (level) {
             case 0:
-                thisLevel = this.levelTutorialCompleted;
+                thisLevelComleted = this.levelTutorialCompleted;
                 break;
             case 1:
-                thisLevel = this.level1Completed;
+                thisLevelComleted = this.level1Completed;
                 break;
             case 2:
-                thisLevel = this.level2Completed;
+                thisLevelComleted = this.level2Completed;
                 break;
             case 3:
-                thisLevel = this.level3Completed;
+                thisLevelComleted = this.level3Completed;
                 break;
             case 4:
-                thisLevel = this.level4Completed;
+                thisLevelComleted = this.level4Completed;
                 break;
             case 5:
-                thisLevel = this.level5Completed;
+                thisLevelComleted = this.level5Completed;
                 break;
             case 6:
-                thisLevel = this.level6Completed;
+                thisLevelComleted = this.level6Completed;
                 break;
             case 7:
-                thisLevel = this.level7Completed;
+                thisLevelComleted = this.level7Completed;
                 break;
             case 8:
-                thisLevel = this.level8Completed;
+                thisLevelComleted = this.level8Completed;
                 break;
             case 9:
-                thisLevel = this.level9Completed;
+                thisLevelComleted = this.level9Completed;
                 break;
             default:
                 System.err.println("✖ [LevelSelectScene]: getLevelCompleted Invalid value: " + level);
                 break;
         }
-        return thisLevel;
+        return thisLevelComleted;
     }
 
     public boolean getLevelUnlocked(int level) {
-        boolean thisLevel = false;
+        boolean thisLevelUnlocked = false;
 
         switch (level) {
             case 0:
-                thisLevel = this.levelTutorialUnlocked;
+                thisLevelUnlocked = this.levelTutorialUnlocked;
                 break;
             case 1:
-                thisLevel = this.level1Unlocked;
+                thisLevelUnlocked = this.level1Unlocked;
                 break;
             case 2:
-                thisLevel = this.level2Unlocked;
+                thisLevelUnlocked = this.level2Unlocked;
                 break;
             case 3:
-                thisLevel = this.level3Unlocked;
+                thisLevelUnlocked = this.level3Unlocked;
                 break;
             case 4:
-                thisLevel = this.level4Unlocked;
+                thisLevelUnlocked = this.level4Unlocked;
                 break;
             case 5:
-                thisLevel = this.level5Unlocked;
+                thisLevelUnlocked = this.level5Unlocked;
                 break;
             case 6:
-                thisLevel = this.level6Unlocked;
+                thisLevelUnlocked = this.level6Unlocked;
                 break;
             case 7:
-                thisLevel = this.level7Unlocked;
+                thisLevelUnlocked = this.level7Unlocked;
                 break;
             case 8:
-                thisLevel = this.level8Unlocked;
+                thisLevelUnlocked = this.level8Unlocked;
                 break;
             case 9:
-                thisLevel = this.level9Unlocked;
+                thisLevelUnlocked = this.level9Unlocked;
                 break;
             default:
                 System.err.println("✖ [LevelSelectScene]: getLevelCompleted Invalid value: " + level);
                 break;
         }
-        return thisLevel;
+        return thisLevelUnlocked;
     }
 
     public int getLevelDeaths(int level) {
-        int thisLevel = 0;
+        int thisLevelDeaths = 0;
 
         switch (level) {
             case 0:
-                thisLevel = this.level0Deaths;
+                thisLevelDeaths = this.level0Deaths;
                 break;
             case 1:
-                thisLevel = this.level1Deaths;
+                thisLevelDeaths = this.level1Deaths;
                 break;
             case 2:
-                thisLevel = this.level2Deaths;
+                thisLevelDeaths = this.level2Deaths;
                 break;
             case 3:
-                thisLevel = this.level3Deaths;
+                thisLevelDeaths = this.level3Deaths;
                 break;
             case 4:
-                thisLevel = this.level4Deaths;
+                thisLevelDeaths = this.level4Deaths;
                 break;
             case 5:
-                thisLevel = this.level5Deaths;
+                thisLevelDeaths = this.level5Deaths;
                 break;
             case 6:
-                thisLevel = this.level6Deaths;
+                thisLevelDeaths = this.level6Deaths;
                 break;
             case 7:
-                thisLevel = this.level7Deaths;
+                thisLevelDeaths = this.level7Deaths;
                 break;
             case 8:
-                thisLevel = this.level8Deaths;
+                thisLevelDeaths = this.level8Deaths;
                 break;
             case 9:
-                thisLevel = this.level9Deaths;
+                thisLevelDeaths = this.level9Deaths;
                 break;
             default:
                 System.err.println("✖ [LevelSelectScene]: getLevelCompleted Invalid value: " + level);
                 break;
         }
-        return thisLevel;
+        return thisLevelDeaths;
     }
 
 

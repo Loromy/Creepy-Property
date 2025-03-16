@@ -76,13 +76,8 @@ public class Ghost extends Entity{
     }
 
     public ImageView draw() {
-        Image playerImage = null;
+        Image playerImage = switchSprite(down1, down2, down3, down4);
 
-        switch (direction) {
-            case "down":
-                playerImage = switchSprite(down1, down2, down3, down4);
-                break;
-        }
         this.i_ghost.setImage(playerImage);
         return i_ghost;
     }
@@ -136,7 +131,6 @@ public class Ghost extends Entity{
         }
     }
 
-
     private void setNewTarget() {
         this.zielPosition_X = Math.random() * 1000; // Damit das Rechteck nicht außerhalb liegt
         this.zielPosition_Y = Math.random() * 600;
@@ -152,22 +146,12 @@ public class Ghost extends Entity{
         this.solid_area.setY(player_world_Y);
     }
 
-    public void setSpeed(double speed) {
-        this.speed = speed;
-    }
-
-    public void setDirection(String direction) {
-        this.direction = direction;
-        this.draw();
-    }
-
     public void setDefaultValues() {
         entity_size_X = 20;
         entity_size_Y = 29;
         entity_world_X = -100;
         entity_world_Y = -100;
         speed = 1;
-        direction = "down";
         System.out.println("✔ [Ghost]: Ghost defaultValues set");
     }
 
