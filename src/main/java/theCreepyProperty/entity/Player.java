@@ -94,8 +94,8 @@ public class Player extends Entity{
     }
 
     public ImageView loadOverlay() {
-        this.i_darkness_overlay.setImage(overlay);
-        //this.i_darkness_overlay.setImage(null); //TODO Overlay ausblenden
+        //this.i_darkness_overlay.setImage(overlay);
+        this.i_darkness_overlay.setImage(null); //TODO Overlay ausblenden
         return i_darkness_overlay;
     }
 

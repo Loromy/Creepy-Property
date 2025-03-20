@@ -165,7 +165,6 @@ public class GameScene {
         pMenu.getChildren().add(this.menu.getSettings().getAudio().getMenuAudio());
 
         // KeyHandler hinzufügen
-        System.out.println("--------------------------------------------------------------------------------------------------------------" + menu);
         keyHandler = new KeyHandler(this.player, this, this.gui.getSelectScene(), this.menu, this.gameOver, this.gameWin);
         keyHandler.addKeyListener(gameScene, this);
 

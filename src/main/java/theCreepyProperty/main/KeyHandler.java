@@ -194,14 +194,23 @@ public class KeyHandler {
 
             // Sprinten: Wenn STRG gedrückt und noch Sprintzeit übrig ist und der Cooldown abgelaufen ist
             if (ctrlPressed && sprintTime > 0 && cooldownTime <= 0) {
-                this.player.setControlSpeed(5); // Sprint-Geschwindigkeit
+                this.player.setControlSpeed(2); // Sprint-Geschwindigkeit
                 sprintTime -= deltaTime; // Sprintzeit abbauen
                 if (sprintTime < 0) sprintTime = 0; // Keine negativen Werte zulassen
             } else if (shiftPressed) {
                 this.player.setShiftSpeed();
+                for(Ghost ghost : this.gameScene.getMapCreate().getGhostList()) {
+                    ghost.setSpeed(0.7);
+                    ghost.setPlayerTargetDistance(100);
+                }
                 this.gameScene.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed());
             } else {
                 this.player.setControlSpeed(0);
+
+                for(Ghost ghost : this.gameScene.getMapCreate().getGhostList()) {
+                    ghost.setSpeed(1);
+                    ghost.setPlayerTargetDistance(200);
+                }
 
                 // Sprint regeneriert sich langsam, wenn die Taste losgelassen wird und kein Cooldown aktiv ist
                 if (!ctrlPressed && cooldownTime <= 0) {

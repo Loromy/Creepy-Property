@@ -19,6 +19,7 @@ public class Ghost extends Entity{
     private Timeline timeline;
 
     private double zielPosition_X = 0, zielPosition_Y = 0;
+    private int playerTargetDistance = 200;
 
     public Ghost(GUI gui, int x, int y, int width, int height)  {
         System.out.println(".............................Ghost..............................");
@@ -105,11 +106,11 @@ public class Ghost extends Entity{
 
         double distanceToPlayer = Math.sqrt(Math.pow(playerX - rectX, 2) + Math.pow(playerY - rectY, 2));
 
-        if (distanceToPlayer <= 200) {
+        if (distanceToPlayer <= playerTargetDistance) {
             // Wenn der Spieler innerhalb von 100px ist, setze die Zielkoordinaten auf die Spielerposition
             zielPosition_X = playerX;
             zielPosition_Y = playerY;
-        } else if (distanceToPlayer > 200 && zielPosition_X == playerX && zielPosition_Y == playerY) {
+        } else if (distanceToPlayer > playerTargetDistance && zielPosition_X == playerX && zielPosition_Y == playerY) {
             // Falls der Spieler weiter weg ist und das Ziel gerade auf den Spieler gesetzt war, neues Ziel setzen
             setNewTarget();
         }
@@ -179,7 +180,7 @@ public class Ghost extends Entity{
     }
 
     public double getSpeed(){
-        return this.speed + this.speed;
+        return this.speed;
     }
 
     public Rectangle getSolidAria() {
@@ -188,5 +189,13 @@ public class Ghost extends Entity{
 
     public Timeline getTimeline() {
         return this.timeline;
+    }
+
+    public void setSpeed(double speed) {
+        this.speed = speed;
+    }
+
+    public void setPlayerTargetDistance(int distance) {
+        this.playerTargetDistance = distance;
     }
 }

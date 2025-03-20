@@ -6,11 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="87a96b04-91ba-4fe6-93a4-31fd9b49747e" name="Changes" comment="V0.4.4&#10;- Deaths anzeigen in Gui&#10;- barrier in Tutorial level">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/TutorialMapInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/TutorialMapInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/CollisionChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/CollisionChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/entity/Ghost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/entity/Ghost.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/entity/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/KeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/KeyHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/scenes/GameScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/scenes/GameScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/csv/Einstellungen/settings.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/Einstellungen/settings.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/csv/Save/spielstand.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/Save/spielstand.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/style/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/style/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/csv/maps/map0.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/maps/map0.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/csv/maps/map4.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/maps/map4.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/csv/maps/map5.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/maps/map5.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/csv/maps/map6.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/maps/map6.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/csv/maps/map7.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/maps/map7.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +43,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/Loromy/the-creepy-property.git&quot;,
-    &quot;accountId&quot;: &quot;84b08c22-0b9f-49c9-8f7d-8949e2e20942&quot;
+    &quot;accountId&quot;: &quot;868421d7-2bc7-4c91-9637-d2a47af301c4&quot;
   }
 }</component>
   <component name="ProjectColorInfo">{
