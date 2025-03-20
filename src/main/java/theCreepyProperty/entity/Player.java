@@ -37,10 +37,10 @@ public class Player extends Entity{
         this.i_player.fitWidthProperty().bind(solid_area.widthProperty().add(36));
         this.i_player.fitHeightProperty().bind(solid_area.heightProperty().add(20));
 
-        this.i_darkness_overlay.xProperty().bind(solid_area.xProperty().subtract(1000));
-        this.i_darkness_overlay.yProperty().bind(solid_area.yProperty().subtract(610));
-        this.i_darkness_overlay.fitWidthProperty().bind(solid_area.widthProperty().add(2000));
-        this.i_darkness_overlay.fitHeightProperty().bind(solid_area.heightProperty().add(1200));
+        this.i_darkness_overlay.xProperty().bind(solid_area.xProperty().subtract(1166));
+        this.i_darkness_overlay.yProperty().bind(solid_area.yProperty().subtract(1166)); //610
+        this.i_darkness_overlay.fitWidthProperty().bind(solid_area.widthProperty().add(2332));
+        this.i_darkness_overlay.fitHeightProperty().bind(solid_area.heightProperty().add(2332)); //1200
 
         createPlayerImage();
     }
@@ -94,8 +94,8 @@ public class Player extends Entity{
     }
 
     public ImageView loadOverlay() {
-        //this.i_darkness_overlay.setImage(overlay);
-        this.i_darkness_overlay.setImage(null); //TODO Overlay ausblenden
+        this.i_darkness_overlay.setImage(overlay);
+        //this.i_darkness_overlay.setImage(null); //TODO Overlay ausblenden
         return i_darkness_overlay;
     }
 
@@ -219,6 +219,10 @@ public class Player extends Entity{
 
     public Rectangle getSolidPlayerAria() {
         return this.solid_area;
+    }
+
+    public ImageView getI_darkness_overlay() {
+        return this. i_darkness_overlay;
     }
 
     public void deletePlayer() {

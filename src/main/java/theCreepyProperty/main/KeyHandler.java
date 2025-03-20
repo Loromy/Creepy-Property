@@ -95,6 +95,19 @@ public class KeyHandler {
             }
         });
 
+        scene.setOnMouseMoved(event -> {
+            double mouseX = event.getX();
+            double mouseY = event.getY();
+            double imageX = this.player.getI_darkness_overlay().getX() + this.player.getI_darkness_overlay().getFitWidth() / 2;  // Mittelpunkt des Bildes
+            double imageY = this.player.getI_darkness_overlay().getY() + this.player.getI_darkness_overlay().getFitHeight() / 2;
+
+            // Winkel berechnen
+            double angle = Math.toDegrees(Math.atan2(mouseY - imageY, mouseX - imageX));
+
+            // Bild drehen
+            this.player.getI_darkness_overlay().setRotate(angle);
+        });
+
 
         // FPS-unabhängige Bewegungsberechnung mit AnimationTimer
         this.timer  = new AnimationTimer()  {
