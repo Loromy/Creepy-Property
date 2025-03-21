@@ -5,12 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87a96b04-91ba-4fe6-93a4-31fd9b49747e" name="Changes" comment="V0.4.6&#10;- Licht Kegel">
-      <change afterPath="$PROJECT_DIR$/src/resources/textures/overlay/info2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/textures/overlay/info4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/textures/overlay/darknessOverlay3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/textures/overlay/darknessOverlay3_Ringe.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/TutorialMapInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/TutorialMapInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/entity/Ghost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/entity/Ghost.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/entity/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/csv/Einstellungen/settings.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/Einstellungen/settings.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/csv/Save/spielstand.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/Save/spielstand.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/textures/overlay/darknessOverlay.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/textures/overlay/darknessOverlay2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/textures/overlay/darknessOverlayOLD.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/textures/overlay/darknessOverlay1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/textures/overlay/darknessOverlay_Ringe.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/textures/overlay/darknessOverlay2_Ringe.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,12 +38,12 @@
     &quot;assignee&quot;: &quot;Loromy&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Loromy/the-creepy-property.git&quot;,
-    &quot;accountId&quot;: &quot;868421d7-2bc7-4c91-9637-d2a47af301c4&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Loromy/the-creepy-property.git",
+    "accountId": "84b08c22-0b9f-49c9-8f7d-8949e2e20942"
   }
-}</component>
+}]]></component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
   </component>
