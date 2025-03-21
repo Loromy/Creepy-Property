@@ -128,12 +128,13 @@ public class Settings{
     }
 
     private void onButton3() {
-        this.gui.switchToFinishScene();
         System.out.println("✔ [Settings]: button3 FinishScene");
 
         soundPlayer = new SoundPlayer(soundButtonClick);
         this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster());
         this.soundPlayer.play();
+
+        this.gui.switchToFinishScene();
     }
 
     // Getter Methoden
