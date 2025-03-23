@@ -18,6 +18,7 @@ public class Player extends Entity{
     private SoundPlayer soundPlayer = new SoundPlayer("src/resources/sounds/heartbeat.wav");
 
     private boolean ghostSoundIsPlaying = false;
+    private boolean overlay_on = true;
 
     public Player(GUI gui)  {
         System.out.println(".............................Player..............................");
@@ -96,7 +97,6 @@ public class Player extends Entity{
     public ImageView loadOverlay() {
         this.i_darkness_overlay.setImage(overlay);
         this.i_darkness_overlay.setRotate(90);
-        //this.i_darkness_overlay.setImage(null); //TODO Overlay ausblenden
         return i_darkness_overlay;
     }
 
@@ -150,6 +150,16 @@ public class Player extends Entity{
         }
     }
 
+    public void triggerOverlay() {
+        if (!overlay_on) {
+            this.i_darkness_overlay.setImage(overlay);
+            this.overlay_on = true;
+        } else {
+            this.i_darkness_overlay.setImage(null);
+            this.overlay_on = false;
+        }
+    }
+
     public void stopGhostSound() {
         this.soundPlayer.stop();
     }
@@ -181,7 +191,7 @@ public class Player extends Entity{
         entity_size_X = 12;
         entity_size_Y = 28;
         entity_world_X = ((double) gui.getWidth() / 2) - (entity_size_X / 2);
-        entity_world_Y = ((double) gui.getHeight() / 2) - ((entity_size_Y / 2 ) + 19);
+        entity_world_Y = ((double) gui.getHeight() / 2) - ((entity_size_Y / 2));
         speed = 3;
         direction = "down";
         System.out.println("✔ [Player]: Player defaultValues set");

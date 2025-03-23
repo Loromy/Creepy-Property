@@ -26,6 +26,8 @@ public class MapCreate {
     private ArrayList<Ghost> ghostList = new ArrayList<>();
 
     private int netToCollectKeys = 0;
+    private boolean collision_on = true;
+    private boolean ghostMoving_on = true;
 
     public MapCreate() {
         System.out.println(".............................MapCreate..............................");
@@ -89,6 +91,34 @@ public class MapCreate {
                 i++;
                 System.out.println("✔ [MapCreator]: " + i + " Ghosts created");
             }
+        }
+    }
+
+    public void triggerCollision() {
+        if (!collision_on) {
+            for (Wall wall : this.wallList) {
+                wall.setPlayer_block_collision(true);
+            }
+            this.collision_on = true;
+        } else {
+            for (Wall wall : this.wallList) {
+                wall.setPlayer_block_collision(false);
+            }
+            this.collision_on = false;
+        }
+    }
+
+    public void triggerGhostMoving() {
+        if (!ghostMoving_on) {
+            for (Ghost ghost : this.ghostList) {
+                ghost.setGhostMoving(true);
+            }
+            this.ghostMoving_on = true;
+        } else {
+            for (Ghost ghost : this.ghostList) {
+                ghost.setGhostMoving(false);
+            }
+            this.ghostMoving_on = false;
         }
     }
 

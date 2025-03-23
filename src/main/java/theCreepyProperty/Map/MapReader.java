@@ -30,18 +30,15 @@ public class MapReader {
                 if (type.equals("wall")) {
                     int width = Integer.parseInt(parts[3]);
                     int height = Integer.parseInt(parts[4]);
-                    String texture = parts[5];
-                    levelData.getWalls().add(levelData.new LevelDataWall(x, y, width, height, texture));
+                    levelData.getWalls().add(levelData.new LevelDataWall(x, y, width, height));
                 } else if (type.equals("item")) {
                     int width = Integer.parseInt(parts[3]);
                     int height = Integer.parseInt(parts[4]);
-                    String itemTexture = parts[5];
-                    levelData.getItems().add(levelData.new LevelDataItem(x, y, width, height, itemTexture));
+                    levelData.getItems().add(levelData.new LevelDataItem(x, y, width, height));
                 } else if (type.equals("door")) {
                     int width = Integer.parseInt(parts[3]);
                     int height = Integer.parseInt(parts[4]);
-                    String itemTexture = parts[5];
-                    levelData.getDoors().add(levelData.new LevelDataDoor(x, y, width, height, itemTexture));
+                    levelData.getDoors().add(levelData.new LevelDataDoor(x, y, width, height));
                 } else if (type.equals("ghost")) {
                     int width = Integer.parseInt(parts[3]);
                     int height = Integer.parseInt(parts[4]);

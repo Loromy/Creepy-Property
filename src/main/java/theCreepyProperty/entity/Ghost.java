@@ -57,7 +57,7 @@ public class Ghost extends Entity{
 
         this.timeline = new Timeline(new KeyFrame(Duration.millis(16), e -> moveRectangle(this.solid_area)));
         this.timeline.setCycleCount(Timeline.INDEFINITE);
-        this.timeline.play(); //todo Ghosts stop Moving
+        this.timeline.play();
     }
 
     public void createGhostImage() {
@@ -191,11 +191,21 @@ public class Ghost extends Entity{
         return this.timeline;
     }
 
+    // Setter Methoden
     public void setSpeed(double speed) {
         this.speed = speed;
     }
 
     public void setPlayerTargetDistance(int distance) {
         this.playerTargetDistance = distance;
+    }
+
+    public void setGhostMoving(boolean value) {
+        if (!value) {
+            this.timeline.stop();
+        } else {
+            this.timeline.play();
+        }
+
     }
 }

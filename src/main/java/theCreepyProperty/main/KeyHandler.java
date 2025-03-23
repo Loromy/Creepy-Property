@@ -31,6 +31,9 @@ public class KeyHandler {
     private boolean sPressed = false;
     private boolean dPressed = false;
     private boolean cPressed = false;
+    private boolean pPressed = false;
+    private boolean oPressed = false;
+    private boolean mPressed = false;
     private boolean bPressed = false;
     private boolean lastState_bPressed = true;
     private boolean ctrlPressed = false;
@@ -70,7 +73,10 @@ public class KeyHandler {
                 case S -> sPressed = true;
                 case A -> aPressed = true;
                 case D -> dPressed = true;
+                case P -> pPressed = true;
                 case C -> cPressed = true;
+                case O -> oPressed = true;
+                case M -> mPressed = true;
                 case B -> bPressed = true;
                 case CONTROL -> ctrlPressed = true;
                 case SHIFT -> shiftPressed = true;
@@ -87,7 +93,10 @@ public class KeyHandler {
                 case S -> sPressed = false;
                 case A -> aPressed = false;
                 case D -> dPressed = false;
+                case P -> pPressed = false;
                 case C -> cPressed = false;
+                case O -> oPressed = false;
+                case M -> mPressed = false;
                 case B -> bPressed = false;
                 case CONTROL -> ctrlPressed = false;
                 case SHIFT -> shiftPressed = false;
@@ -161,14 +170,31 @@ public class KeyHandler {
                 this.player.setDirection("right");
             }
 
-            if (cPressed) {
+            if (pPressed) {
                 System.out.println("[KeyHandler]: Position Player: x=" + this.player.getPlayer_world_X() + " y=" + this.player.getPlayer_world_Y());
-                System.out.println("Timer: " + gameScene.getTime_seconds());
+                this.pPressed = false;
+            }
+
+            // Collision Toggle
+            if (cPressed) {
+                this.mapCreate.triggerCollision();
                 this.cPressed = false;
             }
 
-            // Annahme: bPressed ist eine Boolean-Variable, die true oder false sein kann.
+            // Darkness Overlay Toggle
+            if (oPressed) {
+                this.player.triggerOverlay();
+                this.oPressed = false;
+            }
 
+            // Ghost stop Moving
+            if(mPressed) {
+                this.mapCreate.triggerGhostMoving();
+
+                this.mPressed = false;
+            }
+
+            // Show hitBox of player & ghost
             if (bPressed) {
                 if (lastState_bPressed) {
                     // Toggle 1: Sichtbarkeit ein- oder ausschalten
@@ -210,13 +236,6 @@ public class KeyHandler {
                 this.player.setControlSpeed(2); // Sprint-Geschwindigkeit
                 sprintTime -= deltaTime; // Sprintzeit abbauen
                 if (sprintTime < 0) sprintTime = 0; // Keine negativen Werte zulassen
-            } else if (shiftPressed) {
-                this.player.setShiftSpeed();
-                for(Ghost ghost : this.gameScene.getMapCreate().getGhostList()) {
-                    ghost.setSpeed(0.7);
-                    ghost.setPlayerTargetDistance(100);
-                }
-                this.gameScene.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed());
             } else {
                 this.player.setControlSpeed(0);
 
@@ -239,9 +258,19 @@ public class KeyHandler {
                 }
             }
 
+            // Sneaking for shorter Ghost Range
+            if (shiftPressed) {
+                this.player.setShiftSpeed();
+                for(Ghost ghost : this.gameScene.getMapCreate().getGhostList()) {
+                    ghost.setSpeed(0.7);
+                    ghost.setPlayerTargetDistance(100);
+                }
+                this.gameScene.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed());
+            }
+
             // Wenn der Sprint aufgebraucht ist, setze den Cooldown
             if (sprintTime <= 0 && cooldownTime <= 0) {
-                cooldownTime = 1.0; // Setze den Cooldown auf 1 Sekunde
+                cooldownTime = 1.0;
             }
 
             // Geschwindigkeit in GUI anzeigen
@@ -308,6 +337,7 @@ public class KeyHandler {
             player.setPlayer_world_Y(this.nextPlayerY);
         }
 
+        // if Tutorial Map is Selected
         if (this.levelSelectScene.getMapSelected() == 0) {
             boolean collidingX = this.gameScene.getChecker().isCollidingWithWall(this.player, this.nextPlayerX, player.getPlayer_world_Y(), 9);
             boolean collidingY = this.gameScene.getChecker().isCollidingWithWall(this.player, player.getPlayer_world_X(), this.nextPlayerY, 9);
@@ -322,10 +352,11 @@ public class KeyHandler {
 
     private void checkGhostCollision(double deltaTime) {
         Rectangle futurePlayer = new Rectangle(this.nextPlayerX, this.nextPlayerY, player.entity_size_X, player.entity_size_Y);
-        // Ghosts
+
         for (Ghost ghost : mapCreate.getGhostList()) {
             Rectangle ghostNew = ghost.getSolidAria();
 
+            // Ghosts check collision with Player
             if (futurePlayer.intersects(ghostNew.getBoundsInLocal())) {
                 this.soundPlayer = new SoundPlayer("src/resources/sounds/stabbed.wav");
                 this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster());
@@ -339,9 +370,8 @@ public class KeyHandler {
                 return;
             }
 
-        }
 
-        for (Ghost ghost : this.gameScene.getMapCreate().getGhostList()) {
+            // Ghost Image Animation
             ghost.sprite_counter += deltaTime * 60;
 
             // Sprite-Wechsel abhängig von der Spieler-Geschwindigkeit
@@ -353,9 +383,11 @@ public class KeyHandler {
 
             }
             ghost.draw();
+
         }
     }
 
+    // PLayer Image Animation
     private void animation(double deltaTime) {
         if (this.wPressed || this.sPressed || this.aPressed || this.dPressed) {
             player.sprite_counter += deltaTime * 60;

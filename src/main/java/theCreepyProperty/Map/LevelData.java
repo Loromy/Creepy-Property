@@ -23,12 +23,12 @@ public class LevelData {
         private final int x, y, width, height;
         private final String texture;
 
-        public LevelDataWall(int x, int y, int width, int height, String texture) {
+        public LevelDataWall(int x, int y, int width, int height) {
             this.x = x;
             this.y = y;
             this.width = width;
             this.height = height;
-            this.texture = texture;
+            this.texture = "#361a00";
         }
 
         public int getX() { return x; }
@@ -43,12 +43,12 @@ public class LevelData {
         private final int x, y, width, height;
         private final String texture;
 
-        public LevelDataItem(int x, int y, int width, int height, String texture) {
+        public LevelDataItem(int x, int y, int width, int height) {
             this.x = x;
             this.y = y;
             this.width = width;
             this.height = height;
-            this.texture = new ImageCheck().checkImage("LevelDate",texture);
+            this.texture = new ImageCheck().checkImage("LevelDate","file:src/resources/textures/items/Key.png");
         }
 
         public int getX() { return x; }
@@ -63,12 +63,12 @@ public class LevelData {
         private final int x, y, width, height;
         private final String texture;
 
-        public LevelDataDoor(int x, int y, int width, int height, String texture) {
+        public LevelDataDoor(int x, int y, int width, int height) {
             this.x = x;
             this.y = y;
             this.width = width;
             this.height = height;
-            this.texture = new ImageCheck().checkImage("LevelDate",texture);
+            this.texture = new ImageCheck().checkImage("LevelDate","file:src/resources/textures/items/Door.png");
         }
 
         public int getX() { return x; }
