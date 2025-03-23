@@ -1,6 +1,6 @@
 package theCreepyProperty.Map;
 
-import theCreepyProperty.checker.ImageCheck;
+import theCreepyProperty.checker.FileCheck;
 
 import java.util.ArrayList;
 
@@ -48,7 +48,7 @@ public class LevelData {
             this.y = y;
             this.width = width;
             this.height = height;
-            this.texture = new ImageCheck().checkImage("LevelDate","file:src/resources/textures/items/Key.png");
+            this.texture = new FileCheck().checkImage("LevelDate","file:src/resources/textures/items/Key.png");
         }
 
         public int getX() { return x; }
@@ -68,7 +68,7 @@ public class LevelData {
             this.y = y;
             this.width = width;
             this.height = height;
-            this.texture = new ImageCheck().checkImage("LevelDate","file:src/resources/textures/items/Door.png");
+            this.texture = new FileCheck().checkImage("LevelDate","file:src/resources/textures/items/Door.png");
         }
 
         public int getX() { return x; }

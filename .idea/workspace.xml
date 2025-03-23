@@ -4,28 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="87a96b04-91ba-4fe6-93a4-31fd9b49747e" name="Changes" comment="V0.4.6.2&#10;- map 7">
+    <list default="true" id="87a96b04-91ba-4fe6-93a4-31fd9b49747e" name="Changes" comment="V0.4.6.3&#10;- map 8,9&#10;- all same color in mapCreate">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/LevelData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/LevelData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/MapCreate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/MapCreate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/MapReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/MapReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/blocks/Wall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/blocks/Wall.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/SetMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/SetMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/blocks/Door.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/blocks/Door.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/checker/ImageCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/checker/FileCheck.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/entity/Ghost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/entity/Ghost.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/entity/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/KeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/KeyHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/csv/Einstellungen/settings.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/Einstellungen/settings.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/CollisionChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/CollisionChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/GUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/GuiComponents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/GuiComponents.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/menu/LevelSelect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/menu/LevelSelect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/scenes/FinishScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/scenes/FinishScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/scenes/GameScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/scenes/GameScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/scenes/LevelSelectScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/scenes/LevelSelectScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/scenes/StartScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/scenes/StartScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/screens/StartMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/screens/StartMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/csv/Save/spielstand.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/Save/spielstand.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/csv/maps/map0.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/maps/map0.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/csv/maps/map1.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/maps/map1.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/csv/maps/map2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/maps/map2.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/csv/maps/map3.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/maps/map3.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/csv/maps/map4.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/maps/map4.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/csv/maps/map5.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/maps/map5.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/csv/maps/map6.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/maps/map6.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/csv/maps/map7.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/maps/map7.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/csv/maps/map8.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/maps/map8.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/csv/maps/map9.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/maps/map9.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/textures/items/Barrier.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/textures/items/Barrier.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -338,7 +335,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742591322201</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="V0.4.6.3&#10;- map 8,9&#10;- all same color in mapCreate">
+      <option name="closed" value="true" />
+      <created>1742749108283</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1742749108283</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -353,7 +358,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="V0.2.10.2&#10;- devMode" />
     <MESSAGE value="V0.2.10.2.1&#10;- add" />
     <MESSAGE value="V0.3.1&#10;- read Settings anzeige" />
     <MESSAGE value="V0.3.1.1&#10;- read Settings devMode" />
@@ -378,7 +382,8 @@
     <MESSAGE value="V0.4.6&#10;- Licht Kegel" />
     <MESSAGE value="V0.4.6.1&#10;-darknessOverlay update" />
     <MESSAGE value="V0.4.6.2&#10;- map 7" />
-    <option name="LAST_COMMIT_MESSAGE" value="V0.4.6.2&#10;- map 7" />
+    <MESSAGE value="V0.4.6.3&#10;- map 8,9&#10;- all same color in mapCreate" />
+    <option name="LAST_COMMIT_MESSAGE" value="V0.4.6.3&#10;- map 8,9&#10;- all same color in mapCreate" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

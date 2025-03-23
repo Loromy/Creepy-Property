@@ -1,12 +1,9 @@
 package theCreepyProperty.main;
 
 import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import theCreepyProperty.checker.ImageCheck;
-import theCreepyProperty.menu.Settings;
+import theCreepyProperty.checker.FileCheck;
 import theCreepyProperty.scenes.FinishScene;
 import theCreepyProperty.scenes.LevelSelectScene;
 import theCreepyProperty.scenes.StartScene;
@@ -20,7 +17,7 @@ public class GUI extends Application {
     private final int height = 600; // Höhe des Fensters
     private String filePath = "";
 
-    private final ImageCheck imageCheck = new ImageCheck();
+    private final FileCheck fileCheck = new FileCheck();
 
     private Stage stage;           // Haupt-Stage
     private StartScene startScene; // Start-Szene
@@ -39,7 +36,7 @@ public class GUI extends Application {
         // Standard-Scene auf StartScene setzen
         stage.setScene(startScene.getScene());
         stage.setTitle("The Creepy Property");
-        stage.getIcons().add(new Image(new ImageCheck().checkImage("GUI","file:src/resources/textures/icon/icon.png")));
+        stage.getIcons().add(new Image(new FileCheck().checkImage("GUI","file:src/resources/textures/icon/icon.png")));
         stage.setResizable(false);
         stage.show();
     }
@@ -137,8 +134,8 @@ public class GUI extends Application {
         return gameScene;
     }
 
-    public ImageCheck getImageCheck() {
-        return imageCheck;
+    public FileCheck getImageCheck() {
+        return fileCheck;
     }
 
     // Setter Methoden

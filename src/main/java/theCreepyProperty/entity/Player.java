@@ -2,7 +2,7 @@ package theCreepyProperty.entity;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import theCreepyProperty.checker.ImageCheck;
+import theCreepyProperty.checker.FileCheck;
 import theCreepyProperty.main.GUI;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -70,7 +70,7 @@ public class Player extends Entity{
     }
 
     private Image loadImage(String path) {
-        return new Image(new ImageCheck().checkImage("Player",path));
+        return new Image(new FileCheck().checkImage("Player",path));
     }
 
     public ImageView draw() {

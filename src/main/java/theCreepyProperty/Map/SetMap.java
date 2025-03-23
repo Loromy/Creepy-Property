@@ -25,7 +25,7 @@ public class SetMap {
     }
 
     public void setMapPlus1() {
-        this.levelSelectScene.setMapSelected(this.levelSelectScene.getMapSelected()); //todo
+        this.levelSelectScene.setMapSelected(this.levelSelectScene.getMapSelected());
 
         int level = this.levelSelectScene.getMapSelected();
         switch (++level) {
@@ -76,66 +76,6 @@ public class SetMap {
                 break;
             default:
                 System.err.println("✖ [SetMap Error]: Invalid map level: " + level + " does not exist");
-                break;
-        }
-    }
-
-    public void setThisMap() {
-        this.levelSelectScene.setMapSelected(this.levelSelectScene.getMapSelected()); //todo
-
-        switch (this.levelSelectScene.getMapSelected()) {
-            case 0:
-                this.gui.setFilePath(path0);
-                System.out.println("✔ [SetMap]: 0 selected");
-                this.levelSelectScene.setMapSelected(0);
-                break;
-            case 1:
-                this.gui.setFilePath(path1);
-                System.out.println("✔ [SetMap]: 1 selected");
-                this.levelSelectScene.setMapSelected(1);
-                break;
-            case 2:
-                this.gui.setFilePath(path2);
-                System.out.println("✔ [SetMap]: 2 selected");
-                this.levelSelectScene.setMapSelected(2);
-                break;
-            case 3:
-                this.gui.setFilePath(path3);
-                System.out.println("✔ [SetMap]: 3 selected");
-                this.levelSelectScene.setMapSelected(3);
-                break;
-            case 4:
-                this.gui.setFilePath(path4);
-                System.out.println("✔ [SetMap]: 4 selected");
-                this.levelSelectScene.setMapSelected(4);
-                break;
-            case 5:
-                this.gui.setFilePath(path5);
-                System.out.println("✔ [SetMap]: 5 selected");
-                this.levelSelectScene.setMapSelected(5);
-                break;
-            case 6:
-                this.gui.setFilePath(path6);
-                System.out.println("✔ [SetMap]: 6 selected");
-                this.levelSelectScene.setMapSelected(6);
-                break;
-            case 7:
-                this.gui.setFilePath(path7);
-                System.out.println("✔ [SetMap]: 7 selected");
-                this.levelSelectScene.setMapSelected(7);
-                break;
-            case 8:
-                this.gui.setFilePath(path8);
-                System.out.println("✔ [SetMap]: 8 selected");
-                this.levelSelectScene.setMapSelected(8);
-                break;
-            case 9:
-                this.gui.setFilePath(path9);
-                System.out.println("✔ [SetMap]: 9 selected");
-                this.levelSelectScene.setMapSelected(9);
-                break;
-            default:
-                System.err.println("✖ [SetMap Error]: Invalid map level: " + this.levelSelectScene.getMapSelected() + " does not exist");
                 break;
         }
     }

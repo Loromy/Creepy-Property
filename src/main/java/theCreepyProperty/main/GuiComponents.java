@@ -6,7 +6,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import theCreepyProperty.Save.ReadWriteSettings;
-import theCreepyProperty.checker.ImageCheck;
+import theCreepyProperty.checker.FileCheck;
 import theCreepyProperty.entity.Player;
 import theCreepyProperty.scenes.GameScene;
 import theCreepyProperty.scenes.LevelSelectScene;
@@ -84,7 +84,7 @@ public class GuiComponents {
 
         // Keys Display
         for (int i = 0; i < this.gameScene.getMapCreate().getItemList().size(); i++) {
-            this.i_keys = new ImageView(new Image(new ImageCheck().checkImage("GuiComponents","file:src/resources/textures/items/Key_blank.png")));
+            this.i_keys = new ImageView(new Image(new FileCheck().checkImage("GuiComponents","file:src/resources/textures/items/Key_blank.png")));
             this.i_keys.setFitWidth(40);
             this.i_keys.setFitHeight(40);
             hBox_keys.getChildren().add(this.i_keys);
@@ -141,14 +141,14 @@ public class GuiComponents {
         }
 
         for (int v = 0; v < collectedKeys ;v++) {
-            this.i_keys = new ImageView(new Image(new ImageCheck().checkImage("GuiComponents","file:src/resources/textures/items/Key.png")));
+            this.i_keys = new ImageView(new Image(new FileCheck().checkImage("GuiComponents","file:src/resources/textures/items/Key.png")));
             this.i_keys.setFitWidth(40);
             this.i_keys.setFitHeight(40);
             hBox_keys.getChildren().add(this.i_keys);
         }
 
         for (int n = 0; n < keysToCollected - collectedKeys ; n++) {
-            this.i_keys = new ImageView(new Image(new ImageCheck().checkImage("GuiComponents","file:src/resources/textures/items/Key_blank.png")));
+            this.i_keys = new ImageView(new Image(new FileCheck().checkImage("GuiComponents","file:src/resources/textures/items/Key_blank.png")));
             this.i_keys.setFitWidth(40);
             this.i_keys.setFitHeight(40);
             hBox_keys.getChildren().add(this.i_keys);

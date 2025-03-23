@@ -9,6 +9,7 @@ import javafx.scene.layout.*;
 import javafx.scene.control.Label;
 
 import javafx.util.Duration;
+import theCreepyProperty.checker.FileCheck;
 import theCreepyProperty.main.GUI;
 import theCreepyProperty.main.SoundPlayer;
 
@@ -109,8 +110,8 @@ public class FinishScene {
 
     private void createScene() {
         // Styles
-        this.textDisplay.getStylesheets().add(("file:src/resources/style/style.css"));
-        this.slidDown.getStylesheets().add(("file:src/resources/style/style.css"));
+        this.textDisplay.getStylesheets().add((new FileCheck().checkPath("FinishScene", "src/resources/style/style.css")));
+        this.slidDown.getStylesheets().add((new FileCheck().checkPath("FinishScene", "src/resources/style/style.css")));
 
         // play sound in loop
         this.soundPlayer = new SoundPlayer("src/resources/sounds/background/finish music-.wav");

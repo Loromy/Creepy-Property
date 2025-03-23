@@ -2,7 +2,7 @@ package theCreepyProperty.blocks;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import theCreepyProperty.checker.ImageCheck;
+import theCreepyProperty.checker.FileCheck;
 
 public class Door extends Object {
     private ImageView ivDoor = new ImageView();
@@ -29,7 +29,7 @@ public class Door extends Object {
     }
 
     public void openDoor() {
-        this.ivDoor.setImage(new Image(new ImageCheck().checkImage("Door","file:src/resources/textures/items/DoorOpen.png")));
+        this.ivDoor.setImage(new Image(new FileCheck().checkImage("Door","file:src/resources/textures/items/DoorOpen.png")));
         this.doorOpen = true;
     }
 

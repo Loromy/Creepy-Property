@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import theCreepyProperty.checker.FileCheck;
 import theCreepyProperty.main.GUI;
 
 public class StartMenu {
@@ -47,7 +48,7 @@ public class StartMenu {
     }
 
     private BackgroundImage getBackgroundImage() {
-        Image image = new Image("file:src/resources/textures/background/Creepy Property background.png");
+        Image image = new Image(new FileCheck().checkImage("StartMenu", "file:src/resources/textures/background/Creepy Property background.png"));
 
         // Setze das Hintergrundbild
         BackgroundImage backgroundImage = new BackgroundImage(

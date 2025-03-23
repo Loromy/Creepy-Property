@@ -19,7 +19,7 @@ import theCreepyProperty.Save.ReadWriteSpielstand;
 import theCreepyProperty.blocks.Door;
 import theCreepyProperty.blocks.Item;
 import theCreepyProperty.blocks.Wall;
-import theCreepyProperty.checker.ImageCheck;
+import theCreepyProperty.checker.FileCheck;
 import theCreepyProperty.entity.Ghost;
 import theCreepyProperty.entity.Player;
 import theCreepyProperty.main.*;
@@ -130,10 +130,10 @@ public class GameScene {
         gameScene = new Scene(root, gui.getWidth(), gui.getHeight());
 
         //Styles //todo überprüfen ob style.css richtig geladen wurde
-        gameScene.getStylesheets().add(("file:src/resources/style/style.css"));
-        pGame.getStylesheets().add(("file:src/resources/style/style.css"));
+        gameScene.getStylesheets().add((new FileCheck().checkPath("GameScene", "src/resources/style/style.css")));
+        pGame.getStylesheets().add((new FileCheck().checkPath("GameScene", "src/resources/style/style.css")));
 
-        pGame.getChildren().add(new ImageView(new Image(new ImageCheck().checkImage("GameScene","file:src/resources/textures/flor/Flor.png"))));
+        pGame.getChildren().add(new ImageView(new Image(new FileCheck().checkImage("GameScene","file:src/resources/textures/flor/Flor.png"))));
         pGame.getChildren().add(this.pWallsItems);
         pGame.getChildren().add(this.pTutorialMapInfoUnder);
         pGame.getChildren().add(this.pGhosts);

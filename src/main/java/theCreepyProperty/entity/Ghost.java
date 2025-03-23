@@ -7,7 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
-import theCreepyProperty.checker.ImageCheck;
+import theCreepyProperty.checker.FileCheck;
 import theCreepyProperty.main.GUI;
 
 public class Ghost extends Entity{
@@ -73,7 +73,7 @@ public class Ghost extends Entity{
     }
 
     private Image loadImage(String path) {
-        return new Image(new ImageCheck().checkImage("Ghost",path));
+        return new Image(new FileCheck().checkImage("Ghost",path));
     }
 
     public ImageView draw() {

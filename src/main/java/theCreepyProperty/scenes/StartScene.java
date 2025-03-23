@@ -3,6 +3,7 @@ package theCreepyProperty.scenes;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import theCreepyProperty.checker.FileCheck;
 import theCreepyProperty.main.GUI;
 import theCreepyProperty.main.SoundPlayer;
 import theCreepyProperty.screens.StartMenu;
@@ -36,7 +37,7 @@ public class StartScene {
     private void createScene() {
         StackPane startScreen = new StackPane();
 
-        startScreen.getStylesheets().add(("file:src/resources/style/style.css"));
+        startScreen.getStylesheets().add((new FileCheck().checkPath("StartScene", "src/resources/style/style.css")));
 
         startScreen.getChildren().add(this.startMenu.getBackgroundStartMenu());
         startScreen.getChildren().add(this.startMenu.getpStartMenu());
