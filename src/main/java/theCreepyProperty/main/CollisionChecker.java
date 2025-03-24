@@ -26,8 +26,8 @@ public class CollisionChecker {
         Rectangle futurePlayer = new Rectangle(nextX, nextY, player.entity_size_X, player.entity_size_Y);
 
         // guiComponents key background green
-        if (keysToCollect <= this.mapCreate.getItemList().size()) {
-            this.keysToCollect = this.mapCreate.getItemList().size();
+        if (keysToCollect <= this.mapCreate.getKeyList().size()) {
+            this.keysToCollect = this.mapCreate.getKeyList().size();
             this.scene.getGuiComponents().getL_keys().setText("Keys: " + player.getKeyEingesammelt() + "/" + keysToCollect); // Gui component update
         }
 
@@ -43,23 +43,44 @@ public class CollisionChecker {
             }
         }
 
-        // Items
-        for (int i = 0; i < mapCreate.getItemList().size(); i++) {
-            ImageView item = mapCreate.getItemList().get(i).getIItem();
+        // Keys
+        for (int i = 0; i < mapCreate.getKeyList().size(); i++) {
+            ImageView key = mapCreate.getKeyList().get(i).getIKey();
 
-            if (futurePlayer.intersects(item.getBoundsInLocal()) && mapCreate.getItemList().get(i).getPlayer_block_collision()) {
+            if (futurePlayer.intersects(key.getBoundsInLocal()) && mapCreate.getKeyList().get(i).getPlayer_block_collision()) {
                 player.keys_eingesammelt++;
 
                 this.soundPlayer = new SoundPlayer("src/resources/sounds/key-collect.wav");
                 this.soundPlayer.setVolume(this.scene.getMenu().getSettings().getAudio().getMaster());
                 this.soundPlayer.play();
 
-                scene.pGameItemChildrenRemove(mapCreate.getItemList().get(i).getIItem()); // remove Item from Pane
-                mapCreate.getItemList().remove(i);
+                scene.pGameItemChildrenRemove(mapCreate.getKeyList().get(i).getIKey()); // remove Key from Pane
+                mapCreate.getKeyList().remove(i);
 
                 this.scene.getGuiComponents().getL_keys().setText("Keys: " + player.getKeyEingesammelt() + "/" + keysToCollect); // Gui component update
 
                 this.scene.getGuiComponents().collectKey(keysToCollect);
+                return;
+            }
+        }
+
+        // Vacuums
+        for (int i = 0; i < mapCreate.getVacuumsList().size(); i++) {
+            ImageView vacuum = mapCreate.getVacuumsList().get(i).getIVacuum();
+
+            if (futurePlayer.intersects(vacuum.getBoundsInLocal()) && mapCreate.getVacuumsList().get(i).getPlayer_block_collision()) {
+                //todo: boolean true on collect //playerkeys_eingesammelt++;
+
+                //todo anderer sound (eqip sound)
+                this.soundPlayer = new SoundPlayer("src/resources/sounds/key-collect.wav");
+                this.soundPlayer.setVolume(this.scene.getMenu().getSettings().getAudio().getMaster());
+                this.soundPlayer.play();
+
+                scene.pGameItemChildrenRemove(mapCreate.getVacuumsList().get(i).getIVacuum()); // remove Key from Pane
+                mapCreate.getVacuumsList().remove(i);
+
+
+
                 return;
             }
         }

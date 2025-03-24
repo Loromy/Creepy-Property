@@ -17,7 +17,7 @@ import theCreepyProperty.Map.TutorialMapInfo;
 import theCreepyProperty.Save.ReadWriteSettings;
 import theCreepyProperty.Save.ReadWriteSpielstand;
 import theCreepyProperty.blocks.Door;
-import theCreepyProperty.blocks.Item;
+import theCreepyProperty.blocks.Key;
 import theCreepyProperty.blocks.Wall;
 import theCreepyProperty.checker.FileCheck;
 import theCreepyProperty.entity.Ghost;
@@ -58,7 +58,7 @@ public class GameScene {
     private ReadWriteSettings readWriteSettings;
     private ReadWriteSpielstand readWriteSpielstand;
     private Wall wall;
-    private Item item;
+    private Key key;
     private Door door;
     private Ghost ghost;
     private Player player;
@@ -331,8 +331,8 @@ public class GameScene {
         return this.wall;
     }
 
-    public Item getItem() {
-        return this.item;
+    public Key getItem() {
+        return this.key;
     }
 
     public Door getDoor() {
@@ -470,7 +470,7 @@ public class GameScene {
         // Weitere Variablen
         this.levelData = null;
         this.wall = null;
-        this.item = null;
+        this.key = null;
         this.door = null;
         this.ghost = null;
 

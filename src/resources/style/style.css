@@ -293,7 +293,15 @@
     -fx-font-family: Creepster;
     -fx-text-fill: linear-gradient(#525252 20%, #509974);
     -fx-font-weight: bold;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.7), 5, 0, 5, 5);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.7), 3, 0, 3, 3);
+    -fx-font-size: 20px;
+}
+
+#finishScene-text {
+    -fx-font-family: Creepster;
+    -fx-text-fill: #068700;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.7), 2, 0, 2, 2);
     -fx-font-size: 20px;
 }
 

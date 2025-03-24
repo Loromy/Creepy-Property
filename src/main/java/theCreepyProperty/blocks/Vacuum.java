@@ -3,31 +3,35 @@ package theCreepyProperty.blocks;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class Item extends Object {
-    private ImageView ivItem = new ImageView();
+public class Vacuum extends Object {
+    private final ImageView ivVAcuum = new ImageView();
 
-    public Item(int x, int y, int width, int height, String texture) {
-        System.out.println(".............................Item..............................");
+    public Vacuum(int x, int y, int width, int height, String texture) {
+        System.out.println(".............................Key..............................");
         // Parameterwerte setzen und Wand erstellen
         this.positionX = x;
         this.positionY = y;
         this.width = width;
         this.height = height;
         this.texture = texture;
-        createItem();
+        createVacuum();
     }
 
-    private void createItem() {
-        this.ivItem.setImage(new Image(this.texture));
-        this.ivItem.setX(this.positionX);
-        this.ivItem.setY(this.positionY);
-        this.ivItem.setFitWidth(this.width);
-        this.ivItem.setFitHeight(this.height);
+    private void createVacuum() {
+        this.ivVAcuum.setImage(new Image(this.texture));
+        this.ivVAcuum.setX(this.positionX);
+        this.ivVAcuum.setY(this.positionY);
+        this.ivVAcuum.setFitWidth(this.width);
+        this.ivVAcuum.setFitHeight(this.height);
+    }
+
+    public void startVacuum() {
+
     }
 
     // Getter Methoden
-    public ImageView getIItem() {
-        return ivItem;
+    public ImageView getIVacuum() {
+        return ivVAcuum;
     }
 
     public int getX() {

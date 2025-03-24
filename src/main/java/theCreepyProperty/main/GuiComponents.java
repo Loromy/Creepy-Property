@@ -83,7 +83,7 @@ public class GuiComponents {
         this.hBox_Level.getChildren().add(l_level);
 
         // Keys Display
-        for (int i = 0; i < this.gameScene.getMapCreate().getItemList().size(); i++) {
+        for (int i = 0; i < this.gameScene.getMapCreate().getKeyList().size(); i++) {
             this.i_keys = new ImageView(new Image(new FileCheck().checkImage("GuiComponents","file:src/resources/textures/items/Key_blank.png")));
             this.i_keys.setFitWidth(40);
             this.i_keys.setFitHeight(40);

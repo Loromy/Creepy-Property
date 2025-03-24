@@ -1,8 +1,8 @@
 package theCreepyProperty.Map;
 
-import theCreepyProperty.Save.ReadWriteSettings;
 import theCreepyProperty.blocks.Door;
-import theCreepyProperty.blocks.Item;
+import theCreepyProperty.blocks.Key;
+import theCreepyProperty.blocks.Vacuum;
 import theCreepyProperty.blocks.Wall;
 import theCreepyProperty.entity.Ghost;
 import theCreepyProperty.main.GUI;
@@ -13,7 +13,8 @@ import java.util.ArrayList;
 public class MapCreate {
 
     private Wall wall;
-    private Item item;
+    private Key key;
+    private Vacuum vacuum;
     private Door door;
     private Ghost ghost;
     private GUI gui;
@@ -21,7 +22,8 @@ public class MapCreate {
     private LevelData levelData;
 
     private ArrayList<Wall> wallList = new ArrayList<>();
-    private ArrayList<Item> itemList = new ArrayList<>();
+    private ArrayList<Key> keyList = new ArrayList<>();
+    private ArrayList<Vacuum> vacuumsList = new ArrayList<>();
     private ArrayList<Door> doorList = new ArrayList<>();
     private ArrayList<Ghost> ghostList = new ArrayList<>();
 
@@ -38,7 +40,7 @@ public class MapCreate {
         this.gui = gui;
         this.gameScene = scene;
         this.wall = this.gameScene.getWall();
-        this.item = this.gameScene.getItem();
+        this.key = this.gameScene.getItem();
         this.door = this.gameScene.getDoor();
         this.ghost = this.gameScene.getGhost();
         this.levelData = levelData;
@@ -55,15 +57,26 @@ public class MapCreate {
             }
         }
 
-        for (int i = 0; i < this.levelData.getItems().size(); i++) {
+        for (int i = 0; i < this.levelData.getKeys().size(); i++) {
             this.netToCollectKeys++;
 
-            this.item = new Item(levelData.getItems().get(i).getX(), levelData.getItems().get(i).getY(), levelData.getItems().get(i).getWidth(), levelData.getItems().get(i).getHeight(), levelData.getItems().get(i).getTexture());
-            this.itemList.add(this.item);
-            this.gameScene.pGameItemChildren(this.item.getIItem());
-            if (this.levelData.getItems().size()-1 == i) {
+            this.key = new Key(levelData.getKeys().get(i).getX(), levelData.getKeys().get(i).getY(), levelData.getKeys().get(i).getWidth(), levelData.getKeys().get(i).getHeight(), levelData.getKeys().get(i).getTexture());
+            this.keyList.add(this.key);
+            this.gameScene.pGameItemChildren(this.key.getIKey());
+            if (this.levelData.getKeys().size()-1 == i) {
                 i++;
-                System.out.println("✔ [MapCreator]: " + i + " Items created");
+                System.out.println("✔ [MapCreator]: " + i + " Keys created");
+            }
+        }
+
+        for (int i = 0; i < this.levelData.getVacuums().size(); i++) {
+            this.vacuum = new Vacuum(levelData.getVacuums().get(i).getX(), levelData.getVacuums().get(i).getY(), levelData.getVacuums().get(i).getWidth(), levelData.getVacuums().get(i).getHeight(), levelData.getVacuums().get(i).getTexture());
+
+            this.vacuumsList.add(this.vacuum);
+            this.gameScene.pGameItemChildren(this.vacuum.getIVacuum());
+            if (this.levelData.getVacuums().size()-1 == i) {
+                i++;
+                System.out.println("✔ [MapCreator]: " + i + " Vacuums created");
             }
         }
 
@@ -126,8 +139,8 @@ public class MapCreate {
         return this.wall;
     }
 
-    public Item getItem() {
-        return this.item;
+    public Key getItem() {
+        return this.key;
     }
 
     public int getNetToCollectKeys() {
@@ -138,8 +151,12 @@ public class MapCreate {
         return this.wallList;
     }
 
-    public ArrayList<Item> getItemList() {
-        return this.itemList;
+    public ArrayList<Key> getKeyList() {
+        return this.keyList;
+    }
+
+    public ArrayList<Vacuum> getVacuumsList() {
+        return this.vacuumsList;
     }
 
     public ArrayList<Door> getDoorList() {
@@ -162,13 +179,13 @@ public class MapCreate {
             this.gameScene = null;
         }
 
-        // Löschen der einzelnen Objekte wie Wall, Item, Door, Ghost
+        // Löschen der einzelnen Objekte wie Wall, Key, Door, Ghost
         if (this.wall != null) {
             this.wall = null;
         }
 
-        if (this.item != null) {
-            this.item = null;
+        if (this.key != null) {
+            this.key = null;
         }
 
         if (this.door != null) {
@@ -185,9 +202,14 @@ public class MapCreate {
             this.wallList = null; // Liste auf null setzen
         }
 
-        if (this.itemList != null) {
-            this.itemList.clear(); // Liste der Items leeren
-            this.itemList = null; // Liste auf null setzen
+        if (this.keyList != null) {
+            this.keyList.clear(); // Liste der Keys leeren
+            this.keyList = null; // Liste auf null setzen
+        }
+
+        if (this.vacuumsList != null) {
+            this.vacuumsList.clear(); // Liste der Vacuums leeren
+            this.vacuumsList = null; // Liste auf null setzen
         }
 
         if (this.doorList != null) {

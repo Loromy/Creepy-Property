@@ -69,14 +69,14 @@ public class FinishScene {
         this.l_entwickler.setStyle("-fx-font-size: 30px;");
 
         this.eName = new Label("Lucas Köhler");
-        this.eName.setId("finishScene");
+        this.eName.setId("finishScene-text");
 
         this.l_audio = new Label("Alle Audio datei sind von:");
         this.l_audio.setId("finishScene");
         this.l_audio.setStyle("-fx-font-size: 30px;");
 
         this.aName = new Label("https://pixabay.com/de/sound-effects/");
-        this.aName.setId("finishScene");
+        this.aName.setId("finishScene-text");
 
         this.l_bilder = new Label("Bilder:");
         this.l_bilder.setId("finishScene");
@@ -86,13 +86,13 @@ public class FinishScene {
         this.bildPlayer.setId("finishScene");
 
         this.bildPlayerLink = new Label("https://artistsnclients.com/slots/106828-character-sprite-sheet");
-        this.bildPlayerLink.setId("finishScene");
+        this.bildPlayerLink.setId("finishScene-text");
 
         this.bildStart = new Label("Start Bildschirm Bild:");
         this.bildStart.setId("finishScene");
 
         this.bildStartLink = new Label(" generiert von Chat GPT: https://chatgpt.com");
-        this.bildStartLink.setId("finishScene");
+        this.bildStartLink.setId("finishScene-text");
 
         this.back = new Button("Back");
 

@@ -6,14 +6,17 @@ import java.util.ArrayList;
 
 public class LevelData {
     private ArrayList<LevelDataWall> walls;
-    private ArrayList<LevelDataItem> items;
+    private ArrayList<LevelDataKey> keys;
+    private ArrayList<LevelDataVacuum> vacuums;
     private ArrayList<LevelDataDoor> doors;
     private ArrayList<LevelDataGhost> ghosts;
 
     public LevelData() {
         System.out.println(".............................LevelData..............................");
         walls = new ArrayList<>();
-        items = new ArrayList<>();
+        keys = new ArrayList<>();
+        vacuums = new ArrayList<>();
+
         doors = new ArrayList<>();
         ghosts = new ArrayList<>();
     }
@@ -38,12 +41,12 @@ public class LevelData {
         public String getTexture() { return texture; }
     }
 
-    // --------------- ITEM ---------------
-    public class LevelDataItem {
+    // --------------- Key ---------------
+    public class LevelDataKey {
         private final int x, y, width, height;
         private final String texture;
 
-        public LevelDataItem(int x, int y, int width, int height) {
+        public LevelDataKey(int x, int y, int width, int height) {
             this.x = x;
             this.y = y;
             this.width = width;
@@ -56,6 +59,26 @@ public class LevelData {
         public int getWidth() { return width; }
         public int getHeight() { return height; }
         public String getTexture() { return texture; }
+    }
+
+    // --------------- VACUUM ---------------
+    public class LevelDataVacuum {
+        private final int x, y, width, height;
+        private final String texture;
+
+        public LevelDataVacuum(int x, int y, int width, int height) {
+            this.x = x;
+            this.y = y;
+            this.width = width;
+            this.height = height;
+            this.texture = new FileCheck().checkImage("LevelData", "file:src/resources/textures/items/Star.png");
+        }
+
+        public int getX() { return x; }
+        public int getY() { return y; }
+        public int getWidth() { return width; }
+        public int getHeight() { return height; }
+        public String getTexture() {return texture;}
     }
 
     // --------------- DOOR ---------------
@@ -97,18 +120,21 @@ public class LevelData {
 
     // --------------- GETTER ---------------
     public ArrayList<LevelDataWall> getWalls() { return walls; }
-    public ArrayList<LevelDataItem> getItems() { return items; }
+    public ArrayList<LevelDataKey> getKeys() { return keys; }
+    public ArrayList<LevelDataVacuum> getVacuums() { return vacuums; }
     public ArrayList<LevelDataDoor> getDoors() { return doors; }
     public ArrayList<LevelDataGhost> getGhosts() { return ghosts; }
 
     // --------------- SETTER ---------------
-    public void setItems(ArrayList<LevelDataItem> items) { this.items = items; }
+    public void setKeys(ArrayList<LevelDataKey> keys) { this.keys = keys; }
     public void setWalls(ArrayList<LevelDataWall> walls) { this.walls = walls; }
     public void setDoors(ArrayList<LevelDataDoor> doors) { this.doors = doors; }
 
+    // --------------- CLEAR / DELETE ---------------
     public void clear() {
         this.walls.clear();
-        this.items.clear();
+        this.keys.clear();
+        this.vacuums.clear();
         this.doors.clear();
         this.ghosts.clear();
     }
@@ -122,9 +148,14 @@ public class LevelData {
             this.walls = null;
         }
 
-        if (this.items != null) {
-            this.items.clear();
-            this.items = null;
+        if (this.keys != null) {
+            this.keys.clear();
+            this.keys = null;
+        }
+
+        if (this.vacuums != null) {
+            this.vacuums.clear();
+            this.vacuums = null;
         }
 
         if (this.doors != null) {

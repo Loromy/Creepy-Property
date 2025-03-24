@@ -31,11 +31,15 @@ public class MapReader {
                     int width = Integer.parseInt(parts[3]);
                     int height = Integer.parseInt(parts[4]);
                     levelData.getWalls().add(levelData.new LevelDataWall(x, y, width, height));
-                } else if (type.equals("item")) {
+                } else if (type.equals("key")) {
                     int width = Integer.parseInt(parts[3]);
                     int height = Integer.parseInt(parts[4]);
-                    levelData.getItems().add(levelData.new LevelDataItem(x, y, width, height));
-                } else if (type.equals("door")) {
+                    levelData.getKeys().add(levelData.new LevelDataKey(x, y, width, height));
+                } else if (type.equals("vacuum")) {
+                    int width = Integer.parseInt(parts[3]);
+                    int height = Integer.parseInt(parts[4]);
+                    levelData.getVacuums().add(levelData.new LevelDataVacuum(x, y, width, height));
+                }else if (type.equals("door")) {
                     int width = Integer.parseInt(parts[3]);
                     int height = Integer.parseInt(parts[4]);
                     levelData.getDoors().add(levelData.new LevelDataDoor(x, y, width, height));
