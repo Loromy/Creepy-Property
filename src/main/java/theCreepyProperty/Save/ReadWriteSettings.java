@@ -92,7 +92,7 @@ public class ReadWriteSettings {
 
     // schreiben
     public void updateSetting(String setting, int newValue) {
-        String filePath = "src/resources/csv/Einstellungen/settings.csv";
+        String filePath = "src/resources/csv/Save/settings.csv";
         Map<String, Integer> tempSettingsMap = new HashMap<>();
 
         // Datei einlesen und vorhandene Werte speichern

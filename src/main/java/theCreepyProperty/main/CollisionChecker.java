@@ -76,10 +76,10 @@ public class CollisionChecker {
                 this.soundPlayer.setVolume(this.scene.getMenu().getSettings().getAudio().getMaster());
                 this.soundPlayer.play();
 
-                scene.pGameItemChildrenRemove(mapCreate.getVacuumsList().get(i).getIVacuum()); // remove Key from Pane
+                this.scene.getPlayer().startVacuum();
+
+                scene.pGameItemChildrenRemove(mapCreate.getVacuumsList().get(i).getIVacuum()); // remove Item from Pane
                 mapCreate.getVacuumsList().remove(i);
-
-
 
                 return;
             }

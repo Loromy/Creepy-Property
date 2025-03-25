@@ -2,6 +2,7 @@ package theCreepyProperty.blocks;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import theCreepyProperty.entity.Player;
 
 public class Vacuum extends Object {
     private final ImageView ivVAcuum = new ImageView();
@@ -23,10 +24,6 @@ public class Vacuum extends Object {
         this.ivVAcuum.setY(this.positionY);
         this.ivVAcuum.setFitWidth(this.width);
         this.ivVAcuum.setFitHeight(this.height);
-    }
-
-    public void startVacuum() {
-
     }
 
     // Getter Methoden

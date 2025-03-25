@@ -1,7 +1,10 @@
 package theCreepyProperty.entity;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 import theCreepyProperty.checker.FileCheck;
 import theCreepyProperty.main.GUI;
 import javafx.scene.image.Image;
@@ -19,6 +22,8 @@ public class Player extends Entity{
 
     private boolean ghostSoundIsPlaying = false;
     private boolean overlay_on = true;
+
+    private Timeline timeline;
 
     public Player(GUI gui)  {
         System.out.println(".............................Player..............................");
@@ -111,7 +116,7 @@ public class Player extends Entity{
     }
 
     // play sound if Ghost in 120px distance
-    public void checkForNearbyGhosts(ArrayList<Ghost> ghosts) {
+    public void checkForNearbyGhostsPlaySound(ArrayList<Ghost> ghosts) {
         // Berechne den Mittelpunkt der Entity (angenommen, Entity hat eine Breite und Höhe)
         double entityCenterX = this.entity_world_X + this.entity_size_X / 2;
         double entityCenterY = this.entity_world_Y + this.entity_size_Y / 2;
@@ -129,6 +134,36 @@ public class Player extends Entity{
                 break;
             }
         }
+    }
+
+    public boolean deleteNearbyGhosts(ArrayList<Ghost> ghosts) {
+        boolean caught = false;
+        // Berechne den Mittelpunkt der Entity (angenommen, Entity hat eine Breite und Höhe)
+        double entityCenterX = this.entity_world_X + this.entity_size_X / 2;
+        double entityCenterY = this.entity_world_Y + this.entity_size_Y / 2;
+
+        for (int i = 0 ; i < ghosts.size() ; i++) {
+            // Berechne den Mittelpunkt des Geistes (angenommen, Ghost hat eine Breite und Höhe)
+            double ghostCenterX = ghosts.get(i).getSolidAria().getX() + ghosts.get(i).getSolidAria().getWidth() / 2;
+            double ghostCenterY = ghosts.get(i).getSolidAria().getY() + ghosts.get(i).getSolidAria().getHeight() / 2;
+
+            // Berechne die Distanz zwischen den Mittelpunkten
+            double distance = Math.sqrt(Math.pow(ghostCenterX - entityCenterX, 2) + Math.pow(ghostCenterY - entityCenterY, 2));
+
+            if (distance <= 100) {
+                this.gui.getGameScene().pGhostsChildrenRemove(ghosts.get(i).draw());
+                this.gui.getGameScene().pGhostsChildrenRemove(ghosts.get(i).loadGhostOverlay());
+                this.gui.getGameScene().pGhostsChildrenRemove(ghosts.get(i).getSolidAria());
+
+                this.gui.getGameScene().getMapCreate().getGhostList().get(i).deleteGhost();
+                this.gui.getGameScene().getMapCreate().getGhostList().remove(i);
+
+                //ghosts.remove(i);
+                caught = true;
+                break;
+            }
+        }
+        return caught;
     }
 
 
@@ -150,6 +185,10 @@ public class Player extends Entity{
         }
     }
 
+    public void stopGhostSound() {
+        this.soundPlayer.stop();
+    }
+
     public void triggerOverlay() {
         if (!overlay_on) {
             this.i_darkness_overlay.setImage(overlay);
@@ -160,8 +199,17 @@ public class Player extends Entity{
         }
     }
 
-    public void stopGhostSound() {
-        this.soundPlayer.stop();
+    public void startVacuum() {
+        System.out.println("[Vacuum]: Vacuum running");
+
+        this.timeline = new Timeline(new KeyFrame(Duration.millis(100), event -> {
+            if (deleteNearbyGhosts(this.gui.getGameScene().getMapCreate().getGhostList())) {
+                timeline.stop();
+            }
+            //deleteNearbyGhosts(this.gui.getGameScene().getMapCreate().getGhostList());
+        }));
+        timeline.setCycleCount(30); // 20 x 500ms = 10 Sekunden
+        timeline.play();
     }
 
     public void setPlayer_world_X(double player_world_X){
@@ -265,6 +313,12 @@ public class Player extends Entity{
         if (this.solid_area != null) {
             this.solid_area.setVisible(false);  // Sichtbarkeit zurücksetzen
             this.solid_area = null;
+        }
+
+        //TimeLine löschen
+        if (this.timeline != null) {
+            timeline.stop();
+            timeline = null;
         }
 
         // Variablen zurücksetzen

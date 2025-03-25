@@ -11,9 +11,9 @@ import theCreepyProperty.checker.FileCheck;
 import theCreepyProperty.main.GUI;
 
 public class Ghost extends Entity{
-    private final GUI gui;
+    private GUI gui;
     private double speed = 0; // speed if strg pressed
-    private final ImageView i_ghost = new ImageView();
+    private ImageView i_ghost = new ImageView();
     private ImageView i_ghost_overlay = new ImageView();
 
     private Timeline timeline;
@@ -208,4 +208,26 @@ public class Ghost extends Entity{
         }
 
     }
+
+    public void deleteGhost() {
+        System.out.println("⚠ [Ghost]: Alle Referenzen werden gelöscht...");
+
+        if (timeline != null) {
+            timeline.stop();
+            timeline = null;
+        }
+
+        this.gui = null;
+        this.speed = 0;
+        this.i_ghost = null;
+        this.i_ghost_overlay = null;
+
+        this.zielPosition_X = 0;
+        this.zielPosition_Y = 0;
+        this.playerTargetDistance = 200;
+
+        System.gc();
+        System.out.println("✔ [Ghost]: Speicherbereinigung durchgeführt.");
+    }
 }
+

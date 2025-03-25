@@ -106,7 +106,7 @@ public class GameScene {
         createScene();
 
         // Settings Set
-        this.readWriteSettings.settingsRead("src/resources/csv/Einstellungen/settings.csv",this,this.guiComponents);
+        this.readWriteSettings.settingsRead("src/resources/csv/Save/settings.csv",this,this.guiComponents);
         this.gui.getSelectScene().setVolume(this.menu.getSettings().getAudio().getMaster()); //selectScene audio volume update
         this.gui.getStartScene().setVolume(this.menu.getSettings().getAudio().getMaster()); //selectScene audio volume update
     }
@@ -210,7 +210,7 @@ public class GameScene {
         }));
 
         ghostTimer = new Timeline(new KeyFrame(Duration.millis(100), event -> { // alle 500ms prüfen
-            player.checkForNearbyGhosts(this.mapCreate.getGhostList());
+            player.checkForNearbyGhostsPlaySound(this.mapCreate.getGhostList());
         }));
 
         timer.setCycleCount(Timeline.INDEFINITE);
@@ -292,6 +292,14 @@ public class GameScene {
 
     public void pGameGhostsChildren(ImageView image) {
         this.pGhosts.getChildren().add(image);
+    }
+
+    public void pGhostsChildrenRemove(ImageView image) {
+        this.pGhosts.getChildren().remove(image);
+    }
+
+    public void pGhostsChildrenRemove(Rectangle rectangle) {
+        this.pGhosts.getChildren().remove(rectangle);
     }
 
     public void pTutorialMapinfoOverChildren(Pane pane) {

@@ -69,5 +69,4 @@ public class MapReader {
         System.gc();
         System.out.println("✔ [MapReader]: Speicherbereinigung durchgeführt.");
     }
-
 }
