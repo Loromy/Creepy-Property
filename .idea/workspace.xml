@@ -4,24 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="87a96b04-91ba-4fe6-93a4-31fd9b49747e" name="Changes" comment="V0.4.6.3&#10;- map 8,9&#10;- all same color in mapCreate">
+    <list default="true" id="87a96b04-91ba-4fe6-93a4-31fd9b49747e" name="Changes" comment="V0.4.7.1&#10;- a">
+      <change afterPath="$PROJECT_DIR$/src/resources/textures/overlay/VacuumOverlay.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/MapReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/MapReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Save/ReadWriteSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Save/ReadWriteSettings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/blocks/Vacuum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/blocks/Vacuum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/entity/Ghost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/entity/Ghost.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/entity/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/CollisionChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/CollisionChecker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/scenes/GameScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/scenes/GameScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/csv/Einstellungen/settings.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/Save/settings.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/csv/Save/spielstand.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/Save/spielstand.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/csv/maps/map1.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/maps/map1.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/csv/maps/map2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/maps/map2.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/csv/maps/map3.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/maps/map3.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/csv/maps/map5.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/maps/map5.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/csv/maps/map6.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/maps/map6.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/csv/maps/map8.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/maps/map8.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/csv/maps/map9.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/maps/map9.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,12 +34,12 @@
     &quot;assignee&quot;: &quot;Loromy&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Loromy/the-creepy-property.git",
-    "accountId": "868421d7-2bc7-4c91-9637-d2a47af301c4"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Loromy/the-creepy-property.git&quot;,
+    &quot;accountId&quot;: &quot;868421d7-2bc7-4c91-9637-d2a47af301c4&quot;
   }
-}]]></component>
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
   </component>
@@ -82,9 +71,9 @@
       <recent name="C:\Users\Lucas\Documents\GitHub\the-creepy-property\src\resources\fonts" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Lucas\Documents\GitHub\the-creepy-property\src\resources\textures\overlay" />
       <recent name="C:\Users\Lucas\Documents\GitHub\the-creepy-property\src\resources\csv\Save" />
       <recent name="C:\Users\Lucas\Documents\GitHub\the-creepy-property\src\resources\textures\items" />
-      <recent name="C:\Users\Lucas\Documents\GitHub\the-creepy-property\src\resources\textures\overlay" />
       <recent name="C:\Users\Lucas\Documents\GitHub\the-creepy-property\src\resources\textures\ghost" />
       <recent name="C:\Users\Lucas\Documents\GitHub\the-creepy-property\src\resources\sounds\background" />
     </key>
@@ -350,7 +339,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742751196101</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="V0.4.7.1&#10;- vacuum finished">
+      <option name="closed" value="true" />
+      <created>1742915160612</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1742915160612</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -365,7 +362,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="V0.3.1&#10;- read Settings anzeige" />
     <MESSAGE value="V0.3.1.1&#10;- read Settings devMode" />
     <MESSAGE value="V0.3.1.2&#10;- switch branch to Master" />
     <MESSAGE value="V0.3.1.2.1&#10;- add" />
@@ -390,7 +386,8 @@
     <MESSAGE value="V0.4.6.2&#10;- map 7" />
     <MESSAGE value="V0.4.6.3&#10;- map 8,9&#10;- all same color in mapCreate" />
     <MESSAGE value="V0.4.6.4&#10;- fileChecker" />
-    <option name="LAST_COMMIT_MESSAGE" value="V0.4.6.4&#10;- fileChecker" />
+    <MESSAGE value="V0.4.7.1&#10;- vacuum finished" />
+    <option name="LAST_COMMIT_MESSAGE" value="V0.4.7.1&#10;- vacuum finished" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

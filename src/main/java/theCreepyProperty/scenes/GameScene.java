@@ -139,6 +139,7 @@ public class GameScene {
         pGame.getChildren().add(this.pGhosts);
         pGame.getChildren().add(this.player.getSolidPlayerAria());
         pGame.getChildren().add(this.player.draw());
+        pGame.getChildren().add(this.player.loadVacuumOverlay());
         pGame.getChildren().add(this.player.loadOverlay());
         pGame.getChildren().add(this.pTutorialMapInfoOver);
         pGame.getChildren().add(this.guiComponents.gethBox_Level());

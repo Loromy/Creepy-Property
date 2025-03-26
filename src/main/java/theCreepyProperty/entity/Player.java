@@ -18,6 +18,8 @@ public class Player extends Entity{
     private double controlSpeed = 0; // speed if strg pressed
     private ImageView i_player = new ImageView();
     private ImageView i_darkness_overlay = new ImageView();
+    private ImageView i_vacuum_overlay = new ImageView();
+    private Image vacuumOverlay;
     private SoundPlayer soundPlayer = new SoundPlayer("src/resources/sounds/heartbeat.wav");
 
     private boolean ghostSoundIsPlaying = false;
@@ -42,6 +44,11 @@ public class Player extends Entity{
         this.i_player.yProperty().bind(solid_area.yProperty().subtract(20));
         this.i_player.fitWidthProperty().bind(solid_area.widthProperty().add(36));
         this.i_player.fitHeightProperty().bind(solid_area.heightProperty().add(20));
+
+        this.i_vacuum_overlay.xProperty().bind(solid_area.xProperty().subtract(16));
+        this.i_vacuum_overlay.yProperty().bind(solid_area.yProperty().subtract(16));
+        this.i_vacuum_overlay.fitWidthProperty().bind(solid_area.widthProperty().add(32));
+        this.i_vacuum_overlay.fitHeightProperty().bind(solid_area.heightProperty().add(32));
 
         this.i_darkness_overlay.xProperty().bind(solid_area.xProperty().subtract(1166));
         this.i_darkness_overlay.yProperty().bind(solid_area.yProperty().subtract(1166)); //610
@@ -69,6 +76,7 @@ public class Player extends Entity{
         right3 = loadImage("file:src/resources/textures/player/right_3.png");
         right4 = loadImage("file:src/resources/textures/player/right_4.png");
 
+        vacuumOverlay = loadImage("file:src/resources/textures/overlay/VacuumOverlay.png");
         overlay = loadImage("file:src/resources/textures/overlay/darknessOverlay3.png");
 
         System.out.println("✔ [Player]: Image Player images successfully loaded");
@@ -97,6 +105,10 @@ public class Player extends Entity{
         }
         this.i_player.setImage(playerImage);
         return i_player;
+    }
+
+    public ImageView loadVacuumOverlay() {
+        return i_vacuum_overlay;
     }
 
     public ImageView loadOverlay() {
@@ -201,13 +213,15 @@ public class Player extends Entity{
 
     public void startVacuum() {
         System.out.println("[Vacuum]: Vacuum running");
+        this.i_vacuum_overlay.setImage(vacuumOverlay);
 
         this.timeline = new Timeline(new KeyFrame(Duration.millis(100), event -> {
             if (deleteNearbyGhosts(this.gui.getGameScene().getMapCreate().getGhostList())) {
                 timeline.stop();
+                this.i_vacuum_overlay.setImage(null);
             }
-            //deleteNearbyGhosts(this.gui.getGameScene().getMapCreate().getGhostList());
         }));
+        timeline.setOnFinished(event -> this.i_vacuum_overlay.setImage(null));
         timeline.setCycleCount(30); // 20 x 500ms = 10 Sekunden
         timeline.play();
     }
