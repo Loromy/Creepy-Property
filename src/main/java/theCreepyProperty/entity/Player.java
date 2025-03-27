@@ -45,10 +45,10 @@ public class Player extends Entity{
         this.i_player.fitWidthProperty().bind(solid_area.widthProperty().add(36));
         this.i_player.fitHeightProperty().bind(solid_area.heightProperty().add(20));
 
-        this.i_vacuum_overlay.xProperty().bind(solid_area.xProperty().subtract(16));
-        this.i_vacuum_overlay.yProperty().bind(solid_area.yProperty().subtract(16));
-        this.i_vacuum_overlay.fitWidthProperty().bind(solid_area.widthProperty().add(32));
-        this.i_vacuum_overlay.fitHeightProperty().bind(solid_area.heightProperty().add(32));
+        this.i_vacuum_overlay.xProperty().bind(solid_area.xProperty().subtract(118));
+        this.i_vacuum_overlay.yProperty().bind(solid_area.yProperty().subtract(120));
+        this.i_vacuum_overlay.fitWidthProperty().bind(solid_area.widthProperty().add(236));
+        this.i_vacuum_overlay.fitHeightProperty().bind(solid_area.heightProperty().add(220));
 
         this.i_darkness_overlay.xProperty().bind(solid_area.xProperty().subtract(1166));
         this.i_darkness_overlay.yProperty().bind(solid_area.yProperty().subtract(1166)); //610
@@ -222,7 +222,8 @@ public class Player extends Entity{
             }
         }));
         timeline.setOnFinished(event -> this.i_vacuum_overlay.setImage(null));
-        timeline.setCycleCount(30); // 20 x 500ms = 10 Sekunden
+
+        timeline.setCycleCount(300); // 30 x 100ms = 3 Sekunden
         timeline.play();
     }
 

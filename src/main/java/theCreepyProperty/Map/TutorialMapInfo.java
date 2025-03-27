@@ -28,6 +28,7 @@ public class TutorialMapInfo {
 //    private Label ghostLabel4;
 //    private Label ghostLabel5;
     private Label keyLabel;
+    private Label vacuumLable;
     private Label doorLabel;
 
     private Label keysLabel;
@@ -45,6 +46,7 @@ public class TutorialMapInfo {
     private VBox wallInfo;
     private VBox ghostInfo;
     private VBox keyInfo;
+    private VBox vacuumInfo;
     private VBox doorInfo;
 
     private VBox infoGuiKeys;
@@ -98,6 +100,13 @@ public class TutorialMapInfo {
         this.keyInfo = new VBox(this.keyLabel);
         this.keyInfo.setId("tutorial-info-feld-background");
         vBox_position(this.keyInfo, 620, 500);
+
+        // Vacuum info
+        this.vacuumLable = new Label("⬆ This is a Vacuum.\nCollect it to remove one Ghost\nwhen its in your distance.\nYou can vacuum vor 5sec");
+        this.vacuumLable.setId(id);
+        this.vacuumInfo = new VBox(this.vacuumLable);
+        this.vacuumInfo.setId("tutorial-info-feld-background");
+        vBox_position(this.vacuumInfo,400,500);
 
         // Door info
         this.doorLabel = new Label("Find the key to open the door. ⬆");
@@ -185,7 +194,7 @@ public class TutorialMapInfo {
         this.ghostDistance = new ImageView(new Image("file:src/resources/textures/overlay/ghostDistance.png"));
         i_position(ghostDistance, -105, 195, 400, 400);
 
-        this.infoPaneUnder.getChildren().addAll(this.ghostDistance, this.wallInfo, this.keyInfo, this.doorInfo, this.ghostInfo, this.wallBlock);
+        this.infoPaneUnder.getChildren().addAll(this.ghostDistance, this.wallInfo, this.keyInfo, this.vacuumInfo, this.doorInfo, this.ghostInfo, this.wallBlock);
         this.infoPaneOver.getChildren().addAll(this.infoGuiKeys, this.infoGuiTime, this.infoGuiDeaths, this.infoGuiSprint, this.infoGuiLevel, this.info, this.infoButton1, this.infoButton2, this.infoButton3, this.infoButton4, this.infoBarrier);
 
         this.gameScene.pTutorialMapInfoUnderChildren(this.infoPaneUnder);

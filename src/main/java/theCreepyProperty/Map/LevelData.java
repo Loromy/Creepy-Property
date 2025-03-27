@@ -71,7 +71,7 @@ public class LevelData {
             this.y = y;
             this.width = width;
             this.height = height;
-            this.texture = new FileCheck().checkImage("LevelData", "file:src/resources/textures/items/Star.png");
+            this.texture = new FileCheck().checkImage("LevelData", "file:src/resources/textures/items/Vacuum.png");
         }
 
         public int getX() { return x; }
