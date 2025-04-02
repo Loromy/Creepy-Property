@@ -78,7 +78,7 @@ public class GameScene {
     private Timeline randomNoiseTime;
     private final Random random = new Random();
 
-    // Liste von zufälligen Hintergrundgeräuschen
+    // List of random background sounds
     private final String[] randomSounds = {
             "src/resources/sounds/background/random background noise/creepy-breath.wav",
             "src/resources/sounds/background/random background noise/creepy-hifreq-woosh.wav",
@@ -112,10 +112,10 @@ public class GameScene {
     }
 
     private void createScene() {
-        // CSV-Datei lesen
+        // Read CSV file
         this.levelData = mapReader.readCsvFile(this.gui.getFilePath());
 
-        // Wände erstellen
+        // Create walls
         this.mapCreate.createMap(this.gui, this ,levelData);
 
         // GUI components
@@ -129,10 +129,11 @@ public class GameScene {
         root.getChildren().addAll(pGame, pGameOver, pGameWin, pMenu);
         gameScene = new Scene(root, gui.getWidth(), gui.getHeight());
 
-        //Styles //todo überprüfen ob style.css richtig geladen wurde
+        //Styles
         gameScene.getStylesheets().add((new FileCheck().checkPath("GameScene", "src/resources/style/style.css")));
         pGame.getStylesheets().add((new FileCheck().checkPath("GameScene", "src/resources/style/style.css")));
 
+        // add to pGame
         pGame.getChildren().add(new ImageView(new Image(new FileCheck().checkImage("GameScene","file:src/resources/textures/flor/Flor.png"))));
         pGame.getChildren().add(this.pWallsItems);
         pGame.getChildren().add(this.pTutorialMapInfoUnder);
@@ -149,23 +150,22 @@ public class GameScene {
         pGame.getChildren().add(this.guiComponents.getvBox_Deaths());
         pGame.getChildren().add(this.guiComponents.getvBox_sprint());
 
-        // Game Over / Win Menüs hinzufügen
+        // Game Over
         pGameOver.getChildren().add(this.gameOver.getBackgroundGameOver());
         pGameOver.getChildren().add(this.gameOver.getPGameOver());
         pGameOver.setVisible(false);
 
+        // Win Menus
         pGameWin.getChildren().add(this.gameWin.getBackgroundGameWin());
         pGameWin.getChildren().add(this.gameWin.getPGameWin());
         pGameWin.setVisible(false);
-        //pGameWin.setMouseTransparent(true);
-
 
         pMenu.getChildren().add(this.menu.getBackgroundMenu());
         pMenu.getChildren().add(this.menu.getpMenu());
         pMenu.getChildren().add(this.menu.getSettings().getMenuSettings());
         pMenu.getChildren().add(this.menu.getSettings().getAudio().getMenuAudio());
 
-        // KeyHandler hinzufügen
+        // KeyHandler addition
         keyHandler = new KeyHandler(this.player, this, this.gui.getSelectScene(), this.menu, this.gameOver, this.gameWin);
         keyHandler.addKeyListener(gameScene, this);
 
@@ -177,15 +177,14 @@ public class GameScene {
         // play sound in loop
         this.soundPlayer = new SoundPlayer("src/resources/sounds/background/background-creepy-sound.wav");
 
-        // Hintergrundmusik in Dauerschleife abspielen
+        // Background music loop
         this.soundPlayer.getClip().addLineListener(event -> {
             if (event.getType() == LineEvent.Type.STOP && !isMusicStopped) {
                 this.soundPlayer.setVolume(this.getMenu().getSettings().getAudio().getBackground());
-                this.soundPlayer.play(); // Musik neu starten
+                this.soundPlayer.play(); // Restart music
             }
         });
         this.soundPlayer.play();
-
 
         // random noise
         startRandomNoise();
@@ -193,24 +192,24 @@ public class GameScene {
 
     // Timer
     private void startTimer() {
-        time_seconds = 0.0; // Timer zurücksetzen
+        time_seconds = 0.0; // Reset timer
         time_seconds = this.gui.getSelectScene().getTimePlaying();
-        timer = new Timeline(new KeyFrame(Duration.millis(10), event -> { // alle 10ms prüfen
+        timer = new Timeline(new KeyFrame(Duration.millis(10), event -> { // Check every 10ms
             time_seconds += 0.01;
 
-            // Berechnung der Zeitkomponenten
+            // Time component calculation
             int hours = (int) (time_seconds / 3600);
             int minutes = (int) ((time_seconds % 3600) / 60);
             int seconds = (int) (time_seconds % 60);
-            int milliseconds = (int) ((time_seconds * 100) % 100); // Millisekunden berechnen
+            int milliseconds = (int) ((time_seconds * 100) % 100); // Calculate milliseconds
 
-            // Formatierte Zeit als HH:MM:SS.mm anzeigen
+            // Display formatted time as HH:MM:SS:mm
             String formattedTime = String.format("%02d : %02d : %02d : %02d", hours, minutes, seconds, milliseconds);
             this.guiComponents.getL_time().setText("Time: " + formattedTime);
             this.gui.getSelectScene().setTimePlaying(time_seconds);
         }));
 
-        ghostTimer = new Timeline(new KeyFrame(Duration.millis(100), event -> { // alle 500ms prüfen
+        ghostTimer = new Timeline(new KeyFrame(Duration.millis(100), event -> { // Check every 500ms
             player.checkForNearbyGhostsPlaySound(this.mapCreate.getGhostList());
         }));
 
@@ -259,13 +258,13 @@ public class GameScene {
     }
 
     private int getRandomInterval() {
-        int noise = random.nextInt(25) + 5;
+        int noise = random.nextInt(25) + 5; // Random interval between 5 and 30 seconds
 
         System.out.println("▶ [GameScene]: getRandomInterval() next RandomSoundNoise in: " + noise + "s");
-        return noise; // Zufälliges Intervall zwischen 5 und 30 Sekunden
+        return noise;
     }
 
-
+    // Background Music
     public void stopBackgroundMusic() {
         isMusicStopped = true;
         this.soundPlayer.stop();
@@ -311,7 +310,7 @@ public class GameScene {
         this.pTutorialMapInfoUnder.getChildren().add(pane);
     }
 
-    // Getter Methoden
+    // Getter Methods
     public GuiComponents getGuiComponents() {
         return guiComponents;
     }
@@ -356,10 +355,6 @@ public class GameScene {
         return checker;
     }
 
-    public LevelData getLevelData() {
-        return levelData;
-    }
-
     public MapCreate getMapCreate() {
         return mapCreate;
     }
@@ -388,13 +383,13 @@ public class GameScene {
         return timer;
     }
 
-    // Setter Methoden
+    // Setter Methods
     public void setBlur(int strange) {
         pGame.setEffect(new GaussianBlur(strange));
     }
 
+    // Delete Variables
     public void deleteGameScene() {
-        // Alle Objekte auf null setzen und delete-Methode aufrufen
         if (this.keyHandler != null) {
             this.keyHandler.deleteKeyHandler();
             this.keyHandler = null;
@@ -460,12 +455,10 @@ public class GameScene {
             this.soundPlayer = null;
         }
 
-        // Weitere Referenzen auf null setzen
         this.stage = null;
         this.gui = null;
         this.gameScene = null;
 
-        // Game Scene Pane
         this.root = null;
         this.pMenu = null;
         this.pGameOver = null;
@@ -476,7 +469,6 @@ public class GameScene {
         this.pTutorialMapInfoOver = null;
         this.pTutorialMapInfoUnder = null;
 
-        // Weitere Variablen
         this.levelData = null;
         this.wall = null;
         this.key = null;
@@ -487,17 +479,14 @@ public class GameScene {
         this.ghostTimer = null;
         this.randomNoiseTime = null;
 
-        // Primitive Datentypen zurücksetzen
         this.isMusicStopped = false;
         this.time_seconds = 0.0;
 
-        // Falls es Listen oder Maps gibt, zuerst leeren
         if (this.randomSounds != null) {
-            Arrays.fill(this.randomSounds, null); // Array-Inhalt löschen
+            Arrays.fill(this.randomSounds, null);
         }
 
-        // Garbage Collector anstoßen
         System.gc();
-        System.out.println("✔ [GameScene]: Speicherbereinigung durchgeführt.");
+        System.out.println("✔ [GameScene]: Memory cleanup completed.");
     }
 }

@@ -7,6 +7,7 @@ public class SetMap {
     private GUI gui;
     private LevelSelectScene levelSelectScene;
 
+    // map paths
     private String path0 = "src/resources/csv/maps/map0.csv";
     private String path1 = "src/resources/csv/maps/map1.csv";
     private String path2 = "src/resources/csv/maps/map2.csv";
@@ -24,6 +25,7 @@ public class SetMap {
         this.levelSelectScene = gui.getSelectScene();
     }
 
+    // select next map
     public void setMapPlus1() {
         this.levelSelectScene.setMapSelected(this.levelSelectScene.getMapSelected());
 
@@ -121,20 +123,18 @@ public class SetMap {
         return this.path9;
     }
 
+    // Delete Variables
     public void deleteSetMap() {
         System.out.println("⚠ [SetMap]: Alle Referenzen werden gelöscht...");
 
-        // GUI Referenz löschen (Wird extern verwaltet)
         if (this.gui != null) {
             this.gui = null;
         }
 
-        // LevelSelectScene Referenz löschen
         if (this.levelSelectScene != null) {
             this.levelSelectScene = null;
         }
 
-        // Alle Pfad-Variablen auf null setzen
         this.path0 = null;
         this.path1 = null;
         this.path2 = null;
@@ -146,9 +146,7 @@ public class SetMap {
         this.path8 = null;
         this.path9 = null;
 
-        // System.gc() aufrufen um Speicherbereinigung zu erzwingen
         System.gc();
         System.out.println("✔ [SetMap]: Speicherbereinigung durchgeführt.");
     }
-
 }

@@ -200,7 +200,6 @@ public class Audio {
 
         this.label2.setText("Background: " + this.background + "%");
 
-        //System.out.println("[Audio]: slider1 ✔");
     }
 
     private void onButton3() {
@@ -217,6 +216,23 @@ public class Audio {
 
     private void onButton6() {
         System.out.println("[Audio]: button6 ✔");
+    }
+
+    // Set Position
+    private void setMenuAudioPosition(VBox vBoxSettings) {
+        vBoxSettings.setPrefSize(700, 500);
+        vBoxSettings.setLayoutX((gui.getWidth() - (double) 700) / 2);
+        vBoxSettings.setLayoutY((gui.getHeight() - (double) 500) / 2);
+        vBoxSettings.setSpacing(10);
+        vBoxSettings.setAlignment(Pos.CENTER);
+    }
+
+    private void setMenuAudioPositionLR(VBox vBoxSettings) {
+        vBoxSettings.setPrefSize(300, 300);
+        vBoxSettings.setLayoutX((gui.getWidth() - (double) 300) / 2);
+        vBoxSettings.setLayoutY((gui.getHeight() - (double) 300) / 2);
+        vBoxSettings.setSpacing(10);
+        vBoxSettings.setAlignment(Pos.CENTER);
     }
 
     // Getter Methoden
@@ -236,6 +252,7 @@ public class Audio {
         return background;
     }
 
+    // Setter Methoden
     public void setMaster(int master) {
         this.master = master;
         this.slider1.setValue(master);
@@ -244,22 +261,5 @@ public class Audio {
     public void setBackground(int background) {
         this.background = background;
         this.slider2.setValue(background);
-    }
-
-    // Setter Methoden
-    private void setMenuAudioPosition(VBox vBoxSettings) {
-        vBoxSettings.setPrefSize(700, 500);
-        vBoxSettings.setLayoutX((gui.getWidth() - (double) 700) / 2);
-        vBoxSettings.setLayoutY((gui.getHeight() - (double) 500) / 2);
-        vBoxSettings.setSpacing(10);
-        vBoxSettings.setAlignment(Pos.CENTER);
-    }
-
-    private void setMenuAudioPositionLR(VBox vBoxSettings) {
-        vBoxSettings.setPrefSize(300, 300);
-        vBoxSettings.setLayoutX((gui.getWidth() - (double) 300) / 2);
-        vBoxSettings.setLayoutY((gui.getHeight() - (double) 300) / 2);
-        vBoxSettings.setSpacing(10);
-        vBoxSettings.setAlignment(Pos.CENTER);
     }
 }

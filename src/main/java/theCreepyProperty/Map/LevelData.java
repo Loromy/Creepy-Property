@@ -1,9 +1,9 @@
 package theCreepyProperty.Map;
 
 import theCreepyProperty.checker.FileCheck;
-
 import java.util.ArrayList;
 
+// Handles level data including walls, keys, vacuums, doors, and ghosts
 public class LevelData {
     private ArrayList<LevelDataWall> walls;
     private ArrayList<LevelDataKey> keys;
@@ -13,10 +13,10 @@ public class LevelData {
 
     public LevelData() {
         System.out.println(".............................LevelData..............................");
+        // Initialize lists for all entities and blocks
         walls = new ArrayList<>();
         keys = new ArrayList<>();
         vacuums = new ArrayList<>();
-
         doors = new ArrayList<>();
         ghosts = new ArrayList<>();
     }
@@ -41,7 +41,7 @@ public class LevelData {
         public String getTexture() { return texture; }
     }
 
-    // --------------- Key ---------------
+    // --------------- KEY ---------------
     public class LevelDataKey {
         private final int x, y, width, height;
         private final String texture;
@@ -51,7 +51,7 @@ public class LevelData {
             this.y = y;
             this.width = width;
             this.height = height;
-            this.texture = new FileCheck().checkImage("LevelDate","file:src/resources/textures/items/Key.png");
+            this.texture = new FileCheck().checkImage("LevelData", "file:src/resources/textures/items/Key.png");
         }
 
         public int getX() { return x; }
@@ -78,7 +78,7 @@ public class LevelData {
         public int getY() { return y; }
         public int getWidth() { return width; }
         public int getHeight() { return height; }
-        public String getTexture() {return texture;}
+        public String getTexture() { return texture; }
     }
 
     // --------------- DOOR ---------------
@@ -91,7 +91,7 @@ public class LevelData {
             this.y = y;
             this.width = width;
             this.height = height;
-            this.texture = new FileCheck().checkImage("LevelDate","file:src/resources/textures/items/Door.png");
+            this.texture = new FileCheck().checkImage("LevelData", "file:src/resources/textures/items/Door.png");
         }
 
         public int getX() { return x; }
@@ -118,20 +118,16 @@ public class LevelData {
         public int getHeight() { return height; }
     }
 
-    // --------------- GETTER ---------------
+    // --------------- GETTERS ---------------
     public ArrayList<LevelDataWall> getWalls() { return walls; }
     public ArrayList<LevelDataKey> getKeys() { return keys; }
     public ArrayList<LevelDataVacuum> getVacuums() { return vacuums; }
     public ArrayList<LevelDataDoor> getDoors() { return doors; }
     public ArrayList<LevelDataGhost> getGhosts() { return ghosts; }
 
-    // --------------- SETTER ---------------
-    public void setKeys(ArrayList<LevelDataKey> keys) { this.keys = keys; }
-    public void setWalls(ArrayList<LevelDataWall> walls) { this.walls = walls; }
-    public void setDoors(ArrayList<LevelDataDoor> doors) { this.doors = doors; }
-
     // --------------- CLEAR / DELETE ---------------
     public void clear() {
+        // Clears all level data lists
         this.walls.clear();
         this.keys.clear();
         this.vacuums.clear();
@@ -139,10 +135,11 @@ public class LevelData {
         this.ghosts.clear();
     }
 
+    // Delete Variables
     public void deleteLevelData() {
-        System.out.println("⚠ [LevelData]: Alle Referenzen werden gelöscht...");
+        System.out.println("⚠ [LevelData]: Deleting all references...");
 
-        // Löschen der Listen mit LevelData-Elementen
+        // Clear and nullify level data lists
         if (this.walls != null) {
             this.walls.clear();
             this.walls = null;
@@ -168,9 +165,7 @@ public class LevelData {
             this.ghosts = null;
         }
 
-        // Garbage Collector anstoßen
         System.gc();
-
-        System.out.println("✔ [LevelData]: Speicherbereinigung durchgeführt.");
+        System.out.println("✔ [LevelData]: Memory cleanup complete.");
     }
 }

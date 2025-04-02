@@ -13,7 +13,6 @@ import theCreepyProperty.scenes.LevelSelectScene;
 
 public class GuiComponents {
     private final Player player;
-    private final GUI gui;
     private final LevelSelectScene levelSelectScene;
     private final GameScene gameScene;
 
@@ -36,11 +35,14 @@ public class GuiComponents {
 
     public GuiComponents(GUI gui, Player player, GameScene gameScene){
         System.out.println(".............................GuiComponents..............................");
-        this.gui = gui;
         this.player = player;
         this.levelSelectScene = gui.getSelectScene();
         this.gameScene = gameScene;
 
+        createComponents(gui);
+    }
+
+    private void createComponents(GUI gui) {
         // HBox
         this.hBox_Level = new HBox();
         this.hBox_Level.setId("gui-components-background-mitte");
@@ -51,6 +53,7 @@ public class GuiComponents {
         this.hBox_keys = new HBox();
         this.hBox_keys.setId("gui-components-background-keys");
 
+        // VBox
         this.vBox_Time = new VBox();
         this.vBox_Time.setLayoutY(60);
         this.vBox_Time.setMinSize(130,20);
@@ -61,7 +64,6 @@ public class GuiComponents {
         this.vBox_Deaths.setMinSize(80,20);
         this.vBox_Deaths.setId("gui-components-background-links");
 
-        // VBox
         this.vBox_sprint = new VBox();
         this.vBox_sprint.setLayoutY(140);
         this.vBox_sprint.setId("gui-components-background-links");
@@ -71,8 +73,7 @@ public class GuiComponents {
         this.vBox_anzeige.setId("gui-components-background-links");
         this.vBox_anzeige.setVisible(false);
 
-        // Label
-        // Level
+        // Level lable
         if (this.levelSelectScene.getMapSelected() == 0) {
             this.l_level = new Label("Level Tutorial");
         } else {
@@ -82,7 +83,7 @@ public class GuiComponents {
         this.l_level.setId("gui-components");
         this.hBox_Level.getChildren().add(l_level);
 
-        // Keys Display
+        // Keys Display lable
         for (int i = 0; i < this.gameScene.getMapCreate().getKeyList().size(); i++) {
             this.i_keys = new ImageView(new Image(new FileCheck().checkImage("GuiComponents","file:src/resources/textures/items/Key_blank.png")));
             this.i_keys.setFitWidth(40);
@@ -90,35 +91,39 @@ public class GuiComponents {
             hBox_keys.getChildren().add(this.i_keys);
         }
 
-        // Time
+        // Time lable
         this.l_time = new Label("Time: -- : -- : -- : --");
         this.l_time.setId("gui-components");
         this.vBox_Time.getChildren().add(l_time);
 
-        this.l_deaths = new Label("Deaths: " + formatedDeathCounter());
+        this.l_deaths = new Label("Deaths: " + DeathCounter());
         this.l_deaths.setId("gui-components");
         this.vBox_Deaths.getChildren().add(l_deaths);
 
-        // Sprint
+        // Sprint lable
         this.l_sprint = new Label("Sprint: ");
         this.l_sprint.setId("gui-components");
         this.vBox_sprint.getChildren().add(l_sprint);
 
         // Anzeige
+        // Speed lable
         this.l_speed = new Label("Speed: " + player.getSpeed());
         this.l_speed.setId("gui-components");
         this.vBox_anzeige.getChildren().add(l_speed);
 
+        // FPS lable
         this.l_fps = new Label("FPS: 0");
         this.l_fps.setId("gui-components");
         this.vBox_anzeige.getChildren().add(l_fps);
 
-        this.l_keys = new Label("Keys: " + player.getKeyEingesammelt());
+        // Keys lable
+        this.l_keys = new Label("Keys: " + player.getKeysCollected());
         this.l_keys.setId("gui-components");
         this.vBox_anzeige.getChildren().add(l_keys);
     }
 
-    private String formatedDeathCounter() {
+    // return Deaths as String
+    private String DeathCounter() {
         String formatedDeaths = "000";
         int deaths = this.levelSelectScene.getThisLevelDeaths();
 
@@ -134,8 +139,9 @@ public class GuiComponents {
     }
 
     public void collectKey(int keysToCollected) {
-        int collectedKeys = this.player.getKeyEingesammelt();
+        int collectedKeys = this.player.getKeysCollected();
 
+        // Key label update on key Collect
         for (int i = 0; i < keysToCollected;i++) {
             this.hBox_keys.getChildren().removeFirst();
         }
@@ -155,6 +161,7 @@ public class GuiComponents {
         }
     }
 
+    // Toggle Anzeige from ReadWriteSettings
     public void triggerAnzeigeRWSettings() {
         if (!anzeige_on) {
             this.vBox_anzeige.setVisible(true);
@@ -167,6 +174,7 @@ public class GuiComponents {
         }
     }
 
+    // Toggle Anzeige from Settings
     public void triggerAnzeige(ReadWriteSettings readWriteSettings) {
         if (!anzeige_on) {
             this.vBox_anzeige.setVisible(true);
@@ -185,10 +193,6 @@ public class GuiComponents {
         l_fps.setText("FPS: " + (int) fps);
     }
 
-    public Label getL_level() {
-        return l_level;
-    }
-
     public Label getL_speed(){
         return l_speed;
     }
@@ -199,10 +203,6 @@ public class GuiComponents {
 
     public Label getL_keys() {
         return l_keys;
-    }
-
-    public Label getL_fps() {
-        return  l_fps;
     }
 
     public Label getL_time() {
@@ -233,18 +233,14 @@ public class GuiComponents {
         return vBox_sprint;
     }
 
-    public boolean getAnzeige_on() {
-        return anzeige_on;
-    }
-
     public void setAnzeige_on(boolean value) {
         this.anzeige_on = value;
     }
 
+    // Delete Variables
     public void deleteGuiComponents() {
         System.out.println("⚠ [GuiComponents]: Alle Referenzen werden gelöscht...");
 
-        // Entferne HBox, VBox und Label Objekte
         if (this.hBox_Level != null) {
             this.hBox_Level.getChildren().clear();
             this.hBox_Level = null;
@@ -275,7 +271,6 @@ public class GuiComponents {
             this.vBox_anzeige = null;
         }
 
-        // Entferne alle Labels
         if (this.l_level != null) {
             this.l_level = null;
         }
@@ -304,15 +299,12 @@ public class GuiComponents {
             this.l_deaths = null;
         }
 
-        // Entferne ImageViews
         if (this.i_keys != null) {
             this.i_keys = null;
         }
 
-        // Setze den Status für die Anzeige zurück
         this.anzeige_on = false;
 
-        // Führe Garbage Collection aus
         System.gc();
         System.out.println("✔ [GuiComponents]: Speicherbereinigung durchgeführt.");
     }

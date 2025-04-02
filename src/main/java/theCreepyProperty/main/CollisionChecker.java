@@ -1,11 +1,9 @@
 package theCreepyProperty.main;
 
-
 import javafx.scene.image.ImageView;
 import theCreepyProperty.Map.MapCreate;
 import theCreepyProperty.entity.Player;
 import theCreepyProperty.scenes.GameScene;
-
 import javafx.scene.shape.Rectangle;
 
 public class CollisionChecker {
@@ -28,12 +26,12 @@ public class CollisionChecker {
         // guiComponents key background green
         if (keysToCollect <= this.mapCreate.getKeyList().size()) {
             this.keysToCollect = this.mapCreate.getKeyList().size();
-            this.scene.getGuiComponents().getL_keys().setText("Keys: " + player.getKeyEingesammelt() + "/" + keysToCollect); // Gui component update
+            this.scene.getGuiComponents().getL_keys().setText("Keys: " + player.getKeysCollected() + "/" + keysToCollect); // Gui component update
         }
 
         openDoorsInLevel(player);
 
-        // Walls
+        // check Player-Collision with Walls
         for (int i = 0; i < mapCreate.getWallList().size(); i++) {
             Rectangle wall = mapCreate.getWallList().get(i).getRWall();
 
@@ -43,12 +41,12 @@ public class CollisionChecker {
             }
         }
 
-        // Keys
+        // check Player-Collision with Keys
         for (int i = 0; i < mapCreate.getKeyList().size(); i++) {
             ImageView key = mapCreate.getKeyList().get(i).getIKey();
 
             if (futurePlayer.intersects(key.getBoundsInLocal()) && mapCreate.getKeyList().get(i).getPlayer_block_collision()) {
-                player.keys_eingesammelt++;
+                player.keys_collected++;
 
                 this.soundPlayer = new SoundPlayer("src/resources/sounds/key-collect.wav");
                 this.soundPlayer.setVolume(this.scene.getMenu().getSettings().getAudio().getMaster());
@@ -57,21 +55,19 @@ public class CollisionChecker {
                 scene.pGameItemChildrenRemove(mapCreate.getKeyList().get(i).getIKey()); // remove Key from Pane
                 mapCreate.getKeyList().remove(i);
 
-                this.scene.getGuiComponents().getL_keys().setText("Keys: " + player.getKeyEingesammelt() + "/" + keysToCollect); // Gui component update
+                this.scene.getGuiComponents().getL_keys().setText("Keys: " + player.getKeysCollected() + "/" + keysToCollect); // Gui component update
 
                 this.scene.getGuiComponents().collectKey(keysToCollect);
                 return;
             }
         }
 
-        // Vacuums
+        // check Player-Collision with Vacuums
         for (int i = 0; i < mapCreate.getVacuumsList().size(); i++) {
             ImageView vacuum = mapCreate.getVacuumsList().get(i).getIVacuum();
 
             if (futurePlayer.intersects(vacuum.getBoundsInLocal()) && mapCreate.getVacuumsList().get(i).getPlayer_block_collision()) {
-                //todo: boolean true on collect //playerkeys_eingesammelt++;
-
-                //todo anderer sound (eqip sound)
+                //todo anderer sound (equip sound)
                 this.soundPlayer = new SoundPlayer("src/resources/sounds/key-collect.wav");
                 this.soundPlayer.setVolume(this.scene.getMenu().getSettings().getAudio().getMaster());
                 this.soundPlayer.play();
@@ -85,7 +81,7 @@ public class CollisionChecker {
             }
         }
 
-        // Doors
+        // check Player-Collision with Door
         for (int i = 0; i < mapCreate.getDoorList().size(); i++) {
             ImageView door = mapCreate.getDoorList().get(i).getIvDoor();
 
@@ -96,18 +92,15 @@ public class CollisionChecker {
                     this.soundPlayer = new SoundPlayer("src/resources/sounds/youWin.wav");
                     this.soundPlayer.setVolume(this.scene.getMenu().getSettings().getAudio().getMaster());
                     this.soundPlayer.play();
-//                    this.soundPlayer = new SoundPlayer("src/resources/sounds/congratulations.wav");
-//                    this.soundPlayer.setVolume(this.scene.getMenu().getSettings().getAudio().getMaster());
-//                    this.soundPlayer.play();
 
                     this.scene.getGameWin().triggerGameWin();
                 }
-
                 return;
             }
         }
     }
 
+    // Checking collision with Wall
     public boolean isCollidingWithWall(Player player, double nextX, double nextY, int indexWall) {
         boolean colliding = false;
 
@@ -122,9 +115,10 @@ public class CollisionChecker {
         return colliding;
     }
 
+    // Opening Doors if all Keys Collected
     private void openDoorsInLevel(Player player) {
         for (int i = 0; i < mapCreate.getDoorList().size(); i++) {
-            if (player.keys_eingesammelt >= this.mapCreate.getNetToCollectKeys() && !this.isPlayed) {
+            if (player.keys_collected >= this.mapCreate.getNetToCollectKeys() && !this.isPlayed) {
                 this.isPlayed = true;
                 this.scene.getGuiComponents().gethBox_keys().setStyle("-fx-background-color: rgba(3, 59, 1, 0.8);");
 
@@ -137,6 +131,7 @@ public class CollisionChecker {
         }
     }
 
+    // Delete Variables
     public void deleteCollisionChecker() {
         System.out.println("⚠ [CollisionChecker]: Alle Referenzen werden gelöscht...");
 

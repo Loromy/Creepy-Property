@@ -9,8 +9,6 @@ import theCreepyProperty.main.SoundPlayer;
 import theCreepyProperty.screens.StartMenu;
 
 public class StartScene {
-
-    private final Stage stage;
     private final GUI gui;
     private Scene startScene;
     private SoundPlayer soundPlayer;
@@ -21,9 +19,8 @@ public class StartScene {
 
     private int volume = 50;
 
-    public StartScene(Stage stage, GUI gui) {
+    public StartScene(GUI gui) {
         System.out.println(".............................StartScene..............................");
-        this.stage = stage;
         this.gui = gui;
 
         this.startMenu = new StartMenu(this.gui);
@@ -43,7 +40,8 @@ public class StartScene {
         startScreen.getChildren().add(this.startMenu.getpStartMenu());
         this.startScene = new Scene(startScreen, gui.getWidth(), gui.getHeight());
 
-        startMenu.getStartButton().setOnAction(e -> {
+        // Button
+        startMenu.getStartButton().setOnAction(_ -> {
             System.out.println("✔ [StartScene]: Spiel wird gestartet...");
 
             soundPlayer = new SoundPlayer(soundButtonClick);
@@ -52,7 +50,7 @@ public class StartScene {
 
             gui.switchToLevelSelectScene();
         });
-        startMenu.getQuitButton().setOnAction(e -> {
+        startMenu.getQuitButton().setOnAction(_ -> {
             System.out.println("✔ [Start Menu]: Quit");
 
             soundPlayer = new SoundPlayer(soundButtonClick);
@@ -68,6 +66,7 @@ public class StartScene {
         return this.startScene;
     }
 
+    // Setter Methode
     public void setVolume(int volume) {
         this.volume = volume;
     }

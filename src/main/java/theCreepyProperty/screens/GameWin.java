@@ -66,6 +66,7 @@ public class GameWin {
         nextButton.setOnAction(e -> onNext());
     }
 
+    // show Game Winn Overlay
     public void triggerGameWin(){
         if (!gameWin_on) {
             this.gameScene.getPGameWin().setVisible(true);
@@ -94,6 +95,7 @@ public class GameWin {
         }
     }
 
+    // show Time Played in this Level
     private void showThisTime() {
         double time_seconds = this.levelSelectScene.getThisLevelTime();
         // Berechnung der Zeitkomponenten
@@ -102,11 +104,12 @@ public class GameWin {
         int seconds = (int) (time_seconds % 60);
         int milliseconds = (int) ((time_seconds * 100) % 100); // Millisekunden berechnen
 
-        // Formatierte Zeit als HH:MM:SS.mm anzeigen
+        // Formated Time as HH:MM:SS:mm
         String formattedTime = String.format("%02dh : %02dm : %02ds : %02dms", hours, minutes, seconds, milliseconds);
         this.time.setText("Time: " + formattedTime + " || " + this.levelSelectScene.getThisLevelDeaths() + " : Deaths");
     }
 
+    // set UI Element Position
     private void setGameWinPosition(double width, double height, int spacing) {
         this.vBoxGameWin.setPrefSize(width,height);
         this.vBoxGameWin.setLayoutX((gui.getWidth() - width) / 2);
@@ -115,6 +118,7 @@ public class GameWin {
         this.vBoxGameWin.setAlignment(Pos.CENTER);
     }
 
+    // back to level select Scene
     private void onBack() {
         System.out.println("✔ [Game Win]: Back");
         this.gameScene.stopBackgroundMusic();
@@ -122,6 +126,7 @@ public class GameWin {
         this.gui.switchToLevelSelectScene();
     }
 
+    // next level
     private void onNext() {
         this.gameScene.stopBackgroundMusic();
 
@@ -152,15 +157,14 @@ public class GameWin {
         return backgroundGameWin;
     }
 
+    // Delete Variables
     public void deleteGameWin() {
         System.out.println("⚠ [Game Win]: Alle Referenzen werden gelöscht...");
 
-        // GUI Referenz löschen (Wird extern verwaltet)
         if (this.gui != null) {
             this.gui = null;
         }
 
-        // GameScene und LevelSelectScene löschen
         if (this.gameScene != null) {
             this.gameScene = null;
         }
@@ -169,13 +173,11 @@ public class GameWin {
             this.levelSelectScene = null;
         }
 
-        // SetMap löschen
         if (this.setMap != null) {
-            this.setMap.deleteSetMap(); // Falls deleteSetMap() existiert
+            this.setMap.deleteSetMap();
             this.setMap = null;
         }
 
-        // UI-Elemente löschen
         if (this.text != null) {
             this.text = null;
         }
@@ -192,7 +194,6 @@ public class GameWin {
             this.nextButton = null;
         }
 
-        // Pane-Elemente löschen
         if (this.pGameWin != null) {
             this.pGameWin = null;
         }
@@ -205,11 +206,9 @@ public class GameWin {
             this.vBoxGameWin = null;
         }
 
-        // Statusvariablen zurücksetzen
         this.gameWin_on = false;
         this.mapSelected = 0;
 
-        // Garbage Collector anstoßen
         System.gc();
         System.out.println("✔ [Game Win]: Speicherbereinigung durchgeführt.");
     }

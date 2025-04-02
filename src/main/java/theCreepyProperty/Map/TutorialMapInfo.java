@@ -23,10 +23,6 @@ public class TutorialMapInfo {
     // Labels and VBox elements initialized
     private Label wallLabel;
     private Label ghostLabel1;
-//    private Label ghostLabel2;
-//    private Label ghostLabel3;
-//    private Label ghostLabel4;
-//    private Label ghostLabel5;
     private Label keyLabel;
     private Label vacuumLable;
     private Label doorLabel;
@@ -79,18 +75,15 @@ public class TutorialMapInfo {
         this.wallInfo = new VBox(this.wallLabel);
         vBox_position(this.wallInfo, 360, 210);
 
-        this.ghostLabel1 = new Label("⬆ This is a ghost.\nIt can walk through walls.\nIf it touches you, you will die.\nWhen it's near, you hear a heartbeat.\nStay away!");
-//        this.ghostLabel2 = new Label("It can walk through walls.");
-//        this.ghostLabel3 = new Label("If it touches you, you will die.");
-//        this.ghostLabel4 = new Label("When it's near, you hear a heartbeat.");
-//        this.ghostLabel5 = new Label("Stay away!");
+        this.ghostLabel1 = new Label("""
+                ⬆ This is a ghost.
+                It can walk through walls.
+                If it touches you, you will die.
+                When it's near, you hear a heartbeat.
+                Stay away!""");
         this.ghostLabel1.setId(id);
-//        this.ghostLabel2.setId(id);
-//        this.ghostLabel3.setId(id);
-//        this.ghostLabel4.setId(id);
-//        this.ghostLabel5.setId(id);
 
-        this.ghostInfo = new VBox(this.ghostLabel1/*, this.ghostLabel2, this.ghostLabel3, this.ghostLabel4, this.ghostLabel5*/);
+        this.ghostInfo = new VBox(this.ghostLabel1);
         this.ghostInfo.setId("tutorial-info-feld-background");
         vBox_position(ghostInfo, 50, 420);
 
@@ -102,7 +95,11 @@ public class TutorialMapInfo {
         vBox_position(this.keyInfo, 620, 500);
 
         // Vacuum info
-        this.vacuumLable = new Label("⬆ This is a Vacuum.\nCollect it to remove one Ghost\nwhen its in your distance.\nYou can vacuum vor 5sec");
+        this.vacuumLable = new Label("""
+                ⬆ This is a Vacuum.
+                Collect it to remove one Ghost
+                when its in your distance.
+                You can vacuum vor 5sec""");
         this.vacuumLable.setId(id);
         this.vacuumInfo = new VBox(this.vacuumLable);
         this.vacuumInfo.setId("tutorial-info-feld-background");
@@ -206,6 +203,7 @@ public class TutorialMapInfo {
         }
     }
 
+    // Checking if player dies one time than remove Barrier
     public void startRequirementCheck() {
         if (this.gui.getSelectScene().getThisLevelDeaths() >= 1) {
             if (this.gameScene.getMapCreate().getWallList().size() > 9) {
@@ -215,6 +213,7 @@ public class TutorialMapInfo {
         }
     }
 
+    // set Image Position
     private void i_position(ImageView imageView, int x, int y, int width, int height) {
         imageView.setLayoutX(x);
         imageView.setLayoutY(y);
@@ -223,15 +222,18 @@ public class TutorialMapInfo {
         imageView.setPreserveRatio(true);
     }
 
+    // set vBox Position
     private void vBox_position(VBox vBox, int x, int y) {
         vBox.setLayoutX(x);
         vBox.setLayoutY(y);
     }
-    
+
+    // show barrier warning
     public void setCollisionVisible(boolean visible) {
         this.infoBarrier.setVisible(visible);
     }
 
+    // Delete Variables
     public void deleteTutorialMapInfo() {
         System.out.println("⚠ [TutorialMapInfo]: Alle Referenzen werden gelöscht...");
 
@@ -244,10 +246,6 @@ public class TutorialMapInfo {
 
         wallLabel = null;
         ghostLabel1 = null;
-//        ghostLabel2 = null;
-//        ghostLabel3 = null;
-//        ghostLabel4 = null;
-//        ghostLabel5 = null;
         keyLabel = null;
         doorLabel = null;
 
@@ -270,9 +268,7 @@ public class TutorialMapInfo {
         infoGuiLevel = null;
         infoBarrier = null;
 
-
         System.gc();
-
         System.out.println("✔ [TutorialMapInfo]: Speicherbereinigung durchgeführt.");
     }
 }

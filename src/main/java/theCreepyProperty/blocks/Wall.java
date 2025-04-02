@@ -8,7 +8,6 @@ public class Wall extends Object {
 
     public Wall(int x, int y, int width, int height, String texture) {
         System.out.println(".............................Wall..............................");
-        // Parameterwerte setzen und Wand erstellen
         this.positionX = x;
         this.positionY = y;
         this.width = width;
@@ -41,10 +40,6 @@ public class Wall extends Object {
 
     public int getHeight() {
         return this.height;
-    }
-
-    public String getTexture() {
-        return this.texture;
     }
 
     public boolean getPlayer_block_collision() {

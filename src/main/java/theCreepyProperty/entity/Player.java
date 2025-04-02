@@ -30,7 +30,10 @@ public class Player extends Entity{
     public Player(GUI gui)  {
         System.out.println(".............................Player..............................");
         this.gui = gui;
+
         setDefaultValues();
+
+        // Rectangle Position
         this.solid_area = new Rectangle();
         this.solid_area.setFill(Color.MAGENTA);
         this.solid_area.setVisible(false);
@@ -39,17 +42,19 @@ public class Player extends Entity{
         this.solid_area.setWidth(entity_size_X);
         this.solid_area.setHeight(entity_size_Y);
 
-        // player Image auf 48x48px zoom und collision rechteck mittig-unten
+        // Player-Image bind with Rectangle
         this.i_player.xProperty().bind(solid_area.xProperty().subtract(18));
         this.i_player.yProperty().bind(solid_area.yProperty().subtract(20));
         this.i_player.fitWidthProperty().bind(solid_area.widthProperty().add(36));
         this.i_player.fitHeightProperty().bind(solid_area.heightProperty().add(20));
 
+        // Vacuum-Overlay bind with Rectangle
         this.i_vacuum_overlay.xProperty().bind(solid_area.xProperty().subtract(118));
         this.i_vacuum_overlay.yProperty().bind(solid_area.yProperty().subtract(120));
         this.i_vacuum_overlay.fitWidthProperty().bind(solid_area.widthProperty().add(236));
         this.i_vacuum_overlay.fitHeightProperty().bind(solid_area.heightProperty().add(220));
 
+        // Overlay-Image bind with rectangle
         this.i_darkness_overlay.xProperty().bind(solid_area.xProperty().subtract(1166));
         this.i_darkness_overlay.yProperty().bind(solid_area.yProperty().subtract(1166)); //610
         this.i_darkness_overlay.fitWidthProperty().bind(solid_area.widthProperty().add(2332));
@@ -58,6 +63,18 @@ public class Player extends Entity{
         createPlayerImage();
     }
 
+    // default values if no override
+    public void setDefaultValues() {
+        entity_size_X = 12;
+        entity_size_Y = 28;
+        entity_world_X = ((double) gui.getWidth() / 2) - (entity_size_X / 2);
+        entity_world_Y = ((double) gui.getHeight() / 2) - ((entity_size_Y / 2));
+        speed = 3;
+        direction = "down";
+        System.out.println("✔ [Player]: Player defaultValues set");
+    }
+
+    // Image Loading
     public void createPlayerImage() {
         up1 = loadImage("file:src/resources/textures/player/up_1.png");
         up2 = loadImage("file:src/resources/textures/player/up_2.png");
@@ -82,10 +99,13 @@ public class Player extends Entity{
         System.out.println("✔ [Player]: Image Player images successfully loaded");
     }
 
+
     private Image loadImage(String path) {
         return new Image(new FileCheck().checkImage("Player",path));
     }
 
+
+    // return Player-Image
     public ImageView draw() {
         Image playerImage = null;
 
@@ -107,16 +127,20 @@ public class Player extends Entity{
         return i_player;
     }
 
+    // return Vacuum-Overlay-Image
     public ImageView loadVacuumOverlay() {
         return i_vacuum_overlay;
     }
 
+    // return Darkness-Overlay-Image
     public ImageView loadOverlay() {
         this.i_darkness_overlay.setImage(overlay);
         this.i_darkness_overlay.setRotate(90);
         return i_darkness_overlay;
     }
 
+
+    // Player Animation
     private Image switchSprite(Image img1, Image img2, Image img3, Image img4) {
         return switch (sprite_num) {
             case 1 -> img1;
@@ -125,6 +149,30 @@ public class Player extends Entity{
             case 4 -> img4;
             default -> img1;
         };
+    }
+
+
+    // Ghost sounds
+    private void playGhostSound() {
+        if (!this.ghostSoundIsPlaying && !this.gui.getGameScene().getMenu().getMenu_on() && !this.gui.getGameScene().getGameWin().getGameWin_On() && !this.gui.getGameScene().getGameOver().getGameOver_On()) {
+            this.ghostSoundIsPlaying = true;
+
+
+            this.soundPlayer.setVolume(this.gui.getGameScene().getMenu().getSettings().getAudio().getMaster());
+
+            // Listener registrieren, um das Ende des Sounds zu erkennen
+            this.soundPlayer.getClip().addLineListener(event -> {
+                if (event.getType() == LineEvent.Type.STOP) {
+                    this.ghostSoundIsPlaying = false; // Reset, wenn der Sound endet
+                }
+            });
+            this.soundPlayer.stop();
+            this.soundPlayer.play();
+        }
+    }
+
+    public void stopGhostSound() {
+        this.soundPlayer.stop();
     }
 
     // play sound if Ghost in 120px distance
@@ -148,6 +196,25 @@ public class Player extends Entity{
         }
     }
 
+
+    // Vacuum Start
+    public void startVacuum() {
+        System.out.println("[Vacuum]: Vacuum running");
+        this.i_vacuum_overlay.setImage(vacuumOverlay);
+
+        this.timeline = new Timeline(new KeyFrame(Duration.millis(100), event -> {
+            if (deleteNearbyGhosts(this.gui.getGameScene().getMapCreate().getGhostList())) {
+                timeline.stop();
+                this.i_vacuum_overlay.setImage(null);
+            }
+        }));
+        timeline.setOnFinished(event -> this.i_vacuum_overlay.setImage(null));
+
+        timeline.setCycleCount(30); // 30 x 100ms = 3 Seconds
+        timeline.play();
+    }
+
+    // Remove Ghost with Vacuum
     public boolean deleteNearbyGhosts(ArrayList<Ghost> ghosts) {
         boolean caught = false;
         // Berechne den Mittelpunkt der Entity (angenommen, Entity hat eine Breite und Höhe)
@@ -179,28 +246,7 @@ public class Player extends Entity{
     }
 
 
-    private void playGhostSound() {
-        if (!this.ghostSoundIsPlaying && !this.gui.getGameScene().getMenu().getMenu_on() && !this.gui.getGameScene().getGameWin().getGameWin_On() && !this.gui.getGameScene().getGameOver().getGameOver_On()) {
-            this.ghostSoundIsPlaying = true;
-
-
-            this.soundPlayer.setVolume(this.gui.getGameScene().getMenu().getSettings().getAudio().getMaster());
-
-            // Listener registrieren, um das Ende des Sounds zu erkennen
-            this.soundPlayer.getClip().addLineListener(event -> {
-                if (event.getType() == LineEvent.Type.STOP) {
-                    this.ghostSoundIsPlaying = false; // Reset, wenn der Sound endet
-                }
-            });
-            this.soundPlayer.stop();
-            this.soundPlayer.play();
-        }
-    }
-
-    public void stopGhostSound() {
-        this.soundPlayer.stop();
-    }
-
+    // Overlay Toggle
     public void triggerOverlay() {
         if (!overlay_on) {
             this.i_darkness_overlay.setImage(overlay);
@@ -211,55 +257,7 @@ public class Player extends Entity{
         }
     }
 
-    public void startVacuum() {
-        System.out.println("[Vacuum]: Vacuum running");
-        this.i_vacuum_overlay.setImage(vacuumOverlay);
-
-        this.timeline = new Timeline(new KeyFrame(Duration.millis(100), event -> {
-            if (deleteNearbyGhosts(this.gui.getGameScene().getMapCreate().getGhostList())) {
-                timeline.stop();
-                this.i_vacuum_overlay.setImage(null);
-            }
-        }));
-        timeline.setOnFinished(event -> this.i_vacuum_overlay.setImage(null));
-
-        timeline.setCycleCount(300); // 30 x 100ms = 3 Sekunden
-        timeline.play();
-    }
-
-    public void setPlayer_world_X(double player_world_X){
-        this.entity_world_X = player_world_X;
-        this.solid_area.setX(player_world_X);
-    }
-
-    public void setPlayer_world_Y(double player_world_Y){
-        this.entity_world_Y = player_world_Y;
-        this.solid_area.setY(player_world_Y);
-    }
-
-    public void setControlSpeed(double speed) {
-        this.controlSpeed = speed;
-    }
-
-    public void setShiftSpeed() {
-        this.controlSpeed = (this.speed - 2) * (-1);
-    }
-
-    public void setDirection(String direction) {
-        this.direction = direction;
-        this.draw();
-    }
-
-    public void setDefaultValues() {
-        entity_size_X = 12;
-        entity_size_Y = 28;
-        entity_world_X = ((double) gui.getWidth() / 2) - (entity_size_X / 2);
-        entity_world_Y = ((double) gui.getHeight() / 2) - ((entity_size_Y / 2));
-        speed = 3;
-        direction = "down";
-        System.out.println("✔ [Player]: Player defaultValues set");
-    }
-
+    // Collision-Box Toggle
     public void showCollisionBox(boolean show) {
         if (show) {
             this.solid_area.setVisible(true);
@@ -283,8 +281,8 @@ public class Player extends Entity{
         return this.speed + this.controlSpeed;
     }
 
-    public int getKeyEingesammelt() {
-        return keys_eingesammelt;
+    public int getKeysCollected() {
+        return keys_collected;
     }
 
     public boolean getCollision_on(){
@@ -299,21 +297,43 @@ public class Player extends Entity{
         return this. i_darkness_overlay;
     }
 
+    // Setter Methoden
+    public void setPlayer_world_X(double player_world_X){
+        this.entity_world_X = player_world_X;
+        this.solid_area.setX(player_world_X);
+    }
+
+    public void setPlayer_world_Y(double player_world_Y){
+        this.entity_world_Y = player_world_Y;
+        this.solid_area.setY(player_world_Y);
+    }
+
+    public void setControlSpeed(double speed) {
+        this.controlSpeed = speed;
+    }
+
+    public void setShiftSpeed() {
+        this.controlSpeed = (this.speed - 2) * (-1);
+    }
+
+    public void setDirection(String direction) {
+        this.direction = direction;
+        this.draw();
+    }
+
+    // Delete Player Variables
     public void deletePlayer() {
         System.out.println("⚠ [Player]: Alle Referenzen werden gelöscht...");
 
-        // GUI Referenzen löschen
         if (this.gui != null) {
             this.gui = null;
         }
 
-        // SoundPlayer löschen
         if (this.soundPlayer != null) {
             this.soundPlayer.stop();  // sicherstellen, dass der Sound gestoppt wird
             this.soundPlayer = null;
         }
 
-        // ImageViews auf null setzen
         if (this.i_player != null) {
             this.i_player.setImage(null);
             this.i_player = null;
@@ -324,23 +344,24 @@ public class Player extends Entity{
             this.i_darkness_overlay = null;
         }
 
-        // SolidArea löschen
+        if (this.i_vacuum_overlay != null) {
+            this.i_vacuum_overlay.setImage(null);
+            this.i_vacuum_overlay = null;
+        }
+
         if (this.solid_area != null) {
             this.solid_area.setVisible(false);  // Sichtbarkeit zurücksetzen
             this.solid_area = null;
         }
 
-        //TimeLine löschen
         if (this.timeline != null) {
             timeline.stop();
             timeline = null;
         }
 
-        // Variablen zurücksetzen
         this.controlSpeed = 0;
         this.ghostSoundIsPlaying = false;
 
-        // Bild-Dateien entfernen
         up1 = null;
         up2 = null;
         up3 = null;
@@ -359,15 +380,11 @@ public class Player extends Entity{
         right4 = null;
         overlay = null;
 
-        // Abstand zu Geistern und andere Checks zurücksetzen
         this.direction = null;
 
-        // Spieler-Kollisionsstatus zurücksetzen
         this.collision_on = false;
 
-        // Garbage Collector anstoßen
         System.gc();
         System.out.println("✔ [Player]: Speicherbereinigung durchgeführt.");
     }
-
 }

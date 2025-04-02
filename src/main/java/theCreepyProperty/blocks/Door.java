@@ -5,13 +5,12 @@ import javafx.scene.image.ImageView;
 import theCreepyProperty.checker.FileCheck;
 
 public class Door extends Object {
-    private ImageView ivDoor = new ImageView();
+    private final ImageView ivDoor = new ImageView();
 
     private Boolean doorOpen = false;
 
     public Door(int x, int y, int width, int height, String texture) {
         System.out.println(".............................Door..............................");
-        // Parameterwerte setzen und Wand erstellen
         this.positionX = x;
         this.positionY = y;
         this.width = width;
@@ -46,10 +45,6 @@ public class Door extends Object {
         return this.positionY;
     }
 
-    public String getTexture() {
-        return this.texture;
-    }
-
     public boolean getPlayer_block_collision() {
         return player_block_collision;
     }
@@ -59,19 +54,11 @@ public class Door extends Object {
     }
 
     //Setter Methoden
-    public void setPlayer_block_collision(boolean collision) {
-        this.player_block_collision = collision;
-    }
-
     public void setX(int x) {
         this.positionX = x;
     }
 
     public void setY(int y) {
         this.positionY = y;
-    }
-
-    public void setDoorOpen(Boolean doorOpen) {
-        this.doorOpen = doorOpen;
     }
 }

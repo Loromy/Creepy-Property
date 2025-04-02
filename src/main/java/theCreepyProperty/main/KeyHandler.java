@@ -26,29 +26,31 @@ public class KeyHandler {
 
     private AnimationTimer timer;
 
+    //Movement
     private boolean wPressed = false;
     private boolean aPressed = false;
     private boolean sPressed = false;
     private boolean dPressed = false;
+    private boolean ctrlPressed = false;
+    private boolean shiftPressed = false;
+    private boolean escPressed = false;
+
+    // Development
     private boolean cPressed = false;
     private boolean pPressed = false;
     private boolean oPressed = false;
     private boolean mPressed = false;
     private boolean bPressed = false;
     private boolean lastState_bPressed = true;
-    private boolean ctrlPressed = false;
-    private boolean shiftPressed = false;
-    private boolean escPressed = false;
 
     private double nextPlayerX;
     private double nextPlayerY;
 
-
-    private double sprintTime = 5.0; // Die maximale Sprintzeit (z.B. 10 Sekunden)
-    private double maxSprintTime = sprintTime; // Die maximale Sprintzeit, die regeneriert werden kann (z.B. 10 Sekunden)
-    private double sprintRegenerationSpeed = 0.5; // Regenerationsrate der Sprintzeit, wenn der Sprint nicht aktiv ist
-    private double sprintIncreaseRate = 0.1; // Geschwindigkeit der Sprintsteigerung (z.B. 0.1 pro Sekunde)
-    private double cooldownTime = 0.0; // Cooldown-Zeit für den Sprint (1 Sekunde)
+    private double sprintTime = 5.0; // max Sprint time
+    private double maxSprintTime = sprintTime; // max Sprint time tu regenerate
+    private double sprintRegenerationSpeed = 0.5; // Regenerate speed per second
+    private double sprintIncreaseRate = 0.1; // Speed of regeneration per second
+    private double cooldownTime = 1.0; // cooldown
 
     public KeyHandler(Player player, GameScene gameScene, LevelSelectScene levelSelectScene, Menu menu, GameOver gameOver, GameWin gameWin) {
         System.out.println(".............................KeyHandler..............................");
@@ -65,7 +67,7 @@ public class KeyHandler {
     }
 
     public void addKeyListener(Scene scene, GameScene gameScene) {
-        // KeyPressed: Setze Tastenstatus auf "gedrückt"
+        // Set key-pressed ture
         scene.setOnKeyPressed(event -> {
             KeyCode keyCode = event.getCode();
             switch (keyCode) {
@@ -85,7 +87,7 @@ public class KeyHandler {
         });
 
 
-        // KeyReleased: Setze Tastenstatus auf "nicht gedrückt"
+        // Set key-pressed false
         scene.setOnKeyReleased(event -> {
             KeyCode keyCode = event.getCode();
             switch (keyCode) {
@@ -104,42 +106,42 @@ public class KeyHandler {
             }
         });
 
+        // Darkness Overlay rotation tracking on mous
         scene.setOnMouseMoved(event -> {
             double mouseX = event.getX();
             double mouseY = event.getY();
             double imageX = this.player.getI_darkness_overlay().getX() + this.player.getI_darkness_overlay().getFitWidth() / 2;  // Mittelpunkt des Bildes
             double imageY = this.player.getI_darkness_overlay().getY() + this.player.getI_darkness_overlay().getFitHeight() / 2;
 
-            // Winkel berechnen
+            // Calculate Rotation-Angle
             double angle = Math.toDegrees(Math.atan2(mouseY - imageY, mouseX - imageX));
 
-            // Bild drehen
+            // set Darkness overlay rotation
             this.player.getI_darkness_overlay().setRotate(angle);
         });
 
 
-        // FPS-unabhängige Bewegungsberechnung mit AnimationTimer
+        // FPS calculation
         this.timer  = new AnimationTimer()  {
             private long lastTime = System.nanoTime();
             private long lastFPSUpdate = System.nanoTime();
             private int frameCount = 0;
-            private double fps = 0;
 
             //@Override
             public void handle(long now) {
                 double deltaTime = (now - lastTime) / 1_000_000_000.0; // Delta-Zeit in Sekunden
                 lastTime = now;
 
-                handleMovement(deltaTime); // Bewegung aktualisieren
+                handleMovement(deltaTime); // update Movement
 
-                // FPS-Berechnung
+                // FPS calculation
                 frameCount++;
                 if (now - lastFPSUpdate >= 1_000_000_000) { // Wenn 1 Sekunde vergangen ist
-                    fps = frameCount;  // FPS speichern
-                    frameCount = 0;  // Frame-Zähler zurücksetzen
-                    lastFPSUpdate = now;  // Zeitpunkt der letzten Messung aktualisieren
+                    double fps = frameCount;
+                    frameCount = 0;
+                    lastFPSUpdate = now;
 
-                    // FPS in der GUI anzeigen
+                    // show FPS in GUI-Components
                     gameScene.getGuiComponents().updateFPS(fps);
                 }
             }
@@ -147,12 +149,13 @@ public class KeyHandler {
         timer.start();
     }
 
+    // checking if keys are pressed
     private void handleMovement(double deltaTime) {
         if (!this.menu.getMenu_on() && !this.gameOver.getGameOver_On() && !this.gameWin.getGameWin_On()) {
             double dx = 0;
             double dy = 0;
 
-            // Tasteneingaben verarbeiten
+            // Movement-keys inputs
             if (wPressed) {
                 dy -= 1;
                 this.player.setDirection("up");
@@ -170,6 +173,7 @@ public class KeyHandler {
                 this.player.setDirection("right");
             }
 
+            // show Player Position
             if (pPressed) {
                 System.out.println("[KeyHandler]: Position Player: x=" + this.player.getPlayer_world_X() + " y=" + this.player.getPlayer_world_Y());
                 this.pPressed = false;
@@ -187,17 +191,17 @@ public class KeyHandler {
                 this.oPressed = false;
             }
 
-            // Ghost stop Moving
+            // Ghost Moving Toggle
             if(mPressed) {
                 this.mapCreate.triggerGhostMoving();
 
                 this.mPressed = false;
             }
 
-            // Show hitBox of player & ghost
+            // Show hitBox of player & ghost Toggle
             if (bPressed) {
                 if (lastState_bPressed) {
-                    // Toggle 1: Sichtbarkeit ein- oder ausschalten
+                    // show hit-box
                     this.player.showCollisionBox(true);
 
                     for (Ghost ghost : this.gameScene.getMapCreate().getGhostList()) {
@@ -205,19 +209,17 @@ public class KeyHandler {
                     }
                     System.out.println("✔ [KeyHandler]: Collision Box toggled [+]");
 
-                    // Markiere das Toggeln als abgeschlossen
                     lastState_bPressed = false;
 
                     bPressed = false;
                 } else {
-                    // Toggle 2: Sichtbarkeit wieder zurücksetzen
+                    // hide hit-box
                     this.player.showCollisionBox(false);
                     for (Ghost ghost : this.gameScene.getMapCreate().getGhostList()) {
                         ghost.showCollisionBox(false);
                     }
                     System.out.println("✔ [KeyHandler]: Collision Box reset [-]");
 
-                    // Reset toggled
                     lastState_bPressed = true;
 
                     bPressed = false;
@@ -226,12 +228,12 @@ public class KeyHandler {
 
 
 
-            // Wenn der Cooldown aktiv ist, kannst du nicht sprinten
+            // if on Cooldown you can not sprint
             if (cooldownTime > 0) {
                 cooldownTime -= deltaTime; // Cooldown ablaufen lassen
             }
 
-            // Sprinten: Wenn STRG gedrückt und noch Sprintzeit übrig ist und der Cooldown abgelaufen ist
+            // Check if sprinting is allowed
             if (ctrlPressed && sprintTime > 0 && cooldownTime <= 0) {
                 this.player.setControlSpeed(2); // Sprint-Geschwindigkeit
                 sprintTime -= deltaTime; // Sprintzeit abbauen
@@ -244,16 +246,16 @@ public class KeyHandler {
                     ghost.setPlayerTargetDistance(200);
                 }
 
-                // Sprint regeneriert sich langsam, wenn die Taste losgelassen wird und kein Cooldown aktiv ist
+                // Regenerate sprint if not pressed
                 if (!ctrlPressed && cooldownTime <= 0) {
                     sprintTime += deltaTime * sprintRegenerationSpeed; // Regeneration der Sprintzeit
 
-                    // Steigert die Sprintzeit langsam, wenn sie nicht am Maximum ist
+                    // Regenerate unless max-value reached
                     if (sprintTime < maxSprintTime) {
                         sprintTime += deltaTime * sprintIncreaseRate; // Sprintzeit langsam erhöhen
                     }
 
-                    // Sicherstellen, dass die Sprintzeit nicht über das Maximum hinausgeht
+                    // if sprint-Time is bigger than max-sprint-Time
                     if (sprintTime > maxSprintTime) sprintTime = maxSprintTime; // Maximale Sprintzeit (10 Sekunden)
                 }
             }
@@ -268,30 +270,30 @@ public class KeyHandler {
                 this.gameScene.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed());
             }
 
-            // Wenn der Sprint aufgebraucht ist, setze den Cooldown
+            // if sprint-Time is 0 than set cooldown
             if (sprintTime <= 0 && cooldownTime <= 0) {
                 cooldownTime = 1.0;
             }
 
-            // Geschwindigkeit in GUI anzeigen
+            // show speed in GuiComponents
             this.gameScene.getGuiComponents().getL_speed().setText("Speed: " + player.getSpeed());
 
-            // Sprint-Anzeige aktualisieren
+            // show sprint-time remaining in guiComponents
             int sprintBarLength = (int) (sprintTime / maxSprintTime * (maxSprintTime * 2));
             String sprintBar = "sprint: " + "|".repeat(sprintBarLength);
             this.gameScene.getGuiComponents().getL_sprint().setText(sprintBar);
 
-            // Bewegung der Spielfigur
+            // move Player
             if (dx != 0 || dy != 0) {
                 move(dx, dy, deltaTime);
             }
 
-            // Kollisionen mit Geistern prüfen
+            // check Player collision with Ghosts
             checkGhostCollision(deltaTime);
             animation(deltaTime);
         }
 
-        // Escape-Taste für das Menü
+        // show Menu Toggle
         if (escPressed) {
             this.escPressed = false;
             if (!menu.getSettings().getSettingOn() && !menu.getSettings().getAudio().getAudioOn() && !this.gameScene.getGameWin().getGameWin_On() && !this.gameScene.getGameOver().getGameOver_On()) {
@@ -309,40 +311,41 @@ public class KeyHandler {
     }
 
 
-    // Bewegung basierend auf Geschwindigkeit- und Bewegungsrichtung
+    // Moves the player based on speed and direction
     private void move(double dx, double dy, double deltaTime) {
-        // Länge des Bewegungsvektors berechnen
+        // Calculate movement vector length (normalize direction)
         double length = Math.sqrt(dx * dx + dy * dy);
         if (length != 0) {
             dx /= length;
             dy /= length;
         }
 
-        // FPS-unabhängige Bewegung berechnen
-        double speed = player.getSpeed() * deltaTime * 60; // Normale Geschwindigkeit für 60 FPS
+        // Adjust movement for consistent speed across different FPS
+        double speed = player.getSpeed() * deltaTime * 60; // Base speed for 60 FPS
         this.nextPlayerX = player.getPlayer_world_X() + dx * speed;
         this.nextPlayerY = player.getPlayer_world_Y() + dy * speed;
 
-        // X-Kollision prüfen
+        // Check X collision and update position if no collision
         player.collision_on = false;
         this.gameScene.getChecker().checkCollision(player, this.nextPlayerX, player.getPlayer_world_Y());
         if (!player.getCollision_on()) {
             player.setPlayer_world_X(this.nextPlayerX);
         }
 
-        // Y-Kollision prüfen
+        // Check Y collision and update position if no collision
         player.collision_on = false;
         this.gameScene.getChecker().checkCollision(player, player.getPlayer_world_X(), this.nextPlayerY);
         if (!player.getCollision_on()) {
             player.setPlayer_world_Y(this.nextPlayerY);
         }
 
-        // if Tutorial Map is Selected
+        // Special collision check for the tutorial map
         if (this.levelSelectScene.getMapSelected() == 0) {
-            boolean collidingX = this.gameScene.getChecker().isCollidingWithWall(this.player, this.nextPlayerX, player.getPlayer_world_Y(), 9);
+            boolean collidingX = this.gameScene.getChecker().isCollidingWithWall(this.player, this.nextPlayerX, player.getPlayer_world_X(), 9);
             boolean collidingY = this.gameScene.getChecker().isCollidingWithWall(this.player, player.getPlayer_world_X(), this.nextPlayerY, 9);
 
-            if(collidingX || collidingY) {
+            // Show collision warning if the player is blocked
+            if (collidingX || collidingY) {
                 this.gameScene.getTutorialMapInfo().setCollisionVisible(true);
             } else {
                 this.gameScene.getTutorialMapInfo().setCollisionVisible(false);
@@ -350,13 +353,15 @@ public class KeyHandler {
         }
     }
 
+    // Checks if the player collides with a ghost
     private void checkGhostCollision(double deltaTime) {
+        // Predict player's next position
         Rectangle futurePlayer = new Rectangle(this.nextPlayerX, this.nextPlayerY, player.entity_size_X, player.entity_size_Y);
 
         for (Ghost ghost : mapCreate.getGhostList()) {
             Rectangle ghostNew = ghost.getSolidAria();
 
-            // Ghosts check collision with Player
+            // If player collides with a ghost, play sounds and trigger game over
             if (futurePlayer.intersects(ghostNew.getBoundsInLocal())) {
                 this.soundPlayer = new SoundPlayer("src/resources/sounds/stabbed.wav");
                 this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster());
@@ -366,63 +371,61 @@ public class KeyHandler {
                 this.soundPlayer.play();
 
                 this.gameScene.getGameOver().triggerGameOver();
-
                 return;
             }
 
-
-            // Ghost Image Animation
+            // Animate ghost sprite
             ghost.sprite_counter += deltaTime * 60;
 
-            // Sprite-Wechsel abhängig von der Spieler-Geschwindigkeit
+            // Change sprite frame based on ghost speed
             int frameSpeed = Math.max(4, 14 - (int) ghost.getSpeed());
 
             if (ghost.sprite_counter > frameSpeed) {
-                ghost.sprite_num = (ghost.sprite_num % 4) + 1; // Zyklus: 1 → 2 → 3 → 4 → 1
+                ghost.sprite_num = (ghost.sprite_num % 4) + 1; // Cycle: 1 → 2 → 3 → 4 → 1
                 ghost.sprite_counter = 0;
-
             }
-            ghost.draw();
 
+            // Draw the ghost
+            ghost.draw();
         }
     }
 
-    // PLayer Image Animation
+    // Player image animation
     private void animation(double deltaTime) {
+        // Check if movement keys are pressed
         if (this.wPressed || this.sPressed || this.aPressed || this.dPressed) {
             player.sprite_counter += deltaTime * 60;
 
-            // Sprite-Wechsel abhängig von der Spieler-Geschwindigkeit
+            // Change sprite frame based on player speed
             int frameSpeed = Math.max(4, 14 - (int) player.getSpeed());
 
             if (player.sprite_counter > frameSpeed) {
-                player.sprite_num = (player.sprite_num % 4) + 1; // Zyklus: 1 → 2 → 3 → 4 → 1
+                player.sprite_num = (player.sprite_num % 4) + 1; // Cycle: 1 → 2 → 3 → 4 → 1
                 player.sprite_counter = 0;
             }
         } else {
+            // Reset to default sprite when idle
             player.sprite_num = 1;
             this.player.draw();
         }
     }
 
+    // Delete Variables
     public void deleteKeyHandler() {
         if (this.timer != null) {
             this.timer.stop();
             this.timer = null;
         }
 
-        // Event-Handler von der Szene entfernen (falls nötig)
         if (this.gameScene != null && this.gameScene.getScene() != null) {
             this.gameScene.getScene().setOnKeyPressed(null);
             this.gameScene.getScene().setOnKeyReleased(null);
         }
 
-        // SoundPlayer stoppen (falls aktiv)
         if (this.soundPlayer != null) {
             this.soundPlayer.stop();
         }
 
-        // Alle Objekte auf null setzen
         this.player = null;
         this.gameScene = null;
         this.levelSelectScene = null;
@@ -432,7 +435,6 @@ public class KeyHandler {
         this.mapCreate = null;
         this.soundPlayer = null;
 
-        // Boolean-Werte zurücksetzen
         this.wPressed = false;
         this.aPressed = false;
         this.sPressed = false;
@@ -444,7 +446,6 @@ public class KeyHandler {
         this.shiftPressed = false;
         this.escPressed = false;
 
-        // Numerische Werte zurücksetzen
         this.nextPlayerX = 0.0;
         this.nextPlayerY = 0.0;
         this.sprintTime = 0.0;
@@ -453,8 +454,7 @@ public class KeyHandler {
         this.sprintIncreaseRate = 0.0;
         this.cooldownTime = 0.0;
 
-        // Garbage Collector anstoßen (optional)
         System.gc();
+        System.out.println("✔ [KeyHandler]: Speicherbereinigung durchgeführt.");
     }
-
 }

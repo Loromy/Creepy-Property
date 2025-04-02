@@ -9,13 +9,13 @@ import java.util.Map;
 public class ReadWriteSpielstand {
     private LevelSelectScene levelSelectScene;
     private Map<Integer, Setting> settingsMap;
-    private final String filePath = "src/resources/csv/Save/spielstand.csv";
 
     public ReadWriteSpielstand() {
         System.out.println(".............................ReadWriteSpielstand..............................");
         this.settingsMap = new HashMap<>();
     }
 
+    // Read saved game data from file
     public void spielstandRead(String filePath, LevelSelectScene levelSelectScene) {
         this.levelSelectScene = levelSelectScene;
 
@@ -25,7 +25,7 @@ public class ReadWriteSpielstand {
 
             while ((line = br.readLine()) != null) {
                 if (isFirstLine) {
-                    isFirstLine = false; // Header überspringen
+                    isFirstLine = false; // Skip header
                     continue;
                 }
 
@@ -46,24 +46,27 @@ public class ReadWriteSpielstand {
         }
     }
 
+    // Apply saved game data to the LevelSelectScene
     public void setSpielstand(int level, boolean unlocked, boolean completed, double time, int deaths) {
         this.levelSelectScene.setLevelCompleted(level, completed);
         this.levelSelectScene.setLevelUnlocked(level, unlocked);
         this.levelSelectScene.setLevelTime(level, time);
-        this.levelSelectScene.setLevelDeaths(level, deaths); // Neue Methode für Todeszahlen
+        this.levelSelectScene.setLevelDeaths(level, deaths); // Track deaths
     }
 
+    // Update saved game data in the file
     public void updateSpielstand(int level, boolean unlocked, boolean completed, double time, int deaths) {
         Map<Integer, Setting> tempSettingsMap = new HashMap<>();
 
-        // Datei einlesen und vorhandene Werte speichern
+        // Read existing data
+        String filePath = "src/resources/csv/Save/spielstand.csv";
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             boolean isFirstLine = true;
 
             while ((line = br.readLine()) != null) {
                 if (isFirstLine) {
-                    isFirstLine = false;
+                    isFirstLine = false; // Skip header
                     continue;
                 }
 
@@ -82,24 +85,25 @@ public class ReadWriteSpielstand {
             e.printStackTrace();
         }
 
-        // Neuen Wert setzen
+        // Update the specific level's data
         tempSettingsMap.put(level, new Setting(unlocked, completed, time, deaths));
 
-        // Datei mit aktualisierten Werten überschreiben
+        // Overwrite the file with updated data
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
-            bw.write("Level,unlocked,completed,time,deaths"); // Header beibehalten
+            bw.write("Level,unlocked,completed,time,deaths"); // Keep header
 
             for (Map.Entry<Integer, Setting> entry : tempSettingsMap.entrySet()) {
                 bw.write("\n" + entry.getKey() + "," + entry.getValue().unlocked + "," + entry.getValue().completed + ","
                         + entry.getValue().time + "," + entry.getValue().deaths);
             }
 
-            System.out.println("✔ [ReadWriteSpielstand]: Einstellung für Level " + level + " aktualisiert");
+            System.out.println("✔ [ReadWriteSpielstand]: Level " + level + " updated");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    // class to store settings for each level
     private static class Setting {
         boolean unlocked;
         boolean completed;
@@ -114,20 +118,18 @@ public class ReadWriteSpielstand {
         }
     }
 
+    // Delete Variables
     public void deleteReadWriteSpielstand() {
-        System.out.println("⚠ [ReadWriteSpielstand]: Alle Referenzen werden gelöscht...");
+        System.out.println("⚠ [ReadWriteSpielstand]: Deleting all references...");
 
-        // Setze alle relevanten Instanzen auf null
         this.levelSelectScene = null;
 
-        // Lösche die gespeicherten Einstellungen
         if (this.settingsMap != null) {
-            this.settingsMap.clear();  // Entferne alle Einträge aus dem Map
-            this.settingsMap = null;   // Setze die Map auf null
+            this.settingsMap.clear();
+            this.settingsMap = null;
         }
 
-        // Führe Garbage Collection aus
         System.gc();
-        System.out.println("✔ [ReadWriteSpielstand]: Speicherbereinigung durchgeführt.");
+        System.out.println("✔ [ReadWriteSpielstand]: Memory cleanup done.");
     }
 }

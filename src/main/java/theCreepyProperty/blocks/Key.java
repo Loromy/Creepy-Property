@@ -8,7 +8,6 @@ public class Key extends Object {
 
     public Key(int x, int y, int width, int height, String texture) {
         System.out.println(".............................Key..............................");
-        // Parameterwerte setzen und Wand erstellen
         this.positionX = x;
         this.positionY = y;
         this.width = width;
@@ -38,14 +37,11 @@ public class Key extends Object {
         return this.positionY;
     }
 
-    public String getTexture() {
-        return this.texture;
-    }
-
     public boolean getPlayer_block_collision() {
         return player_block_collision;
     }
 
+    // Setter Methoden
     public void setX(int x) {
         this.positionX = x;
     }

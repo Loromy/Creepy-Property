@@ -24,6 +24,7 @@ public class LevelSelectScene {
     private int mapSelected = 0;
     private double timePlaying = 0; // zwischen speichern von time beim sterben.
 
+    // Level Completed
     private boolean levelTutorialCompleted = false;
     private boolean level1Completed = false;
     private boolean level2Completed = false;
@@ -35,6 +36,7 @@ public class LevelSelectScene {
     private boolean level8Completed = false;
     private boolean level9Completed = false;
 
+    // Level unlocked
     private boolean levelTutorialUnlocked = false;
     private boolean level1Unlocked = false;
     private boolean level2Unlocked = false;
@@ -46,6 +48,7 @@ public class LevelSelectScene {
     private boolean level8Unlocked = false;
     private boolean level9Unlocked = false;
 
+    // Level Time
     private double thisLevelTime = 0.0;
     private double level0Time = 0.0;
     private double level1Time = 0.0;
@@ -58,6 +61,7 @@ public class LevelSelectScene {
     private double level8Time = 0.0;
     private double level9Time = 0.0;
 
+    // Level Deaths
     private int thisLevelDeaths = 0;
     private int level0Deaths = 0;
     private int level1Deaths = 0;
@@ -70,6 +74,7 @@ public class LevelSelectScene {
     private int level8Deaths = 0;
     private int level9Deaths = 0;
 
+    // Button vault Volumen
     private int volume = 50; //todo aus datei lesen
 
     public LevelSelectScene(GUI gui) {
@@ -102,7 +107,7 @@ public class LevelSelectScene {
 
         levelSelectScreen.getChildren().addAll(pLevelBlur,pLevelComponents);
         this.levelSelectScene = new Scene(levelSelectScreen, gui.getWidth(), gui.getHeight());
-
+        // Button OnAction
         levelMenu.getbL1().setOnAction(e ->{
             setMap(1);
             this.timePlaying = 0;
@@ -289,6 +294,7 @@ public class LevelSelectScene {
         });
     }
 
+    // format Time
     private void formatTime(int level,double time_seconds) {
         // Berechnung der Zeitkomponenten
         int hours = (int) (time_seconds / 3600);
@@ -305,6 +311,7 @@ public class LevelSelectScene {
         }
     }
 
+    // Select Map
     public void setMap(int map) {
         this.mapSelected = map;
 
@@ -365,6 +372,7 @@ public class LevelSelectScene {
         }
     }
 
+    //update CSV Level Completed
     public void levelCompleted() {
         if (levelTutorialCompleted) {
             System.out.println("levelCompleted: " + this.levelTutorialCompleted + " deaths: " + this.level0Deaths);
@@ -419,6 +427,7 @@ public class LevelSelectScene {
         }
     }
 
+    // unlock level
     public void unlockLevel() {
         if (levelTutorialUnlocked) {
             levelMenu.getbTutorial().setDisable(false);
@@ -463,76 +472,78 @@ public class LevelSelectScene {
         levelCompleted();
     }
 
+    // set time as Highscore if it is better than the old one
     public void setThisLevelTime(double time) {
         int nextMap = this.mapSelected + 1;
-//        if(nextMap <= 10) {
-            this.thisLevelTime = time;
+        this.thisLevelTime = time;
 
-            switch (this.mapSelected) {
-                case 0:
-                    if (this.thisLevelTime < level0Time || level0Time == 0.0) {
-                        setTimeAndDeaths();
-                    }
-                    break;
-                case 1:
-                    if (this.thisLevelTime < level1Time || level1Time == 0.0) {
-                        setTimeAndDeaths();
-                    }
-                    break;
-                case 2:
-                    if (this.thisLevelTime < level2Time || level2Time == 0.0) {
-                        setTimeAndDeaths();
-                    }
-                    break;
-                case 3:
-                    if (this.thisLevelTime < level3Time || level3Time == 0.0) {
-                        setTimeAndDeaths();
-                    }
-                    break;
-                case 4:
-                    if (this.thisLevelTime < level4Time || level4Time == 0.0) {
-                        setTimeAndDeaths();
-                    }
-                    break;
-                case 5:
-                    if (this.thisLevelTime < level5Time || level5Time == 0.0) {
-                        setTimeAndDeaths();
-                    }
-                    break;
-                case 6:
-                    if (this.thisLevelTime < level6Time || level6Time == 0.0) {
-                        setTimeAndDeaths();
-                    }
-                    break;
-                case 7:
-                    if (this.thisLevelTime < level7Time || level7Time == 0.0) {
-                        setTimeAndDeaths();
-                    }
-                    break;
-                case 8:
-                    if (this.thisLevelTime < level8Time || level8Time == 0.0) {
-                        setTimeAndDeaths();
-                    }
-                    break;
-                case 9:
-                    if (this.thisLevelTime < level9Time || level9Time == 0.0) {
-                        setTimeAndDeaths();
-                    }
-                    break;
-            }
+        switch (this.mapSelected) {
+            case 0:
+                if (this.thisLevelTime < level0Time || level0Time == 0.0) {
+                    setTimeAndDeaths();
+                }
+                break;
+            case 1:
+                if (this.thisLevelTime < level1Time || level1Time == 0.0) {
+                    setTimeAndDeaths();
+                }
+                break;
+            case 2:
+                if (this.thisLevelTime < level2Time || level2Time == 0.0) {
+                    setTimeAndDeaths();
+                }
+                break;
+            case 3:
+                if (this.thisLevelTime < level3Time || level3Time == 0.0) {
+                    setTimeAndDeaths();
+                }
+                break;
+            case 4:
+                if (this.thisLevelTime < level4Time || level4Time == 0.0) {
+                    setTimeAndDeaths();
+                }
+                break;
+            case 5:
+                if (this.thisLevelTime < level5Time || level5Time == 0.0) {
+                    setTimeAndDeaths();
+                }
+                break;
+            case 6:
+                if (this.thisLevelTime < level6Time || level6Time == 0.0) {
+                    setTimeAndDeaths();
+                }
+                break;
+            case 7:
+                if (this.thisLevelTime < level7Time || level7Time == 0.0) {
+                    setTimeAndDeaths();
+                }
+                break;
+            case 8:
+                if (this.thisLevelTime < level8Time || level8Time == 0.0) {
+                    setTimeAndDeaths();
+                }
+                break;
+            case 9:
+                if (this.thisLevelTime < level9Time || level9Time == 0.0) {
+                    setTimeAndDeaths();
+                }
+                break;
+        }
 
-            setLevelCompleted(this.mapSelected, true);
-            if (nextMap < 10) {
-                setLevelUnlocked(nextMap, true);
-            }
+        setLevelCompleted(this.mapSelected, true);
+        if (nextMap < 10) {
+            setLevelUnlocked(nextMap, true);
+        }
         //}
     }
 
+    // update time und death
     private void setTimeAndDeaths() {
         setLevelTime(this.mapSelected, this.thisLevelTime);
         setLevelDeaths(this.mapSelected, this.thisLevelDeaths);
     }
 
+    // mark level as Completed
     public void setLevelCompleted(int level, boolean completed) {
         if (completed) {
             System.out.println("✔ [LevelSelectScene]: setLevelCompleted level: " + level + " Completed");
@@ -575,6 +586,7 @@ public class LevelSelectScene {
         levelCompleted();
     }
 
+    // mark level as Unlocked
     public void setLevelUnlocked(int level, boolean unlocked) {
         if (unlocked) {
             System.out.println("✔ [LevelSelectScene]: setLevelUnlocked level: " + level + " unlocked");
@@ -616,6 +628,7 @@ public class LevelSelectScene {
         }
     }
 
+    // set level Time
     public void setLevelTime(int level, double time) {
         switch (level) {
             case 0:
@@ -654,6 +667,7 @@ public class LevelSelectScene {
         }
     }
 
+    // set level Death
     public void setLevelDeaths(int level, int deaths) {
         switch (level) {
             case 0:
@@ -692,7 +706,7 @@ public class LevelSelectScene {
         }
     }
 
-    // Getter
+    // Getter methoden
     public int getLevelDeaths(int level) {
         int thisLevelDeaths = 0;
 
@@ -758,7 +772,7 @@ public class LevelSelectScene {
         return this.thisLevelDeaths;
     }
 
-    // Setter
+    // Setter methoden
     public void setMapSelected(int map) {
         this.mapSelected = map;
     }

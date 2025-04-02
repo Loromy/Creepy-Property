@@ -18,6 +18,7 @@ public class ReadWriteSettings {
         this.settingsMap = new HashMap<>();
     }
 
+    // Read settings from a file and apply them
     public void settingsRead(String filePath, GameScene gameScene, GuiComponents guiComponents) {
         this.gameScene = gameScene;
         this.guiComponents = guiComponents;
@@ -28,7 +29,7 @@ public class ReadWriteSettings {
 
             while ((line = br.readLine()) != null) {
                 if (isFirstLine) {
-                    isFirstLine = false; // Header überspringen
+                    isFirstLine = false; // Skip header
                     continue;
                 }
 
@@ -46,84 +47,70 @@ public class ReadWriteSettings {
         }
     }
 
-    // lesen
+    // Apply a setting based on its key and value
     public void setSettings(String setting, int value) {
         switch (setting) {
             case "anzeige":
-                if (value == 0) {
-                    this.guiComponents.setAnzeige_on(true);
-                    System.out.println("✔ [ReedWriteSettings]: SettingsRead \"anzeige\" value: false");
-                }
-                else if (value == 1) {
-                    this.guiComponents.setAnzeige_on(false);
-                    System.out.println("✔ [ReedWriteSettings]: SettingsRead \"anzeige\" value: true");
-                }
-                else {
-                    System.err.println("✖ [ReedWriteSettings]: SettingsRead \"anzeige\" wrong value: " + value + " does not exist");
-                }
+                this.guiComponents.setAnzeige_on(value == 0);
+                System.out.println("✔ [ReadWriteSettings]: \"anzeige\" set to " + (value == 0 ? "false" : "true"));
                 this.guiComponents.triggerAnzeigeRWSettings();
                 break;
 
             case "master":
                 if (value >= 1 && value <= 100) {
                     this.gameScene.getMenu().getSettings().getAudio().setMaster(value);
-                    System.out.println("✔ [ReedWriteSettings]: SettingsRead \"master\" value: " + value);
-                }
-                else {
-                    System.err.println("✖ [ReedWriteSettings]: SettingsRead \"master\" wrong value: " + value + " does not exist");
+                    System.out.println("✔ [ReadWriteSettings]: \"master\" set to " + value);
+                } else {
+                    System.err.println("✖ [ReadWriteSettings]: Invalid \"master\" value: " + value);
                 }
                 break;
 
             case "background":
                 if (value >= 1 && value <= 100) {
                     this.gameScene.getMenu().getSettings().getAudio().setBackground(value);
-                    System.out.println("✔ [ReedWriteSettings]: SettingsRead \"background\" value: " + value);
-                }
-                else {
-                    System.err.println("✖ ReedWriteSettings]: SettingsRead \"background\" wrong value: " + value + " does not exist");
+                    System.out.println("✔ [ReadWriteSettings]: \"background\" set to " + value);
+                } else {
+                    System.err.println("✖ [ReadWriteSettings]: Invalid \"background\" value: " + value);
                 }
                 break;
 
             default:
-                System.err.println("✖ [ReedWriteSettings]: SettingsRead wrong setting: " + setting + " does not exist");
+                System.err.println("✖ [ReadWriteSettings]: Unknown setting: " + setting);
                 break;
         }
     }
 
-    // schreiben
+    // Update a specific setting in the settings file
     public void updateSetting(String setting, int newValue) {
         String filePath = "src/resources/csv/Save/settings.csv";
         Map<String, Integer> tempSettingsMap = new HashMap<>();
 
-        // Datei einlesen und vorhandene Werte speichern
+        // Read existing settings
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             boolean isFirstLine = true;
 
             while ((line = br.readLine()) != null) {
                 if (isFirstLine) {
-                    isFirstLine = false; // Header speichern
+                    isFirstLine = false; // Keep header
                     continue;
                 }
 
                 String[] parts = line.split(",");
                 if (parts.length < 2) continue;
 
-                String key = parts[0].trim();
-                int value = Integer.parseInt(parts[1].trim());
-
-                tempSettingsMap.put(key, value);
+                tempSettingsMap.put(parts[0].trim(), Integer.parseInt(parts[1].trim()));
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        // Den gewünschten Wert aktualisieren
+        // Update the desired setting
         tempSettingsMap.put(setting, newValue);
 
-        // Datei mit aktualisierten Werten überschreiben
+        // Write the updated settings back to the file
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
-            bw.write("setting,value"); // Header beibehalten
+            bw.write("setting,value"); // Keep header
 
             for (Map.Entry<String, Integer> entry : tempSettingsMap.entrySet()) {
                 bw.write("\n" + entry.getKey() + "," + entry.getValue());
@@ -151,5 +138,4 @@ public class ReadWriteSettings {
         System.gc();
         System.out.println("✔ [ReadWriteSettings]: Speicherbereinigung durchgeführt.");
     }
-
 }

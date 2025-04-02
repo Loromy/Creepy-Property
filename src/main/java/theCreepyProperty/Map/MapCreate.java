@@ -35,7 +35,7 @@ public class MapCreate {
         System.out.println(".............................MapCreate..............................");
     }
 
-    public void createMap(GUI gui, GameScene scene, LevelData levelData){
+    public void createMap(GUI gui, GameScene scene, LevelData levelData) {
 
         this.gui = gui;
         this.gameScene = scene;
@@ -45,68 +45,51 @@ public class MapCreate {
         this.ghost = this.gameScene.getGhost();
         this.levelData = levelData;
 
-        for (int i = 0; i < this.levelData.getWalls().size(); i++) {
-
-            this.wall = new Wall(levelData.getWalls().get(i).getX(), levelData.getWalls().get(i).getY(), levelData.getWalls().get(i).getWidth(), levelData.getWalls().get(i).getHeight(), levelData.getWalls().get(i).getTexture());
+        // Walls
+        for (LevelData.LevelDataWall wallData : this.levelData.getWalls()) {
+            this.wall = new Wall(wallData.getX(), wallData.getY(), wallData.getWidth(), wallData.getHeight(), wallData.getTexture());
             this.wallList.add(this.wall);
             this.gameScene.pGameItemChildren(this.wall.getRWall());
-
-            if (this.levelData.getWalls().size()-1 == i) {
-                i++;
-                System.out.println("✔ [MapCreator]: " + i + " Walls created");
-            }
         }
+        System.out.println("✔ [MapCreator]: " + this.levelData.getWalls().size() + " Walls created");
 
-        for (int i = 0; i < this.levelData.getKeys().size(); i++) {
+        // Keys
+        for (LevelData.LevelDataKey keyData : this.levelData.getKeys()) {
             this.netToCollectKeys++;
-
-            this.key = new Key(levelData.getKeys().get(i).getX(), levelData.getKeys().get(i).getY(), levelData.getKeys().get(i).getWidth(), levelData.getKeys().get(i).getHeight(), levelData.getKeys().get(i).getTexture());
+            this.key = new Key(keyData.getX(), keyData.getY(), keyData.getWidth(), keyData.getHeight(), keyData.getTexture());
             this.keyList.add(this.key);
             this.gameScene.pGameItemChildren(this.key.getIKey());
-            if (this.levelData.getKeys().size()-1 == i) {
-                i++;
-                System.out.println("✔ [MapCreator]: " + i + " Keys created");
-            }
         }
+        System.out.println("✔ [MapCreator]: " + this.levelData.getKeys().size() + " Keys created");
 
-        for (int i = 0; i < this.levelData.getVacuums().size(); i++) {
-            this.vacuum = new Vacuum(levelData.getVacuums().get(i).getX(), levelData.getVacuums().get(i).getY(), levelData.getVacuums().get(i).getWidth(), levelData.getVacuums().get(i).getHeight(), levelData.getVacuums().get(i).getTexture());
-
+        // Vacuums
+        for (LevelData.LevelDataVacuum vacuumData : this.levelData.getVacuums()) {
+            this.vacuum = new Vacuum(vacuumData.getX(), vacuumData.getY(), vacuumData.getWidth(), vacuumData.getHeight(), vacuumData.getTexture());
             this.vacuumsList.add(this.vacuum);
             this.gameScene.pGameItemChildren(this.vacuum.getIVacuum());
-            if (this.levelData.getVacuums().size()-1 == i) {
-                i++;
-                System.out.println("✔ [MapCreator]: " + i + " Vacuums created");
-            }
         }
+        System.out.println("✔ [MapCreator]: " + this.levelData.getVacuums().size() + " Vacuums created");
 
-        for (int i = 0; i < this.levelData.getDoors().size(); i++) {
-
-            this.door = new Door(levelData.getDoors().get(i).getX(), levelData.getDoors().get(i).getY(), levelData.getDoors().get(i).getWidth(), levelData.getDoors().get(i).getHeight(), levelData.getDoors().get(i).getTexture());
+        // Doors
+        for (LevelData.LevelDataDoor doorData : this.levelData.getDoors()) {
+            this.door = new Door(doorData.getX(), doorData.getY(), doorData.getWidth(), doorData.getHeight(), doorData.getTexture());
             this.doorList.add(this.door);
             this.gameScene.pGameItemChildren(this.door.getIvDoor());
-
-            if (this.levelData.getDoors().size()-1 == i) {
-                i++;
-                System.out.println("✔ [MapCreator]: " + i + " Doors created");
-            }
         }
+        System.out.println("✔ [MapCreator]: " + this.levelData.getDoors().size() + " Doors created");
 
-        for (int i = 0; i < this.levelData.getGhosts().size(); i++) {
-
-            this.ghost = new Ghost(this.gui, levelData.getGhosts().get(i).getX(), levelData.getGhosts().get(i).getY(), levelData.getGhosts().get(i).getWidth(), levelData.getGhosts().get(i).getHeight());
+        // Ghosts
+        for (LevelData.LevelDataGhost ghostData : this.levelData.getGhosts()) {
+            this.ghost = new Ghost(this.gui, ghostData.getX(), ghostData.getY(), ghostData.getWidth(), ghostData.getHeight());
             this.ghostList.add(this.ghost);
             this.gameScene.pGameGhostsChildren(this.ghost.getSolidAria());
             this.gameScene.pGameGhostsChildren(this.ghost.loadGhostOverlay());
             this.gameScene.pGameGhostsChildren(this.ghost.draw());
-
-            if (this.levelData.getGhosts().size()-1 == i) {
-                i++;
-                System.out.println("✔ [MapCreator]: " + i + " Ghosts created");
-            }
         }
+        System.out.println("✔ [MapCreator]: " + this.levelData.getGhosts().size() + " Ghosts created");
     }
 
+    // Toggle Wall collision
     public void triggerCollision() {
         if (!collision_on) {
             for (Wall wall : this.wallList) {
@@ -121,6 +104,7 @@ public class MapCreate {
         }
     }
 
+    //Toggle gost isMoving
     public void triggerGhostMoving() {
         if (!ghostMoving_on) {
             for (Ghost ghost : this.ghostList) {
@@ -135,12 +119,9 @@ public class MapCreate {
         }
     }
 
+    // Getter Methoden
     public Wall getWall() {
         return this.wall;
-    }
-
-    public Key getItem() {
-        return this.key;
     }
 
     public int getNetToCollectKeys() {
@@ -167,19 +148,18 @@ public class MapCreate {
         return this.ghostList;
     }
 
+    // Delete Variables
     public void deleteMapCreate() {
         System.out.println("⚠ [MapCreate]: Alle Referenzen werden gelöscht...");
 
-        // Löschen der GUI und GameScene Referenzen
         if (this.gui != null) {
-            this.gui = null; // GUI auf null setzen
+            this.gui = null;
         }
 
         if (this.gameScene != null) {
             this.gameScene = null;
         }
 
-        // Löschen der einzelnen Objekte wie Wall, Key, Door, Ghost
         if (this.wall != null) {
             this.wall = null;
         }
@@ -196,45 +176,41 @@ public class MapCreate {
             this.ghost = null;
         }
 
-        // Löschen der Listen
         if (this.wallList != null) {
-            this.wallList.clear(); // Liste der Wände leeren
-            this.wallList = null; // Liste auf null setzen
+            this.wallList.clear();
+            this.wallList = null;
         }
 
         if (this.keyList != null) {
-            this.keyList.clear(); // Liste der Keys leeren
-            this.keyList = null; // Liste auf null setzen
+            this.keyList.clear();
+            this.keyList = null;
         }
 
         if (this.vacuumsList != null) {
-            this.vacuumsList.clear(); // Liste der Vacuums leeren
-            this.vacuumsList = null; // Liste auf null setzen
+            this.vacuumsList.clear();
+            this.vacuumsList = null;
         }
 
         if (this.doorList != null) {
-            this.doorList.clear(); // Liste der Türen leeren
-            this.doorList = null; // Liste auf null setzen
+            this.doorList.clear();
+            this.doorList = null;
         }
 
         if (this.ghostList != null) {
-            this.ghostList.clear(); // Liste der Geister leeren
-            this.ghostList = null; // Liste auf null setzen
+            this.ghostList.clear();
+            this.ghostList = null;
         }
 
-        // Zurücksetzen von Statusvariablen
         this.netToCollectKeys = 0;
+        this.collision_on = false;
+        this.ghostMoving_on = false;
 
-        // Falls es eine LevelData-Instanz gibt, könnte man auch hier eine delete-Methode aufrufen, falls erforderlich:
         if (this.levelData != null) {this.levelData.deleteLevelData();
             this.levelData.deleteLevelData();
             this.levelData = null;
         }
 
-        // Garbage Collector anstoßen
         System.gc();
-
         System.out.println("✔ [MapCreate]: Speicherbereinigung durchgeführt.");
     }
-
 }

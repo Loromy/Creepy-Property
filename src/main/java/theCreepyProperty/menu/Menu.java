@@ -28,114 +28,107 @@ public class Menu extends VBox {
     private boolean ghostCanMoves = true;
 
     public Menu(GUI gui, GameScene gameScene) {
-        System.out.println(".............................Menu..............................");
         this.gui = gui;
         this.gameScene = gameScene;
-        settings = new Settings(this.gui, this.gameScene,this);
+        settings = new Settings(this.gui, this.gameScene, this);
 
-        //overlay
+        // Background overlay
         backgroundMenu.setStyle("-fx-background-color: rgba(0, 0, 0, 0.1);");
-        this.backgroundMenu.setVisible(true);
-        this.pMenu.setVisible(true);
+        backgroundMenu.setVisible(true);
+        pMenu.setVisible(true);
 
-        // Add menu items
-        this.name = new Label("The Creepy Property");
-        this.name.setId("name");
-        this.resumeButton = new Button("Back to Game");
-        this.settingsButton = new Button("Settings");
-        this.backButton = new Button("Level Auswahl");
+        // UI elements
+        name = new Label("The Creepy Property");
+        name.setId("name");
+        resumeButton = new Button("Back to Game");
+        settingsButton = new Button("Settings");
+        backButton = new Button("Level Auswahl");
 
-        // Add buttons to the VBox
-        this.vBoxMenu.getChildren().addAll(/*logoView,*/ name, resumeButton, settingsButton, backButton);
-        this.vBoxMenu.setId("background");
-        this.pMenu.getChildren().add(vBoxMenu);
+        // Add items to menu layout
+        vBoxMenu.getChildren().addAll(name, resumeButton, settingsButton, backButton);
+        vBoxMenu.setId("background");
+        pMenu.getChildren().add(vBoxMenu);
 
-        // Set size and position
-        this.pMenu.setPrefSize(gui.getWidth(), gui.getHeight());
-        this.backgroundMenu.setPrefSize(gui.getWidth(), gui.getHeight());
-        this.setMenuPosition(600, 500, 10);
+        // Set menu position
+        pMenu.setPrefSize(gui.getWidth(), gui.getHeight());
+        backgroundMenu.setPrefSize(gui.getWidth(), gui.getHeight());
+        setMenuPosition(600, 500, 10);
 
-        //Soundplayer
+        // Sound effect
         soundPlayer = new SoundPlayer("src/resources/sounds/button click.wav");
 
         // Button actions
-        this.resumeButton.setOnAction(e -> onResume());
-        this.settingsButton.setOnAction(e -> onSettings());
-        this.backButton.setOnAction(e -> onBack());
+        resumeButton.setOnAction(e -> onResume());
+        settingsButton.setOnAction(e -> onSettings());
+        backButton.setOnAction(e -> onBack());
     }
 
-    public void triggerMenu(){
+    // show Menu Toggle
+    public void triggerMenu() {
         if (!menu_on) {
-            this.gameScene.getpMenu().setVisible(true);
-            this.backgroundMenu.setVisible(true);
-            this.pMenu.setVisible(true);
-            this.gameScene.setBlur(15);
-            this.menu_on = true;
-            this.gameScene.getPlayer().stopGhostSound();
-
-            this.gameScene.getTimer().stop();
-            for (Ghost ghost : this.gameScene.getMapCreate().getGhostList()) {
-                ghost.getTimeline().stop(); // Ghost stop moving
+            gameScene.getpMenu().setVisible(true);
+            backgroundMenu.setVisible(true);
+            pMenu.setVisible(true);
+            gameScene.setBlur(15);
+            menu_on = true;
+            gameScene.getPlayer().stopGhostSound();
+            gameScene.getTimer().stop();
+            for (Ghost ghost : gameScene.getMapCreate().getGhostList()) {
+                ghost.getTimeline().stop(); // Pause ghosts movement
             }
-
-
-            this.resumeButton.requestFocus();
+            resumeButton.requestFocus();
         } else {
-            this.gameScene.getpMenu().setVisible(false);
-            this.backgroundMenu.setVisible(false);
-            this.pMenu.setVisible(false);
-            this.gameScene.setBlur(0);
-            this.menu_on = false;
-
-            this.gameScene.getTimer().play();
+            gameScene.getpMenu().setVisible(false);
+            backgroundMenu.setVisible(false);
+            pMenu.setVisible(false);
+            gameScene.setBlur(0);
+            menu_on = false;
+            gameScene.getTimer().play();
             if (ghostCanMoves) {
-                for (Ghost ghost : this.gameScene.getMapCreate().getGhostList()) {
-                    ghost.getTimeline().play(); // Ghost start moving
+                for (Ghost ghost : gameScene.getMapCreate().getGhostList()) {
+                    ghost.getTimeline().play(); // Resume ghosts
                 }
             }
         }
     }
 
+    // Set menu layout properties
     private void setMenuPosition(double width, double height, int spacing) {
-        this.vBoxMenu.setPrefSize(width,height);
-        this.vBoxMenu.setMinSize(width,height);
-        this.vBoxMenu.setLayoutX((gui.getWidth() - width) / 2);
-        this.vBoxMenu.setLayoutY((gui.getHeight() - height) / 2);
-        this.vBoxMenu.setSpacing(spacing);
-        this.vBoxMenu.setAlignment(Pos.CENTER);
+        vBoxMenu.setPrefSize(width, height);
+        vBoxMenu.setLayoutX((gui.getWidth() - width) / 2);
+        vBoxMenu.setLayoutY((gui.getHeight() - height) / 2);
+        vBoxMenu.setSpacing(spacing);
+        vBoxMenu.setAlignment(Pos.CENTER);
     }
 
+    // Resume game
     private void onResume() {
-        System.out.println("✔ [Menu]: Back to Game");
-        this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster());
-        this.soundPlayer.play();
-
-        this.triggerMenu();
+        soundPlayer.setVolume(gameScene.getMenu().getSettings().getAudio().getMaster());
+        soundPlayer.play();
+        triggerMenu();
     }
 
+    // Open settings
     private void onSettings() {
-        System.out.println("✔ [Menu]: Open settings menu");
-        this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster());
-        this.soundPlayer.play();
-
-        this.pMenu.setVisible(false);
-        this.settings.triggerSettings();
+        soundPlayer.setVolume(gameScene.getMenu().getSettings().getAudio().getMaster());
+        soundPlayer.play();
+        pMenu.setVisible(false);
+        settings.triggerSettings();
     }
 
+    // Return to level selection
     private void onBack() {
-        System.out.println("✔ [Menu]: Start Menu");
-        this.soundPlayer.setVolume(this.gameScene.getMenu().getSettings().getAudio().getMaster());
-        this.soundPlayer.play();
-
-        this.gui.getSelectScene().setVolume(this.settings.getAudio().getMaster()); //selectScene audio volume update
-        this.gui.getStartScene().setVolume(this.settings.getAudio().getMaster()); //selectScene audio volume update
-        this.gui.getGameScene().stopBackgroundMusic();
-
-        this.gui.switchToLevelSelectScene();
+        soundPlayer.setVolume(gameScene.getMenu().getSettings().getAudio().getMaster());
+        soundPlayer.play();
+        gui.getSelectScene().setVolume(settings.getAudio().getMaster());
+        gui.getStartScene().setVolume(settings.getAudio().getMaster());
+        gui.getGameScene().stopBackgroundMusic();
+        gui.switchToLevelSelectScene();
     }
 
+    // Set initial button focus
     public void triggerFocus() {
-        this.resumeButton.requestFocus();
+        resumeButton.requestFocus();
     }
 
     // Getter Methoden
@@ -159,25 +152,22 @@ public class Menu extends VBox {
         this.ghostCanMoves = value;
     }
 
+    // Delete Variables
     public void deleteMenu() {
         System.out.println("⚠ [Menu]: Alle Referenzen werden gelöscht...");
 
-        // GUI Referenz löschen (Wird extern verwaltet)
         if (this.gui != null) {
             this.gui = null;
         }
 
-        // GameScene löschen
         if (this.gameScene != null) {
             this.gameScene = null;
         }
 
-        // SoundPlayer löschen
         if (this.soundPlayer != null) {
             this.soundPlayer = null;
         }
 
-        // UI-Elemente löschen
         if (this.name != null) {
             this.name = null;
         }
@@ -194,7 +184,6 @@ public class Menu extends VBox {
             this.backButton = null;
         }
 
-        // Pane-Elemente löschen
         if (this.pMenu != null) {
             this.pMenu = null;
         }
@@ -207,17 +196,14 @@ public class Menu extends VBox {
             this.vBoxMenu = null;
         }
 
-        // Settings löschen
         if (this.settings != null) {
             this.settings.deleteSettings();
             this.settings = null;
         }
 
-        // Statusvariablen zurücksetzen
         this.menu_on = false;
         this.ghostCanMoves = true;
 
-        // Garbage Collector anstoßen
         System.gc();
         System.out.println("✔ [Menu]: Speicherbereinigung durchgeführt.");
     }

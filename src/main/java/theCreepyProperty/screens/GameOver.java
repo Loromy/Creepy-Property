@@ -15,8 +15,8 @@ public class GameOver {
     private GUI gui;
     private GameScene gameScene;
     private LevelSelectScene levelSelectScene;
-    private Pane backgroundGameOver = new Pane(); // Background
-    private Pane pGameOver = new Pane(); // Menu Items
+    private Pane backgroundGameOver = new Pane();
+    private Pane pGameOver = new Pane();
     private VBox vBoxGameOver = new VBox();
     private SetMap setMap;
 
@@ -36,8 +36,6 @@ public class GameOver {
 
         //overlay
         this.backgroundGameOver.setStyle("-fx-background-color: rgba(255, 0, 0, 0.3);");
-//        this.backgroundGameOver.setVisible(false);
-//        this.pGameOver.setVisible(false);
 
         // Add menu items
         this.text = new Label("Game Over");
@@ -64,6 +62,7 @@ public class GameOver {
         backButton.setOnAction(e -> onBack());
     }
 
+    // show Game Over OverLay
     public void triggerGameOver(){
         if (!gameOver_on) {
             this.gameScene.getPGameOver().setVisible(true);
@@ -85,6 +84,7 @@ public class GameOver {
         }
     }
 
+    // set UI Element Position
     private void setGameOverPosition(double width, double height, int spacing) {
         this.vBoxGameOver.setPrefSize(width,height);
         this.vBoxGameOver.setLayoutX((gui.getWidth() - width) / 2);
@@ -93,15 +93,14 @@ public class GameOver {
         this.vBoxGameOver.setAlignment(Pos.CENTER);
     }
 
+    // Retry Button
     private void onRetry() {
         System.out.println("✔ [Game Over]: Retry");
 
         this.gui.reloadGameScene();
-        //this.setMap.setThisMap();
-
-        //this.triggerGameOver();
     }
 
+    // Back to Level Select Button
     private void onBack() {
         System.out.println("✔ [Game Over]: back");
 
@@ -121,15 +120,14 @@ public class GameOver {
         return backgroundGameOver;
     }
 
+    // Delete Variables
     public void deleteGameOver() {
         System.out.println("⚠ [Game Over]: Alle Referenzen werden gelöscht...");
 
-        // GUI Referenz löschen (Wird extern verwaltet)
         if (this.gui != null) {
             this.gui = null;
         }
 
-        // GameScene und LevelSelectScene löschen
         if (this.gameScene != null) {
             this.gameScene = null;
         }
@@ -138,7 +136,6 @@ public class GameOver {
             this.levelSelectScene = null;
         }
 
-        // UI-Elemente löschen
         if (this.text != null) {
             this.text = null;
         }
@@ -151,7 +148,6 @@ public class GameOver {
             this.backButton = null;
         }
 
-        // Pane-Elemente löschen
         if (this.pGameOver != null) {
             this.pGameOver = null;
         }
@@ -164,17 +160,14 @@ public class GameOver {
             this.vBoxGameOver = null;
         }
 
-        // SetMap löschen
         if (this.setMap != null) {
             this.setMap.deleteSetMap();
             this.setMap = null;
         }
 
-        // Statusvariablen zurücksetzen
         this.gameOver_on = false;
         this.mapSelected = 0;
 
-        // Garbage Collector anstoßen
         System.gc();
         System.out.println("✔ [Game Over]: Speicherbereinigung durchgeführt.");
     }

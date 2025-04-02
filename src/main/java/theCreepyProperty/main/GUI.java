@@ -4,12 +4,10 @@ import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import theCreepyProperty.checker.FileCheck;
-import theCreepyProperty.scenes.FinishScene;
+import theCreepyProperty.scenes.CreditScene;
 import theCreepyProperty.scenes.LevelSelectScene;
 import theCreepyProperty.scenes.StartScene;
 import theCreepyProperty.scenes.GameScene;
-
-import static javafx.application.Application.launch;
 
 public class GUI extends Application {
 
@@ -23,17 +21,17 @@ public class GUI extends Application {
     private StartScene startScene; // Start-Szene
     private LevelSelectScene selectScene;
     private GameScene gameScene;   // Spiel-Szene
-    private FinishScene finishScene;
+    private CreditScene creditScene;
 
     public void start(Stage primaryStage) {
         System.out.println(".............................GUI..............................");
         this.stage = primaryStage;
 
         // StartScene initialisieren
-        this.startScene = new StartScene(stage, this);
+        this.startScene = new StartScene(this);
         this.selectScene = new LevelSelectScene(this);
 
-        // Standard-Scene auf StartScene setzen
+        // Default-Scene is StartScene
         stage.setScene(startScene.getScene());
         stage.setTitle("The Creepy Property");
         stage.getIcons().add(new Image(new FileCheck().checkImage("GUI","file:src/resources/textures/icon/icon.png")));
@@ -41,69 +39,84 @@ public class GUI extends Application {
         stage.show();
     }
 
+    // Scene switcher
     public void switchToStartScene() {
+        // Create Scene
         if (this.startScene == null) {
-            this.startScene = new StartScene(stage, this);
+            this.startScene = new StartScene(this);
+        }
+
+        // Scene Delete
+        if (this.gameScene != null) {
             this.gameScene.deleteGameScene();
         }
         // Scene wechseln
         stage.setScene(this.startScene.getScene());
+
+        // Scene zurücksetzen
         this.gameScene = null;
     }
 
     public void switchToGameScene() {
+        // Create Scene
         if (this.gameScene == null) {
             this.gameScene = new GameScene(stage, this);
         }
-        if (this.finishScene != null) {
-            this.finishScene.deleteFinishScene();
+        // Scene Delete
+        if (this.creditScene != null) {
+            this.creditScene.deleteFinishScene();
         }
 
         // Scene wechseln
         stage.setScene(this.gameScene.getScene());
-        // Scene zurücksetzen
-        this.finishScene = null;
+
+        this.creditScene = null;
     }
 
     public void switchToLevelSelectScene() {
-
+        // Create Scene
         if (this.selectScene == null) {
             this.selectScene = new LevelSelectScene(this);
         }
 
-        this.selectScene.unlockLevel();
-        // Scene wechseln
-        stage.setScene(this.selectScene.getScene());
-        // Scene zurücksetzen
+        // Scene Delete
         if (this.gameScene != null) {
             this.gameScene.stopTimer();
             this.gameScene.deleteGameScene();
         }
-        if (this.finishScene != null) {
-            this.finishScene.deleteFinishScene();
+        if (this.creditScene != null) {
+            this.creditScene.deleteFinishScene();
         }
 
+        this.selectScene.unlockLevel();
+
+        // Scene wechseln
+        stage.setScene(this.selectScene.getScene());
+
         this.gameScene = null;
-        this.finishScene = null;
+        this.creditScene = null;
     }
 
     public void switchToFinishScene() {
-        if (this.finishScene == null) {
-            this.finishScene = new FinishScene(this);
+        // Create Scene
+        if (this.creditScene == null) {
+            this.creditScene = new CreditScene(this);
         }
-        // Scene wechseln
-        stage.setScene(this.finishScene.getScene());
-        // Scene zurücksetzen
-//        this.startScene = null;
+
+        // Scene Delete
         if (this.gameScene != null) {
             this.gameScene.stopTimer();
             this.gameScene.deleteGameScene();
         }
+
+        // Scene wechseln
+        stage.setScene(this.creditScene.getScene());
 
         this.gameScene = null;
         this.selectScene = null;
     }
 
+    // reload on Death
     public void reloadGameScene() {
         switchToLevelSelectScene();
         switchToGameScene();
@@ -132,10 +145,6 @@ public class GUI extends Application {
 
     public GameScene getGameScene() {
         return gameScene;
-    }
-
-    public FileCheck getImageCheck() {
-        return fileCheck;
     }
 
     // Setter Methoden

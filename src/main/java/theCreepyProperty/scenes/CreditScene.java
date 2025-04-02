@@ -13,11 +13,9 @@ import theCreepyProperty.checker.FileCheck;
 import theCreepyProperty.main.GUI;
 import theCreepyProperty.main.SoundPlayer;
 
-import javax.sound.sampled.LineEvent;
-
-public class FinishScene {
+public class CreditScene {
     private GUI gui;
-    private Scene finishScene;
+    private Scene creditScene;
     private SoundPlayer soundPlayer;
 
     private Pane root = new Pane();
@@ -49,13 +47,14 @@ public class FinishScene {
 
     private Button back;
 
-    private int width = 600;
-    private int height = 1200;
+    private final int width = 600;
+    private final int height = 1200;
 
-    public FinishScene(GUI gui) {
-        System.out.println(".............................FinishScene..............................");
+    public CreditScene(GUI gui) {
+        System.out.println(".............................CreditScene..............................");
         this.gui = gui;
 
+        // Initialize all Labels for the finish scene
         this.l_creepyProperty = new Label("Creepy Property\n\n\n");
         this.l_creepyProperty.setId("finishScene");
         this.l_creepyProperty.setStyle("-fx-font-size: 60px;");
@@ -104,34 +103,30 @@ public class FinishScene {
         this.l_slidDown_danke.setStyle("-fx-font-size: 40px;");
 
         createScene();
-
-        //this.text = new Text();
     }
 
     private void createScene() {
-        // Styles
-        this.textDisplay.getStylesheets().add((new FileCheck().checkPath("FinishScene", "src/resources/style/style.css")));
-        this.slidDown.getStylesheets().add((new FileCheck().checkPath("FinishScene", "src/resources/style/style.css")));
+        // Load external styles for the finish scene
+        this.textDisplay.getStylesheets().add((new FileCheck().checkPath("CreditScene", "src/resources/style/style.css")));
+        this.slidDown.getStylesheets().add((new FileCheck().checkPath("CreditScene", "src/resources/style/style.css")));
 
-        // play sound in loop
+        // Initialize and play background sound in loop
         this.soundPlayer = new SoundPlayer("src/resources/sounds/background/finish music-.wav");
-
-        // Hintergrundmusik in Dauerschleife abspielen
         this.soundPlayer.getClip().loop(javax.sound.sampled.Clip.LOOP_CONTINUOUSLY);
         this.soundPlayer.setVolume(this.gui.getGameScene().getMenu().getSettings().getAudio().getBackground());
         this.soundPlayer.play();
 
-
+        // Stop the background music from the game scene
         this.gui.getGameScene().stopBackgroundMusic();
 
-        //this.root.getChildren().add(new ImageView(new Image("file:src/resources/background/finish Scene Background.png")));
+        // Set background image for the finish scene
         BackgroundImage backgroundImage = getBackgroundImage();
         this.root.setBackground(new Background(backgroundImage));
 
-        // Position
+        // Set layout positions and spacing
         Position(this.width, this.height, 20);
 
-        //textDisplay.setTranslateY(300); // Startposition unten
+        // Organize UI elements in VBox containers
         this.ueberschrift.getChildren().addAll(this.l_creepyProperty,this.l_danke);
         this.ueberschrift.setAlignment(Pos.TOP_CENTER);
 
@@ -144,19 +139,20 @@ public class FinishScene {
         this.vBox_bilder.getChildren().addAll(this.l_bilder,this.bildPlayer,this.bildPlayerLink,this.bildStart,this.bildStartLink);
         this.vBox_bilder.setAlignment(Pos.TOP_CENTER);
 
-
+        // Add all VBoxes to the textDisplay VBox
         this.vBox_Text.getChildren().addAll(this.ueberschrift,this.vBox_entwickler,this.vBox_audio,this.vBox_bilder);
         this.vBox_Butten.getChildren().addAll(this.l_slidDown_danke,this.back);
 
         this.textDisplay.getChildren().addAll(this.vBox_Text,this.vBox_Butten);
 
+        // Add the slidDown label and text
         this.slidDown.getChildren().add(this.l_slidDown_CreepyProperty);
 
+        // Add all elements to the root pane
         this.root.getChildren().addAll(this.textDisplay,this.slidDown);
-        this.finishScene = new Scene(this.root, this.gui.getWidth(), this.gui.getHeight());
+        this.creditScene = new Scene(this.root, this.gui.getWidth(), this.gui.getHeight());
 
-
-        // Animation für das Hochscrollen
+        // Animation for scrolling the text upwards
         TranslateTransition scrollAnimation = new TranslateTransition(Duration.seconds(20), this.textDisplay);
         scrollAnimation.setFromY(height - 300);
         scrollAnimation.setToY(((double) -height / 2)+200);
@@ -164,7 +160,7 @@ public class FinishScene {
         scrollAnimation.setInterpolator(javafx.animation.Interpolator.LINEAR);
         scrollAnimation.play();
 
-
+        // Animation for sliding down the title
         TranslateTransition scrollAnimationTitel = new TranslateTransition(Duration.seconds(20), this.slidDown);
         scrollAnimationTitel.setFromY(-10000);
         scrollAnimationTitel.setToY(-100);
@@ -172,13 +168,13 @@ public class FinishScene {
         scrollAnimationTitel.setInterpolator(javafx.animation.Interpolator.LINEAR);
         scrollAnimationTitel.play();
 
+        // Handle the back button action
         this.back.setOnAction(e -> onButtonBack());
     }
 
+    // Get the background image for the finish scene
     private BackgroundImage getBackgroundImage() {
         Image image = new Image("file:src/resources/textures/background/finish Scene Background.png");
-
-        // Setze das Hintergrundbild
         BackgroundImage backgroundImage = new BackgroundImage(
                 image,
                 BackgroundRepeat.NO_REPEAT,
@@ -189,6 +185,7 @@ public class FinishScene {
         return backgroundImage;
     }
 
+    // Set position and layout of elements
     private void Position(double width, double height, int spacing) {
         this.vBox_Text.setLayoutX((gui.getWidth() - width) / 2);
         this.vBox_Text.setLayoutY((gui.getHeight() - height) / 2);
@@ -208,39 +205,36 @@ public class FinishScene {
         this.textDisplay.setAlignment(Pos.TOP_CENTER);
         this.textDisplay.setId("finishScene-background");
 
-
         this.slidDown.setPrefSize(600,250);
         this.slidDown.setMinSize(600,250);
         this.slidDown.setLayoutX((gui.getWidth() - 600) / 2);
         this.slidDown.setLayoutY((gui.getHeight() - 250) / 2);
         this.slidDown.setAlignment(Pos.CENTER);
-
     }
 
+    // Handle back button action (return to level select scene)
     private void onButtonBack() {
         this.soundPlayer.stop();
         this.gui.switchToLevelSelectScene();
     }
 
     public Scene getScene() {
-        return finishScene;
+        return creditScene;
     }
 
+    // Delete Variables
     public void deleteFinishScene() {
-        System.out.println("⚠ [FinishScene]: Alle Referenzen werden gelöscht...");
+        System.out.println("⚠ [CreditScene]: Alle Referenzen werden gelöscht...");
 
-        // Stoppe die Hintergrundmusik
         if (this.soundPlayer != null) {
             this.soundPlayer.stop();
             this.soundPlayer = null;
         }
 
-        // Lösche alle UI-Komponenten aus dem root-Pane
         if (this.root != null) {
             this.root.getChildren().clear();
         }
 
-        // Setze alle Label-Referenzen auf null
         this.l_creepyProperty = null;
         this.l_danke = null;
         this.l_entwickler = null;
@@ -255,10 +249,8 @@ public class FinishScene {
         this.l_slidDown_CreepyProperty = null;
         this.l_slidDown_danke = null;
 
-        // Setze die Button-Referenz auf null
         this.back = null;
 
-        // Lösche alle VBox-Referenzen
         this.textDisplay.getChildren().clear();
         this.slidDown.getChildren().clear();
         this.vBox_Text.getChildren().clear();
@@ -268,6 +260,7 @@ public class FinishScene {
         this.vBox_audio.getChildren().clear();
         this.vBox_bilder.getChildren().clear();
 
+        this.root = null;
         this.textDisplay = null;
         this.slidDown = null;
         this.vBox_Text = null;
@@ -277,14 +270,10 @@ public class FinishScene {
         this.vBox_audio = null;
         this.vBox_bilder = null;
 
-        // Setze die Szene und GUI auf null
-        this.finishScene = null;
+        this.creditScene = null;
         this.gui = null;
 
-        // Speicherbereinigung anstoßen
         System.gc();
-
-        System.out.println("✔ [FinishScene]: Speicherbereinigung durchgeführt.");
+        System.out.println("✔ [CreditScene]: Speicherbereinigung durchgeführt.");
     }
-
 }

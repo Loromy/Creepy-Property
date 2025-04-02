@@ -27,24 +27,28 @@ public class Ghost extends Entity{
 
         setDefaultValues();
 
+        // Transfer values
         this.entity_world_X = x;
         this.entity_world_Y = y;
         this.entity_size_X = width;
         this.entity_size_Y = height;
 
+        // Rectangle Position
         this.solid_area = new Rectangle();
         this.solid_area.setFill(Color.MAGENTA);
-        this.solid_area.setVisible(false); //Collision Block of Ghost anzeigen
+        this.solid_area.setVisible(false);
         this.solid_area.setX(entity_world_X+12);
         this.solid_area.setY(entity_world_Y+8);
         this.solid_area.setWidth(entity_size_X-24);
         this.solid_area.setHeight(entity_size_Y-12);
 
+        // Player-Image bind with Rectangle
         this.i_ghost.xProperty().bind(solid_area.xProperty().subtract(12));
         this.i_ghost.yProperty().bind(solid_area.yProperty().subtract(8));
         this.i_ghost.fitWidthProperty().bind(solid_area.widthProperty().add(24));
         this.i_ghost.fitHeightProperty().bind(solid_area.heightProperty().add(12));
 
+        // Overlay-Image bind with Rectangle
         this.i_ghost_overlay.xProperty().bind(solid_area.xProperty().subtract(200 - (solid_area.getWidth()/2)));
         this.i_ghost_overlay.yProperty().bind(solid_area.yProperty().subtract(200 - (solid_area.getHeight()/2)));
         this.i_ghost_overlay.fitWidthProperty().bind(solid_area.widthProperty().add(400 - solid_area.getWidth()));
@@ -55,11 +59,23 @@ public class Ghost extends Entity{
 
         setNewTarget();
 
+        // timeline vor Ghost moving
         this.timeline = new Timeline(new KeyFrame(Duration.millis(16), e -> moveRectangle(this.solid_area)));
         this.timeline.setCycleCount(Timeline.INDEFINITE);
         this.timeline.play();
     }
 
+    // default values if no override
+    private void setDefaultValues() {
+        entity_size_X = 20;
+        entity_size_Y = 29;
+        entity_world_X = -100;
+        entity_world_Y = -100;
+        speed = 1;
+        System.out.println("✔ [Ghost]: Ghost defaultValues set");
+    }
+
+    // Image Loading
     public void createGhostImage() {
         down1 = loadImage("file:src/resources/textures/ghost/down_1.png");
         down2 = loadImage("file:src/resources/textures/ghost/down_2.png");
@@ -72,10 +88,13 @@ public class Ghost extends Entity{
         System.out.println("✔ [Ghost]: Image Ghost images successfully loaded");
     }
 
+
     private Image loadImage(String path) {
         return new Image(new FileCheck().checkImage("Ghost",path));
     }
 
+
+    // return Ghost-Image
     public ImageView draw() {
         Image playerImage = switchSprite(down1, down2, down3, down4);
 
@@ -83,11 +102,14 @@ public class Ghost extends Entity{
         return i_ghost;
     }
 
+    // return Overlay-Image (debug)
     public ImageView loadGhostOverlay() {
         this.i_ghost_overlay.setImage(overlay);
         return i_ghost_overlay;
     }
 
+
+    // Ghost Animation
     private Image switchSprite(Image img1, Image img2, Image img3, Image img4) {
         return switch (sprite_num) {
             case 1 -> img1;
@@ -98,6 +120,8 @@ public class Ghost extends Entity{
         };
     }
 
+
+    // Ghost Moving
     private void moveRectangle(Rectangle rect) {
         double playerX = this.gui.getGameScene().getPlayer().getPlayer_world_X();
         double playerY = this.gui.getGameScene().getPlayer().getPlayer_world_Y();
@@ -132,30 +156,6 @@ public class Ghost extends Entity{
         }
     }
 
-    private void setNewTarget() {
-        this.zielPosition_X = Math.random() * 1000; // Damit das Rechteck nicht außerhalb liegt
-        this.zielPosition_Y = Math.random() * 600;
-    }
-
-    public void setGhost_world_X(double player_world_X){
-        this.entity_world_X = player_world_X;
-        this.solid_area.setX(player_world_X);
-    }
-
-    public void setGhost_world_Y(double player_world_Y){
-        this.entity_world_Y = player_world_Y;
-        this.solid_area.setY(player_world_Y);
-    }
-
-    public void setDefaultValues() {
-        entity_size_X = 20;
-        entity_size_Y = 29;
-        entity_world_X = -100;
-        entity_world_Y = -100;
-        speed = 1;
-        System.out.println("✔ [Ghost]: Ghost defaultValues set");
-    }
-
     public void showCollisionBox(boolean show) {
         if (show) {
             this.solid_area.setVisible(true);
@@ -170,15 +170,13 @@ public class Ghost extends Entity{
         }
     }
 
+    private void setNewTarget() {
+        this.zielPosition_X = Math.random() * 1000; // Damit das Rechteck nicht außerhalb liegt
+        this.zielPosition_Y = Math.random() * 600;
+    }
+
+
     // Getter Methoden
-    public double getGhost_world_X(){
-        return entity_world_X;
-    }
-
-    public double getGhost_world_Y(){
-        return entity_world_Y;
-    }
-
     public double getSpeed(){
         return this.speed;
     }
@@ -192,6 +190,7 @@ public class Ghost extends Entity{
     }
 
     // Setter Methoden
+    // public
     public void setSpeed(double speed) {
         this.speed = speed;
     }
@@ -209,6 +208,7 @@ public class Ghost extends Entity{
 
     }
 
+    // Delete Ghost Variables
     public void deleteGhost() {
         System.out.println("⚠ [Ghost]: Alle Referenzen werden gelöscht...");
 
