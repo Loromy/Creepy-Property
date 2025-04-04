@@ -60,7 +60,7 @@ public class Ghost extends Entity{
         setNewTarget();
 
         // timeline vor Ghost moving
-        this.timeline = new Timeline(new KeyFrame(Duration.millis(16), e -> moveRectangle(this.solid_area)));
+        this.timeline = new Timeline(new KeyFrame(Duration.millis(16), _ -> moveRectangle(this.solid_area)));
         this.timeline.setCycleCount(Timeline.INDEFINITE);
         this.timeline.play();
     }
@@ -112,7 +112,6 @@ public class Ghost extends Entity{
     // Ghost Animation
     private Image switchSprite(Image img1, Image img2, Image img3, Image img4) {
         return switch (sprite_num) {
-            case 1 -> img1;
             case 2 -> img2;
             case 3 -> img3;
             case 4 -> img4;

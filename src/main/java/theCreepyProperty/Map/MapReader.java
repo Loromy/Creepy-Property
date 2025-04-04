@@ -3,9 +3,13 @@ package theCreepyProperty.Map;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class MapReader {
-    LevelData levelData;
+    private LevelData levelData;
+
+    private final Logger LOGGER = Logger.getLogger("ReadWriteSettings");
 
     public MapReader(LevelData levelData) {
         System.out.println(".............................MapReader..............................");
@@ -14,7 +18,6 @@ public class MapReader {
 
     // read a CSV-file and extract map-data into LevelData
     public LevelData readCsvFile(String filePath) {
-        LevelData levelData = new LevelData();
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {  // Open and read the file line by line
             String line;
@@ -73,11 +76,9 @@ public class MapReader {
                 }
             }
         } catch (NumberFormatException e) {
-            System.err.println("✖ [MapReader]: Invalid number format in file: " + filePath);
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, "✖ [MapReader]: Invalid number format in file: ", e);
         } catch (IOException e) {
-            System.err.println("✖ [MapReader]: Unable to read file: " + filePath);
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, "✖ [MapReader]: Unable to read file: " + filePath + ": ", e);
         }
 
         return levelData;

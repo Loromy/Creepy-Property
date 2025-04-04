@@ -8,14 +8,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 import theCreepyProperty.Map.LevelData;
 import theCreepyProperty.Map.MapCreate;
 import theCreepyProperty.Map.MapReader;
 import theCreepyProperty.Map.TutorialMapInfo;
-import theCreepyProperty.Save.ReadWriteSettings;
-import theCreepyProperty.Save.ReadWriteSpielstand;
+import theCreepyProperty.save.ReadWriteSettings;
+import theCreepyProperty.save.ReadWriteSpielstand;
 import theCreepyProperty.blocks.Door;
 import theCreepyProperty.blocks.Key;
 import theCreepyProperty.blocks.Wall;
@@ -33,7 +32,6 @@ import java.util.Random;
 
 public class GameScene {
 
-    private Stage stage;
     private GUI gui;
     private TutorialMapInfo tutorialMapInfo;
     private Scene gameScene;
@@ -81,7 +79,7 @@ public class GameScene {
     // List of random background sounds
     private final String[] randomSounds = {
             "src/resources/sounds/background/random background noise/creepy-breath.wav",
-            "src/resources/sounds/background/random background noise/creepy-hifreq-woosh.wav",
+            "src/resources/sounds/background/random background noise/creepy-freq-whoosh.wav",
             "src/resources/sounds/background/random background noise/creepy-laugh.wav",
             "src/resources/sounds/background/random background noise/creepy-room-sound.wav",
             "src/resources/sounds/background/random background noise/creepy-whispering.wav",
@@ -91,9 +89,8 @@ public class GameScene {
             "src/resources/sounds/background/random background noise/creepy-vocal-ambience.wav"
     };
 
-    public GameScene(Stage stage, GUI gui) {
+    public GameScene(GUI gui) {
         System.out.println(".............................GameScene..............................");
-        this.stage = stage;
         this.gui = gui;
 
         this.player = new Player(this.gui);
@@ -106,7 +103,7 @@ public class GameScene {
         createScene();
 
         // Settings Set
-        this.readWriteSettings.settingsRead("src/resources/csv/Save/settings.csv",this,this.guiComponents);
+        this.readWriteSettings.settingsRead("src/resources/csv/save/settings.csv",this,this.guiComponents);
         this.gui.getSelectScene().setVolume(this.menu.getSettings().getAudio().getMaster()); //selectScene audio volume update
         this.gui.getStartScene().setVolume(this.menu.getSettings().getAudio().getMaster()); //selectScene audio volume update
     }
@@ -123,7 +120,7 @@ public class GameScene {
 
         // Tutorial map Overlay
         if (this.gui.getSelectScene().getMapSelected() == 0) {
-            this.tutorialMapInfo = new TutorialMapInfo(this.gui, this);
+            this.tutorialMapInfo = new TutorialMapInfo(this);
         }
 
         root.getChildren().addAll(pGame, pGameOver, pGameWin, pMenu);
@@ -138,17 +135,17 @@ public class GameScene {
         pGame.getChildren().add(this.pWallsItems);
         pGame.getChildren().add(this.pTutorialMapInfoUnder);
         pGame.getChildren().add(this.pGhosts);
+        pGame.getChildren().add(this.player.loadVacuumOverlay());
         pGame.getChildren().add(this.player.getSolidPlayerAria());
         pGame.getChildren().add(this.player.draw());
-        pGame.getChildren().add(this.player.loadVacuumOverlay());
         pGame.getChildren().add(this.player.loadOverlay());
         pGame.getChildren().add(this.pTutorialMapInfoOver);
-        pGame.getChildren().add(this.guiComponents.gethBox_Level());
-        pGame.getChildren().add(this.guiComponents.getvBox_anzeige());
-        pGame.getChildren().add(this.guiComponents.gethBox_keys());
-        pGame.getChildren().add(this.guiComponents.getvBox_Time());
-        pGame.getChildren().add(this.guiComponents.getvBox_Deaths());
-        pGame.getChildren().add(this.guiComponents.getvBox_sprint());
+        pGame.getChildren().add(this.guiComponents.get_hBox_Level());
+        pGame.getChildren().add(this.guiComponents.get_vBox_anzeige());
+        pGame.getChildren().add(this.guiComponents.get_hBox_keys());
+        pGame.getChildren().add(this.guiComponents.get_vBox_Time());
+        pGame.getChildren().add(this.guiComponents.get_vBox_Deaths());
+        pGame.getChildren().add(this.guiComponents.get_vBox_sprint());
 
         // Game Over
         pGameOver.getChildren().add(this.gameOver.getBackgroundGameOver());
@@ -161,7 +158,7 @@ public class GameScene {
         pGameWin.setVisible(false);
 
         pMenu.getChildren().add(this.menu.getBackgroundMenu());
-        pMenu.getChildren().add(this.menu.getpMenu());
+        pMenu.getChildren().add(this.menu.get_pMenu());
         pMenu.getChildren().add(this.menu.getSettings().getMenuSettings());
         pMenu.getChildren().add(this.menu.getSettings().getAudio().getMenuAudio());
 
@@ -194,7 +191,7 @@ public class GameScene {
     private void startTimer() {
         time_seconds = 0.0; // Reset timer
         time_seconds = this.gui.getSelectScene().getTimePlaying();
-        timer = new Timeline(new KeyFrame(Duration.millis(10), event -> { // Check every 10ms
+        timer = new Timeline(new KeyFrame(Duration.millis(10), _ -> { // Check every 10ms
             time_seconds += 0.01;
 
             // Time component calculation
@@ -209,7 +206,7 @@ public class GameScene {
             this.gui.getSelectScene().setTimePlaying(time_seconds);
         }));
 
-        ghostTimer = new Timeline(new KeyFrame(Duration.millis(100), event -> { // Check every 500ms
+        ghostTimer = new Timeline(new KeyFrame(Duration.millis(100), _ -> { // Check every 500ms
             player.checkForNearbyGhostsPlaySound(this.mapCreate.getGhostList());
         }));
 
@@ -239,7 +236,7 @@ public class GameScene {
     private void nextNoise() {
         double interval = getRandomInterval();
 
-        this.randomNoiseTime = new Timeline(new KeyFrame(Duration.seconds(interval), event -> {
+        this.randomNoiseTime = new Timeline(new KeyFrame(Duration.seconds(interval), _ -> {
             playRandomNoise();
             nextNoise();
         }));
@@ -323,7 +320,7 @@ public class GameScene {
         return menu;
     }
 
-    public Pane getpMenu() {
+    public Pane get_pMenu() {
         return pMenu;
     }
 
@@ -455,7 +452,6 @@ public class GameScene {
             this.soundPlayer = null;
         }
 
-        this.stage = null;
         this.gui = null;
         this.gameScene = null;
 

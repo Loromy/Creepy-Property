@@ -168,6 +168,10 @@ public class MapCreate {
             this.key = null;
         }
 
+        if (this.vacuum != null) {
+            this.vacuum = null;
+        }
+
         if (this.door != null) {
             this.door = null;
         }

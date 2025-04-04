@@ -9,7 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import theCreepyProperty.Save.ReadWriteSettings;
+import theCreepyProperty.save.ReadWriteSettings;
 import theCreepyProperty.main.GUI;
 import theCreepyProperty.main.SoundPlayer;
 import theCreepyProperty.scenes.GameScene;
@@ -21,11 +21,11 @@ public class Audio {
     private ReadWriteSettings readWriteSettings;
     private SoundPlayer soundPlayer;
 
-    private final Pane pMenuAudio = new Pane();
-    private final VBox vBoxAudio = new VBox();
-    private final HBox hBoxAudioLR = new HBox();
-    private final VBox vBoxAudioL = new VBox();
-    private final VBox vBoxAudioR = new VBox();
+    private Pane pMenuAudio = new Pane();
+    private VBox vBoxAudio = new VBox();
+    private HBox hBoxAudioLR = new HBox();
+    private VBox vBoxAudioL = new VBox();
+    private VBox vBoxAudioR = new VBox();
     private Label label1;
     private Slider slider1;
     private Label label2;
@@ -41,7 +41,7 @@ public class Audio {
     private int master = 50;
     private int background = 50;
 
-    private final String soundButtonClick = "src/resources/sounds/button click.wav";
+    private String soundButtonClick = "src/resources/sounds/button click.wav";
 
     public Audio(GUI gui, GameScene gameScene, Settings settings) {
         System.out.println(".............................Audio..............................");
@@ -131,13 +131,13 @@ public class Audio {
         setMenuAudioPositionLR(vBoxAudioR);
 
         // Event-Listener für Wertänderungen
-        backButton.setOnAction(e -> onBack());
-        slider1.valueProperty().addListener((obs, oldVal, newVal) -> onSlider1(newVal));
-        slider2.valueProperty().addListener((obs, oldVal, newVal) -> onSlider2(newVal));
-        button3.setOnAction(e -> onButton3());
-        button4.setOnAction(e -> onButton4());
-        button5.setOnAction(e -> onButton5());
-        button6.setOnAction(e -> onButton6());
+        backButton.setOnAction(_ -> onBack());
+        slider1.valueProperty().addListener((_, _, newVal) -> onSlider1(newVal));
+        slider2.valueProperty().addListener((_, _, newVal) -> onSlider2(newVal));
+        button3.setOnAction(_ -> onButton3());
+        button4.setOnAction(_ -> onButton4());
+        button5.setOnAction(_ -> onButton5());
+        button6.setOnAction(_ -> onButton6());
     }
 
     public void triggerAudio(){
@@ -261,5 +261,75 @@ public class Audio {
     public void setBackground(int background) {
         this.background = background;
         this.slider2.setValue(background);
+    }
+
+    public void deleteAudio() {
+        System.out.println("⚠ [Settings]: Alle Referenzen werden gelöscht...");
+
+        if (this.pMenuAudio != null) {
+            this.pMenuAudio = null;
+        }
+        if (this.vBoxAudio != null) {
+            this.vBoxAudio = null;
+        }
+        if (this.hBoxAudioLR != null) {
+            this.hBoxAudioLR = null;
+        }
+        if (this.vBoxAudioL != null) {
+            this.vBoxAudioL = null;
+        }
+        if (this.vBoxAudioR != null) {
+            this.vBoxAudioR = null;
+        }
+
+        // Labels
+        if (this.label1 != null) {
+            this.label1 = null;
+        }
+        if (this.slider1 != null) {
+            this.slider1.valueProperty().removeListener((_, _, newVal) -> onSlider1(newVal));
+            this.slider1 = null;
+        }
+        if (this.label2 != null) {
+            this.label2 = null;
+        }
+        if (this.slider2 != null) {
+            this.slider2.valueProperty().removeListener((_, _, newVal) -> onSlider2(newVal));
+            this.slider2 = null;
+        }
+
+        // Buttons
+        if (this.button3 != null) {
+            this.button3 = null;
+        }
+        if (this.button4 != null) {
+            this.button4 = null;
+        }
+        if (this.button5 != null) {
+            this.button5 = null;
+        }
+        if (this.button6 != null) {
+            this.button6 = null;
+        }
+        if (this.backButton != null) {
+            this.backButton = null;
+        }
+
+        if (this.soundPlayer != null) {
+            this.soundPlayer = null;
+        }
+        if (this.readWriteSettings != null) {
+            this.readWriteSettings = null;
+        }
+
+        this.audio_on = false;
+        this.master = 50;
+        this.background = 50;
+
+        // Sound-file-paths
+        this.soundButtonClick = null;
+
+        System.gc();
+        System.out.println("✔ [Settings]: Speicherbereinigung durchgeführt.");
     }
 }

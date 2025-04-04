@@ -1,14 +1,18 @@
-package theCreepyProperty.Save;
+package theCreepyProperty.save;
 
 import theCreepyProperty.scenes.LevelSelectScene;
 
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ReadWriteSpielstand {
     private LevelSelectScene levelSelectScene;
     private Map<Integer, Setting> settingsMap;
+
+    private static final Logger LOGGER = Logger.getLogger("ReadWriteSpielstand");
 
     public ReadWriteSpielstand() {
         System.out.println(".............................ReadWriteSpielstand..............................");
@@ -42,7 +46,7 @@ public class ReadWriteSpielstand {
                 setSpielstand(level, unlocked, completed, time, deaths);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, "Failed to read the spielstand file: ", e);
         }
     }
 
@@ -59,7 +63,7 @@ public class ReadWriteSpielstand {
         Map<Integer, Setting> tempSettingsMap = new HashMap<>();
 
         // Read existing data
-        String filePath = "src/resources/csv/Save/spielstand.csv";
+        String filePath = "src/resources/csv/save/spielstand.csv";
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             boolean isFirstLine = true;
@@ -82,7 +86,7 @@ public class ReadWriteSpielstand {
                 tempSettingsMap.put(lvl, new Setting(isUnlocked, isCompleted, savedTime, savedDeaths));
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, "Failed to read the spielstand file to Update the spielstand File: ", e);
         }
 
         // Update the specific level's data
@@ -99,7 +103,7 @@ public class ReadWriteSpielstand {
 
             System.out.println("✔ [ReadWriteSpielstand]: Level " + level + " updated");
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, "Failed to update the spielstand file: ", e);
         }
     }
 

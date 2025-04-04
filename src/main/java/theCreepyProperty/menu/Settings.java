@@ -5,7 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import theCreepyProperty.Save.ReadWriteSettings;
+import theCreepyProperty.save.ReadWriteSettings;
 import theCreepyProperty.main.GUI;
 import theCreepyProperty.main.SoundPlayer;
 import theCreepyProperty.scenes.GameScene;
@@ -30,7 +30,6 @@ public class Settings{
     private Label l_Settings;
 
     private boolean settings_on = false;
-    private final String soundButtonClick = "src/resources/sounds/button click.wav";
 
     public Settings(GUI gui, GameScene gameScene, Menu menu) {
         System.out.println(".............................Settings..............................");
@@ -65,10 +64,10 @@ public class Settings{
         setMenuSettingsPositionLR(vBoxSettingsButtons);
 
         // Button actions
-        b_Back.setOnAction(e -> onBack());
-        b_Audio.setOnAction(e -> onButton1());
-        b_Anzeige.setOnAction(e -> onButton2());
-        b_Credits.setOnAction(e -> onButton3());
+        b_Back.setOnAction(_ -> onBack());
+        b_Audio.setOnAction(_ -> onButton1());
+        b_Anzeige.setOnAction(_ -> onButton2());
+        b_Credits.setOnAction(_ -> onButton3());
     }
 
     // Toggle settings menu visibility
@@ -81,7 +80,7 @@ public class Settings{
     private void onBack() {
         System.out.println("✔ [Settings]: Back");
         triggerSettings(); // Close settings menu
-        menu.getpMenu().setVisible(true); // Show main menu
+        menu.get_pMenu().setVisible(true); // Show main menu
         playButtonSound();
         menu.triggerFocus();
     }
@@ -110,6 +109,7 @@ public class Settings{
 
     // button click sound
     private void playButtonSound() {
+        String soundButtonClick = "src/resources/sounds/button click.wav";
         soundPlayer = new SoundPlayer(soundButtonClick);
         soundPlayer.setVolume(gameScene.getMenu().getSettings().getAudio().getMaster());
         soundPlayer.play();
@@ -170,6 +170,7 @@ public class Settings{
         }
 
         if (this.audio != null) {
+            this.audio.deleteAudio();
             this.audio = null;
         }
 

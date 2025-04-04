@@ -6,11 +6,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Label;
 import theCreepyProperty.entity.Ghost;
-import theCreepyProperty.main.GUI;
 import theCreepyProperty.scenes.GameScene;
 
 public class TutorialMapInfo {
-    private GUI gui;
     private GameScene gameScene;
 
     private Pane infoPaneOver = new Pane();
@@ -57,9 +55,8 @@ public class TutorialMapInfo {
     private VBox infoButton3;
     private VBox infoButton4;
 
-    public TutorialMapInfo(GUI gui, GameScene gameScene) {
+    public TutorialMapInfo(GameScene gameScene) {
         System.out.println(".............................TutorialMapInfo..............................");
-        this.gui = gui;
         this.gameScene = gameScene;
 
         createTutorialInfo();
@@ -68,6 +65,7 @@ public class TutorialMapInfo {
 
     private void createTutorialInfo() {
         String id = "info";
+        String moveId = "move-info";
         // under Overlay
         // Wall info
         this.wallLabel = new Label("This is a wall, ghosts can pass through.");
@@ -99,7 +97,7 @@ public class TutorialMapInfo {
                 ⬆ This is a Vacuum.
                 Collect it to remove one Ghost
                 when its in your distance.
-                You can vacuum vor 5sec""");
+                You can vacuum vor 3 sec""");
         this.vacuumLable.setId(id);
         this.vacuumInfo = new VBox(this.vacuumLable);
         this.vacuumInfo.setId("tutorial-info-feld-background");
@@ -154,24 +152,24 @@ public class TutorialMapInfo {
 
         // Button label info
         this.buttonLabel1 = new Label("⬅ Use to Walk");
-        this.buttonLabel1.setId(id);
+        this.buttonLabel1.setId(moveId);
         this.infoButton1 = new VBox(this.buttonLabel1);
-        vBox_position(this.infoButton1,790,50);
+        vBox_position(this.infoButton1,825,35);
 
-        this.buttonLabel2 = new Label("⬅ Press to Sprint\n     (sprint lasts only a few seconds)");
-        this.buttonLabel2.setId(id);
+        this.buttonLabel2 = new Label("⬅ Press to Sprint\n     (sprint lasts only a few sec)");
+        this.buttonLabel2.setId(moveId);
         this.infoButton2 = new VBox(this.buttonLabel2);
-        vBox_position(this.infoButton2,790,100);
+        vBox_position(this.infoButton2,825,70);
 
-        this.buttonLabel3 = new Label("⬅ Press to Sneak\n     (Ghosts have a shorter range)");
-        this.buttonLabel3.setId(id);
+        this.buttonLabel3 = new Label("⬅ Press to Sneak\n     (Ghosts have a smaller range)");
+        this.buttonLabel3.setId(moveId);
         this.infoButton3 = new VBox(this.buttonLabel3);
-        vBox_position(this.infoButton3,790,150);
+        vBox_position(this.infoButton3,825,105);
 
         this.buttonLabel4 = new Label("⬅ Move the Maus to see More");
-        this.buttonLabel4.setId(id);
+        this.buttonLabel4.setId(moveId);
         this.infoButton4 = new VBox(this.buttonLabel4);
-        vBox_position(this.infoButton4,790,210);
+        vBox_position(this.infoButton4,825,140);
 
 
         // Collision Lable Info
@@ -184,7 +182,7 @@ public class TutorialMapInfo {
 
         // Steuerung Image info
         this.info = new ImageView(new Image("file:src/resources/textures/overlay/Info4.png"));
-        i_position(info, 660, 5, 450, 300); // 250,150
+        i_position(info, 730, 5, 300, 200); // 250,150
         this.info.setOpacity(0.7);
 
         // Ghost-Distance Image info
@@ -203,10 +201,15 @@ public class TutorialMapInfo {
         }
     }
 
-    // Checking if player dies one time than remove Barrier
+    // Checking if player is in distance of Player
     public void startRequirementCheck() {
-        if (this.gui.getSelectScene().getThisLevelDeaths() >= 1) {
-            if (this.gameScene.getMapCreate().getWallList().size() > 9) {
+
+        for (Ghost ghost : this.gameScene.getMapCreate().getGhostList()) {
+            // Calculate center of Player
+            double entityCenterX = this.gameScene.getPlayer().entity_world_X + this.gameScene.getPlayer().entity_size_X / 2;
+            double entityCenterY = this.gameScene.getPlayer().entity_world_Y + this.gameScene.getPlayer().entity_size_Y / 2;
+
+            if(this.gameScene.getPlayer().checkForGhost(ghost, entityCenterX, entityCenterY) <= 100) {
                 this.gameScene.getMapCreate().getWallList().get(9).getRWall().setX(-100);
                 this.wallBlock.setVisible(false);
             }
@@ -237,16 +240,22 @@ public class TutorialMapInfo {
     public void deleteTutorialMapInfo() {
         System.out.println("⚠ [TutorialMapInfo]: Alle Referenzen werden gelöscht...");
 
-        this.gui = null;
         this.gameScene = null;
         this.infoPaneUnder.getChildren().clear();
         this.infoPaneUnder = null;
         this.infoPaneOver.getChildren().clear();
         this.infoPaneOver = null;
 
+        // ImageView-Variablen auf null setzen
+        wallBlock = null;
+        ghostDistance = null;
+        info = null;
+
+        // Label-Variablen auf null setzen
         wallLabel = null;
         ghostLabel1 = null;
         keyLabel = null;
+        vacuumLable = null;
         doorLabel = null;
 
         keysLabel = null;
@@ -254,11 +263,18 @@ public class TutorialMapInfo {
         deathsLabel = null;
         sprintLabel = null;
         levelLabel = null;
+        buttonLabel1 = null;
+        buttonLabel2 = null;
+        buttonLabel3 = null;
+        buttonLabel4 = null;
+
         collidingInfo = null;
 
+        // VBox-Variablen auf null setzen
         wallInfo = null;
         ghostInfo = null;
         keyInfo = null;
+        vacuumInfo = null;
         doorInfo = null;
 
         infoGuiKeys = null;
@@ -267,6 +283,11 @@ public class TutorialMapInfo {
         infoGuiSprint = null;
         infoGuiLevel = null;
         infoBarrier = null;
+
+        infoButton1 = null;
+        infoButton2 = null;
+        infoButton3 = null;
+        infoButton4 = null;
 
         System.gc();
         System.out.println("✔ [TutorialMapInfo]: Speicherbereinigung durchgeführt.");

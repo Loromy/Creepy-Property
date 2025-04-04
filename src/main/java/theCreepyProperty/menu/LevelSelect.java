@@ -11,7 +11,6 @@ import theCreepyProperty.scenes.LevelSelectScene;
 
 public class LevelSelect {
     private final GUI gui;
-    private LevelSelectScene scene;
 
     // UI components
     private final Pane backgroundLevelSelect = new Pane();
@@ -35,7 +34,6 @@ public class LevelSelect {
     public LevelSelect(GUI gui, LevelSelectScene scene) {
         System.out.println(".............................LevelSelect..............................");
         this.gui = gui;
-        this.scene = scene;
 
         // Initialize labels and buttons
         this.title = new Label("Level Select");
@@ -65,7 +63,7 @@ public class LevelSelect {
         backgroundLevelSelect.setBackground(new Background(backgroundImage));
 
         // Apply blur effect to the scene
-        this.scene.setBlur(15);
+        scene.setBlur(15);
 
         // Disable all level buttons and start button initially
         disableAllButtons();
@@ -123,8 +121,8 @@ public class LevelSelect {
     // Positions the level selection box
     private void setLevelSelectPosition(VBox vBox) {
         vBox.setPrefSize(600, 500);
-        vBox.setLayoutX((gui.getWidth() - 600) / 2);
-        vBox.setLayoutY((gui.getHeight() - 500) / 2);
+        vBox.setLayoutX((double) (gui.getWidth() - 600) / 2);
+        vBox.setLayoutY((double) (gui.getHeight() - 500) / 2);
         vBox.setSpacing(20);
         vBox.setAlignment(Pos.CENTER);
     }
@@ -132,8 +130,8 @@ public class LevelSelect {
     // Positions rows of buttons
     private void setLevelSelectPositionLR(HBox hBox) {
         hBox.setPrefSize(300, 50);
-        hBox.setLayoutX((gui.getWidth() - 300) / 2);
-        hBox.setLayoutY((gui.getHeight() - 300) / 2);
+        hBox.setLayoutX((double) (gui.getWidth() - 300) / 2);
+        hBox.setLayoutY((double) (gui.getHeight() - 300) / 2);
         hBox.setSpacing(10);
         hBox.setAlignment(Pos.CENTER);
     }
@@ -190,18 +188,18 @@ public class LevelSelect {
     // Getter Methods
     public Label getLevelTime() { return this.levelTime; }
     public Label getLevel() { return this.level; }
-    public Button getbTutorial() { return this.bTutorial; }
-    public Button getbL1() { return this.bL1; }
-    public Button getbL2() { return this.bL2; }
-    public Button getbL3() { return this.bL3; }
-    public Button getbL4() { return this.bL4; }
-    public Button getbL5() { return this.bL5; }
-    public Button getbL6() { return this.bL6; }
-    public Button getbL7() { return this.bL7; }
-    public Button getbL8() { return this.bL8; }
-    public Button getbL9() { return this.bL9; }
+    public Button get_bTutorial() { return this.bTutorial; }
+    public Button get_bL1() { return this.bL1; }
+    public Button get_bL2() { return this.bL2; }
+    public Button get_bL3() { return this.bL3; }
+    public Button get_bL4() { return this.bL4; }
+    public Button get_bL5() { return this.bL5; }
+    public Button get_bL6() { return this.bL6; }
+    public Button get_bL7() { return this.bL7; }
+    public Button get_bL8() { return this.bL8; }
+    public Button get_bL9() { return this.bL9; }
     public Button getStartButton() { return startButton; }
     public Button getBackButton() { return backButton; }
-    public Pane getpLevelSelect() { return pLevelSelect; }
+    public Pane get_pLevelSelect() { return pLevelSelect; }
     public Pane getBackgroundLevelSelect() { return backgroundLevelSelect; }
 }

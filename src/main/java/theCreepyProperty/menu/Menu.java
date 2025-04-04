@@ -52,21 +52,21 @@ public class Menu extends VBox {
         // Set menu position
         pMenu.setPrefSize(gui.getWidth(), gui.getHeight());
         backgroundMenu.setPrefSize(gui.getWidth(), gui.getHeight());
-        setMenuPosition(600, 500, 10);
+        setMenuPosition();
 
         // Sound effect
         soundPlayer = new SoundPlayer("src/resources/sounds/button click.wav");
 
         // Button actions
-        resumeButton.setOnAction(e -> onResume());
-        settingsButton.setOnAction(e -> onSettings());
-        backButton.setOnAction(e -> onBack());
+        resumeButton.setOnAction(_ -> onResume());
+        settingsButton.setOnAction(_ -> onSettings());
+        backButton.setOnAction(_ -> onBack());
     }
 
     // show Menu Toggle
     public void triggerMenu() {
         if (!menu_on) {
-            gameScene.getpMenu().setVisible(true);
+            gameScene.get_pMenu().setVisible(true);
             backgroundMenu.setVisible(true);
             pMenu.setVisible(true);
             gameScene.setBlur(15);
@@ -78,7 +78,7 @@ public class Menu extends VBox {
             }
             resumeButton.requestFocus();
         } else {
-            gameScene.getpMenu().setVisible(false);
+            gameScene.get_pMenu().setVisible(false);
             backgroundMenu.setVisible(false);
             pMenu.setVisible(false);
             gameScene.setBlur(0);
@@ -93,11 +93,11 @@ public class Menu extends VBox {
     }
 
     // Set menu layout properties
-    private void setMenuPosition(double width, double height, int spacing) {
-        vBoxMenu.setPrefSize(width, height);
-        vBoxMenu.setLayoutX((gui.getWidth() - width) / 2);
-        vBoxMenu.setLayoutY((gui.getHeight() - height) / 2);
-        vBoxMenu.setSpacing(spacing);
+    private void setMenuPosition() {
+        vBoxMenu.setPrefSize(600, 500);
+        vBoxMenu.setLayoutX((gui.getWidth() - (double) 600) / 2);
+        vBoxMenu.setLayoutY((gui.getHeight() - (double) 500) / 2);
+        vBoxMenu.setSpacing(10);
         vBoxMenu.setAlignment(Pos.CENTER);
     }
 
@@ -133,10 +133,10 @@ public class Menu extends VBox {
 
     // Getter Methoden
     public boolean getMenu_on(){
-        return this.menu_on;
+        return !this.menu_on;
     }
 
-    public Pane getpMenu() {
+    public Pane get_pMenu() {
         return pMenu;
     }
 

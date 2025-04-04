@@ -11,11 +11,7 @@ import theCreepyProperty.scenes.GameScene;
 
 public class GUI extends Application {
 
-    private final int width = 1000; // Breite des Fensters
-    private final int height = 600; // Höhe des Fensters
     private String filePath = "";
-
-    private final FileCheck fileCheck = new FileCheck();
 
     private Stage stage;           // Haupt-Stage
     private StartScene startScene; // Start-Szene
@@ -60,7 +56,7 @@ public class GUI extends Application {
     public void switchToGameScene() {
         // Create Scene
         if (this.gameScene == null) {
-            this.gameScene = new GameScene(stage, this);
+            this.gameScene = new GameScene(this);
         }
         // Scene Delete
         if (this.creditScene != null) {
@@ -124,11 +120,13 @@ public class GUI extends Application {
 
     // Getter Methoden
     public int getWidth() {
-        return width;
+        // Breite des Fensters
+        return 1000;
     }
 
     public int getHeight() {
-        return height;
+        // Höhe des Fensters
+        return 600;
     }
 
     public StartScene getStartScene() {

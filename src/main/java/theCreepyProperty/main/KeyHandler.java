@@ -151,7 +151,7 @@ public class KeyHandler {
 
     // checking if keys are pressed
     private void handleMovement(double deltaTime) {
-        if (!this.menu.getMenu_on() && !this.gameOver.getGameOver_On() && !this.gameWin.getGameWin_On()) {
+        if (this.menu.getMenu_on() && !this.gameOver.getGameOver_On() && !this.gameWin.getGameWin_On()) {
             double dx = 0;
             double dy = 0;
 
@@ -210,8 +210,6 @@ public class KeyHandler {
                     System.out.println("✔ [KeyHandler]: Collision Box toggled [+]");
 
                     lastState_bPressed = false;
-
-                    bPressed = false;
                 } else {
                     // hide hit-box
                     this.player.showCollisionBox(false);
@@ -221,9 +219,8 @@ public class KeyHandler {
                     System.out.println("✔ [KeyHandler]: Collision Box reset [-]");
 
                     lastState_bPressed = true;
-
-                    bPressed = false;
                 }
+                bPressed = false;
             }
 
 
@@ -301,7 +298,7 @@ public class KeyHandler {
             }
             else if (menu.getSettings().getSettingOn() && !menu.getSettings().getAudio().getAudioOn()){
                 this.menu.getSettings().triggerSettings();
-                this.menu.getpMenu().setVisible(true);
+                this.menu.get_pMenu().setVisible(true);
             }
             else if (menu.getSettings().getSettingOn() && menu.getSettings().getAudio().getAudioOn() ) {
                 this.menu.getSettings().getAudio().triggerAudio();
@@ -328,14 +325,14 @@ public class KeyHandler {
         // Check X collision and update position if no collision
         player.collision_on = false;
         this.gameScene.getChecker().checkCollision(player, this.nextPlayerX, player.getPlayer_world_Y());
-        if (!player.getCollision_on()) {
+        if (player.getCollision_on()) {
             player.setPlayer_world_X(this.nextPlayerX);
         }
 
         // Check Y collision and update position if no collision
         player.collision_on = false;
         this.gameScene.getChecker().checkCollision(player, player.getPlayer_world_X(), this.nextPlayerY);
-        if (!player.getCollision_on()) {
+        if (player.getCollision_on()) {
             player.setPlayer_world_Y(this.nextPlayerY);
         }
 
@@ -345,11 +342,10 @@ public class KeyHandler {
             boolean collidingY = this.gameScene.getChecker().isCollidingWithWall(this.player, player.getPlayer_world_X(), this.nextPlayerY, 9);
 
             // Show collision warning if the player is blocked
-            if (collidingX || collidingY) {
-                this.gameScene.getTutorialMapInfo().setCollisionVisible(true);
-            } else {
-                this.gameScene.getTutorialMapInfo().setCollisionVisible(false);
-            }
+            this.gameScene.getTutorialMapInfo().setCollisionVisible(collidingX || collidingY);
+
+            // check for ghost in 100px distance
+            this.gameScene.getTutorialMapInfo().startRequirementCheck();
         }
     }
 

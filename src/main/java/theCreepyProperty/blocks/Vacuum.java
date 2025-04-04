@@ -4,7 +4,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class Vacuum extends Object {
-    private final ImageView ivVAcuum = new ImageView();
+    private final ImageView ivVacuum = new ImageView();
 
     public Vacuum(int x, int y, int width, int height, String texture) {
         System.out.println(".............................Key..............................");
@@ -17,16 +17,16 @@ public class Vacuum extends Object {
     }
 
     private void createVacuum() {
-        this.ivVAcuum.setImage(new Image(this.texture));
-        this.ivVAcuum.setX(this.positionX);
-        this.ivVAcuum.setY(this.positionY);
-        this.ivVAcuum.setFitWidth(this.width);
-        this.ivVAcuum.setFitHeight(this.height);
+        this.ivVacuum.setImage(new Image(this.texture));
+        this.ivVacuum.setX(this.positionX);
+        this.ivVacuum.setY(this.positionY);
+        this.ivVacuum.setFitWidth(this.width);
+        this.ivVacuum.setFitHeight(this.height);
     }
 
     // Getter Methoden
     public ImageView getIVacuum() {
-        return ivVAcuum;
+        return ivVacuum;
     }
 
     public int getX() {

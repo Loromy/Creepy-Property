@@ -5,7 +5,7 @@ import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import theCreepyProperty.Map.SetMap;
-import theCreepyProperty.Save.ReadWriteSpielstand;
+import theCreepyProperty.save.ReadWriteSpielstand;
 import theCreepyProperty.main.GUI;
 import theCreepyProperty.main.SoundPlayer;
 import theCreepyProperty.menu.LevelSelect;
@@ -22,7 +22,7 @@ public class LevelSelectScene {
     private final SetMap setMap;
 
     private int mapSelected = 0;
-    private double timePlaying = 0; // zwischen speichern von time beim sterben.
+    private double timePlaying = 0; // save time on time.
 
     // Level Completed
     private boolean levelTutorialCompleted = false;
@@ -94,7 +94,7 @@ public class LevelSelectScene {
             this.volume = this.gui.getGameScene().getMenu().getSettings().getAudio().getMaster();
         }
 
-        this.readWriteSpielstand.spielstandRead("src/resources/csv/Save/spielstand.csv",this);
+        this.readWriteSpielstand.spielstandRead("src/resources/csv/save/spielstand.csv",this);
     }
 
     private void createScene() {
@@ -103,17 +103,17 @@ public class LevelSelectScene {
         levelSelectScreen.getStylesheets().add(("file:src/resources/style/style.css"));
 
         pLevelBlur.getChildren().add(this.levelMenu.getBackgroundLevelSelect());
-        pLevelComponents.getChildren().add(this.levelMenu.getpLevelSelect());
+        pLevelComponents.getChildren().add(this.levelMenu.get_pLevelSelect());
 
         levelSelectScreen.getChildren().addAll(pLevelBlur,pLevelComponents);
         this.levelSelectScene = new Scene(levelSelectScreen, gui.getWidth(), gui.getHeight());
         // Button OnAction
-        levelMenu.getbL1().setOnAction(e ->{
+        levelMenu.get_bL1().setOnAction(_ ->{
             setMap(1);
             this.timePlaying = 0;
             this.thisLevelDeaths = 0;
 
-            this.levelMenu.selectButton(this.levelMenu.getbL1());
+            this.levelMenu.selectButton(this.levelMenu.get_bL1());
 
             levelMenu.getStartButton().setDisable(false);
             this.levelMenu.getStartButton().requestFocus();
@@ -124,12 +124,12 @@ public class LevelSelectScene {
             this.soundPlayer.play();
         });
 
-        levelMenu.getbL2().setOnAction(e ->{
+        levelMenu.get_bL2().setOnAction(_ ->{
             setMap(2);
             this.timePlaying = 0;
             this.thisLevelDeaths = 0;
 
-            this.levelMenu.selectButton(this.levelMenu.getbL2());
+            this.levelMenu.selectButton(this.levelMenu.get_bL2());
 
             levelMenu.getStartButton().setDisable(false);
             this.levelMenu.getStartButton().requestFocus();
@@ -140,12 +140,12 @@ public class LevelSelectScene {
             this.soundPlayer.play();
         });
 
-        levelMenu.getbL3().setOnAction(e ->{
+        levelMenu.get_bL3().setOnAction(_ ->{
             setMap(3);
             this.timePlaying = 0;
             this.thisLevelDeaths = 0;
 
-            this.levelMenu.selectButton(this.levelMenu.getbL3());
+            this.levelMenu.selectButton(this.levelMenu.get_bL3());
 
             levelMenu.getStartButton().setDisable(false);
             this.levelMenu.getStartButton().requestFocus();
@@ -156,12 +156,12 @@ public class LevelSelectScene {
             this.soundPlayer.play();
         });
 
-        levelMenu.getbL4().setOnAction(e ->{
+        levelMenu.get_bL4().setOnAction(_ ->{
             setMap(4);
             this.timePlaying = 0;
             this.thisLevelDeaths = 0;
 
-            this.levelMenu.selectButton(this.levelMenu.getbL4());
+            this.levelMenu.selectButton(this.levelMenu.get_bL4());
 
             levelMenu.getStartButton().setDisable(false);
             this.levelMenu.getStartButton().requestFocus();
@@ -172,12 +172,12 @@ public class LevelSelectScene {
             this.soundPlayer.play();
         });
 
-        levelMenu.getbL5().setOnAction(e ->{
+        levelMenu.get_bL5().setOnAction(_ ->{
             setMap(5);
             this.timePlaying = 0;
             this.thisLevelDeaths = 0;
 
-            this.levelMenu.selectButton(this.levelMenu.getbL5());
+            this.levelMenu.selectButton(this.levelMenu.get_bL5());
 
             levelMenu.getStartButton().setDisable(false);
             this.levelMenu.getStartButton().requestFocus();
@@ -188,12 +188,12 @@ public class LevelSelectScene {
             this.soundPlayer.play();
         });
 
-        levelMenu.getbL6().setOnAction(e ->{
+        levelMenu.get_bL6().setOnAction(_ ->{
             setMap(6);
             this.timePlaying = 0;
             this.thisLevelDeaths = 0;
 
-            this.levelMenu.selectButton(this.levelMenu.getbL6());
+            this.levelMenu.selectButton(this.levelMenu.get_bL6());
 
             levelMenu.getStartButton().setDisable(false);
             this.levelMenu.getStartButton().requestFocus();
@@ -204,12 +204,12 @@ public class LevelSelectScene {
             this.soundPlayer.play();
         });
 
-        levelMenu.getbL7().setOnAction(e ->{
+        levelMenu.get_bL7().setOnAction(_ ->{
             setMap(7);
             this.timePlaying = 0;
             this.thisLevelDeaths = 0;
 
-            this.levelMenu.selectButton(this.levelMenu.getbL7());
+            this.levelMenu.selectButton(this.levelMenu.get_bL7());
 
             levelMenu.getStartButton().setDisable(false);
             this.levelMenu.getStartButton().requestFocus();
@@ -220,12 +220,12 @@ public class LevelSelectScene {
             this.soundPlayer.play();
         });
 
-        levelMenu.getbL8().setOnAction(e ->{
+        levelMenu.get_bL8().setOnAction(_ ->{
             setMap(8);
             this.timePlaying = 0;
             this.thisLevelDeaths = 0;
 
-            this.levelMenu.selectButton(this.levelMenu.getbL8());
+            this.levelMenu.selectButton(this.levelMenu.get_bL8());
 
             levelMenu.getStartButton().setDisable(false);
             this.levelMenu.getStartButton().requestFocus();
@@ -236,12 +236,12 @@ public class LevelSelectScene {
             this.soundPlayer.play();
         });
 
-        levelMenu.getbL9().setOnAction(e ->{
+        levelMenu.get_bL9().setOnAction(_ ->{
             setMap(9);
             this.timePlaying = 0;
             this.thisLevelDeaths = 0;
 
-            this.levelMenu.selectButton(this.levelMenu.getbL9());
+            this.levelMenu.selectButton(this.levelMenu.get_bL9());
 
             levelMenu.getStartButton().setDisable(false);
             this.levelMenu.getStartButton().requestFocus();
@@ -252,12 +252,12 @@ public class LevelSelectScene {
             this.soundPlayer.play();
         });
 
-        levelMenu.getbTutorial().setOnAction(e ->{
+        levelMenu.get_bTutorial().setOnAction(_ ->{
             setMap(0);
             this.timePlaying = 0;
             this.thisLevelDeaths = 0;
 
-            this.levelMenu.selectButton(this.levelMenu.getbTutorial());
+            this.levelMenu.selectButton(this.levelMenu.get_bTutorial());
 
             levelMenu.getStartButton().setDisable(false);
             this.levelMenu.getStartButton().requestFocus();
@@ -270,7 +270,7 @@ public class LevelSelectScene {
 
 
 
-        levelMenu.getStartButton().setOnAction(e -> {
+        levelMenu.getStartButton().setOnAction(_ -> {
             System.out.println("✔ [LevelSelectScene]: Spiel wird gestartet...");
 
             this.soundPlayer.setVolume(volume);
@@ -284,7 +284,7 @@ public class LevelSelectScene {
 
             this.gui.switchToGameScene();
         });
-        levelMenu.getBackButton().setOnAction(e -> {
+        levelMenu.getBackButton().setOnAction(_ -> {
             System.out.println("✔ [LevelSelectScene]: Start Menu");
 
             this.soundPlayer.setVolume(volume);
@@ -375,98 +375,98 @@ public class LevelSelectScene {
     //update CSV Level Completed
     public void levelCompleted() {
         if (levelTutorialCompleted) {
-            System.out.println("levelCompleted: " + this.levelTutorialCompleted + " deaths: " + this.level0Deaths);
+            System.out.println("levelCompleted: " + true + " deaths: " + this.level0Deaths);
             this.readWriteSpielstand.updateSpielstand(0, true, true, this.level0Time, this.level0Deaths);
-            this.levelMenu.getbTutorial().setStyle("-fx-text-fill: #6b5727;");
-            this.levelMenu.getbTutorial().setText("Tutorial");
+            this.levelMenu.get_bTutorial().setStyle("-fx-text-fill: #6b5727;");
+            this.levelMenu.get_bTutorial().setText("Tutorial");
         }
         if (level1Completed) {
             this.readWriteSpielstand.updateSpielstand(1, true, true, this.level1Time, this.level1Deaths);
-            this.levelMenu.getbL1().setStyle("-fx-text-fill: #10540a;");
-            this.levelMenu.getbL1().setText("Level 1 ✔");
+            this.levelMenu.get_bL1().setStyle("-fx-text-fill: #10540a;");
+            this.levelMenu.get_bL1().setText("Level 1 ✔");
         }
         if (level2Completed) {
             this.readWriteSpielstand.updateSpielstand(2, true, true, this.level2Time, this.level2Deaths);
-            this.levelMenu.getbL2().setStyle("-fx-text-fill: #10540a;");
-            this.levelMenu.getbL2().setText("Level 2 ✔");
+            this.levelMenu.get_bL2().setStyle("-fx-text-fill: #10540a;");
+            this.levelMenu.get_bL2().setText("Level 2 ✔");
         }
         if (level3Completed) {
             this.readWriteSpielstand.updateSpielstand(3, true, true, this.level3Time, this.level3Deaths);
-            this.levelMenu.getbL3().setStyle("-fx-text-fill: #10540a;");
-            this.levelMenu.getbL3().setText("Level 3 ✔");
+            this.levelMenu.get_bL3().setStyle("-fx-text-fill: #10540a;");
+            this.levelMenu.get_bL3().setText("Level 3 ✔");
         }
         if (level4Completed) {
             this.readWriteSpielstand.updateSpielstand(4, true, true, this.level4Time, this.level4Deaths);
-            this.levelMenu.getbL4().setStyle("-fx-text-fill: #10540a;");
-            this.levelMenu.getbL4().setText("Level 4 ✔");
+            this.levelMenu.get_bL4().setStyle("-fx-text-fill: #10540a;");
+            this.levelMenu.get_bL4().setText("Level 4 ✔");
         }
         if (level5Completed) {
             this.readWriteSpielstand.updateSpielstand(5, true, true, this.level5Time, this.level5Deaths);
-            this.levelMenu.getbL5().setStyle("-fx-text-fill: #10540a;");
-            this.levelMenu.getbL5().setText("Level 5 ✔");
+            this.levelMenu.get_bL5().setStyle("-fx-text-fill: #10540a;");
+            this.levelMenu.get_bL5().setText("Level 5 ✔");
         }
         if (level6Completed) {
             this.readWriteSpielstand.updateSpielstand(6, true, true, this.level6Time, this.level6Deaths);
-            this.levelMenu.getbL6().setStyle("-fx-text-fill: #10540a;");
-            this.levelMenu.getbL6().setText("Level 6 ✔");
+            this.levelMenu.get_bL6().setStyle("-fx-text-fill: #10540a;");
+            this.levelMenu.get_bL6().setText("Level 6 ✔");
         }
         if (level7Completed) {
             this.readWriteSpielstand.updateSpielstand(7, true, true, this.level7Time, this.level7Deaths);
-            this.levelMenu.getbL7().setStyle("-fx-text-fill: #10540a;");
-            this.levelMenu.getbL7().setText("Level 7 ✔");
+            this.levelMenu.get_bL7().setStyle("-fx-text-fill: #10540a;");
+            this.levelMenu.get_bL7().setText("Level 7 ✔");
         }
         if (level8Completed) {
             this.readWriteSpielstand.updateSpielstand(8, true, true, this.level8Time, this.level8Deaths);
-            this.levelMenu.getbL8().setStyle("-fx-text-fill: #10540a;");
-            this.levelMenu.getbL8().setText("Level 8 ✔");
+            this.levelMenu.get_bL8().setStyle("-fx-text-fill: #10540a;");
+            this.levelMenu.get_bL8().setText("Level 8 ✔");
         }
         if (level9Completed) {
             this.readWriteSpielstand.updateSpielstand(9, true, true, this.level9Time, this.level9Deaths);
-            this.levelMenu.getbL9().setStyle("-fx-text-fill: #10540a;");
-            this.levelMenu.getbL9().setText("Level 9 ✔");
+            this.levelMenu.get_bL9().setStyle("-fx-text-fill: #10540a;");
+            this.levelMenu.get_bL9().setText("Level 9 ✔");
         }
     }
 
     // unlock level
     public void unlockLevel() {
         if (levelTutorialUnlocked) {
-            levelMenu.getbTutorial().setDisable(false);
+            levelMenu.get_bTutorial().setDisable(false);
             this.readWriteSpielstand.updateSpielstand(0, true, false, this.level0Time, this.level0Deaths);
         }
         if (level1Unlocked) {
-            levelMenu.getbL1().setDisable(false);
+            levelMenu.get_bL1().setDisable(false);
             this.readWriteSpielstand.updateSpielstand(1, true, false, this.level1Time, this.level1Deaths);
         }
         if (level2Unlocked) {
-            levelMenu.getbL2().setDisable(false);
+            levelMenu.get_bL2().setDisable(false);
             this.readWriteSpielstand.updateSpielstand(2, true, false, this.level2Time, this.level2Deaths);
         }
         if (level3Unlocked) {
-            levelMenu.getbL3().setDisable(false);
+            levelMenu.get_bL3().setDisable(false);
             this.readWriteSpielstand.updateSpielstand(3, true, false, this.level3Time, this.level3Deaths);
         }
         if (level4Unlocked) {
-            levelMenu.getbL4().setDisable(false);
+            levelMenu.get_bL4().setDisable(false);
             this.readWriteSpielstand.updateSpielstand(4, true, false, this.level4Time, this.level4Deaths);
         }
         if (level5Unlocked) {
-            levelMenu.getbL5().setDisable(false);
+            levelMenu.get_bL5().setDisable(false);
             this.readWriteSpielstand.updateSpielstand(5, true, false, this.level5Time, this.level5Deaths);
         }
         if (level6Unlocked) {
-            levelMenu.getbL6().setDisable(false);
+            levelMenu.get_bL6().setDisable(false);
             this.readWriteSpielstand.updateSpielstand(6, true, false, this.level6Time, this.level6Deaths);
         }
         if (level7Unlocked) {
-            levelMenu.getbL7().setDisable(false);
+            levelMenu.get_bL7().setDisable(false);
             this.readWriteSpielstand.updateSpielstand(7, true, false, this.level7Time, this.level7Deaths);
         }
         if (level8Unlocked) {
-            levelMenu.getbL8().setDisable(false);
+            levelMenu.get_bL8().setDisable(false);
             this.readWriteSpielstand.updateSpielstand(8, true, false, this.level8Time, this.level8Deaths);
         }
         if (level9Unlocked) {
-            levelMenu.getbL9().setDisable(false);
+            levelMenu.get_bL9().setDisable(false);
             this.readWriteSpielstand.updateSpielstand(9, true, false, this.level9Time, this.level9Deaths);
         }
         levelCompleted();

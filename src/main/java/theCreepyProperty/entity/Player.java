@@ -107,22 +107,14 @@ public class Player extends Entity{
 
     // return Player-Image
     public ImageView draw() {
-        Image playerImage = null;
+        Image playerImage = switch (direction) {
+            case "up" -> switchSprite(up1, up2, up3, up4);
+            case "down" -> switchSprite(down1, down2, down3, down4);
+            case "left" -> switchSprite(left1, left2, left3, left4);
+            case "right" -> switchSprite(right1, right2, right3, right4);
+            default -> null;
+        };
 
-        switch (direction) {
-            case "up":
-                playerImage = switchSprite(up1, up2, up3, up4);
-                break;
-            case "down":
-                playerImage = switchSprite(down1, down2, down3, down4);
-                break;
-            case "left":
-                playerImage = switchSprite(left1, left2, left3, left4);
-                break;
-            case "right":
-                playerImage = switchSprite(right1, right2, right3, right4);
-                break;
-        }
         this.i_player.setImage(playerImage);
         return i_player;
     }
@@ -143,7 +135,6 @@ public class Player extends Entity{
     // Player Animation
     private Image switchSprite(Image img1, Image img2, Image img3, Image img4) {
         return switch (sprite_num) {
-            case 1 -> img1;
             case 2 -> img2;
             case 3 -> img3;
             case 4 -> img4;
@@ -154,7 +145,7 @@ public class Player extends Entity{
 
     // Ghost sounds
     private void playGhostSound() {
-        if (!this.ghostSoundIsPlaying && !this.gui.getGameScene().getMenu().getMenu_on() && !this.gui.getGameScene().getGameWin().getGameWin_On() && !this.gui.getGameScene().getGameOver().getGameOver_On()) {
+        if (!this.ghostSoundIsPlaying && this.gui.getGameScene().getMenu().getMenu_on() && !this.gui.getGameScene().getGameWin().getGameWin_On() && !this.gui.getGameScene().getGameOver().getGameOver_On()) {
             this.ghostSoundIsPlaying = true;
 
 
@@ -175,21 +166,24 @@ public class Player extends Entity{
         this.soundPlayer.stop();
     }
 
+    public double checkForGhost(Ghost ghost, double entityCenterX, double entityCenterY) {
+
+        // Calculate center of Ghost
+        double ghostCenterX = ghost.getSolidAria().getX() + ghost.getSolidAria().getWidth() / 2;
+        double ghostCenterY = ghost.getSolidAria().getY() + ghost.getSolidAria().getHeight() / 2;
+
+        // Calculate distance between Ghost and Player
+        return Math.sqrt(Math.pow(ghostCenterX - entityCenterX, 2) + Math.pow(ghostCenterY - entityCenterY, 2));
+    }
+
     // play sound if Ghost in 120px distance
     public void checkForNearbyGhostsPlaySound(ArrayList<Ghost> ghosts) {
-        // Berechne den Mittelpunkt der Entity (angenommen, Entity hat eine Breite und Höhe)
+        // Calculate center of Player
         double entityCenterX = this.entity_world_X + this.entity_size_X / 2;
         double entityCenterY = this.entity_world_Y + this.entity_size_Y / 2;
 
         for (Ghost ghost : ghosts) {
-            // Berechne den Mittelpunkt des Geistes (angenommen, Ghost hat eine Breite und Höhe)
-            double ghostCenterX = ghost.getSolidAria().getX() + ghost.getSolidAria().getWidth() / 2;
-            double ghostCenterY = ghost.getSolidAria().getY() + ghost.getSolidAria().getHeight() / 2;
-
-            // Berechne die Distanz zwischen den Mittelpunkten
-            double distance = Math.sqrt(Math.pow(ghostCenterX - entityCenterX, 2) + Math.pow(ghostCenterY - entityCenterY, 2));
-
-            if (distance <= 120) {
+            if (checkForGhost(ghost, entityCenterX, entityCenterY) <= 120) {
                 playGhostSound();
                 break;
             }
@@ -202,13 +196,13 @@ public class Player extends Entity{
         System.out.println("[Vacuum]: Vacuum running");
         this.i_vacuum_overlay.setImage(vacuumOverlay);
 
-        this.timeline = new Timeline(new KeyFrame(Duration.millis(100), event -> {
+        this.timeline = new Timeline(new KeyFrame(Duration.millis(100), _ -> {
             if (deleteNearbyGhosts(this.gui.getGameScene().getMapCreate().getGhostList())) {
                 timeline.stop();
                 this.i_vacuum_overlay.setImage(null);
             }
         }));
-        timeline.setOnFinished(event -> this.i_vacuum_overlay.setImage(null));
+        timeline.setOnFinished(_ -> this.i_vacuum_overlay.setImage(null));
 
         timeline.setCycleCount(30); // 30 x 100ms = 3 Seconds
         timeline.play();
@@ -217,19 +211,13 @@ public class Player extends Entity{
     // Remove Ghost with Vacuum
     public boolean deleteNearbyGhosts(ArrayList<Ghost> ghosts) {
         boolean caught = false;
-        // Berechne den Mittelpunkt der Entity (angenommen, Entity hat eine Breite und Höhe)
+        // Calculate center of Player
         double entityCenterX = this.entity_world_X + this.entity_size_X / 2;
         double entityCenterY = this.entity_world_Y + this.entity_size_Y / 2;
 
         for (int i = 0 ; i < ghosts.size() ; i++) {
-            // Berechne den Mittelpunkt des Geistes (angenommen, Ghost hat eine Breite und Höhe)
-            double ghostCenterX = ghosts.get(i).getSolidAria().getX() + ghosts.get(i).getSolidAria().getWidth() / 2;
-            double ghostCenterY = ghosts.get(i).getSolidAria().getY() + ghosts.get(i).getSolidAria().getHeight() / 2;
 
-            // Berechne die Distanz zwischen den Mittelpunkten
-            double distance = Math.sqrt(Math.pow(ghostCenterX - entityCenterX, 2) + Math.pow(ghostCenterY - entityCenterY, 2));
-
-            if (distance <= 100) {
+            if (checkForGhost(ghosts.get(i), entityCenterX, entityCenterY) <= 100) {
                 this.gui.getGameScene().pGhostsChildrenRemove(ghosts.get(i).draw());
                 this.gui.getGameScene().pGhostsChildrenRemove(ghosts.get(i).loadGhostOverlay());
                 this.gui.getGameScene().pGhostsChildrenRemove(ghosts.get(i).getSolidAria());
@@ -237,7 +225,6 @@ public class Player extends Entity{
                 this.gui.getGameScene().getMapCreate().getGhostList().get(i).deleteGhost();
                 this.gui.getGameScene().getMapCreate().getGhostList().remove(i);
 
-                //ghosts.remove(i);
                 caught = true;
                 break;
             }
@@ -286,7 +273,7 @@ public class Player extends Entity{
     }
 
     public boolean getCollision_on(){
-        return this.collision_on;
+        return !this.collision_on;
     }
 
     public Rectangle getSolidPlayerAria() {

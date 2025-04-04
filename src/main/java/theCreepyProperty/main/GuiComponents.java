@@ -5,7 +5,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import theCreepyProperty.Save.ReadWriteSettings;
+import theCreepyProperty.save.ReadWriteSettings;
 import theCreepyProperty.checker.FileCheck;
 import theCreepyProperty.entity.Player;
 import theCreepyProperty.scenes.GameScene;
@@ -124,7 +124,7 @@ public class GuiComponents {
 
     // return Deaths as String
     private String DeathCounter() {
-        String formatedDeaths = "000";
+        String formatedDeaths;
         int deaths = this.levelSelectScene.getThisLevelDeaths();
 
         if (deaths < 10) {
@@ -209,27 +209,27 @@ public class GuiComponents {
         return l_time;
     }
 
-    public HBox gethBox_keys() {
+    public HBox get_hBox_keys() {
         return hBox_keys;
     }
 
-    public HBox gethBox_Level() {
+    public HBox get_hBox_Level() {
         return hBox_Level;
     }
 
-    public VBox getvBox_anzeige() {
+    public VBox get_vBox_anzeige() {
         return vBox_anzeige;
     }
 
-    public VBox getvBox_Time() {
+    public VBox get_vBox_Time() {
         return vBox_Time;
     }
 
-    public VBox getvBox_Deaths() {
+    public VBox get_vBox_Deaths() {
         return vBox_Deaths;
     }
 
-    public VBox getvBox_sprint() {
+    public VBox get_vBox_sprint() {
         return vBox_sprint;
     }
 

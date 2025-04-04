@@ -1,4 +1,4 @@
-package theCreepyProperty.Save;
+package theCreepyProperty.save;
 
 import theCreepyProperty.main.GuiComponents;
 import theCreepyProperty.scenes.GameScene;
@@ -6,11 +6,15 @@ import theCreepyProperty.scenes.GameScene;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ReadWriteSettings {
     private GameScene gameScene;
     private GuiComponents guiComponents;
     private Map<String, Integer> settingsMap;
+
+    private static final Logger LOGGER = Logger.getLogger("ReadWriteSettings");
 
     public ReadWriteSettings(GuiComponents guiComponents) {
         System.out.println(".............................ReadWriteSettings..............................");
@@ -43,7 +47,7 @@ public class ReadWriteSettings {
                 setSettings(setting, value);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, "Failed to read the settings file: ", e);
         }
     }
 
@@ -82,7 +86,7 @@ public class ReadWriteSettings {
 
     // Update a specific setting in the settings file
     public void updateSetting(String setting, int newValue) {
-        String filePath = "src/resources/csv/Save/settings.csv";
+        String filePath = "src/resources/csv/save/settings.csv";
         Map<String, Integer> tempSettingsMap = new HashMap<>();
 
         // Read existing settings
@@ -102,7 +106,7 @@ public class ReadWriteSettings {
                 tempSettingsMap.put(parts[0].trim(), Integer.parseInt(parts[1].trim()));
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, "Failed to read the settings file to Update the settings File: ", e);
         }
 
         // Update the desired setting
@@ -117,7 +121,7 @@ public class ReadWriteSettings {
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, "Failed to update the settings file: ", e);
         }
     }
 

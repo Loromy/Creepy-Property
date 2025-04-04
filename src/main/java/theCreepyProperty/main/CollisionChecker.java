@@ -1,9 +1,10 @@
 package theCreepyProperty.main;
 
-import javafx.scene.image.ImageView;
 import theCreepyProperty.Map.MapCreate;
 import theCreepyProperty.entity.Player;
 import theCreepyProperty.scenes.GameScene;
+
+import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 
 public class CollisionChecker {
@@ -120,7 +121,7 @@ public class CollisionChecker {
         for (int i = 0; i < mapCreate.getDoorList().size(); i++) {
             if (player.keys_collected >= this.mapCreate.getNetToCollectKeys() && !this.isPlayed) {
                 this.isPlayed = true;
-                this.scene.getGuiComponents().gethBox_keys().setStyle("-fx-background-color: rgba(3, 59, 1, 0.8);");
+                this.scene.getGuiComponents().get_hBox_keys().setStyle("-fx-background-color: rgba(3, 59, 1, 0.8);");
 
                 this.soundPlayer = new SoundPlayer("src/resources/sounds/doorOpen.wav");
                 this.soundPlayer.setVolume(this.scene.getMenu().getSettings().getAudio().getMaster());
