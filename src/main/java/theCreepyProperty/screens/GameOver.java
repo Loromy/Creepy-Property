@@ -21,7 +21,6 @@ public class GameOver {
     private SetMap setMap;
 
     private boolean gameOver_on = false;
-    private int mapSelected = 0;
 
     private Label text;
     private Button retryButton;
@@ -55,11 +54,11 @@ public class GameOver {
         // Set size and position
         this.pGameOver.setPrefSize(gui.getWidth(), gui.getHeight()); // Set width and height for the overlay menu
         this.backgroundGameOver.setPrefSize(gui.getWidth(), gui.getHeight());
-        this.setGameOverPosition(300, 300, 10);
+        this.setGameOverPosition();
 
         // Button actions
-        retryButton.setOnAction(e -> onRetry());
-        backButton.setOnAction(e -> onBack());
+        retryButton.setOnAction(_ -> onRetry());
+        backButton.setOnAction(_ -> onBack());
     }
 
     // show Game Over OverLay
@@ -69,7 +68,6 @@ public class GameOver {
             this.gameScene.setBlur(15); //Menu blur
             this.gameOver_on = true;
             this.retryButton.requestFocus();
-            this.mapSelected = this.levelSelectScene.getMapSelected();
             this.gameScene.getPlayer().stopGhostSound();
 
             this.levelSelectScene.setThisLevelDeathsPlusOne();
@@ -85,11 +83,11 @@ public class GameOver {
     }
 
     // set UI Element Position
-    private void setGameOverPosition(double width, double height, int spacing) {
-        this.vBoxGameOver.setPrefSize(width,height);
-        this.vBoxGameOver.setLayoutX((gui.getWidth() - width) / 2);
-        this.vBoxGameOver.setLayoutY((gui.getHeight() - height) / 2);
-        this.vBoxGameOver.setSpacing(spacing);
+    private void setGameOverPosition() {
+        this.vBoxGameOver.setPrefSize(300, 300);
+        this.vBoxGameOver.setLayoutX((gui.getWidth() - (double) 300) / 2);
+        this.vBoxGameOver.setLayoutY((gui.getHeight() - (double) 300) / 2);
+        this.vBoxGameOver.setSpacing(10);
         this.vBoxGameOver.setAlignment(Pos.CENTER);
     }
 
@@ -109,7 +107,7 @@ public class GameOver {
 
     // Getter Methoden
     public boolean getGameOver_On() {
-        return gameOver_on;
+        return !gameOver_on;
     }
 
     public Pane getPGameOver() {
@@ -166,7 +164,6 @@ public class GameOver {
         }
 
         this.gameOver_on = false;
-        this.mapSelected = 0;
 
         System.gc();
         System.out.println("✔ [Game Over]: Speicherbereinigung durchgeführt.");

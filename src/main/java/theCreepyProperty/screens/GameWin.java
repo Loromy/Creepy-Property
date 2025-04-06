@@ -59,11 +59,11 @@ public class GameWin {
         // Set size and position
         this.pGameWin.setPrefSize(gui.getWidth(), gui.getHeight()); // Set width and height for the overlay menu
         this.backgroundGameWin.setPrefSize(gui.getWidth(), gui.getHeight());
-        this.setGameWinPosition(500, 300, 10);
+        this.setGameWinPosition();
 
         // Button actions
-        backButton.setOnAction(e -> onBack());
-        nextButton.setOnAction(e -> onNext());
+        backButton.setOnAction(_ -> onBack());
+        nextButton.setOnAction(_ -> onNext());
     }
 
     // show Game Winn Overlay
@@ -110,11 +110,11 @@ public class GameWin {
     }
 
     // set UI Element Position
-    private void setGameWinPosition(double width, double height, int spacing) {
-        this.vBoxGameWin.setPrefSize(width,height);
-        this.vBoxGameWin.setLayoutX((gui.getWidth() - width) / 2);
-        this.vBoxGameWin.setLayoutY((gui.getHeight() - height) / 2);
-        this.vBoxGameWin.setSpacing(spacing);
+    private void setGameWinPosition() {
+        this.vBoxGameWin.setPrefSize(500, 300);
+        this.vBoxGameWin.setLayoutX((gui.getWidth() - (double) 500) / 2);
+        this.vBoxGameWin.setLayoutY((gui.getHeight() - (double) 300) / 2);
+        this.vBoxGameWin.setSpacing(10);
         this.vBoxGameWin.setAlignment(Pos.CENTER);
     }
 
@@ -146,7 +146,7 @@ public class GameWin {
 
     // Getter Methoden
     public boolean getGameWin_On() {
-        return gameWin_on;
+        return !gameWin_on;
     }
 
     public Pane getPGameWin() {

@@ -106,7 +106,7 @@ public class KeyHandler {
             }
         });
 
-        // Darkness Overlay rotation tracking on mous
+        // Darkness Overlay rotation tracking on mouse
         scene.setOnMouseMoved(event -> {
             double mouseX = event.getX();
             double mouseY = event.getY();
@@ -151,7 +151,7 @@ public class KeyHandler {
 
     // checking if keys are pressed
     private void handleMovement(double deltaTime) {
-        if (this.menu.getMenu_on() && !this.gameOver.getGameOver_On() && !this.gameWin.getGameWin_On()) {
+        if (this.menu.getMenu_on() && this.gameOver.getGameOver_On() && this.gameWin.getGameWin_On()) {
             double dx = 0;
             double dy = 0;
 
@@ -293,7 +293,7 @@ public class KeyHandler {
         // show Menu Toggle
         if (escPressed) {
             this.escPressed = false;
-            if (!menu.getSettings().getSettingOn() && !menu.getSettings().getAudio().getAudioOn() && !this.gameScene.getGameWin().getGameWin_On() && !this.gameScene.getGameOver().getGameOver_On()) {
+            if (!menu.getSettings().getSettingOn() && !menu.getSettings().getAudio().getAudioOn() && this.gameScene.getGameWin().getGameWin_On() && this.gameScene.getGameOver().getGameOver_On()) {
                 this.menu.triggerMenu();
             }
             else if (menu.getSettings().getSettingOn() && !menu.getSettings().getAudio().getAudioOn()){

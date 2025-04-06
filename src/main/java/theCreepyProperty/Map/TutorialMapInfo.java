@@ -173,7 +173,7 @@ public class TutorialMapInfo {
 
 
         // Collision Lable Info
-        this.collidingInfo = new Label("Find the ghost and touch it to remove the barrier.");
+        this.collidingInfo = new Label("Find the ghost to remove the barrier.");
         this.collidingInfo.setId(id);
         this.infoBarrier = new VBox(this.collidingInfo);
         this.infoBarrier.setId("tutorial-info-feld-background-error");

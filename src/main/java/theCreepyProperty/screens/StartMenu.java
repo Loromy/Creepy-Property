@@ -32,7 +32,7 @@ public class StartMenu {
         pStartMenu.getChildren().add(menuContainer);
         pStartMenu.setPrefSize(gui.getWidth(), gui.getHeight());
         backgroundStartMenu.setPrefSize(gui.getWidth(), gui.getHeight());
-        setMenuPosition(500, 300, 10);
+        setMenuPosition();
     }
 
     // Initializes UI elements
@@ -64,30 +64,30 @@ public class StartMenu {
     // Sets up button click actions
     private void setupEventHandlers() {
         // go to Level Select Scene Button
-        startButton.setOnAction(e -> {
+        startButton.setOnAction(_ -> {
             System.out.println("✔ [StartMenu]: Game starting...");
             gui.switchToGameScene();
         });
 
         // Quit Game Button
-        quitButton.setOnAction(e -> {
+        quitButton.setOnAction(_ -> {
             System.out.println("✔ [StartMenu]: Quitting game...");
             System.exit(0);
         });
     }
 
     // Centers the menu on the screen
-    private void setMenuPosition(double width, double height, int spacing) {
-        menuContainer.setPrefSize(width, height);
-        menuContainer.setLayoutX((gui.getWidth() - width) / 2);
-        menuContainer.setLayoutY((gui.getHeight() - height) / 2);
-        menuContainer.setSpacing(spacing);
+    private void setMenuPosition() {
+        menuContainer.setPrefSize(500, 300);
+        menuContainer.setLayoutX((gui.getWidth() - (double) 500) / 2);
+        menuContainer.setLayoutY((gui.getHeight() - (double) 300) / 2);
+        menuContainer.setSpacing(10);
         menuContainer.setAlignment(Pos.CENTER);
     }
 
     // Getter Methoden
     public Button getStartButton() { return startButton; }
     public Button getQuitButton() { return quitButton; }
-    public Pane getpStartMenu() { return pStartMenu; }
+    public Pane get_pStartMenu() { return pStartMenu; }
     public Pane getBackgroundStartMenu() { return backgroundStartMenu; }
 }

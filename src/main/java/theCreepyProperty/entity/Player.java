@@ -145,7 +145,7 @@ public class Player extends Entity{
 
     // Ghost sounds
     private void playGhostSound() {
-        if (!this.ghostSoundIsPlaying && this.gui.getGameScene().getMenu().getMenu_on() && !this.gui.getGameScene().getGameWin().getGameWin_On() && !this.gui.getGameScene().getGameOver().getGameOver_On()) {
+        if (!this.ghostSoundIsPlaying && this.gui.getGameScene().getMenu().getMenu_on() && this.gui.getGameScene().getGameWin().getGameWin_On() && this.gui.getGameScene().getGameOver().getGameOver_On()) {
             this.ghostSoundIsPlaying = true;
 
 

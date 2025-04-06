@@ -68,8 +68,7 @@ public class CollisionChecker {
             ImageView vacuum = mapCreate.getVacuumsList().get(i).getIVacuum();
 
             if (futurePlayer.intersects(vacuum.getBoundsInLocal()) && mapCreate.getVacuumsList().get(i).getPlayer_block_collision()) {
-                //todo anderer sound (equip sound)
-                this.soundPlayer = new SoundPlayer("src/resources/sounds/key-collect.wav");
+                this.soundPlayer = new SoundPlayer("src/resources/sounds/item-equip.wav");
                 this.soundPlayer.setVolume(this.scene.getMenu().getSettings().getAudio().getMaster());
                 this.soundPlayer.play();
 

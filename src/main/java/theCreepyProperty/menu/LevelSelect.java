@@ -145,7 +145,7 @@ public class LevelSelect {
 
     // Loads the background image for the menu
     private BackgroundImage getBackgroundImage() {
-        Image image = new Image(new FileCheck().checkImage("LevelSelect", "file:src/resources/textures/background/Creepy Property background.png"));
+        Image image = new Image(new FileCheck().checkImage("LevelSelect", "file:src/resources/textures/background/Creepy Property Background.png"));
 
         return new BackgroundImage(
                 image,

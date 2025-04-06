@@ -297,9 +297,10 @@
 /* Abschluss-Szene */
 #finishScene {
     -fx-font-family: Creepster;
-    -fx-text-fill: linear-gradient(#525252 20%, #509974);
+    /*-fx-text-fill: linear-gradient(#525252 20%, #509974);*/
+    -fx-text-fill: #d6ffd4;
     -fx-font-weight: bold;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.7), 3, 0, 3, 3);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 1), 3, 0, 3, 3);
     -fx-font-size: 20px;
 }
 
@@ -312,8 +313,9 @@
 }
 
 #finishScene-background {
-    -fx-background-color: rgba(64, 64, 64, 0.5);
+    -fx-background-color: rgba(3, 59, 1, 0.7);
     -fx-background-radius: 30px;
     -fx-border-radius: 30;
-    -fx-border-color: black;
+    -fx-border-color: #1a1a1a;
+    -fx-border-width: 5px;
 }
