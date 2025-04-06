@@ -4,21 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="87a96b04-91ba-4fe6-93a4-31fd9b49747e" name="Changes" comment="V0.4.9&#10;- update">
-      <change afterPath="$PROJECT_DIR$/src/resources/textures/overlay/info5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/TutorialMapInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/TutorialMapInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/csv/Save/spielstand.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/Save/spielstand.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/textures/items/Vacuum.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/textures/items/Vacuum.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/textures/overlay/Info.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/textures/overlay/InfoSteuerung.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/textures/overlay/VacuumOverlay.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/textures/overlay/VacuumOverlay.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/textures/overlay/darknessOverlay1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/textures/overlay/darknessOverlay2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/textures/overlay/darknessOverlay2_Ringe.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/textures/overlay/info2.png" beforeDir="false" />
-    </list>
+    <list default="true" id="87a96b04-91ba-4fe6-93a4-31fd9b49747e" name="Changes" comment="V0.4.10&#10;- update" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -58,19 +44,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Lucas/Documents/GitHub/the-creepy-property/src/resources/textures/overlay",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Lucas/Documents/GitHub/the-creepy-property/src/resources/textures/overlay&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Lucas\Documents\GitHub\the-creepy-property\src\resources\textures\overlay" />
@@ -380,7 +366,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743938387996</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="V0.4.10&#10;- update">
+      <option name="closed" value="true" />
+      <created>1743946246500</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1743946246500</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -395,7 +389,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="V0.3.1.3.1&#10;- add" />
     <MESSAGE value="V0.3.1.4&#10;- Spielstand csv save / read" />
     <MESSAGE value="V0.3.1.5&#10;- map 2/3 update" />
     <MESSAGE value="V0.3.2&#10;- map update&#10;- finishScene" />
@@ -420,7 +413,8 @@
     <MESSAGE value="V0.4.8&#10;- update Comments" />
     <MESSAGE value="V0.4.8.1&#10;- fix" />
     <MESSAGE value="V0.4.9&#10;- update" />
-    <option name="LAST_COMMIT_MESSAGE" value="V0.4.9&#10;- update" />
+    <MESSAGE value="V0.4.10&#10;- update" />
+    <option name="LAST_COMMIT_MESSAGE" value="V0.4.10&#10;- update" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
