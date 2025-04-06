@@ -34,6 +34,7 @@ public class TutorialMapInfo {
     private Label buttonLabel2;
     private Label buttonLabel3;
     private Label buttonLabel4;
+    private Label buttonLabel5;
 
     private Label collidingInfo;
 
@@ -54,6 +55,7 @@ public class TutorialMapInfo {
     private VBox infoButton2;
     private VBox infoButton3;
     private VBox infoButton4;
+    private VBox infoButton5;
 
     public TutorialMapInfo(GameScene gameScene) {
         System.out.println(".............................TutorialMapInfo..............................");
@@ -171,6 +173,11 @@ public class TutorialMapInfo {
         this.infoButton4 = new VBox(this.buttonLabel4);
         vBox_position(this.infoButton4,825,140);
 
+        this.buttonLabel5 = new Label("⬅ Press to open Menu");
+        this.buttonLabel5.setId(moveId);
+        this.infoButton5 = new VBox(this.buttonLabel5);
+        vBox_position(this.infoButton5,825,165);
+
 
         // Collision Lable Info
         this.collidingInfo = new Label("Find the ghost to remove the barrier.");
@@ -181,7 +188,7 @@ public class TutorialMapInfo {
         this.infoBarrier.setVisible(false);
 
         // Steuerung Image info
-        this.info = new ImageView(new Image("file:src/resources/textures/overlay/Info4.png"));
+        this.info = new ImageView(new Image("file:src/resources/textures/overlay/Info5.png"));
         i_position(info, 730, 5, 300, 200); // 250,150
         this.info.setOpacity(0.7);
 
@@ -190,7 +197,7 @@ public class TutorialMapInfo {
         i_position(ghostDistance, -105, 195, 400, 400);
 
         this.infoPaneUnder.getChildren().addAll(this.ghostDistance, this.wallInfo, this.keyInfo, this.vacuumInfo, this.doorInfo, this.ghostInfo, this.wallBlock);
-        this.infoPaneOver.getChildren().addAll(this.infoGuiKeys, this.infoGuiTime, this.infoGuiDeaths, this.infoGuiSprint, this.infoGuiLevel, this.info, this.infoButton1, this.infoButton2, this.infoButton3, this.infoButton4, this.infoBarrier);
+        this.infoPaneOver.getChildren().addAll(this.infoGuiKeys, this.infoGuiTime, this.infoGuiDeaths, this.infoGuiSprint, this.infoGuiLevel, this.info, this.infoButton1, this.infoButton2, this.infoButton3, this.infoButton4, this.infoButton5, this.infoBarrier);
 
         this.gameScene.pTutorialMapInfoUnderChildren(this.infoPaneUnder);
         this.gameScene.pTutorialMapinfoOverChildren(this.infoPaneOver);
@@ -267,6 +274,7 @@ public class TutorialMapInfo {
         buttonLabel2 = null;
         buttonLabel3 = null;
         buttonLabel4 = null;
+        buttonLabel5 = null;
 
         collidingInfo = null;
 
@@ -288,6 +296,7 @@ public class TutorialMapInfo {
         infoButton2 = null;
         infoButton3 = null;
         infoButton4 = null;
+        infoButton5 = null;
 
         System.gc();
         System.out.println("✔ [TutorialMapInfo]: Speicherbereinigung durchgeführt.");

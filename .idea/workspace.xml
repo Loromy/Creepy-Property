@@ -4,21 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="87a96b04-91ba-4fe6-93a4-31fd9b49747e" name="Changes" comment="V0.4.8.1&#10;- fix">
-      <change afterPath="$PROJECT_DIR$/src/resources/sounds/item-equip.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/textures/background/Creepy Property Background.png" afterDir="false" />
+    <list default="true" id="87a96b04-91ba-4fe6-93a4-31fd9b49747e" name="Changes" comment="V0.4.9&#10;- update">
+      <change afterPath="$PROJECT_DIR$/src/resources/textures/overlay/info5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/TutorialMapInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/Map/TutorialMapInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/CollisionChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/CollisionChecker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/menu/LevelSelect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/menu/LevelSelect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/scenes/CreditScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/scenes/CreditScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/csv/Save/settings.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/Save/settings.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/csv/Save/spielstand.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/Save/spielstand.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/sounds/background/finish music-.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/sounds/background/finish music.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/style/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/style/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/textures/background/Creepy Property background.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/textures/background/finish Scene Background.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/textures/items/Vacuum.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/textures/items/Vacuum.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/textures/overlay/Info.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/textures/overlay/InfoSteuerung.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/textures/overlay/VacuumOverlay.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/textures/overlay/VacuumOverlay.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/textures/overlay/darknessOverlay1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/textures/overlay/darknessOverlay2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/textures/overlay/darknessOverlay2_Ringe.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/textures/overlay/info2.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,12 +41,12 @@
     &quot;assignee&quot;: &quot;Loromy&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Loromy/the-creepy-property.git",
-    "accountId": "84b08c22-0b9f-49c9-8f7d-8949e2e20942"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Loromy/the-creepy-property.git&quot;,
+    &quot;accountId&quot;: &quot;84b08c22-0b9f-49c9-8f7d-8949e2e20942&quot;
   }
-}]]></component>
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -68,15 +67,16 @@
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Lucas/Documents/GitHub/the-creepy-property/src/resources/textures/background",
+    "last_opened_file_path": "C:/Users/Lucas/Documents/GitHub/the-creepy-property/src/resources/textures/overlay",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Lucas\Documents\GitHub\the-creepy-property\src\resources\textures\overlay" />
+      <recent name="C:\Users\Lucas\Documents\GitHub\the-creepy-property\src\resources\textures\items" />
       <recent name="C:\Users\Lucas\Documents\GitHub\the-creepy-property\src\resources\textures\background" />
       <recent name="C:\Users\Lucas\Documents\GitHub\the-creepy-property\src\resources\sounds\background" />
-      <recent name="C:\Users\Lucas\Documents\GitHub\the-creepy-property\src\resources\textures\overlay" />
       <recent name="C:\Users\Lucas\Documents\GitHub\the-creepy-property\src\resources\fonts" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -372,7 +372,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743582369382</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="V0.4.9&#10;- update">
+      <option name="closed" value="true" />
+      <created>1743938387996</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1743938387996</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -387,7 +395,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="V0.3.1.3&#10;- audio save value in settings" />
     <MESSAGE value="V0.3.1.3.1&#10;- add" />
     <MESSAGE value="V0.3.1.4&#10;- Spielstand csv save / read" />
     <MESSAGE value="V0.3.1.5&#10;- map 2/3 update" />
@@ -412,7 +419,8 @@
     <MESSAGE value="V0.4.7.3&#10;- vacuum icon" />
     <MESSAGE value="V0.4.8&#10;- update Comments" />
     <MESSAGE value="V0.4.8.1&#10;- fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="V0.4.8.1&#10;- fix" />
+    <MESSAGE value="V0.4.9&#10;- update" />
+    <option name="LAST_COMMIT_MESSAGE" value="V0.4.9&#10;- update" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
