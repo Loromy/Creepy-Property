@@ -65,8 +65,8 @@ public class Audio {
 
         // Button text
         this.backButton.setText("Back");
-        this.label1.setText("Master: " + Math.round(this.master * 100f) / 100f);
-        this.label2.setText("Background: " + Math.round(this.master * 100f) / 100f);
+        this.label1.setText("Master: " + (int)(Math.round(this.master * 100f) / 100f) + "%");
+        this.label2.setText("Background: " + (int)(Math.round(this.master * 100f) / 100f) + "%");
         this.button3.setText("");
         this.button4.setText("");
         this.button5.setText("");
@@ -172,14 +172,12 @@ public class Audio {
             slider1.lookup(".track").setStyle(style);
         }
 
-        // sound anpassen
+        // sound
         this.master = newVal.intValue();
 
         readWriteSettings.updateSetting("master",this.master);
 
         this.label1.setText("Master: " + this.master + "%");
-
-        //System.out.println("[Audio]: slider1 ✔");
     }
 
     private void onSlider2(Number newVal) {
@@ -193,13 +191,12 @@ public class Audio {
             slider2.lookup(".track").setStyle(style);
         }
 
-        // sound anpassen
+        // sound
         this.background = newVal.intValue();
 
         readWriteSettings.updateSetting("background",this.background);
 
         this.label2.setText("Background: " + this.background + "%");
-
     }
 
     private void onButton3() {

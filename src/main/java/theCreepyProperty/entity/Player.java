@@ -94,7 +94,7 @@ public class Player extends Entity{
         right4 = loadImage("file:src/resources/textures/player/right_4.png");
 
         vacuumOverlay = loadImage("file:src/resources/textures/overlay/VacuumOverlay.png");
-        overlay = loadImage("file:src/resources/textures/overlay/darknessOverlay3.png");
+        overlay = loadImage("file:src/resources/textures/overlay/darknessOverlay.png");
 
         System.out.println("✔ [Player]: Image Player images successfully loaded");
     }

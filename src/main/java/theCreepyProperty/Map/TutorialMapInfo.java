@@ -188,7 +188,7 @@ public class TutorialMapInfo {
         this.infoBarrier.setVisible(false);
 
         // Steuerung Image info
-        this.info = new ImageView(new Image("file:src/resources/textures/overlay/Info5.png"));
+        this.info = new ImageView(new Image("file:src/resources/textures/overlay/Info.png"));
         i_position(info, 730, 5, 300, 200); // 250,150
         this.info.setOpacity(0.7);
 

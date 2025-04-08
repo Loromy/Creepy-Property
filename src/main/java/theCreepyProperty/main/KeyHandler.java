@@ -75,11 +75,14 @@ public class KeyHandler {
                 case S -> sPressed = true;
                 case A -> aPressed = true;
                 case D -> dPressed = true;
+                /*
+                Development Features:
                 case P -> pPressed = true;
                 case C -> cPressed = true;
                 case O -> oPressed = true;
                 case M -> mPressed = true;
                 case B -> bPressed = true;
+                */
                 case CONTROL -> ctrlPressed = true;
                 case SHIFT -> shiftPressed = true;
                 case ESCAPE -> escPressed = true;
@@ -95,11 +98,14 @@ public class KeyHandler {
                 case S -> sPressed = false;
                 case A -> aPressed = false;
                 case D -> dPressed = false;
+                /*
+                Development Features:
                 case P -> pPressed = false;
                 case C -> cPressed = false;
                 case O -> oPressed = false;
                 case M -> mPressed = false;
                 case B -> bPressed = false;
+                */
                 case CONTROL -> ctrlPressed = false;
                 case SHIFT -> shiftPressed = false;
                 case ESCAPE -> escPressed = false;
