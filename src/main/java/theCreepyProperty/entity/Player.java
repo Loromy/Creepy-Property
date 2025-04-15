@@ -68,7 +68,7 @@ public class Player extends Entity{
         entity_size_X = 12;
         entity_size_Y = 28;
         entity_world_X = ((double) gui.getWidth() / 2) - (entity_size_X / 2);
-        entity_world_Y = ((double) gui.getHeight() / 2) - ((entity_size_Y / 2));
+        entity_world_Y = ((double) gui.getHeight() / 2) - ((entity_size_Y / 2) + 20);
         speed = 3;
         direction = "down";
         System.out.println("✔ [Player]: Player defaultValues set");

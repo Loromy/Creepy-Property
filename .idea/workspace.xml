@@ -4,15 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="87a96b04-91ba-4fe6-93a4-31fd9b49747e" name="Changes" comment="V0.4.10&#10;- update">
+    <list default="true" id="87a96b04-91ba-4fe6-93a4-31fd9b49747e" name="Changes" comment="V0.5&#10;- fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/KeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/main/KeyHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/theCreepyProperty/menu/Audio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/theCreepyProperty/menu/Audio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/csv/Save/settings.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/Save/settings.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/csv/Save/spielstand.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/csv/Save/spielstand.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/logos/LogoGreen.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/logos/LogoRed.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/textures/items/Star.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -383,7 +376,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743946246500</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="V0.5&#10;- fix">
+      <option name="closed" value="true" />
+      <created>1744119916755</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1744119916755</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -398,7 +399,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="V0.3.1.4&#10;- Spielstand csv save / read" />
     <MESSAGE value="V0.3.1.5&#10;- map 2/3 update" />
     <MESSAGE value="V0.3.2&#10;- map update&#10;- finishScene" />
     <MESSAGE value="V0.3.4&#10;- test maps erstell&#10;- background music&#10;- random background noise" />
@@ -423,7 +423,8 @@
     <MESSAGE value="V0.4.8.1&#10;- fix" />
     <MESSAGE value="V0.4.9&#10;- update" />
     <MESSAGE value="V0.4.10&#10;- update" />
-    <option name="LAST_COMMIT_MESSAGE" value="V0.4.10&#10;- update" />
+    <MESSAGE value="V0.5&#10;- fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="V0.5&#10;- fix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
