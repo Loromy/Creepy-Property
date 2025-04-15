@@ -1,32 +1,79 @@
-# JavaFXAwesomeApp
+# Creepy Property
 
-**Ein modernes JavaFX-Projekt zur Erstellung von benutzerfreundlichen Desktop-Anwendungen**
+**Ein düsteres JavaFX-Spiel, in dem du einer gruseligen Villa entkommen musst.**
 
-[![Build Status](https://img.shields.io/github/actions/workflow/status/username/JavaFXAwesomeApp/ci.yml?branch=main)](https://github.com/username/JavaFXAwesomeApp/actions)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Java Version](https://img.shields.io/badge/Java-11%2B-blue.svg)](https://openjdk.java.net/)
+
+
+
 
 ## Inhaltsverzeichnis
+
 1. [Über das Projekt](#über-das-projekt)
-2. [Installation](#installation)
-3. [Nutzung](#nutzung)
-4. [Mitwirken](#mitwirken)
+2. [Features](#features)
+3. [Installation](#installation)
+4. [Nutzung](#nutzung)
 5. [Lizenz](#lizenz)
 
 ## Über das Projekt
-The-Creapy-Property ist eine spiel, entwickelt mit JavaFX, im ramen einer Schulischen Aufgabe. Es ist Adventure Game in dem man eine Alte Villa erkundet und versucht sie zuverlassen.
 
-**Features:**
-- Spiel
+*Creepy Property* ist ein JavaFX-basiertes Adventure-Game. Der Spieler wacht in einem alten, dunklen Herrenhaus auf und muss einen Weg hinaus finden. Dabei durchläuft er mehrere Level, sammelt Schlüssel, meidet Geister und löst Aufgaben, um zu entkommen.
+
+## Features
+
+- Gruselige Atmosphäre mit Musikuntermalung
+- Menüsystem zur Navigation und Steuerung
+- Gegner (Geister), die dem Spieler folgen
+- Sammelbare Items wie Schlüssel und Hilfsmittel
+- Levelstruktur mit zunehmender Schwierigkeit
 
 ## Installation
 
 ### Voraussetzungen
-- [JDK 11+](https://adoptopenjdk.net/) (JavaFX funktioniert mit JDK 11 oder höher)
-- [Maven](https://maven.apache.org/) für den Build-Prozess
+
+- [OpenJDK 23](https://openjdk.org/projects/jdk/23/)
+- [Maven](https://maven.apache.org/) zum Bauen des Projekts
 
 ### Schritte
-1. Klone das Repository:
-   ```bash
-   git clone https://github.com/username/JavaFXAwesomeApp.git
-   cd JavaFXAwesomeApp
+
+1. Repository klonen:
+
+```bash
+git clone https://github.com/Loromy/the-creepy-property
+cd CreepyProperty
+```
+
+2. Mit Maven bauen:
+
+```bash
+mvn clean install
+```
+
+3. Spiel starten:
+
+```bash
+# Stelle sicher, dass die Main-Klasse korrekt im POM definiert ist oder führe sie manuell aus
+target/java CreepyProperty.Main
+```
+
+> 📌 Hinweis: Das Spiel basiert auf JavaFX – stelle sicher, dass JavaFX korrekt eingebunden ist (z. B. über die `pom.xml`).
+
+## Nutzung
+
+Das Spiel wird über die Main-Klasse gestartet. Navigiere im Menü und beginne dein Abenteuer durch die Villa. Weiche Geistern aus, finde Schlüssel und gelange durch alle Level zur Freiheit.
+
+> 📷 **Screenshots** folgen ggf. später im Ordner `/screenshots`
+
+## Lizenz
+
+Dieses Projekt steht unter der **Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License**.
+
+- Du darfst es **nutzen, teilen und zeigen**,
+- solange du **den Urheber Max Musterman nennst**,
+- **nichts veränderst**,
+- und es **nicht kommerziell nutzt oder weiterverkaufst**.
+
+🔗 [Lizenz anzeigen (CC BY-NC-ND 4.0)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
+
+---
+
+**Autor:** Lucas köhler – [github.com](https://github.com/Loromy/the-creepy-property)
