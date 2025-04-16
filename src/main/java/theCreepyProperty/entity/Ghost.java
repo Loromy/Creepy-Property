@@ -130,20 +130,20 @@ public class Ghost extends Entity{
         double distanceToPlayer = Math.sqrt(Math.pow(playerX - rectX, 2) + Math.pow(playerY - rectY, 2));
 
         if (distanceToPlayer <= playerTargetDistance) {
-            // Wenn der Spieler innerhalb von 100px ist, setze die Zielkoordinaten auf die Spielerposition
+            // set Zielkoordinaten for Ghost
             zielPosition_X = playerX;
             zielPosition_Y = playerY;
         } else if (distanceToPlayer > playerTargetDistance && zielPosition_X == playerX && zielPosition_Y == playerY) {
-            // Falls der Spieler weiter weg ist und das Ziel gerade auf den Spieler gesetzt war, neues Ziel setzen
+            // set a random target
             setNewTarget();
         }
 
-        // Bewegung berechnen
+        // calculate Movement
         double dx = zielPosition_X - rectX;
         double dy = zielPosition_Y - rectY;
         double distance = Math.sqrt(dx * dx + dy * dy);
 
-        if (distance > speed) { // Falls das Ziel noch nicht erreicht ist
+        if (distance > speed) { // if Target not reached
             double vx = (dx / distance) * speed;
             double vy = (dy / distance) * speed;
             rect.setX(rectX + vx);
@@ -151,7 +151,7 @@ public class Ghost extends Entity{
         } else {
             rect.setX(zielPosition_X);
             rect.setY(zielPosition_Y);
-            setNewTarget(); // Neues Ziel setzen, falls nötig
+            setNewTarget(); // set new Target
         }
     }
 

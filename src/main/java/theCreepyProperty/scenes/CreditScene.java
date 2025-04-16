@@ -100,7 +100,7 @@ public class CreditScene {
         this.bildStartLink = new Label(" generiert von Chat GPT: https://chatgpt.com");
         this.bildStartLink.setId("finishScene-text");
 
-        this.bildKey = new Label("Schlüssel Bild:");
+        this.bildKey = new Label("Schlüssel, Vacuum Bild:");
         this.bildKey.setId("finishScene");
         this.bildKeyLink = new Label(" generiert von Chat GPT: https://chatgpt.com");
         this.bildKeyLink.setId("finishScene-text");
