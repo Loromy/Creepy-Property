@@ -68,7 +68,7 @@ Das Spiel wird über die Main-Klasse gestartet. Navigiere im Menü und beginne d
 Dieses Projekt steht unter der **Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License**.
 
 - Du darfst es **nutzen, teilen und zeigen**,
-- solange du **den Urheber Max Musterman nennst**,
+- solange du **den Urheber Loromy nennst**,
 - **nichts veränderst**,
 - und es **nicht kommerziell nutzt oder weiterverkaufst**.
 
@@ -76,4 +76,4 @@ Dieses Projekt steht unter der **Creative Commons Attribution-NonCommercial-NoDe
 
 ---
 
-**Autor:** Lucas köhler – [github.com](https://github.com/Loromy/the-creepy-property)
+**Autor:** Loromy – [github.com/Loromy](https://github.com/Loromy/the-creepy-property)
