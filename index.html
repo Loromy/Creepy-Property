@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Creepy Property 🌿 - JavaFX Horror Adventure Game</title>
+  <meta name="description" content="Ein düsteres JavaFX-Adventure-Game. Entkomme aus einem gruseligen Herrenhaus voller Geister und Rätsel.">
+  <link href="style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body class="creepy-body">
+  <!-- Creepy Fog Background -->
+  <div class="creepy-fog">
+    <div class="fog-layer fog-1"></div>
+    <div class="fog-layer fog-2"></div>
+    <div class="fog-layer fog-3"></div>
+  </div>
+
+  <!-- Floating particles -->
+  <div class="creepy-particles">
+    <div class="particle-green"></div>
+    <div class="particle-green"></div>
+    <div class="particle-green"></div>
+    <div class="particle-green"></div>
+    <div class="particle-green"></div>
+    <div class="particle-green"></div>
+    <div class="particle-green"></div>
+    <div class="particle-green"></div>
+    <div class="particle-green"></div>
+    <div class="particle-green"></div>
+  </div>
+
+  <header>
+    <a href="index.html" class="logo">Creepy Property</a>
+    <nav id="nav">
+      <a href="#features-section">Features</a>
+      <a href="#download-section">Download</a>
+      <a href="https://github.com/Loromy/Creepy-Property" target="_blank">GitHub</a>
+    </nav>
+    <div class="theme-toggle" id="themeToggle"><span id="themeIcon">🌙</span></div>
+    <div class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></div>
+  </header>
+
+  <main>
+    <div class="container-compact creepy-page">
+
+      <!-- Horror-Style Header -->
+      <div class="creepy-header">
+        <div class="skull-icon">💀</div>
+        <h1 class="creepy-title">
+          <span class="title-shadow-creepy">Creepy Property</span>
+          <span class="title-main-creepy">Creepy Property</span>
+        </h1>
+        <div class="creepy-line"></div>
+        <div class="status-container">
+          <span class="creepy-status">☠️ HORROR SURVIVAL</span>
+          <a href="https://github.com/Loromy/Creepy-Property" target="_blank" class="status-badge creepy-badge">🎮 Auf GitHub</a>
+        </div>
+        <p class="project-intro creepy-intro">
+          Ein düsteres JavaFX-Adventure-Game, in dem du einer gruseligen Villa entkommen musst.
+          Wache in einem alten, dunklen Herrenhaus auf und finde einen Weg hinaus!
+        </p>
+      </div>
+
+      <!-- Stats Box (Creepy-Style) -->
+      <div class="creepy-stats">
+        <div class="stat-item creepy-stat">
+          <div class="stat-icon">☕</div>
+          <div class="stat-value">Java</div>
+          <div class="stat-label">Sprache</div>
+        </div>
+        <div class="stat-item creepy-stat">
+          <div class="stat-icon">🎨</div>
+          <div class="stat-value">JavaFX</div>
+          <div class="stat-label">Framework</div>
+        </div>
+        <div class="stat-item creepy-stat">
+          <div class="stat-icon">📦</div>
+          <div class="stat-value">Maven</div>
+          <div class="stat-label">Build Tool</div>
+        </div>
+        <div class="stat-item creepy-stat">
+          <div class="stat-icon">🔊</div>
+          <div class="stat-value">Sound FX</div>
+          <div class="stat-label">Atmosphäre</div>
+        </div>
+      </div>
+
+      <!-- Features Section (Horror-Style) -->
+      <section class="creepy-section" id="features-section">
+        <h2 class="section-heading creepy-heading">
+          <span class="heading-icon">🌿</span>
+          <span class="heading-text">Hauptfeatures</span>
+          <span class="creepy-dust-line"></span>
+        </h2>
+
+        <div class="features-creepy">
+          <div class="feature-block creepy-block">
+            <div class="block-top-creepy"></div>
+            <div class="feature-content">
+              <div class="feature-icon-large">🏚️</div>
+              <h3>Düsteres Herrenhaus</h3>
+              <p>Erkunde ein altes, dunkles Herrenhaus voller Geheimnisse. Durchlaufe mehrere Level
+              und finde einen Weg aus der gruseligen Villa zu entkommen.</p>
+              <div class="feature-tags">
+                <span class="creepy-tag">Adventure</span>
+                <span class="creepy-tag">Exploration</span>
+                <span class="creepy-tag">Multi-Level</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="feature-block creepy-block">
+            <div class="block-top-creepy"></div>
+            <div class="feature-content">
+              <div class="feature-icon-large">👻</div>
+              <h3>Geister & Gegner</h3>
+              <p>Meide gefährliche Geister, die dir durch die Villa folgen. Die KI-gesteuerten Gegner
+              machen jede Begegnung zu einer Herausforderung.</p>
+              <div class="feature-tags">
+                <span class="creepy-tag">Enemies</span>
+                <span class="creepy-tag">AI</span>
+                <span class="creepy-tag">Challenge</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="feature-block creepy-block">
+            <div class="block-top-creepy"></div>
+            <div class="feature-content">
+              <div class="feature-icon-large">🔑</div>
+              <h3>Sammelbare Items</h3>
+              <p>Sammle Schlüssel und Hilfsmittel, um verschlossene Türen zu öffnen und
+              weiterzukommen. Jedes Item bringt dich näher zur Freiheit.</p>
+              <div class="feature-tags">
+                <span class="creepy-tag">Keys</span>
+                <span class="creepy-tag">Items</span>
+                <span class="creepy-tag">Puzzles</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="feature-block creepy-block">
+            <div class="block-top-creepy"></div>
+            <div class="feature-content">
+              <div class="feature-icon-large">🎵</div>
+              <h3>Gruselige Atmosphäre</h3>
+              <p>Tauche ein in eine beängstigende Welt mit atmosphärischer Musikuntermalung
+              und Sound-Effekten, die dich in Atem halten.</p>
+              <div class="feature-tags">
+                <span class="creepy-tag">Music</span>
+                <span class="creepy-tag">SFX</span>
+                <span class="creepy-tag">Immersive</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="feature-block creepy-block">
+            <div class="block-top-creepy"></div>
+            <div class="feature-content">
+              <div class="feature-icon-large">🎮</div>
+              <h3>Menüsystem</h3>
+              <p>Intuitive Navigation und Steuerung über ein benutzerfreundliches Menüsystem.
+              Einfach zu bedienen, schwer zu meistern.</p>
+              <div class="feature-tags">
+                <span class="creepy-tag">UI/UX</span>
+                <span class="creepy-tag">JavaFX</span>
+                <span class="creepy-tag">Controls</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="feature-block creepy-block">
+            <div class="block-top-creepy"></div>
+            <div class="feature-content">
+              <div class="feature-icon-large">📈</div>
+              <h3>Progressive Schwierigkeit</h3>
+              <p>Levelstruktur mit zunehmender Schwierigkeit. Löse Aufgaben und stelle dich
+              immer größeren Herausforderungen auf deinem Weg zur Freiheit.</p>
+              <div class="feature-tags">
+                <span class="creepy-tag">Levels</span>
+                <span class="creepy-tag">Progression</span>
+                <span class="creepy-tag">Tasks</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tech Stack Section -->
+      <section class="creepy-section">
+        <h2 class="section-heading creepy-heading">
+          <span class="heading-icon">💻</span>
+          <span class="heading-text">Technologie & Tools</span>
+          <span class="creepy-dust-line"></span>
+        </h2>
+
+        <div class="tech-grid-creepy">
+          <div class="tech-item-creepy">
+            <div class="tech-icon">☕</div>
+            <h3>Java (JDK 23)</h3>
+            <p>Moderne Java-Programmierung mit OpenJDK 23 für Performance und Stabilität</p>
+          </div>
+          <div class="tech-item-creepy">
+            <div class="tech-icon">🎨</div>
+            <h3>JavaFX 17</h3>
+            <p>JavaFX Framework für moderne, plattformübergreifende GUI-Entwicklung</p>
+          </div>
+          <div class="tech-item-creepy">
+            <div class="tech-icon">📦</div>
+            <h3>Maven Build</h3>
+            <p>Automatisiertes Build-Management mit Apache Maven</p>
+          </div>
+          <div class="tech-item-creepy">
+            <div class="tech-icon">🎮</div>
+            <h3>Game Logic</h3>
+            <p>Custom Game-Engine mit Kollisionserkennung, KI und Level-System</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Screenshots/Gallery Section -->
+      <section class="creepy-section">
+        <h2 class="section-heading creepy-heading">
+          <span class="heading-icon">📸</span>
+          <span class="heading-text">Impressionen</span>
+          <span class="creepy-dust-line"></span>
+        </h2>
+
+        <div class="creepy-gallery">
+          <div class="gallery-item-creepy">
+            <div class="gallery-frame-creepy">
+              <div class="placeholder-image">
+                <span class="placeholder-icon">🏚️</span>
+                <p>Herrenhaus</p>
+              </div>
+            </div>
+            <p class="gallery-caption">Das düstere Herrenhaus - Dein Gefängnis</p>
+          </div>
+
+          <div class="gallery-item-creepy">
+            <div class="gallery-frame-creepy">
+              <div class="placeholder-image">
+                <span class="placeholder-icon">👻</span>
+                <p>Geister</p>
+              </div>
+            </div>
+            <p class="gallery-caption">KI-gesteuerte Geister folgen dem Spieler</p>
+          </div>
+
+          <div class="gallery-item-creepy">
+            <div class="gallery-frame-creepy">
+              <div class="placeholder-image">
+                <span class="placeholder-icon">🔑</span>
+                <p>Schlüssel</p>
+              </div>
+            </div>
+            <p class="gallery-caption">Sammelbare Items und Schlüssel</p>
+          </div>
+
+          <div class="gallery-item-creepy">
+            <div class="gallery-frame-creepy">
+              <div class="placeholder-image">
+                <span class="placeholder-icon">🎮</span>
+                <p>Gameplay</p>
+              </div>
+            </div>
+            <p class="gallery-caption">JavaFX-basiertes Spielinterface</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Download/GitHub Section -->
+      <section class="creepy-section" id="download-section">
+        <h2 class="section-heading creepy-heading">
+          <span class="heading-icon">🎮</span>
+          <span class="heading-text">Jetzt spielen</span>
+          <span class="creepy-dust-line"></span>
+        </h2>
+
+        <div class="download-box-creepy">
+          <div class="download-content">
+            <div class="download-icon">📦</div>
+            <h3>Installation & Download</h3>
+            <p>Das Spiel ist Open Source und kann kostenlos heruntergeladen werden.
+            Du benötigst OpenJDK 23 und Maven zum Bauen des Projekts. Besuche das GitHub-Repository
+            für den Source Code und Installationsanweisungen.</p>
+            <div class="download-buttons">
+              <a href="https://github.com/Loromy/Creepy-Property" target="_blank" class="btn-creepy btn-primary-creepy">
+                <span>🔗 GitHub Repository</span>
+              </a>
+              <a href="https://github.com/Loromy/Creepy-Property/releases" target="_blank" class="btn-creepy btn-secondary-creepy">
+                <span>⬇️ Releases</span>
+              </a>
+            </div>
+          </div>
+          <div class="github-stats-creepy">
+            <div class="github-stat-item">
+              <span class="stat-icon">⭐</span>
+              <span class="stat-text">Open Source</span>
+            </div>
+            <div class="github-stat-item">
+              <span class="stat-icon">🔓</span>
+              <span class="stat-text">CC BY-NC-ND 4.0</span>
+            </div>
+            <div class="github-stat-item">
+              <span class="stat-icon">🛠️</span>
+              <span class="stat-text">In Entwicklung</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Development Info -->
+      <section class="creepy-section">
+        <h2 class="section-heading creepy-heading">
+          <span class="heading-icon">📖</span>
+          <span class="heading-text">Über das Projekt</span>
+          <span class="creepy-dust-line"></span>
+        </h2>
+
+        <div class="info-box-creepy">
+          <p>
+            <strong>Creepy Property</strong> ist ein JavaFX-basiertes Adventure-Game.
+            Der Spieler wacht in einem alten, dunklen Herrenhaus auf und muss einen Weg hinaus finden.
+            Dabei durchläuft er mehrere Level, sammelt Schlüssel, meidet Geister und löst Aufgaben, um zu entkommen.
+          </p>
+          <p>
+            Die Entwicklung umfasst fortgeschrittene JavaFX-Features wie KI-Systeme für Geister-Gegner,
+            Kollisionserkennung (CollisionChecker), Map-System mit LevelData, Sound-Integration
+            und ein komplexes Entity-System für Player und Enemies.
+          </p>
+          <p>
+            Das Projekt verwendet Java 23 mit JavaFX 17 und Maven als Build-Tool.
+            Der vollständige Source Code ist auf GitHub verfügbar unter der
+            <strong>Creative Commons BY-NC-ND 4.0 Lizenz</strong> - du darfst es nutzen, teilen und zeigen,
+            solange du den Urheber (Loromy) nennst und es nicht kommerziell nutzt.
+          </p>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 — Creepy Property by <a href="https://github.com/Loromy" target="_blank" style="color: var(--creepy-bright-green); text-decoration: none;">Loromy</a></p>
+    <p style="margin-top: 10px; font-size: 12px;">Ein düsteres JavaFX-Adventure-Game</p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
