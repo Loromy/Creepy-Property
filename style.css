@@ -784,6 +784,42 @@ main {
   font-weight: 600;
 }
 
+/* Video Container */
+.video-container-creepy {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, rgba(0, 100, 20, 0.2), rgba(0, 0, 0, 0.6));
+  border: 3px solid var(--creepy-dark-green);
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow:
+    0 15px 45px rgba(0, 0, 0, 0.6),
+    0 0 40px rgba(0, 255, 65, 0.25);
+  transition: all 0.4s ease;
+}
+
+.video-container-creepy:hover {
+  border-color: var(--creepy-bright-green);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.7),
+    0 0 50px rgba(0, 255, 65, 0.4);
+  transform: translateY(-5px);
+}
+
+.gameplay-video {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+  background: #000;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+}
+
+.gameplay-video::-webkit-media-controls-panel {
+  background: linear-gradient(to bottom, rgba(0, 50, 10, 0.8), rgba(0, 0, 0, 0.9));
+}
+
 /* Download Box */
 .download-box-creepy {
   background: linear-gradient(135deg, rgba(0, 100, 20, 0.3), rgba(0, 0, 0, 0.7));
