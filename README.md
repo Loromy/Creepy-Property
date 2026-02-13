@@ -2,9 +2,10 @@
 
 **Ein düsteres JavaFX-Spiel, in dem du einer gruseligen Villa entkommen musst.**
 
+🌐 **Projekt-Webseite:**  
+👉 https://loromy.github.io/Creepy-Property/
 
-
-
+---
 
 ## Inhaltsverzeichnis
 
@@ -14,24 +15,33 @@
 4. [Nutzung](#nutzung)
 5. [Lizenz](#lizenz)
 
+---
+
 ## Über das Projekt
 
 *Creepy Property* ist ein JavaFX-basiertes Adventure-Game. Der Spieler wacht in einem alten, dunklen Herrenhaus auf und muss einen Weg hinaus finden. Dabei durchläuft er mehrere Level, sammelt Schlüssel, meidet Geister und löst Aufgaben, um zu entkommen.
 
+🌍 **Offizielle Projektseite:**  
+https://loromy.github.io/Creepy-Property/
+
+---
+
 ## Features
 
-- Gruselige Atmosphäre mit Musikuntermalung
-- Menüsystem zur Navigation und Steuerung
-- Gegner (Geister), die dem Spieler folgen
-- Sammelbare Items wie Schlüssel und Hilfsmittel
-- Levelstruktur mit zunehmender Schwierigkeit
+- Gruselige Atmosphäre mit Musikuntermalung  
+- Menüsystem zur Navigation und Steuerung  
+- Gegner (Geister), die dem Spieler folgen  
+- Sammelbare Items wie Schlüssel und Hilfsmittel  
+- Levelstruktur mit zunehmender Schwierigkeit  
+
+---
 
 ## Installation
 
 ### Voraussetzungen
 
-- [OpenJDK 23](https://openjdk.org/projects/jdk/23/)
-- [Maven](https://maven.apache.org/) zum Bauen des Projekts
+- [OpenJDK 23](https://openjdk.org/projects/jdk/23/)  
+- [Maven](https://maven.apache.org/) zum Bauen des Projekts  
 
 ### Schritte
 
@@ -55,7 +65,9 @@ mvn clean install
 target/java CreepyProperty.Main
 ```
 
-> 📌 Hinweis: Das Spiel basiert auf JavaFX – stelle sicher, dass JavaFX korrekt eingebunden ist (z. B. über die `pom.xml`).
+> 📌 Hinweis: Das Spiel basiert auf JavaFX – stelle sicher, dass JavaFX korrekt eingebunden ist (z. B. über die `pom.xml`).
+
+---
 
 ## Nutzung
 
@@ -63,17 +75,20 @@ Das Spiel wird über die Main-Klasse gestartet. Navigiere im Menü und beginne d
 
 > 📷 **Screenshots** folgen ggf. später im Ordner `/screenshots`
 
+---
+
 ## Lizenz
 
 Dieses Projekt steht unter der **Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License**.
 
-- Du darfst es **nutzen, teilen und zeigen**,
-- solange du **den Urheber Loromy nennst**,
-- **nichts veränderst**,
+- Du darfst es **nutzen, teilen und zeigen**,  
+- solange du **den Urheber Loromy nennst**,  
+- **nichts veränderst**,  
 - und es **nicht kommerziell nutzt oder weiterverkaufst**.
 
 🔗 [Lizenz anzeigen (CC BY-NC-ND 4.0)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
 ---
 
-**Autor:** Loromy – [github.com/Loromy](https://github.com/Loromy/the-creepy-property)
+**Autor:** Loromy  
+https://github.com/Loromy/the-creepy-property
