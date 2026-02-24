@@ -1,25 +1,5 @@
 // Creepy Property - JavaScript
 
-// Theme Toggle
-const themeToggle = document.getElementById('themeToggle');
-const themeIcon = document.getElementById('themeIcon');
-const body = document.body;
-
-// Load saved theme
-const savedTheme = localStorage.getItem('creepy-theme');
-if (savedTheme === 'light') {
-  body.classList.add('light-mode');
-  themeIcon.textContent = '☀️';
-}
-
-// Toggle theme
-themeToggle.addEventListener('click', () => {
-  body.classList.toggle('light-mode');
-  const isLight = body.classList.contains('light-mode');
-  themeIcon.textContent = isLight ? '☀️' : '🌙';
-  localStorage.setItem('creepy-theme', isLight ? 'light' : 'dark');
-});
-
 // Mobile Menu Toggle
 const menuToggle = document.getElementById('menuToggle');
 const nav = document.getElementById('nav');
@@ -48,3 +28,4 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }
   });
 });
+})();

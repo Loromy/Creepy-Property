@@ -33,18 +33,6 @@ body {
   transition: background 0.45s ease, color 0.45s ease;
 }
 
-body.light-mode {
-  --creepy-green: #00dd35;
-  --creepy-dark-green: #00aa28;
-  --creepy-bright-green: #22ff55;
-  --creepy-dark: #f0f8f0;
-  --creepy-gray: #d0e8d0;
-  --fog-color: rgba(0, 200, 50, 0.1);
-  --text-primary: #1a1a2e;
-  --text-secondary: #4a5568;
-  background: #e8f5e8 !important;
-}
-
 /* Animated Creepy Fog Background */
 .creepy-fog {
   position: fixed;
@@ -188,11 +176,6 @@ nav {
   align-items: center;
 }
 
-.theme-toggle {
-  position: absolute;
-  right: 100px;
-}
-
 nav a {
   color: var(--text-secondary);
   text-decoration: none;
@@ -226,24 +209,6 @@ nav a:hover::after {
 
 nav a.active {
   color: var(--creepy-bright-green);
-}
-
-.theme-toggle {
-  position: absolute;
-  right: 100px;
-  background: rgba(0, 255, 65, 0.1);
-  border: 1px solid var(--creepy-dark-green);
-  padding: 10px 15px;
-  border-radius: 50px;
-  cursor: pointer;
-  color: var(--text-primary);
-  font-size: 18px;
-  transition: all 0.3s;
-}
-
-.theme-toggle:hover {
-  background: rgba(0, 255, 65, 0.2);
-  box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
 }
 
 .menu-toggle {
@@ -1024,11 +989,6 @@ footer p {
   .logo {
     position: static;
     font-size: 22px;
-  }
-
-  .theme-toggle {
-    position: static;
-    order: 2;
   }
 
   .menu-toggle {
